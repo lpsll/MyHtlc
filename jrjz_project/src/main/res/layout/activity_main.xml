@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+    <FrameLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+    <RadioGroup
+        android:id="@+id/ra1"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:background="#018ce7"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="5.5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:drawableTop="@drawable/navi_home_selector"
+            android:background="@drawable/navi_all__color_selector"/>
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="5.5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/navi_order_selector"
+            android:background="@drawable/navi_all__color_selector"/>
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="5.5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/navi_privilege_selector"
+            android:background="@drawable/navi_all__color_selector"/>
+        <RadioButton
+            android:id="@+id/radio4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="5.5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/navi_mine_selector"
+            android:background="@drawable/navi_all__color_selector"/>
+    </RadioGroup>
+
+</RelativeLayout>
