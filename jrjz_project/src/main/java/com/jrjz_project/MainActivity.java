@@ -6,7 +6,6 @@ import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,10 +13,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.htlc.jrjz.jrjz_project.R;
-import com.jrjz_project.fragment.HomeFragment;
-import com.jrjz_project.fragment.MineFragment;
-import com.jrjz_project.fragment.OrderFragment;
-import com.jrjz_project.fragment.PrivilegeFragment;
+import com.jrjz_project.home.fragment.HomeFragment;
+import com.jrjz_project.mine.fragment.MineFragment;
+import com.jrjz_project.order.fragment.OrderFragment;
+import com.jrjz_project.campaign.fragment.CampaignFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class MainActivity extends FragmentActivity {
@@ -73,7 +72,7 @@ public class MainActivity extends FragmentActivity {
                         break;
                     case R.id.radio3:
                         //活动
-                        PrivilegeFragment privilegeFragment=new PrivilegeFragment();
+                        CampaignFragment privilegeFragment=new CampaignFragment();
                         transaction=fragmentManager.beginTransaction();
                         transaction.replace(R.id.fragment_content,privilegeFragment);
                         transaction.commit();

@@ -21,13 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.jrjz_project.CouponActivity"
-            android:theme="@android:style/Theme.Black.NoTitleBar"
-            android:windowSoftInputMode="adjustPan|stateHidden">
-            <intent-filter>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

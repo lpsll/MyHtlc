@@ -1,11 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
     //----------------------------------------------
     <color name="status_color">#018ce7</color>
     <color name="navi">#008ce7</color>
     <color name="navi_press">#005085</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_25">#252525</color>
+    <color name="color_33">#333333</color>
+    <color name="color_00">#000000</color>
+    <color name="color_cc">#eae9e9</color>
+    <color name="color_ff">#FFFFFF</color>
+    <color name="color_3c">#3CB371</color>
+    <color name="color_29">#298036</color>
+    <color name="color_c0">#CC0000</color>
+    <color name="color_f0">#FFFF00</color>
+    <color name="color_ad">#ADD8E6</color>
+    <color name="color_fe">#FFEEEEEE</color>
+    <color name="color_fce">#fffc655e</color>
+    <color name="color_f4">#fff4f4f4</color>
+    <color name="color_f5">#ff555555</color>
+    <color name="color_f9">#ff999999</color>
+    <color name="color_f6">#ff666666</color>
+    <color name="color_f3">#ff333333</color>
+    <color name="common_titlebar_bg">#f5f5f5</color>
+    <color name="color_ade7">#e7e7e7</color>
+    <color name="green_light">#1da158</color>
+    <color name="gray_25">#252525</color>
+    <color name="common_layout_bg">#f8f8f8</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="blur_bg">#FFFAF0</color>
+    <color name="black">#000000</color>
+    <color name="grey">#808080</color>
+    <color name="right_bg">#696969</color>
 </resources>
