@@ -20,4 +20,6 @@ public class AppConfig {
     public static final String ERROR_REQ_MSG="请求失败";
 
     public static final String SUCCESS="1";
+    public static final String FFF="1";
+
 }
