@@ -23,6 +23,5 @@ public class AppConfig {
 
     public static final String Flase="1";
 
-    public static final String AAAAA="1";
 
 }
