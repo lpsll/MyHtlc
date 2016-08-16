@@ -21,6 +21,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name="com.jrjz_project.home.activity.AppointmentActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.jrjz_project.home.activity.SelectAddressActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.jrjz_project.home.activity.OrderPaymentActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 
 </manifest>

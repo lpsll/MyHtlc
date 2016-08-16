@@ -11,4 +11,32 @@
     <string name="error_view_load_error_click_to_refresh">内容加载失败\r\n点击重新加载</string>
     <string name="error_view_network_error_click_to_refresh">没有可用的网络</string>
     <string name="error_view_no_data">暂无内容</string>
+    <string name="order_project">服务项目:</string>
+    <string name="order_code">订单编号:</string>
+    <string name="order_time">预约时间:</string>
+    <string name="order_address">预约地址:</string>
+    <string name="order_people">服务人员:</string>
+    <string name="order_money">金额:</string>
+    <string name="home_bottom">查看全部服务</string>
+    <string name="home_more">更多</string>
+    <string name="apt_project">服务项目</string>
+    <string name="apt_time">服务时间</string>
+    <string name="apt_problem">问题描述</string>
+    <string name="app_img">上传图片</string>
+    <string name="app_choose">请选择服务时间</string>
+    <string name="app_describe">请输入问题描述</string>
+    <string name="app_money">上门费</string>
+    <string name="app_understand">了解服务内容与报价</string>
+    <string name="tj_adresss">新增地址</string>
+    <string name="sz_adresss">设置为默认地址</string>
+    <string name="delete_adresss">删除</string>
+    <string name="edit_adresss">编辑</string>
+    <string name="op_name">姓名</string>
+    <string name="op_tel">电话</string>
+    <string name="op_address">地址</string>
+    <string name="op_money">钱包支付</string>
+    <string name="op_wx">微信支付</string>
+    <string name="op_zfb">支付宝支付</string>
+    <string name="op_tj">提交</string>
+
 </resources>

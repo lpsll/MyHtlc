@@ -9,15 +9,24 @@ import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
+import com.jrjz_project.common.base.BaseFragment;
+import com.jrjz_project.common.base.BaseTitleActivity;
 import com.jrjz_project.home.fragment.HomeFragment;
 import com.jrjz_project.mine.fragment.MineFragment;
 import com.jrjz_project.order.fragment.OrderFragment;
 import com.jrjz_project.campaign.fragment.CampaignFragment;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
 
 public class MainActivity extends FragmentActivity {
     private RadioGroup radioGroup1;
@@ -121,3 +130,5 @@ public class MainActivity extends FragmentActivity {
     }
 
 }
+
+

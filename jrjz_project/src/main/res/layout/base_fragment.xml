@@ -10,7 +10,7 @@
         android:background="@color/common_layout_bg"
         android:orientation="vertical"/>
 
-    <com.qluxstory.qingshe.common.widget.EmptyLayout
+    <com.jrjz_project.common.widget.EmptyLayout
         android:id="@+id/error_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
