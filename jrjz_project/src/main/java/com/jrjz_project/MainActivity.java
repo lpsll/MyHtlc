@@ -82,6 +82,19 @@ public class MainActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
+        mBaseEnsure = (TextView) findViewById(R.id.base_titlebar_ensure);
+        mBaseEnsure.setOnClickListener(this);
+        mBaseBack.setOnClickListener(this);
+        mBaseBack.setText("北京");
+        // 初始化返回按钮图片大小
+        TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.xiangxia_03,
+                R.dimen.common_titlebar_icon_width,
+                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_RIGHT);
+
+        // 初始化右边图片大小
+        TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.left,
+                R.dimen.common_titlebar_icon_width,
+                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
 
         fragmentManager = getSupportFragmentManager();
         mTabViews[0] = mTvTabHome;
@@ -212,19 +225,23 @@ public class MainActivity extends BaseTitleActivity {
         switch (currentTab){
             case 0:
                 setTitleText("居然家装");
-                mBaseBack.setVisibility(View.GONE);
+                mBaseBack.setVisibility(View.VISIBLE);
+                mBaseEnsure.setVisibility(View.VISIBLE);
                 break;
             case 1:
                 setTitleText("订单");
                 mBaseBack.setVisibility(View.GONE);
+                mBaseEnsure.setVisibility(View.GONE);
                 break;
             case 2:
                 setTitleText("活动");
                 mBaseBack.setVisibility(View.GONE);
+                mBaseEnsure.setVisibility(View.GONE);
                 break;
             case 3:
                 setTitleText("个人中心");
                 mBaseBack.setVisibility(View.GONE);
+                mBaseEnsure.setVisibility(View.GONE);
                 break;
 
         }
