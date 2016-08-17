@@ -27,7 +27,7 @@ import de.greenrobot.event.EventBus;
 public abstract class BaseFragment extends Fragment implements
         View.OnClickListener, IBaseFragment {
     protected boolean prepared = false;
-    private View rootView;
+    public View rootView;
     public EmptyLayout mErrorLayout;
     protected int PAGE_INDEX = 1;
     protected final static int PAGE_SIZE = 20;

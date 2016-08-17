@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="92dp"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
+
+        <ImageView
+            android:id="@+id/img_campaign_fragment_item_rmb"
+            style="@style/campaignImg1"
+            android:background="@drawable/blue_03" />
+
+        <TextView
+            android:id="@+id/tv_campaign_fragment_item_chongzhi"
+            style="@style/campaignText"
+            android:text="充值500元"></TextView>
+
+        <TextView
+            android:id="@+id/tv_campaign_fragment_item_zengsong"
+            style="@style/campaignText2"
+            android:text="赠送价值30元的优惠券" />
+
+        <TextView
+            android:textColor="@color/status_color"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="立即充值"
+            android:id="@+id/img_lijichongzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/btn_blue_border" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/linear_gray" />
+
+</LinearLayout>

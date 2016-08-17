@@ -1,32 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent">
+
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
 
     android:background="#FFFFFF"
     android:layout_height="match_parent">
-    <include android:id="@+id/head"
-        layout="@layout/pager_head"></include>
+
     <RelativeLayout
+        android:id="@+id/rl_mine_changephone"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="101dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <ImageView
-            android:layout_width="85dp"
-            android:layout_height="85dp"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="25dp"
             android:background="@mipmap/mine_headimg_test"/>
         <TextView
+            android:textSize="18sp"
+            android:textColor="#1d1d26"
             android:id="@+id/middle_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="182938203482"/>
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="18dp"
+            android:layout_height="25dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="27dp"
@@ -38,7 +50,7 @@
         android:background="#f5f5f5"></View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="49dp"
         android:gravity="center"
         android:weightSum="2">
         <RelativeLayout
@@ -47,12 +59,15 @@
             android:layout_weight="1"
             android:gravity="center">
             <ImageView
+                android:layout_centerInParent="true"
                 android:id="@+id/score_img1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/score_mine"/>
             <TextView
+                android:textColor="@color/color_33"
+                android:textSize="12sp"
                 android:id="@+id/score_txt1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -61,12 +76,13 @@
                 android:layout_marginTop="7dp"
                 android:text="我的积分"/>
             <TextView
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/score_txt1"
                 android:layout_toRightOf="@id/score_img1"
                 android:textColor="#0b8ce6"
-                android:textSize="22sp"
+                android:textSize="14sp"
                 android:text="200分"/>
         </RelativeLayout>
         <View
@@ -79,12 +95,15 @@
             android:layout_weight="1"
             android:gravity="center">
             <ImageView
+                android:layout_centerInParent="true"
                 android:id="@+id/score_img2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
                 android:layout_marginRight="15dp"
                 android:src="@mipmap/score_yue"/>
             <TextView
+                android:textColor="@color/color_33"
+                android:textSize="12sp"
                 android:id="@+id/score_txt2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,13 +112,14 @@
                 android:layout_marginTop="7dp"
                 android:text="我的余额"/>
             <TextView
+                android:layout_marginLeft="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/score_txt2"
                 android:layout_toRightOf="@id/score_img2"
-                android:textSize="22sp"
+                android:textSize="12sp"
                 android:textColor="#0b8ce6"
-                android:text="200分"/>
+                android:text="2000元"/>
         </RelativeLayout>
     </LinearLayout>
     <View
@@ -108,15 +128,16 @@
         android:background="#f5f5f5"></View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/locate_address"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -132,16 +153,18 @@
         android:layout_height="1dp"
         android:background="#f5f5f5"></View>
     <LinearLayout
+        android:id="@+id/ll_mine_chongzhi"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/top_up"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -160,15 +183,16 @@
     <LinearLayout
         android:id="@+id/myorder"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/order_mine"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -185,15 +209,16 @@
         android:background="#f5f5f5"></View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/share_mine"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -212,15 +237,16 @@
     <LinearLayout
         android:id="@+id/coupon"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/coupons"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -236,16 +262,18 @@
         android:layout_height="1dp"
         android:background="#f5f5f5"></View>
     <LinearLayout
+        android:id="@+id/ll_mine_feedback"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/suggest_mine"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -261,16 +289,18 @@
         android:layout_height="1dp"
         android:background="#f5f5f5"></View>
     <LinearLayout
+        android:id="@+id/ll_mine_more_setting"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/setting_mine"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -287,15 +317,16 @@
         android:background="#f5f5f5"></View>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="45dp"
         android:gravity="center_vertical"
         android:weightSum="13">
         <ImageView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:layout_weight="2"
             android:src="@mipmap/about_us_mine"/>
         <TextView
+            android:textColor="@color/color_33"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="9"
@@ -310,5 +341,9 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#f5f5f5"></View>
+
+</LinearLayout>
+
+</ScrollView>
 
 </LinearLayout>

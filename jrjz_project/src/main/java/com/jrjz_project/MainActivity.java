@@ -1,22 +1,11 @@
 package com.jrjz_project;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
@@ -25,10 +14,8 @@ import com.jrjz_project.common.base.BaseTitleActivity;
 import com.jrjz_project.common.utils.LogUtils;
 import com.jrjz_project.common.utils.TextViewUtils;
 import com.jrjz_project.home.fragment.HomeFragment;
-import com.jrjz_project.mine.fragment.MineFragment;
+import com.jrjz_project.mine.fragment.fragment.MineFragment;
 import com.jrjz_project.order.fragment.OrderFragment;
-import com.jrjz_project.campaign.fragment.CampaignFragment;
-import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.List;
