@@ -69,6 +69,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoSelect(this);
                 break;
             case R.id.lin_time:
+                HomeUiGoto.gotoSt(this);
                 break;
             case R.id.apt_img:
                 break;

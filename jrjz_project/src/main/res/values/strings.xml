@@ -38,5 +38,9 @@
     <string name="op_wx">微信支付</string>
     <string name="op_zfb">支付宝支付</string>
     <string name="op_tj">提交</string>
+    <string name="add_name">请输入名字</string>
+    <string name="add_phone">请输入手机号码</string>
+    <string name="add_address">街道、小区、门牌号等</string>
+    <string name="add_preservation">保存</string>
 
 </resources>

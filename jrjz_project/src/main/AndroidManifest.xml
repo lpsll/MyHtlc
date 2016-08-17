@@ -31,6 +31,12 @@
         <activity android:name="com.jrjz_project.home.activity.OrderPaymentActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name="com.jrjz_project.home.activity.ServiceTimeActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.jrjz_project.home.activity.AddAddressActivity"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 

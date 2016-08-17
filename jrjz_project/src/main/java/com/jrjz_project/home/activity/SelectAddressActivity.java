@@ -1,12 +1,13 @@
 package com.jrjz_project.home.activity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseTitleActivity;
+import com.jrjz_project.home.HomeUiGoto;
 import com.jrjz_project.home.adapter.SelectAddressAdapter;
 
 import java.util.ArrayList;
@@ -44,21 +45,27 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < 10; i++) {
-            Map<String, Object> map=new HashMap<String, Object>();
-            map.put("name", "利"+i);
-            map.put("title", "先生"+i);
-            map.put("info", "电话"+i);
-            map.put("add", "这是一个详细信息"+i);
+            Map<String, Object> map = new HashMap<String, Object>();
+            map.put("name", "利" + i);
+            map.put("title", "先生" + i);
+            map.put("info", "电话" + i);
+            map.put("add", "这是一个详细信息" + i);
             list.add(map);
         }
-        mList.setAdapter(new SelectAddressAdapter(this,list));
+        mList.setAdapter(new SelectAddressAdapter(this, list));
     }
 
 
-
     @OnClick(R.id.select_lin)
-    public void onClick() {
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.select_lin:
+                HomeUiGoto.gotoAddress(this);
+                break;
+
+        }
+
     }
 }
