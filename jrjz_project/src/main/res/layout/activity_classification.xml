@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="@dimen/ds_250"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_120"
+            android:gravity="center"
+            android:text="家装维修"
+            android:textColor="@color/color_00"
+            android:textSize="@dimen/fs_45"/>
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_120"
+            android:gravity="center"
+            android:text="家电维修"
+            android:textColor="@color/color_00"
+            android:textSize="@dimen/fs_45"/>
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_120"
+            android:gravity="center"
+            android:text="家具维修"
+            android:textColor="@color/color_00"
+            android:textSize="@dimen/fs_45"/>
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_120"
+            android:gravity="center"
+            android:text="家政维修"
+            android:textColor="@color/color_00"
+            android:textSize="@dimen/fs_45"/>
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ds_120"
+            android:gravity="center"
+            android:text="社区服务"
+            android:textColor="@color/color_00"
+            android:textSize="@dimen/fs_45"/>
+
+    </LinearLayout>
+
+<ListView
+    android:id="@+id/cf_list"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"></ListView>
+</LinearLayout>

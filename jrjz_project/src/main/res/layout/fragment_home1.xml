@@ -474,24 +474,59 @@
                 android:layout_height="@dimen/ds_400"
                 android:orientation="horizontal">
                 <LinearLayout
-                    android:id="@+id/lin15"
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="@dimen/ds_140"
-                        android:layout_height="@dimen/ds_140"
-                        android:background="@drawable/test1"/>
-                    <TextView
+                    android:layout_weight="1">
+                    <LinearLayout
+                        android:id="@+id/lin15"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_60"
-                        android:textColor="@color/color_00"
-                        android:text="防水维修"
-                        />
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="@dimen/ds_140"
+                            android:layout_height="@dimen/ds_140"
+                            android:layout_marginLeft="@dimen/ds_60"
+                            android:background="@drawable/test1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/fs_50"
+                            android:layout_marginLeft="@dimen/ds_60"
+                            android:gravity="center"
+                            android:textColor="@color/color_00"
+                            android:text="防水维修"
+                            />
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/ds_3"
+                        android:background="@color/color_cc"/>
+                    <LinearLayout
+                        android:id="@+id/lin_15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+                        <ImageView
+                            android:layout_width="@dimen/ds_140"
+                            android:layout_height="@dimen/ds_140"
+                            android:layout_marginLeft="@dimen/ds_60"
+                            android:background="@drawable/test1"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:textSize="@dimen/fs_50"
+                            android:layout_marginLeft="@dimen/ds_60"
+                            android:gravity="center"
+                            android:textColor="@color/color_00"
+                            android:text="防水维修"
+                            />
+                    </LinearLayout>
+
                 </LinearLayout>
                 <View
                     android:layout_width="@dimen/ds_3"

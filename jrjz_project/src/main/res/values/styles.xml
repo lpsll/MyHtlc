@@ -33,6 +33,23 @@
         <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
         <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
-
+    <style name="BottomTabItemLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@color/navi_press</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <style name="BottomTabItemText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/color_ff</item>
+        <item name="android:textSize">@dimen/fs_43</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:paddingBottom">@dimen/ds_10</item>
+    </style>
     <!-- ==========我是华丽丽的分割线==================== ;-->
 </resources>

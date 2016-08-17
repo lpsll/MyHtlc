@@ -42,5 +42,18 @@
     <string name="add_phone">请输入手机号码</string>
     <string name="add_address">街道、小区、门牌号等</string>
     <string name="add_preservation">保存</string>
+    <string name="evaluate_one">1、是否准时？</string>
+    <string name="evaluate_two">2、服务态度是否好？</string>
+    <string name="evaluate_three">3、是否解决问题？</string>
+    <string name="evaluate_four">4、是否说明注意事项？</string>
+    <string name="evaluate_five">5、是否私自乱收费？</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="submit_comments">提交意见......</string>
+    <string name="tianjia">添加图片</string>
+    <string name="home">首页</string>
+    <string name="order">订单</string>
+    <string name="huodong">活动</string>
+    <string name="mine">我的</string>
 
 </resources>

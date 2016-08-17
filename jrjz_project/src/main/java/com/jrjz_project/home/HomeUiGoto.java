@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.jrjz_project.home.activity.AddAddressActivity;
 import com.jrjz_project.home.activity.AppointmentActivity;
+import com.jrjz_project.home.activity.ClassificationActivity;
 import com.jrjz_project.home.activity.OrderPaymentActivity;
 import com.jrjz_project.home.activity.SelectAddressActivity;
 import com.jrjz_project.home.activity.ServiceTimeActivity;
@@ -62,6 +63,16 @@ public class HomeUiGoto {
 
     public static void gotoAddress(Context context){
         Intent intent = new Intent(context, AddAddressActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到分类页
+     * @param context
+     */
+
+    public static void gotoCf(Context context){
+        Intent intent = new Intent(context, ClassificationActivity.class);
         context.startActivity(intent);
     }
 }

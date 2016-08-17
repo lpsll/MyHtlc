@@ -38,6 +38,16 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name="com.jrjz_project.home.activity.ClassificationActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.jrjz_project.order.activity.EvaluateActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.jrjz_project.order.activity.OrderNewPaymentActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 
 </manifest>

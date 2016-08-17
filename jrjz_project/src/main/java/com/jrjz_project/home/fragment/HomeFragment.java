@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseFragment;
 import com.jrjz_project.home.HomeUiGoto;
+import com.jrjz_project.order.OrderUiGoto;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -84,6 +85,8 @@ public class HomeFragment extends BaseFragment {
     LinearLayout mLin14;
     @Bind(R.id.lin15)
     LinearLayout mLin15;
+    @Bind(R.id.lin_15)
+    LinearLayout mLin115;
     @Bind(R.id.lin16)
     LinearLayout mLin16;
     @Bind(R.id.lin17)
@@ -119,21 +122,28 @@ public class HomeFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15, R.id.lin16, R.id.lin17, R.id.all_service})
+    @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15,R.id.lin_15, R.id.lin16, R.id.lin17, R.id.all_service})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin01:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin02:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin03:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin04:
+//                HomeUiGoto.gotoCf(getActivity());
+                OrderUiGoto.gotoOrderNew(getActivity());
                 break;
             case R.id.lin05:
+//                HomeUiGoto.gotoCf(getActivity());
+                OrderUiGoto.gotoEvaluate(getActivity());
                 break;
             case R.id.lin06:
-
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin07:
                 HomeUiGoto.gotoApt(getActivity());
@@ -145,6 +155,7 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity());
                 break;
             case R.id.lin10:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin11:
                 HomeUiGoto.gotoApt(getActivity());
@@ -156,8 +167,12 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity());
                 break;
             case R.id.lin14:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin15:
+                HomeUiGoto.gotoApt(getActivity());
+                break;
+            case R.id.lin_15:
                 HomeUiGoto.gotoApt(getActivity());
                 break;
             case R.id.lin16:
@@ -167,6 +182,7 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity());
                 break;
             case R.id.all_service:
+                HomeUiGoto.gotoCf(getActivity());
                 break;
         }
     }

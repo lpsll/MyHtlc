@@ -3,13 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <FrameLayout
-        android:id="@+id/realtabcontent"
+    <ListView
+        android:id="@+id/cf_list"
         android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_height="match_parent">
 
-    <include layout="@layout/bottom_tab_layout" />
+    </ListView>
 
 </LinearLayout>

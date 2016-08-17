@@ -58,6 +58,9 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
     @Override
     public void initData() {
-
     }
+
+//    public boolean autoRefreshIn(){
+//        return true;
+//    }
 }

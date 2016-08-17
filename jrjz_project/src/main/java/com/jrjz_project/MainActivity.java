@@ -2,13 +2,18 @@ package com.jrjz_project;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -17,6 +22,8 @@ import android.widget.TextView;
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseFragment;
 import com.jrjz_project.common.base.BaseTitleActivity;
+import com.jrjz_project.common.utils.LogUtils;
+import com.jrjz_project.common.utils.TextViewUtils;
 import com.jrjz_project.home.fragment.HomeFragment;
 import com.jrjz_project.mine.fragment.MineFragment;
 import com.jrjz_project.order.fragment.OrderFragment;
@@ -28,106 +35,221 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class MainActivity extends FragmentActivity {
-    private RadioGroup radioGroup1;
+/*
+整个程序的MainActivity，入口
+*/
+
+public class MainActivity extends BaseTitleActivity {
+
+    @Bind(R.id.tv_tab_home)
+    ImageView mTvTabHome;
+    @Bind(R.id.tv_tab_order)
+    ImageView mTvTabOrder;
+    @Bind(R.id.tv_tab_campaign)
+    ImageView mTvTabCampaign;
+    @Bind(R.id.tv_tab_mine)
+    ImageView mTvTabMine;
+
+    public static final int TAB_NUM = 4;
+    private ImageView[] mTabViews = new ImageView[TAB_NUM];
     private FragmentManager fragmentManager;
-    private FragmentTransaction transaction;
-    private HomeFragment homeFragment;
-    private RadioButton radioButton1;
-    private RadioButton radioButton2;
-    private RadioButton radioButton3;
-    private RadioButton radioButton4;
+    private List<BaseFragment> fragmentList=new ArrayList<>();
+    /**
+     * Tab图片没有选中的状态资源ID
+     */
+    private int[] mTabIconNors = {
+            R.drawable.shouyexdpi_03,
+            R.drawable.dingdanxdpi_03,
+            R.drawable.huodongxdpi_03,
+            R.drawable.wodexdpi_03};
+    /**
+     * Tab图片选中的状态资源ID
+     */
+    private int[] mTabIconSels = {
+            R.drawable.shouyedxdpi_03,
+            R.drawable.dingdandxdpi_03,
+            R.drawable.huodongdxdpi_03_03,
+            R.drawable.wodedxdpi_03};
+
+    private int currentTab=-1; // 当前Tab页面索引
+    private TextView mBaseEnsure,mBaseBack;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
-        radioGroup1=(RadioGroup)this.findViewById(R.id.ra1);
-//
-        //获取FragmentManager管理器
-        fragmentManager=getSupportFragmentManager();
-        transaction=fragmentManager.beginTransaction();
-        //实例化具体HomeFragment，并且加以替换
-        homeFragment=new HomeFragment();
-        transaction.replace(R.id.fragment_content,homeFragment);
-        transaction.commit();
+    protected int getContentResId() {
+        return R.layout.activity_main;
+    }
 
-        radioButton1=(RadioButton) findViewById(R.id.radio1);
-        radioButton2=(RadioButton) findViewById(R.id.radio2);
-        radioButton3=(RadioButton) findViewById(R.id.radio3);
-        radioButton4=(RadioButton) findViewById(R.id.radio4);
-        //沉浸式状态栏（改变状态栏的颜色使其与APP风格一体化 ）
-        initSystemBar(this);
+    @Override
+    public void initView() {
+        mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
 
-        //初始化底部导航栏的状态
-        radioGroup1.check(R.id.radio1);
-        radioGroup1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
-                    case R.id.radio1:
-                        //首页
-                        HomeFragment homeFragment=new HomeFragment();
-                        transaction=fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_content,homeFragment);
-                        transaction.commit();
-                        break;
-                    case R.id.radio2:
-                        //订单
-                        OrderFragment orderFragment=new OrderFragment();
-                        transaction=fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_content,orderFragment);
-                        transaction.commit();
-                        break;
-                    case R.id.radio3:
-                        //活动
-                        CampaignFragment privilegeFragment=new CampaignFragment();
-                        transaction=fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_content,privilegeFragment);
-                        transaction.commit();
+        fragmentManager = getSupportFragmentManager();
+        mTabViews[0] = mTvTabHome;
+        mTabViews[1] = mTvTabOrder;
+        mTabViews[2] = mTvTabCampaign;
+        mTabViews[3] = mTvTabMine;
 
-                        break;
-                    case R.id.radio4:
-                        //个人中心
-                        MineFragment mineFragment=new MineFragment();
-                        transaction=fragmentManager.beginTransaction();
-                        transaction.replace(R.id.fragment_content,mineFragment);
-                        transaction.commit();
-
-                        break;
-
+        for (int i = 0; i < mTabViews.length; i++) {
+            fragmentList.add(null);
+//            addFragment(i);
+            final int j = i;
+            mTabViews[i].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    LogUtils.e("j----",""+j);
+                    showTab(j);
                 }
-            }
-        });
+            });
+        }
+        showTab(0); // 显示目标tab
     }
 
     /**
-     * 设置顶部沉浸式状态的颜色
-     * @param activity
+     *
+     * @param fragment 除了fragment，其他的都hide
      */
-    public static void initSystemBar(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            setTranslucentStatus(activity, true);
+    private void hideAllFragments(BaseFragment fragment) {
+        for (int i = 0; i < TAB_NUM; i++) {
+            Fragment f = fragmentManager.findFragmentByTag("tag" + i);
+            LogUtils.e("f----","i--"+i+"---"+f);
+            if (f != null&&f.isAdded()&&f!=fragment) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.hide(f);
+                transaction.commitAllowingStateLoss();
+                f.setUserVisibleHint(false);
+            }
         }
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        tintManager.setStatusBarTintEnabled(true);
-        // 使用颜色资源
-        tintManager.setStatusBarTintColor(R.color.status_color);
+    }
+
+    private BaseFragment addFragment(int index) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        BaseFragment fragment = null;
+        switch (index) {
+            case 0:
+                fragment = new HomeFragment();
+                break;
+            case 1:
+                fragment = new OrderFragment();
+                break;
+            case 2:
+                fragment = new CampaignFragment();
+                break;
+            case 3:
+                fragment = new MineFragment();
+                break;
+
+        }
+        LogUtils.e("index----", "" + index);
+        LogUtils.e("fragment----", "" + fragment);
+        fragmentList.add(index,fragment);
+        transaction.add(R.id.realtabcontent, fragment, "tag" + index);
+        transaction.commitAllowingStateLoss();
+        // fragmentManager.executePendingTransactions();
+        return fragment;
+    }
+
+    private void showFragment(BaseFragment fragment) {
+        LogUtils.e("fragment----showFragment", "" + fragment);
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.show(fragment);
+        transaction.commitAllowingStateLoss();
+        fragment.setUserVisibleHint(true);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        LogUtils.e("intent-----",intent+"");
+        if(intent != null) {
+            if(intent.getExtras()!=null){
+                int tag = intent.getExtras().getInt("tag");
+                LogUtils.e("tag-----",tag+"");
+                showTab(tag);
+            }
+
+
+        }
+    }
+
+    /**
+     * 切换tab
+     *
+     * @param idx
+     */
+    private void showTab(int idx) {
+        if(currentTab==idx){return;}
+        BaseFragment targetFragment = (BaseFragment) fragmentManager
+                .findFragmentByTag("tag" + idx);
+        LogUtils.e("showTab---idx----",""+idx);
+        LogUtils.e("targetFragment----", "" + targetFragment);
+//        targetFragment = fragmentList.get(idx);
+
+        if (targetFragment == null || !targetFragment.isAdded()) {
+            LogUtils.e("size----", "" + fragmentList.size());
+            if(idx<fragmentList.size()&&fragmentList.get(idx)!=null) {
+                targetFragment = fragmentList.get(idx);
+                LogUtils.e("targetFragment----idx---if", "" + idx+"---"+targetFragment);
+            }else{
+                targetFragment=addFragment(idx);
+                LogUtils.e("targetFragment----idx---else", "" +idx+"---"+ targetFragment);
+            }
+        }
+
+
+        hideAllFragments(targetFragment);
+        showFragment(targetFragment);
+        for (int i = 0; i < TAB_NUM; i++) {
+            if (idx == i) {
+                mTabViews[i].setBackgroundColor(getResources().getColor(R.color.navi_press));
+
+            } else {
+                mTabViews[i].setBackgroundColor(getResources().getColor(R.color.navi));
+
+            }
+        }
+        currentTab = idx; // 更新目标tab为当前tab
+        LogUtils.e("currentTab----", "" + currentTab);
+        getTitleLayout().setVisibility(View.VISIBLE);
+        switch (currentTab){
+            case 0:
+                setTitleText("居然家装");
+                mBaseBack.setVisibility(View.GONE);
+                break;
+            case 1:
+                setTitleText("订单");
+                mBaseBack.setVisibility(View.GONE);
+                break;
+            case 2:
+                setTitleText("活动");
+                mBaseBack.setVisibility(View.GONE);
+                break;
+            case 3:
+                setTitleText("个人中心");
+                mBaseBack.setVisibility(View.GONE);
+                break;
+
+        }
+    }
+
+    @Override
+    public void initData() {
     }
 
 
-    @TargetApi(19)
-    private static void setTranslucentStatus(Activity activity, boolean on) {
-        Window win = activity.getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
+
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
+        switch (v.getId()) {
+
+            default:
+                break;
         }
-        win.setAttributes(winParams);
     }
+
+
+
+
 
 }
 

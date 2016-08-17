@@ -16,6 +16,12 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
 
     @Override
     public void bindData(BaseRecyclerViewHolder holder, OrderEntity orderEntity, int position) {
+        holder.setText(R.id.order_tv01,"1111");
+        holder.setText(R.id.order_tv02,"2222");
+        holder.setText(R.id.order_tv03,"3333");
+        holder.setText(R.id.order_tv04,"4444");
+        holder.setText(R.id.order_tv05,"5555");
+        holder.setText(R.id.order_tv06,"6666");
 
     }
 }

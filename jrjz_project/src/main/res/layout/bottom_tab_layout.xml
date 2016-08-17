@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="49dp"
+    android:orientation="horizontal"
+    >
+
+    <ImageView
+        android:id="@+id/tv_tab_home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/ds_20"
+        android:paddingBottom="@dimen/ds_20"
+        android:layout_weight="1"
+        android:src="@drawable/shouyedxdpi_03"
+        android:background="@color/navi_press"/>
+    <ImageView
+        android:id="@+id/tv_tab_order"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/ds_20"
+        android:paddingBottom="@dimen/ds_20"
+        android:layout_weight="1"
+        android:src="@drawable/dingdanxdpi_03"
+        android:background="@color/navi"/>
+    <ImageView
+        android:id="@+id/tv_tab_campaign"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/ds_20"
+        android:paddingBottom="@dimen/ds_20"
+        android:layout_weight="1"
+        android:src="@drawable/huodongxdpi_03"
+        android:background="@color/navi"/>
+    <ImageView
+        android:id="@+id/tv_tab_mine"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/ds_20"
+        android:paddingBottom="@dimen/ds_20"
+        android:layout_weight="1"
+        android:src="@drawable/wodexdpi_03"
+        android:background="@color/navi"/>
 
 </LinearLayout>
