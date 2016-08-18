@@ -24,9 +24,10 @@
             android:textSize="@dimen/x33" />
 
 
-        <Button
+        <com.jrjz_project.mine.view.TimeButton
+            android:id="@+id/TimeButton_mine_changePhone"
             android:layout_marginRight="@dimen/x40"
-            android:layout_width="@dimen/x180"
+            android:layout_width="@dimen/x200"
             android:layout_height="@dimen/x70"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
