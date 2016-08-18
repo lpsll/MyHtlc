@@ -1,11 +1,13 @@
-package com.jrjz_project.campaign.fragment;
+package com.jrjz_project.campaign;
 
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 

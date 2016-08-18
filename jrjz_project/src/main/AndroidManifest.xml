@@ -51,8 +51,12 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name="com.jrjz_project.activity.TopUpActivity"
+            android:name="com.jrjz_project.campaign.activity.TopUpActivity"
             android:launchMode="singleTask" />
+        <activity android:name="com.jrjz_project.mine.activity.ChangePhoneActivity"/>
+
+        <activity android:name="com.jrjz_project.mine.activity.FeedBackActivity"/>
+        <activity android:name="com.jrjz_project.mine.activity.MoreSettingActivity"/>
 
     </application>
 

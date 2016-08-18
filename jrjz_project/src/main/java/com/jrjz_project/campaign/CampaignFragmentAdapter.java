@@ -1,4 +1,4 @@
-package com.jrjz_project.campaign.adapter1;
+package com.jrjz_project.campaign;
 
 import android.content.Context;
 import android.content.Intent;

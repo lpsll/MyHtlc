@@ -7,8 +7,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.htlc.jrjz.jrjz_project.R;
-import com.jrjz_project.activity.TopUpActivity;
+import com.jrjz_project.campaign.activity.TopUpActivity;
 import com.jrjz_project.common.base.BaseFragment;
+import com.jrjz_project.mine.activity.ChangePhoneActivity;
+import com.jrjz_project.mine.activity.FeedBackActivity;
+import com.jrjz_project.mine.activity.MoreSettingActivity;
 
 /**
  * 我的页
