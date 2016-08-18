@@ -7,24 +7,25 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="@dimen/x30"
         android:background="@color/linear_gray"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_height="@dimen/x300"
         android:background="#ffffff"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp">
+        android:paddingLeft="@dimen/x50"
+        android:paddingRight="@dimen/x50">
 
         <EditText
+            android:layout_marginTop="@dimen/x40"
+            android:layout_marginBottom="@dimen/x40"
             android:id="@+id/username_txt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:layout_marginTop="25dp"
             android:textColorHint="#d6d6d6"
             android:layout_centerVertical="true"
-            android:textSize="14sp"
+            android:textSize="@dimen/x33"
             android:gravity="top"
             android:hint="如果您在使用过程中遇到问题，请留下您的宝贵意见和联系方式，客服将会第一时间联系您"
             android:layout_below="@id/username"/>
@@ -41,15 +42,7 @@
 
 
     <TextView
-        android:textColor="#ffffff"
-        android:textSize="15sp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/ok_selector"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="35dp"
-        android:gravity="center"
+       style="@style/button_click"
         android:text="提交"/>
 
 

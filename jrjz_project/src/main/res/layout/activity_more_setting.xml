@@ -9,51 +9,47 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/x70"
             android:background="@color/linear_gray"/>
         <RelativeLayout
             android:id="@+id/rl_moresetting_clear_cache"
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="@dimen/x100"
             android:background="#ffffff"
-            android:paddingLeft="25dp"
-            android:paddingRight="25dp">
+            android:paddingLeft="@dimen/x40"
+            android:paddingRight="@dimen/x40">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:text="清除缓存"
-                android:textSize="15sp"
+                android:textSize="@dimen/x33"
                 android:textColor="@color/tv_black"
                 android:layout_centerVertical="true"
                 android:layout_height="wrap_content" />
 
             <TextView
+                android:textSize="@dimen/x33"
                 android:id="@+id/tv_moresetting_cache"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="230dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/x50"
                 android:layout_width="wrap_content"
                 android:text="12.2KB"
+                android:textColor="@color/tv_hint"
                 android:layout_height="wrap_content" />
             <ImageView
-                android:layout_marginLeft="285dp"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_width="10dp"
+                android:layout_width="@dimen/x20"
+                android:layout_height="@dimen/x30"
                 android:src="@drawable/arrow_right"
-                android:layout_height="10dp" />
+                 />
 
         </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_moresetting_exit"
-            android:textColor="#ffffff"
-            android:textSize="15sp"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/ok_selector"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
+           style="@style/button_click"
             android:text="退出登录"/>
 
 

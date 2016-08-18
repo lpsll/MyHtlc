@@ -1,4 +1,4 @@
-package com.jrjz_project.campaign;
+package com.jrjz_project.campaign.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     private Context context;
 
     public CampaignFragmentAdapter(Context context, List mChongzhi, List mZengsong) {
-        this.context = context;
+        this.context =context;
         this.mChongzhi = mChongzhi;
         this.mZengsong = mZengsong;
 
@@ -52,18 +53,18 @@ class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder( RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
             final MyViewHolder myViewHolder = (MyViewHolder) holder;
-            myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + mZengsong.get(position - 1) + "元的优惠券");
-            myViewHolder.tv_campaign_fragment_item_chongzhi.setText("充值" + mChongzhi.get(position - 1) + "元");
+                myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + mZengsong.get(position-1) + "元的优惠券");
+                myViewHolder.tv_campaign_fragment_item_chongzhi.setText("充值" + mChongzhi.get(position-1) + "元");
             myViewHolder.img_lijichongzhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(context, "充值", Toast.LENGTH_SHORT).show();
                     //跳转到充值页面
                     Intent intent = new Intent(context, TopUpActivity.class);
-                    intent.putExtra("TypeForTopUp", "fixed");
+                    intent.putExtra("TypeForTopUp","fixed");
                     context.startActivity(intent);
 
 
@@ -73,7 +74,7 @@ class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
 
 
-    }
+        }
 
     @Override
     public int getItemCount() {
@@ -92,14 +93,14 @@ class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         TextView tv_campaign_fragment_item_chongzhi; //充值
         TextView tv_campaign_fragment_item_zengsong; //赠送
-       // ImageView img_campaign_fragment_item_rmb; //左侧人民币
+        ImageView img_campaign_fragment_item_rmb; //左侧人民币
         TextView img_lijichongzhi; //立即充值
 
         public MyViewHolder(View view) {
             super(view);
             tv_campaign_fragment_item_chongzhi = (TextView) view.findViewById(R.id.tv_campaign_fragment_item_chongzhi);
             tv_campaign_fragment_item_zengsong = (TextView) view.findViewById(R.id.tv_campaign_fragment_item_zengsong);
-            //img_campaign_fragment_item_rmb = (ImageView) view.findViewById(R.id.img_campaign_fragment_item_rmb);
+            img_campaign_fragment_item_rmb = (ImageView) view.findViewById(R.id.img_campaign_fragment_item_rmb);
             img_lijichongzhi = (TextView) view.findViewById(R.id.img_lijichongzhi);
 
         }

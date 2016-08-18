@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyHtlc.iml" filepath="$PROJECT_DIR$/MyHtlc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MyHtlc.iml" filepath="$PROJECT_DIR$/MyHtlc.iml" />
       <module fileurl="file://$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" filepath="$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" filepath="$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jrjz_project/jrjz_project.iml" filepath="$PROJECT_DIR$/jrjz_project/jrjz_project.iml" />
       <module fileurl="file://$PROJECT_DIR$/jrjz_project/jrjz_project.iml" filepath="$PROJECT_DIR$/jrjz_project/jrjz_project.iml" />
     </modules>
   </component>
