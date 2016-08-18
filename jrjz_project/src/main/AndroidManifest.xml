@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.htlc.jrjz.jrjz_project">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.jrjz_project.home.activity.AppointmentActivity"
             android:screenOrientation="portrait" />
@@ -39,7 +38,6 @@
         <activity
             android:name="com.jrjz_project.home.activity.AddAddressActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.jrjz_project.home.activity.ClassificationActivity"
             android:screenOrientation="portrait" />
@@ -49,15 +47,13 @@
         <activity
             android:name="com.jrjz_project.order.activity.OrderNewPaymentActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name="com.jrjz_project.campaign.activity.TopUpActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.jrjz_project.mine.activity.ChangePhoneActivity"/>
-
-        <activity android:name="com.jrjz_project.mine.activity.FeedBackActivity"/>
-        <activity android:name="com.jrjz_project.mine.activity.MoreSettingActivity"/>
-
+        <activity android:name="com.jrjz_project.mine.activity.ChangePhoneActivity" />
+        <activity android:name="com.jrjz_project.mine.activity.FeedBackActivity" />
+        <activity android:name="com.jrjz_project.mine.activity.MoreSettingActivity" />
+        <activity android:name="com.jrjz_project.mine.activity.MineOrderActivity"></activity>
     </application>
 
 </manifest>

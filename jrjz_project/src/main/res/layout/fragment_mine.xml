@@ -139,6 +139,7 @@
                 android:background="#f5f5f5"/>
 
             <LinearLayout
+                android:id="@+id/ll_mine_address"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x110"
                 android:gravity="center_vertical"
@@ -206,7 +207,7 @@
                 android:background="#f5f5f5"></View>
 
             <LinearLayout
-                android:id="@+id/myorder"
+                android:id="@+id/ll_mine_myorder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x110"
                 android:gravity="center_vertical"
@@ -273,7 +274,7 @@
                 android:background="#f5f5f5"></View>
 
             <LinearLayout
-                android:id="@+id/coupon"
+                android:id="@+id/ll_mine_coupon"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/x110"
                 android:gravity="center_vertical"
