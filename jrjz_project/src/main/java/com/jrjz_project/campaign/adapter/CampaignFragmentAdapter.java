@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/8/15.
  */
-class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int RECYCLERVIEW_HEAD = 0;
     private static final int RECYCLERVIEW_BODY = 1;

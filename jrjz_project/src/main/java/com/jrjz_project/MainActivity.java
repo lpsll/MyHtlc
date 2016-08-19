@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
-import com.jrjz_project.campaign.CampaignFragment;
+import com.jrjz_project.campaign.fragment.CampaignFragment;
 import com.jrjz_project.common.base.BaseFragment;
 import com.jrjz_project.common.base.BaseTitleActivity;
 import com.jrjz_project.common.utils.LogUtils;
