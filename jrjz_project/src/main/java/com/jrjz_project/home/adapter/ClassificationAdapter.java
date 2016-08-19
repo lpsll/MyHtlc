@@ -10,6 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
+import com.jrjz_project.common.utils.LogUtils;
 import com.jrjz_project.home.activity.ClassificationActivity;
 
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public class ClassificationAdapter extends BaseAdapter {
 
     public void addItem(String item) {
         data.add(item);
+    }
+
+    public void addNewItem(String item) {
+        mData.add(item);
     }
 
     public void addSeparatorItem(String item) {
@@ -70,34 +75,41 @@ public class ClassificationAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder = null;
         int type = getItemViewType(position);
+        LogUtils.e("type----",""+type);
         if (convertView == null) {
             holder = new ViewHolder();
             switch (type) {
-                case TYPE_ITEM:
-                    convertView = inflater.inflate(R.layout.item_tv, null);
-                    holder.textView = (TextView) convertView
-                            .findViewById(R.id.item_tv);
-                    break;
                 case TYPE_SEPARATOR:
+                    LogUtils.e("TYPE_ITEM----","TYPE_ITEM");
                     convertView = inflater.inflate(R.layout.item_tv, null);
                     holder.textView = (TextView) convertView
                             .findViewById(R.id.item_tv);
+                    holder.textView.setText(data.get(position));
+                    break;
+                case TYPE_ITEM:
+                    LogUtils.e("TYPE_SEPARATOR----","TYPE_SEPARATOR");
+                    convertView = inflater.inflate(R.layout.item_item_cf, null);
+                    holder.tv1 = (TextView) convertView
+                            .findViewById(R.id.item_tv1);
+                    holder.tv2 = (TextView) convertView
+                            .findViewById(R.id.item_tv2);
+                    holder.tv1.setText(data.get(position));
+                    holder.tv2.setText(mData.get(position));
                     break;
             }
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        holder.textView.setText(data.get(position));
-//        holder.textView.setText(mData.get(position));
+
+
         return convertView;
     }
 
-    public void addNewItem(String s) {
-        mData.add(s);
-    }
+
 
     public static class ViewHolder {
         public TextView textView;
+        public TextView tv1,tv2;
     }
 }
