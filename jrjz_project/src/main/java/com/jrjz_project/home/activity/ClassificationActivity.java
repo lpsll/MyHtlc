@@ -130,11 +130,11 @@ public class ClassificationActivity extends BaseTitleActivity {
                 }
                 if(5*1<firstVisibleItem&&firstVisibleItem<5*2+2){
                     LogUtils.e("mTv2---","mTv2");
-                    for(int i = 5*1;i<5*2+2;i++){
-                        LinearLayout  layout  = (LinearLayout )view.getChildAt(i);
-                        LinearLayout lin  = (LinearLayout) layout.findViewById(R.id.lin);
-                        lin.setBackgroundColor(getResources().getColor(R.color.status_color));
-                    }
+//                    for(int i = 5*1;i<5*2+2;i++){
+//                        LinearLayout  layout  = (LinearLayout )view.getChildAt(i);
+//                        LinearLayout lin  = (LinearLayout) layout.findViewById(R.id.lin);
+//                        lin.setBackgroundColor(getResources().getColor(R.color.status_color));
+//                    }
 
                     mTv1.setBackgroundColor(getResources().getColor(R.color.color_cc));
                     mTv1.setTextColor(getResources().getColor(R.color.color_00));
