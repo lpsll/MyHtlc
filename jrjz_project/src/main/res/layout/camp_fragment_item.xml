@@ -12,14 +12,13 @@
         <ImageView
             android:layout_width="@dimen/x35"
             android:layout_height="@dimen/x45"
-            android:layout_marginTop="@dimen/x40"
+            android:layout_marginTop="@dimen/x45"
             android:layout_marginLeft="@dimen/x55"
             android:id="@+id/img_campaign_fragment_item_rmb"
             android:background="@drawable/hongse_03" />
 
 
         <TextView
-            android:typeface="serif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tv_campaign_fragment_item_chongzhi"
