@@ -11,15 +11,17 @@
         <TextView
             android:id="@+id/tv1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_120"
+            android:layout_height="@dimen/ds_180"
+            android:background="@color/status_color"
             android:gravity="center"
             android:text="家装维修"
-            android:textColor="@color/color_00"
+            android:textColor="@color/navi"
             android:textSize="@dimen/fs_45"/>
         <TextView
             android:id="@+id/tv2"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_120"
+            android:layout_height="@dimen/ds_180"
+            android:background="@color/color_cc"
             android:gravity="center"
             android:text="家电维修"
             android:textColor="@color/color_00"
@@ -27,7 +29,8 @@
         <TextView
             android:id="@+id/tv3"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_120"
+            android:layout_height="@dimen/ds_180"
+            android:background="@color/color_cc"
             android:gravity="center"
             android:text="家具维修"
             android:textColor="@color/color_00"
@@ -35,7 +38,8 @@
         <TextView
             android:id="@+id/tv4"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_120"
+            android:layout_height="@dimen/ds_180"
+            android:background="@color/color_cc"
             android:gravity="center"
             android:text="家政维修"
             android:textColor="@color/color_00"
@@ -43,7 +47,8 @@
         <TextView
             android:id="@+id/tv5"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_120"
+            android:layout_height="@dimen/ds_180"
+            android:background="@color/color_cc"
             android:gravity="center"
             android:text="社区服务"
             android:textColor="@color/color_00"

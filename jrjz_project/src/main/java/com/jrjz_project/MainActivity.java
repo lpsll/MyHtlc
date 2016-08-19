@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
-import com.jrjz_project.campaign.fragment.CampaignFragment;
 import com.jrjz_project.common.base.BaseFragment;
 import com.jrjz_project.common.base.BaseTitleActivity;
 import com.jrjz_project.common.utils.LogUtils;
@@ -17,6 +16,7 @@ import com.jrjz_project.common.utils.TextViewUtils;
 import com.jrjz_project.home.fragment.HomeFragment;
 import com.jrjz_project.mine.fragment.MineFragment;
 import com.jrjz_project.order.fragment.OrderFragment;
+import com.jrjz_project.campaign.fragment.CampaignFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,12 +75,12 @@ public class MainActivity extends BaseTitleActivity {
         mBaseBack.setOnClickListener(this);
         mBaseBack.setText("北京");
         // 初始化返回按钮图片大小
-        TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.xiangxia_03,
+        TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.xiangxiaxdpi_03,
                 R.dimen.common_titlebar_icon_width,
                 R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_RIGHT);
 
         // 初始化右边图片大小
-        TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.left,
+        TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
                 R.dimen.common_titlebar_icon_width,
                 R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
 

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseTitleActivity;
@@ -13,7 +14,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by John_Libo on 2016/8/17.
+ * 评价页
  */
 public class EvaluateActivity extends BaseTitleActivity {
     @Bind(R.id.img01)
@@ -46,7 +47,7 @@ public class EvaluateActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-
+        setTitleText("评价");
     }
 
     @Override
@@ -59,26 +60,49 @@ public class EvaluateActivity extends BaseTitleActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img01:
+                mImg01.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg02.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img02:
+                mImg02.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg01.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img03:
+                mImg03.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg04.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img04:
+                mImg04.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg03.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img05:
+                mImg05.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg06.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img06:
+                mImg06.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg05.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img07:
+                mImg07.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg08.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img08:
+                mImg08.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg07.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img09:
+                mImg09.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg10.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.img10:
+                mImg10.setBackground(getResources().getDrawable(R.drawable.shi_03));
+                mImg09.setBackground(getResources().getDrawable(R.drawable.fou_03));
                 break;
             case R.id.evaluate_btn:
+                break;
+            case R.id.base_titlebar_back:
+                baseGoBack();
                 break;
         }
     }

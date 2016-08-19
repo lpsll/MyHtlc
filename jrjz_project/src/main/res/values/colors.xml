@@ -2,26 +2,34 @@
 <resources>
 
     //----------------------------------------------
-    <color name="status_color">#018ce7</color>
+    <color name="status_color">#01e7df</color>
     <color name="navi">#008ce7</color>
     <color name="navi_press">#005085</color>
+    <color name="color_bottom">#0570B6</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="color_25">#252525</color>
     <color name="color_33">#333333</color>
     <color name="color_00">#000000</color>
+    <color name="color_8E">#8E8E8E</color>
+    <color name="color_88">#888888</color>
+    <color name="color_01">#666666</color>
+    <color name="color_11">#333333</color>
     <color name="color_cc">#eae9e9</color>
+    <color name="color_c6">#cccccc</color>
+    <color name="color_c1">#F5F5F5</color>
     <color name="color_ff">#FFFFFF</color>
     <color name="color_3c">#3CB371</color>
-    <color name="color_29">#298036</color>
+    <color name="color_62">#62C47A</color>
     <color name="color_c0">#CC0000</color>
+    <color name="color_ff0">#FF0000</color>
     <color name="color_f0">#FFFF00</color>
     <color name="color_ad">#ADD8E6</color>
     <color name="color_fe">#FFEEEEEE</color>
     <color name="color_fce">#fcaa5e</color>
     <color name="color_f4">#fff4f4f4</color>
-    <color name="color_f5">#ff555555</color>
+    <color name="color_d7">#D7D7D7</color>
     <color name="color_f9">#ff999999</color>
     <color name="color_f6">#ff666666</color>
     <color name="color_f3">#ff333333</color>

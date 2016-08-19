@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/base_titlebar_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds_150"
+    android:layout_height="50dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -41,7 +41,7 @@
                 android:clickable="true"
                 android:textColor="@color/color_ff"
                 android:text=""
-                android:textSize="@dimen/fs_60" />
+                android:textSize="@dimen/fs_50" />
 
             <TextView
                 android:id="@+id/base_titlebar_ensure"

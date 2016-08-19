@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.jrjz_project.home.activity.ClassificationActivity;
 import com.jrjz_project.home.activity.OrderPaymentActivity;
+import com.jrjz_project.order.activity.CouponActivity;
 import com.jrjz_project.order.activity.EvaluateActivity;
 import com.jrjz_project.order.activity.OrderNewPaymentActivity;
 
@@ -29,6 +30,16 @@ public class OrderUiGoto {
 
     public static void gotoEvaluate(Context context){
         Intent intent = new Intent(context, EvaluateActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到优惠券页
+     * @param context
+     */
+
+    public static void gotoCoupon(Context context){
+        Intent intent = new Intent(context, CouponActivity.class);
         context.startActivity(intent);
     }
 }

@@ -69,4 +69,14 @@ public class ServiceTimeActivity extends BaseTitleActivity {
 
     }
 
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.base_titlebar_back:
+                baseGoBack();
+                break;
+
+        }
+
+    }
+
 }

@@ -8,12 +8,13 @@ import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseTitleActivity;
+import com.jrjz_project.order.OrderUiGoto;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * Created by John_Libo on 2016/8/17.
+ * 订单之订单支付
  */
 public class OrderNewPaymentActivity extends BaseTitleActivity {
     @Bind(R.id.tv_project)
@@ -42,6 +43,10 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     CheckBox mPlaceCbZfb;
     @Bind(R.id.rl_zfb)
     RelativeLayout mRlZfb;
+    @Bind(R.id.rl_jf)
+    RelativeLayout mJf;
+    @Bind(R.id.rl_yhj)
+    RelativeLayout mYhj;
     @Bind(R.id.tj_btn)
     Button mTjBtn;
     @Override
@@ -60,7 +65,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
     }
 
-    @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn})
+    @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn, R.id.rl_jf, R.id.rl_yhj})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_qb:
@@ -79,6 +84,11 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 mPlaceCbZfb.setChecked(true);
                 break;
             case R.id.tj_btn:
+                break;
+            case R.id.rl_jf:
+                break;
+            case R.id.rl_yhj:
+                OrderUiGoto.gotoCoupon(this);
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();

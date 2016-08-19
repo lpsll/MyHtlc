@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Jrjz_project</string>
+    <string name="app_name">居然家政</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -55,5 +55,10 @@
     <string name="order">订单</string>
     <string name="huodong">活动</string>
     <string name="mine">我的</string>
+    <string name="total">总计金额：</string>
+    <string name="integral">积分支付</string>
+    <string name="coupon">使用优惠券</string>
+    <string name="money">¥</string>
+    <string name="common">常用地址</string>
 
 </resources>

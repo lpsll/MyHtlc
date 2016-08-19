@@ -6,11 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.home.activity.SelectAddressActivity;
+import com.lidroid.xutils.db.annotation.Check;
 
 import java.util.List;
 import java.util.Map;
@@ -22,6 +25,7 @@ import java.util.zip.Inflater;
 public class SelectAddressAdapter extends BaseAdapter{
     private final Context context;
     private final List<Map<String, Object>> list;
+    private  boolean flag;
 
     public SelectAddressAdapter(Context context, List<Map<String, Object>> list) {
         this.context = context;
@@ -46,6 +50,9 @@ public class SelectAddressAdapter extends BaseAdapter{
     static class ViewHolder
     {
         public TextView tv1,tv2,tv3,tv4;
+        public LinearLayout mLinSz;
+        public TextView mTvCk;
+        public CheckBox mCb;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -57,6 +64,9 @@ public class SelectAddressAdapter extends BaseAdapter{
             holder.tv2 = (TextView)convertView.findViewById(R.id.add_tv02);
             holder.tv3 = (TextView)convertView.findViewById(R.id.add_tv03);
             holder.tv4 = (TextView)convertView.findViewById(R.id.add_tv04);
+            holder.mTvCk = (TextView)convertView.findViewById(R.id.tv_address);
+            holder.mCb = (CheckBox)convertView.findViewById(R.id.box);
+            holder.mLinSz = (LinearLayout)convertView.findViewById(R.id.lin_shezhi);
             convertView.setTag(holder);
 
         }else {
@@ -68,6 +78,16 @@ public class SelectAddressAdapter extends BaseAdapter{
         holder.tv2.setText((String)list.get(position).get("title"));
         holder.tv3.setText((String)list.get(position).get("info"));
         holder.tv4.setText((String)list.get(position).get("add"));
+
+        flag = false;
+        holder.mLinSz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag){
+
+                }
+            }
+        });
 
         return convertView;
     }

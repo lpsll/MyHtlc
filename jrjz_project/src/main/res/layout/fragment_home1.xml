@@ -14,14 +14,14 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/ds_567"
                 android:background="@drawable/test6"/>
             <LinearLayout
                 android:id="@+id/layout_middle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="@dimen/ds_80"
+                android:layout_marginTop="@dimen/ds_40"
                 android:layout_marginLeft="@dimen/ds_50"
                 android:layout_marginRight="@dimen/ds_50"
                 >
@@ -43,8 +43,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
                         android:gravity="center"
-                        android:textSize="@dimen/fs_45"
-                        android:textColor="@color/color_00"
+                        android:textSize="@dimen/fs_40"
+                        android:textColor="@color/color_33"
                         android:text="家装维修"/>
                 </LinearLayout>
                 <LinearLayout
@@ -65,8 +65,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textColor="@color/color_00"
-                        android:textSize="@dimen/fs_45"
+                        android:textColor="@color/color_33"
+                        android:textSize="@dimen/fs_40"
                         android:text="家装维修"/>
                 </LinearLayout>
                 <LinearLayout
@@ -87,8 +87,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_45"
-                        android:textColor="@color/color_00"
+                        android:textSize="@dimen/fs_40"
+                        android:textColor="@color/color_33"
                         android:text="家装维修"/>
                 </LinearLayout>
                 <LinearLayout
@@ -109,8 +109,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_45"
-                        android:textColor="@color/color_00"
+                        android:textSize="@dimen/fs_40"
+                        android:textColor="@color/color_33"
                         android:text="家装维修"/>
                 </LinearLayout>
                 <LinearLayout
@@ -131,8 +131,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textColor="@color/color_00"
-                        android:textSize="@dimen/fs_45"
+                        android:textColor="@color/color_33"
+                        android:textSize="@dimen/fs_40"
                         android:text="家装维修"/>
                 </LinearLayout>
             </LinearLayout>
@@ -140,12 +140,12 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_10"
-                android:layout_marginTop="@dimen/ds_80"
+                android:layout_marginTop="@dimen/ds_40"
                 android:background="@color/color_cc"/>
             <ImageView
                 android:id="@+id/image_ad"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_200"
+                android:layout_height="@dimen/ds_273"
 
                 android:background="@mipmap/test6"/>
             <View
@@ -155,7 +155,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_110">
+                android:layout_height="@dimen/ds_120">
                 <TextView
                     android:id="@+id/rl_tv01"
                     android:layout_width="@dimen/fs_20"
@@ -170,7 +170,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textSize="@dimen/fs_45"
-                    android:textColor="@color/color_00"
+                    android:textColor="@color/color_33"
                     android:text="家装维修"/>
                 <LinearLayout
                     android:id="@+id/lin06"
@@ -183,8 +183,8 @@
                         android:layout_height="match_parent"
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
-                        android:textColor="@color/color_00"
-                        android:textSize="@dimen/fs_45"
+                        android:textColor="@color/color_bottom"
+                        android:textSize="@dimen/fs_40"
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_40"
@@ -217,7 +217,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_60"
+                        android:textSize="@dimen/fs_45"
                         android:textColor="@color/color_00"
                         android:text="防水维修"
                         />
@@ -247,7 +247,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -273,7 +273,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -290,14 +290,14 @@
                 android:background="@color/color_cc"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_110">
+                android:layout_height="@dimen/ds_120">
                 <TextView
                     android:id="@+id/rl_tv02"
                     android:layout_width="@dimen/fs_20"
                     android:layout_height="@dimen/ds_100"
                     android:layout_marginTop="@dimen/ds_15"
                     android:layout_marginBottom="@dimen/ds_15"
-                    android:background="@color/color_c0"/>
+                    android:background="@color/color_ff0"/>
                 <TextView
                     android:layout_toRightOf="@+id/rl_tv02"
                     android:layout_marginLeft="@dimen/ds_50"
@@ -305,7 +305,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textSize="@dimen/fs_45"
-                    android:textColor="@color/color_00"
+                    android:textColor="@color/color_33"
                     android:text="家装维修"/>
                 <LinearLayout
                     android:id="@+id/lin10"
@@ -318,8 +318,8 @@
                         android:layout_height="match_parent"
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
-                        android:textColor="@color/color_00"
-                        android:textSize="@dimen/fs_45"
+                        android:textColor="@color/color_bottom"
+                        android:textSize="@dimen/fs_40"
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_40"
@@ -352,7 +352,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_60"
+                        android:textSize="@dimen/fs_45"
                         android:textColor="@color/color_00"
                         android:text="防水维修"
                         />
@@ -382,7 +382,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -408,7 +408,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -425,14 +425,14 @@
                 android:background="@color/color_cc"/>
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_110">
+                android:layout_height="@dimen/ds_120">
                 <TextView
                     android:id="@+id/rl_tv03"
                     android:layout_width="@dimen/fs_20"
                     android:layout_height="@dimen/ds_100"
                     android:layout_marginTop="@dimen/ds_15"
                     android:layout_marginBottom="@dimen/ds_15"
-                    android:background="@color/color_3c"/>
+                    android:background="@color/color_62"/>
                 <TextView
                     android:layout_toRightOf="@+id/rl_tv03"
                     android:layout_marginLeft="@dimen/ds_50"
@@ -440,7 +440,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textSize="@dimen/fs_45"
-                    android:textColor="@color/color_00"
+                    android:textColor="@color/color_33"
                     android:text="家装维修"/>
                 <LinearLayout
                     android:id="@+id/lin14"
@@ -453,8 +453,8 @@
                         android:layout_height="match_parent"
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
-                        android:textColor="@color/color_00"
-                        android:textSize="@dimen/fs_45"
+                        android:textColor="@color/color_bottom"
+                        android:textSize="@dimen/fs_40"
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_40"
@@ -493,7 +493,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -519,7 +519,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -553,7 +553,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -579,7 +579,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textSize="@dimen/fs_50"
+                            android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
@@ -598,10 +598,10 @@
             <TextView
                 android:id="@+id/all_service"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_150"
+                android:layout_height="@dimen/ds_100"
                 android:gravity="center"
-                android:textColor="@color/navi"
-                android:textSize="@dimen/fs_50"
+                android:textColor="@color/color_bottom"
+                android:textSize="@dimen/fs_40"
                 android:text="@string/home_bottom"
                 />
         </LinearLayout>

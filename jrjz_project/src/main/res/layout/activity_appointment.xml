@@ -29,7 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_40"
                     android:text="ddddd"
-                    android:textColor="@color/color_00"
+                    android:textColor="@color/color_8E"
                     android:textSize="@dimen/fs_45"/>
             <TextView
                 android:id="@+id/add_tv02"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ddddd"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
             <TextView
                 android:id="@+id/add_tv03"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_40"
                 android:text="ddddd"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
             </LinearLayout>
             <TextView
@@ -55,7 +55,7 @@
                 android:layout_marginTop="@dimen/ds_30"
                 android:layout_marginLeft="@dimen/ds_40"
                 android:text="ddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
         </LinearLayout>
 
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_8E"
             android:text="@string/apt_project"/>
         <TextView
             android:id="@+id/tv_project"
@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
-            android:textColor="@color/navi"
+            android:textColor="@color/color_bottom"
             android:text="@string/apt_project" />
     </LinearLayout>
     <View
@@ -112,14 +112,14 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_8E"
             android:text="@string/apt_time"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
-            android:textColor="@color/color_f5"
+            android:textColor="@color/color_d7"
             android:text="@string/app_choose" />
         </LinearLayout>
         <ImageView
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_8E"
             android:text="@string/apt_problem"/>
         <EditText
             android:id="@+id/et_describe"
@@ -154,7 +154,7 @@
             android:hint="@string/app_describe"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
-            android:textColor="@color/color_f5"
+            android:textColor="@color/color_d7"
             />
     </LinearLayout>
     <View
@@ -171,7 +171,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_8E"
             android:text="@string/app_img"/>
 
         <LinearLayout
@@ -221,7 +221,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_8E"
             android:gravity="center"
             android:text="@string/app_money"/>
         <TextView
@@ -230,7 +230,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_bottom"
             android:text="@string/apt_project" />
 
         <Button

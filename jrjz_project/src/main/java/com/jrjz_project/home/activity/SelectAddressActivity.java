@@ -64,6 +64,9 @@ public class SelectAddressActivity extends BaseTitleActivity {
             case R.id.select_lin:
                 HomeUiGoto.gotoAddress(this);
                 break;
+            case R.id.base_titlebar_back:
+                baseGoBack();
+                break;
 
         }
 

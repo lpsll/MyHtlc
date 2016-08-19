@@ -5,8 +5,8 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ds_40"
+        android:layout_height="@dimen/ds_264"
+        android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,61 +16,80 @@
                 android:id="@+id/add_tv01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_40"
+                android:layout_marginLeft="@dimen/ds_60"
                 android:text="ddddd"
-                android:textColor="@color/color_00"
-                android:textSize="@dimen/fs_45"/>
+                android:textColor="@color/color_01"
+                android:textSize="@dimen/fs_50"/>
             <TextView
                 android:id="@+id/add_tv02"
                 android:layout_marginLeft="@dimen/ds_40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ddddd"
-                android:textColor="@color/color_00"
-                android:textSize="@dimen/fs_45"/>
+                android:textColor="@color/color_01"
+                android:textSize="@dimen/fs_50"/>
             <TextView
                 android:id="@+id/add_tv03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_40"
                 android:text="ddddd"
-                android:textColor="@color/color_00"
-                android:textSize="@dimen/fs_45"/>
+                android:textColor="@color/color_01"
+                android:textSize="@dimen/fs_50"/>
         </LinearLayout>
         <TextView
             android:id="@+id/add_tv04"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"
             android:layout_marginLeft="@dimen/ds_40"
-            android:text="ddddddddddddddddddddddddddddddddddddddddddddddddddddd"
-            android:textColor="@color/color_00"
-            android:textSize="@dimen/fs_45"/>
+            android:text="ddddddddddddddddddddddddddddddddd"
+            android:textColor="@color/color_01"
+            android:textSize="@dimen/fs_50"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_3"
-        android:layout_marginTop="@dimen/ds_80"
-        android:background="@color/color_cc"/>
+        android:background="@color/color_c1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_120"
+        android:layout_height="@dimen/ds_135"
         android:gravity="center_vertical"
         android:orientation="horizontal">
-        <ImageView
+        <LinearLayout
+            android:id="@+id/lin_shezhi"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/box"
+            android:layout_width="@dimen/ds_40"
+            android:layout_height="@dimen/ds_40"
             android:layout_marginLeft="@dimen/ds_40"
-            android:background="@drawable/morenqxdpi_03"/>
+            android:background="@drawable/select_check"
+            android:button="@null"
+            android:checked="false"
+            />
+
         <TextView
+            android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
-            android:textSize="@dimen/fs_45"
+            android:layout_marginLeft="@dimen/ds_20"
+            android:textColor="@color/color_01"
+            android:textSize="@dimen/fs_46"
             android:text="@string/sz_adresss"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lin_sc"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,10 +98,18 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_00"
-            android:textSize="@dimen/fs_45"
+            android:textColor="@color/color_01"
+            android:textSize="@dimen/fs_44"
             android:layout_marginLeft="@dimen/ds_20"
             android:text="@string/delete_adresss"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_bj"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -91,15 +118,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_00"
-            android:textSize="@dimen/fs_45"
+            android:textColor="@color/color_01"
+            android:textSize="@dimen/fs_44"
             android:layout_marginLeft="@dimen/ds_20"
             android:text="@string/edit_adresss"/>
+        </LinearLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_30"
-        android:background="@color/color_cc"/>
+        android:background="@color/color_c1"/>
 
 
 </LinearLayout>

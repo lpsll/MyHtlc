@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseTitleActivity;
+import com.jrjz_project.common.base.SimplePage;
+import com.jrjz_project.common.utils.UIHelper;
 import com.jrjz_project.home.HomeUiGoto;
 
 import butterknife.Bind;
@@ -66,6 +68,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
+//                UIHelper.showFragment(this, SimplePage.SELECT_ADDRESS);//常用地址
                 HomeUiGoto.gotoSelect(this);
                 break;
             case R.id.lin_time:

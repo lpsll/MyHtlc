@@ -5,7 +5,7 @@
 
     <stroke
         android:width="@dimen/ds_3"
-        android:color="@color/color_f5" />
+        android:color="@color/color_cc" />
 
 
 </shape>

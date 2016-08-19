@@ -2,16 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_cc"
     android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ds_30"
         android:background="@drawable/tiaowen"/>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/color_ff">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_150"
+        android:layout_height="@dimen/ds_117"
+        android:background="@color/color_ff"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
@@ -19,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_01"
             android:text="@string/apt_project"/>
         <TextView
             android:id="@+id/tv_project"
@@ -27,7 +33,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
-            android:textColor="@color/navi"
+            android:textColor="@color/color_11"
             android:text="@string/apt_project" />
     </LinearLayout>
     <View
@@ -37,15 +43,16 @@
         android:background="@color/color_cc"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_150"
+        android:layout_height="@dimen/ds_117"
         android:gravity="center_vertical"
+        android:background="@color/color_ff"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_01"
             android:text="@string/op_name"/>
         <TextView
             android:id="@+id/tv_name"
@@ -53,20 +60,21 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_150"
-            android:textColor="@color/navi"
+            android:textColor="@color/color_11"
             android:text="@string/apt_project" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_150"
+        android:layout_height="@dimen/ds_117"
         android:gravity="center_vertical"
+        android:background="@color/color_ff"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_01"
             android:text="@string/op_tel"/>
         <TextView
             android:id="@+id/tv_tel"
@@ -74,20 +82,21 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_150"
-            android:textColor="@color/navi"
+            android:textColor="@color/color_11"
             android:text="@string/apt_project" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_150"
+        android:layout_height="@dimen/ds_117"
         android:gravity="center_vertical"
+        android:background="@color/color_ff"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
-            android:textColor="@color/color_00"
+            android:textColor="@color/color_01"
             android:text="@string/op_address"/>
         <TextView
             android:id="@+id/tv_address"
@@ -95,7 +104,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_150"
-            android:textColor="@color/navi"
+            android:textColor="@color/color_11"
             android:text="@string/apt_project" />
     </LinearLayout>
     <View
@@ -103,21 +112,37 @@
         android:layout_height="@dimen/ds_3"
         android:layout_marginLeft="@dimen/ds_40"
         android:background="@color/color_cc"/>
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="@dimen/ds_117"
+        android:background="@color/color_ff"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/ds_130"
         android:gravity="center_vertical"
         android:layout_marginLeft="@dimen/ds_40"
         android:textSize="@dimen/fs_45"
-        android:textColor="@color/color_00"
-        android:text="111"/>
+        android:textColor="@color/color_01"
+        android:text="@string/app_money"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/ds_130"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/ds_40"
+            android:textSize="@dimen/fs_45"
+            android:textColor="@color/color_fce"
+            android:text="111"/>
+
+    </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_40"
         android:background="@color/color_cc"/>
-
+</LinearLayout>
     <RelativeLayout
         android:id="@+id/rl_qb"
+        android:background="@color/color_ff"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_150">
         <LinearLayout
@@ -134,7 +159,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_01"
                 android:layout_marginLeft="@dimen/ds_95"
                 android:textSize="@dimen/fs_45"
                 android:text="@string/op_money"/>
@@ -162,6 +187,7 @@
     <RelativeLayout
         android:id="@+id/rl_wx"
         android:layout_width="match_parent"
+        android:background="@color/color_ff"
         android:layout_height="@dimen/ds_150">
         <LinearLayout
 
@@ -177,7 +203,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_01"
                 android:layout_marginLeft="@dimen/ds_95"
                 android:textSize="@dimen/fs_45"
                 android:text="@string/op_wx"/>
@@ -205,6 +231,7 @@
 
     <RelativeLayout
         android:id="@+id/rl_zfb"
+        android:background="@color/color_ff"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_150">
         <LinearLayout
@@ -220,7 +247,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/color_00"
+                android:textColor="@color/color_01"
                 android:layout_marginLeft="@dimen/ds_60"
                 android:textSize="@dimen/fs_45"
                 android:text="@string/op_zfb"/>
