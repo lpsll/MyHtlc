@@ -12,12 +12,12 @@ import android.widget.RelativeLayout;
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.campaign.activity.TopUpActivity;
 import com.jrjz_project.common.base.BaseFragment;
-import com.jrjz_project.common.utils.ToastUtils;
 import com.jrjz_project.home.activity.SelectAddressActivity;
 import com.jrjz_project.mine.activity.ChangePhoneActivity;
 import com.jrjz_project.mine.activity.FeedBackActivity;
 import com.jrjz_project.mine.activity.MineOrderActivity;
 import com.jrjz_project.mine.activity.MoreSettingActivity;
+import com.jrjz_project.order.activity.CouponActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -101,11 +101,11 @@ public class MineFragment extends BaseFragment {
                 getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
                 break;
             case R.id.ll_mine_myorder:
-                ToastUtils.showShort(getContext(),"wodedingdan");
                 getContext().startActivity(new Intent(getContext(), MineOrderActivity.class));
                 break;
             case R.id.ll_mine_coupon:
-
+                //跳转到优惠券页面
+                getContext().startActivity(new Intent(getContext(), CouponActivity.class));
                 break;
             case R.id.ll_mine_feedback:
                 getContext().startActivity(new Intent(getContext(), FeedBackActivity.class));

@@ -18,15 +18,15 @@
             <RelativeLayout
                 android:id="@+id/rl_mine_changephone"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x230"
+                android:layout_height="@dimen/ds_280"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="@dimen/x150"
-                    android:layout_height="@dimen/x150"
+                    android:layout_width="@dimen/ds_200"
+                    android:layout_height="@dimen/ds_200"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/x60"
+                    android:layout_marginLeft="@dimen/ds_90"
                     android:background="@mipmap/mine_headimg_test" />
 
                 <TextView
@@ -36,14 +36,14 @@
                     android:layout_centerInParent="true"
                     android:text="182938203482"
                     android:textColor="#1d1d26"
-                    android:textSize="@dimen/x33" />
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/x60"
+                    android:layout_marginRight="@dimen/ds_100"
                     android:src="@mipmap/arrow_right" />
             </RelativeLayout>
 
@@ -54,7 +54,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x160"
+                android:layout_height="@dimen/ds_200"
                 android:gravity="center"
                 android:weightSum="2">
 
@@ -66,30 +66,30 @@
 
                     <ImageView
                         android:id="@+id/score_img1"
-                        android:layout_width="@dimen/x40"
-                        android:layout_height="@dimen/x40"
+                        android:layout_width="@dimen/ds_50"
+                        android:layout_height="@dimen/ds_50"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x50"
+                        android:layout_marginLeft="@dimen/ds_90"
                         android:src="@mipmap/score_mine" />
 
                     <TextView
                         android:id="@+id/score_txt1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x160"
-                        android:layout_marginTop="@dimen/x10"
+                        android:layout_marginLeft="@dimen/ds_220"
+                        android:layout_marginTop="@dimen/ds_15"
                         android:text="我的积分"
                         android:textColor="@color/color_33"
-                        android:textSize="@dimen/x33" />
+                        android:textSize="@dimen/fs_43" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/score_txt1"
-                        android:layout_marginLeft="@dimen/x177"
+                        android:layout_marginLeft="@dimen/ds_240"
                         android:text="200分"
                         android:textColor="#0b8ce6"
-                        android:textSize="@dimen/x33" />
+                        android:textSize="@dimen/fs_43" />
                 </RelativeLayout>
 
                 <View
@@ -105,55 +105,56 @@
 
                     <ImageView
                         android:id="@+id/score_img2"
-                        android:layout_width="@dimen/x40"
-                        android:layout_height="@dimen/x40"
+                        android:layout_width="@dimen/ds_50"
+                        android:layout_height="@dimen/ds_50"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/x50"
+                        android:layout_marginLeft="@dimen/ds_90"
                         android:src="@mipmap/score_yue" />
 
                     <TextView
                         android:id="@+id/tv_my_yue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x150"
-                        android:layout_marginTop="@dimen/x5"
+                        android:layout_marginLeft="@dimen/ds_210"
+                        android:layout_marginTop="@dimen/ds_15"
                         android:text="我的余额"
                         android:textColor="@color/color_33"
-                        android:textSize="@dimen/x33"
+                        android:textSize="@dimen/fs_43"
                         />
 
                     <TextView
                         android:layout_below="@id/tv_my_yue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/x165"
+                        android:layout_marginLeft="@dimen/ds_230"
                         android:text="2000元"
                         android:textColor="#0b8ce6"
-                        android:textSize="@dimen/x33" />
+                        android:textSize="@dimen/fs_43" />
                 </RelativeLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x30"
+                android:layout_height="@dimen/ds_40"
                 android:background="#f5f5f5"/>
 
             <LinearLayout
                 android:id="@+id/ll_mine_address"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/locate_address" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -161,8 +162,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -175,19 +176,19 @@
             <LinearLayout
                 android:id="@+id/ll_mine_chongzhi"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/top_up" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -195,8 +196,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -204,24 +205,24 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"></View>
+                android:background="#f5f5f5"/>
 
             <LinearLayout
                 android:id="@+id/ll_mine_myorder"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/order_mine" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -229,8 +230,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -238,23 +239,23 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"></View>
+                android:background="#f5f5f5"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/share_mine" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -262,8 +263,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -271,24 +272,24 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"></View>
+                android:background="#f5f5f5"/>
 
             <LinearLayout
                 android:id="@+id/ll_mine_coupon"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/coupons" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -296,8 +297,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -305,24 +306,24 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"></View>
+                android:background="#f5f5f5"/>
 
             <LinearLayout
                 android:id="@+id/ll_mine_feedback"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/suggest_mine" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -330,8 +331,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -344,19 +345,19 @@
             <LinearLayout
                 android:id="@+id/ll_mine_more_setting"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/setting_mine" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -364,8 +365,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>
@@ -377,19 +378,19 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/x110"
+                android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/x20"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/x40"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
                     android:src="@mipmap/about_us_mine" />
 
                 <TextView
-                    android:textSize="@dimen/x33"
+                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
@@ -397,8 +398,8 @@
                     android:textColor="@color/color_33" />
 
                 <ImageView
-                    android:layout_width="@dimen/x20"
-                    android:layout_height="@dimen/x30"
+                    android:layout_width="@dimen/ds_30"
+                    android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
                     android:src="@mipmap/arrow_right" />
             </LinearLayout>

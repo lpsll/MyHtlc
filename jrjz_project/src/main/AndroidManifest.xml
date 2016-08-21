@@ -55,7 +55,8 @@
         <activity android:name="com.jrjz_project.mine.activity.ChangePhoneActivity" />
         <activity android:name="com.jrjz_project.mine.activity.FeedBackActivity" />
         <activity android:name="com.jrjz_project.mine.activity.MoreSettingActivity" />
-        <activity android:name="com.jrjz_project.mine.activity.MineOrderActivity"></activity>
+        <activity android:name="com.jrjz_project.mine.activity.MineOrderActivity"/>
+        <activity android:name="com.jrjz_project.order.activity.CouponActivity"/>
     </application>
 
 </manifest>

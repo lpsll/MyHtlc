@@ -8,12 +8,12 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x30"
-        android:background="#f3f3f3"></View>
+        android:layout_height="@dimen/ds_40"
+        android:background="#f3f3f3"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x100"
+        android:layout_height="@dimen/ds_170"
         android:background="#ffffff"
         android:orientation="horizontal">
 
@@ -21,10 +21,10 @@
             android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/x30"
+            android:layout_marginLeft="@dimen/ds_50"
             android:text="金额(元)"
             android:textColor="@color/tv_black"
-            android:textSize="@dimen/x33" />
+            android:textSize="@dimen/fs_45" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -32,16 +32,16 @@
             android:layout_gravity="center_vertical">
 
             <TextView
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/ds_30"
                 android:id="@+id/tv_top_up_chongzhi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1000"
-                android:textSize="@dimen/x33"
+                android:textSize="@dimen/ds_45"
                 android:visibility="gone" />
 
             <EditText
-                android:layout_marginLeft="@dimen/x20"
+                android:layout_marginLeft="@dimen/ds_30"
                 android:id="@+id/et_top_up_chongzhi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
                 android:hint="请输入充值金额"
                 android:inputType="number"
                 android:textColorHint="#cccccc"
-                android:textSize="@dimen/x33" />
+                android:textSize="@dimen/fs_45" />
 
 
         </FrameLayout>
@@ -59,19 +59,19 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x30"
-        android:background="#f5f5f5"></View>
+        android:layout_height="@dimen/ds_40"
+        android:background="#f5f5f5"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#f5f5f5"></View>
+        android:background="#f5f5f5"/>
 
 
     <RelativeLayout
         android:id="@+id/rl_qb"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x110"
+        android:layout_height="@dimen/ds_190"
         android:background="#ffffff">
 
         <LinearLayout
@@ -85,25 +85,25 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x35"
+                android:layout_marginLeft="@dimen/ds_45"
                 android:background="@drawable/weixinxdpi_03" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x95"
+                android:layout_marginLeft="@dimen/ds_135"
                 android:text="微信支付"
                 android:textColor="@color/tv_black"
-                android:textSize="@dimen/x33" />
+                android:textSize="@dimen/fs_45" />
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/cb_topup_weixin"
-            android:layout_width="@dimen/x40"
-            android:layout_height="@dimen/x40"
+            android:layout_width="@dimen/ds_50"
+            android:layout_height="@dimen/ds_50"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/x60"
+            android:layout_marginRight="@dimen/ds_80"
             android:background="@drawable/selector_checkbox"
             android:button="@null"
             android:checked="true"
@@ -112,13 +112,13 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x1"
+        android:layout_height="@dimen/ds_2"
         android:background="@color/color_cc" />
 
     <RelativeLayout
         android:id="@+id/rl_wx"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x110"
+        android:layout_height="@dimen/ds_190"
         android:background="#ffffff">
 
         <LinearLayout
@@ -130,27 +130,27 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_marginLeft="@dimen/x15"
-                android:layout_width="@dimen/x90"
-                android:layout_height="@dimen/x25"
+                android:layout_marginLeft="@dimen/ds_30"
+                android:layout_width="@dimen/ds_130"
+                android:layout_height="@dimen/ds_45"
                 android:background="@drawable/zhifubaoxdpi_03" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/x75"
+                android:layout_marginLeft="@dimen/ds_85"
                 android:text="支付宝支付"
                 android:textColor="@color/tv_black"
-                android:textSize="@dimen/x33" />
+                android:textSize="@dimen/fs_45" />
         </LinearLayout>
 
         <CheckBox
             android:id="@+id/cb_topup_zhifubao"
-            android:layout_width="@dimen/x40"
-            android:layout_height="@dimen/x40"
+            android:layout_width="@dimen/ds_50"
+            android:layout_height="@dimen/ds_50"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/x60"
+            android:layout_marginRight="@dimen/ds_80"
             android:background="@drawable/selector_checkbox"
             android:button="@null"
             android:checked="false"
