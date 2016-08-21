@@ -97,12 +97,30 @@ public class ClassificationActivity extends BaseTitleActivity {
         int size = string.length;
         for (int i = 0; i < size; i++) {
             adapter.addSeparatorItem(string[i]);
-            for (int k = 0; k < 5; k++) {
-                adapter.addItem("第一" + k);
+            if(i==size-1){
+                for (int k = 0; k < 5; k++) {
+                    adapter.addItem("帅哥" + k);
+                }
+                adapter.addItem(" ");
+                adapter.addItem(" ");
+                adapter.addItem(" ");
+                adapter.addItem(" ");
+                for (int l = 0; l < 5; l++) {
+                    adapter.addNewItem("美女 " + l);
+                }
+                adapter.addNewItem(" ");
+                adapter.addNewItem(" ");
+                adapter.addNewItem(" ");
+                adapter.addNewItem(" ");
+            }else {
+                for (int k = 0; k < 5; k++) {
+                    adapter.addItem("帅哥" + k);
+                }
+                for (int l = 0; l < 5; l++) {
+                    adapter.addNewItem("美女 " + l);
+                }
             }
-//            for (int k = 0; k < 5; k++) {
-//                adapter.addNewItem("第二 " + k);
-//            }
+
         }
         mCfList.setAdapter(adapter);
         mCfList.setOnScrollListener(new AbsListView.OnScrollListener() {
