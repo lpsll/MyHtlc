@@ -17,6 +17,7 @@
         android:paddingRight="@dimen/ds_60">
 
         <EditText
+            android:textCursorDrawable="@drawable/color_cursor"
             android:layout_marginTop="@dimen/ds_50"
             android:layout_marginBottom="@dimen/ds_50"
             android:id="@+id/username_txt"
