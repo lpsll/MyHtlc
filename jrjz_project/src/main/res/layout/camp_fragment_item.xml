@@ -47,10 +47,10 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/ds_60"
             android:background="@drawable/btn_blue_border"
-            android:paddingBottom="@dimen/ds_20"
-            android:paddingLeft="@dimen/ds_25"
-            android:paddingRight="@dimen/ds_25"
-            android:paddingTop="@dimen/ds_20"
+            android:paddingBottom="@dimen/ds_15"
+            android:paddingLeft="@dimen/ds_20"
+            android:paddingRight="@dimen/ds_20"
+            android:paddingTop="@dimen/ds_15"
             android:text="立即充值"
             android:textColor="@color/btn_blue" />
 
