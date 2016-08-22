@@ -5,10 +5,12 @@
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_264"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
         <LinearLayout
+            android:paddingTop="@dimen/ds_50"
+            android:paddingBottom="@dimen/ds_30"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -22,7 +24,7 @@
                 android:textSize="@dimen/fs_50"/>
             <TextView
                 android:id="@+id/add_tv02"
-                android:layout_marginLeft="@dimen/ds_40"
+                android:layout_marginLeft="@dimen/ds_60"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ddddd"
@@ -32,18 +34,20 @@
                 android:id="@+id/add_tv03"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_40"
-                android:text="ddddd"
+                android:layout_marginLeft="@dimen/ds_360"
+                android:text="13166666666"
                 android:textColor="@color/color_01"
                 android:textSize="@dimen/fs_50"/>
         </LinearLayout>
         <TextView
+            android:paddingBottom="@dimen/ds_40"
+            android:layout_marginRight="@dimen/ds_80"
             android:id="@+id/add_tv04"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"
-            android:layout_marginLeft="@dimen/ds_40"
-            android:text="ddddddddddddddddddddddddddddddddd"
+            android:layout_marginLeft="@dimen/ds_60"
+            android:text="dddddddddddddddddddddddddddddsssssssssssssssssssssssssdddd"
             android:textColor="@color/color_01"
             android:textSize="@dimen/fs_50"/>
     </LinearLayout>
@@ -54,8 +58,10 @@
         android:background="@color/color_c1"/>
 
     <LinearLayout
+        android:paddingTop="@dimen/ds_50"
+        android:paddingBottom="@dimen/ds_50"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_135"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout
@@ -85,6 +91,7 @@
             android:text="@string/sz_adresss"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginLeft="@dimen/ds_90"
             android:id="@+id/lin_sc"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -105,6 +112,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginLeft="@dimen/ds_20"
             android:id="@+id/lin_bj"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

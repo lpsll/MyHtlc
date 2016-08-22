@@ -13,15 +13,14 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/navi"
-          >
+            android:background="@color/navi">
 
             <TextView
-                android:layout_marginLeft="@dimen/ds_30"
                 android:id="@+id/base_titlebar_back"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/ds_30"
                 android:clickable="true"
                 android:drawablePadding="@dimen/ds_6"
                 android:gravity="center"
@@ -36,12 +35,12 @@
                 android:layout_width="@dimen/ds_500"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:maxLines="1"
+                android:clickable="true"
                 android:ellipsize="end"
                 android:gravity="center"
-                android:clickable="true"
-                android:textColor="@color/color_ff"
+                android:maxLines="1"
                 android:text=""
+                android:textColor="@color/color_ff"
                 android:textSize="@dimen/fs_50" />
 
             <TextView

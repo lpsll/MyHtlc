@@ -32,6 +32,7 @@ public abstract class BaseActivity  extends FragmentActivity implements
         mContext=this;
         AppManager.getAppManager().addActivity(this);
         onBeforeSetContentLayout();
+        //添加布局
         if (getLayoutResId() != 0) {
             setContentView(getLayoutResId());
         }

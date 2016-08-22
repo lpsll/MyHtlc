@@ -67,6 +67,4 @@ public class TextViewUtils {
                 break;
         }
     }
-
-
 }

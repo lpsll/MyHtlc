@@ -81,8 +81,8 @@ public class MainActivity extends BaseTitleActivity {
 
         // 初始化右边图片大小
         TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
-                R.dimen.common_titlebar_icon_width,
-                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
+                R.dimen.common_titlebar_right_icon_width,
+                R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
 
         fragmentManager = getSupportFragmentManager();
         mTabViews[0] = mTvTabHome;
@@ -212,12 +212,12 @@ public class MainActivity extends BaseTitleActivity {
         getTitleLayout().setVisibility(View.VISIBLE);
         switch (currentTab){
             case 0:
-                setTitleText("居然家装");
+                setTitleText("居然家政");
                 mBaseBack.setVisibility(View.VISIBLE);
                 mBaseEnsure.setVisibility(View.VISIBLE);
                 break;
             case 1:
-                setTitleText("订单");
+                setTitleText("我的订单");
                 mBaseBack.setVisibility(View.GONE);
                 mBaseEnsure.setVisibility(View.GONE);
                 break;
@@ -251,10 +251,6 @@ public class MainActivity extends BaseTitleActivity {
                 break;
         }
     }
-
-
-
-
 
 }
 

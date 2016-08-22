@@ -28,7 +28,6 @@ public class MoreSettingActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("设置");
-
     }
 
     @Override

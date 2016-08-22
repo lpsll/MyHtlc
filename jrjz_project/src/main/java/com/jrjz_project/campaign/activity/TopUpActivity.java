@@ -6,7 +6,6 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -111,11 +110,9 @@ public class TopUpActivity extends BaseTitleActivity {
                 //当是用户输入时，先判定输入金额是否合法
                 if ("WriteForUser".equals(typeForTopUp)) {
                     moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
-                    Log.i("TAG","1111111111"+moneyForUserInput);
                     //如果用户输入的金额末尾是“.”，就自动补成“.00”
                      moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
                     etTopUpChongzhi.setText(moneyForUserInput);
-                    Log.i("TAG","2222222222"+moneyForUserInput);
                     if (cbTopupWX.isChecked()) {
                         ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付，金额："+ moneyForUserInput);
                     } else if (cbTopupZFB.isChecked()) {

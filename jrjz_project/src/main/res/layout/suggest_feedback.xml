@@ -8,7 +8,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_40"
-        android:background="@color/linear_gray"/>
+        android:background="@color/linear_gray" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_370"
@@ -17,21 +18,23 @@
         android:paddingRight="@dimen/ds_60">
 
         <EditText
-            android:textCursorDrawable="@drawable/color_cursor"
-            android:layout_marginTop="@dimen/ds_50"
-            android:layout_marginBottom="@dimen/ds_50"
-            android:id="@+id/username_txt"
+            android:id="@+id/et_feedback"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@null"
-            android:textColorHint="#d6d6d6"
+            android:layout_below="@id/username"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/fs_50"
+            android:layout_marginBottom="@dimen/ds_50"
+            android:layout_marginTop="@dimen/ds_50"
+            android:background="@null"
             android:gravity="top"
             android:hint="如果您在使用过程中遇到问题，请留下您的宝贵意见和联系方式，客服将会第一时间联系您"
-            android:layout_below="@id/username"/>
+            android:textColorHint="#d6d6d6"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="@dimen/fs_50" />
     </RelativeLayout>
+
     <TextView
-       style="@style/button_click"
-        android:text="提交"/>
+        android:id="@+id/tv_feedback_commit"
+        style="@style/button_click"
+        android:text="提交" />
 </LinearLayout>

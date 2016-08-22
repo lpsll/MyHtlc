@@ -16,17 +16,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * 鉴于经常用到获取验证码倒计时按钮 在网上也没有找到理想的 自己写一个
  *
- *
- * @author yung
- *         <P>
- *         2015年1月14日[佛祖保佑 永无BUG]
- *         <p>
- *         PS: 由于发现timer每次cancle()之后不能重新schedule方法,所以计时完毕只恐timer.
- *         每次开始计时的时候重新设置timer, 没想到好办法初次下策
- *         注意把该类的onCreate()onDestroy()和activity的onCreate()onDestroy()同步处理
- *
+ *能倒计时的按钮
  */
 public class TimeButton extends Button implements OnClickListener {
     private long lenght = 60 * 1000;// 倒计时长度,这里给了默认60秒

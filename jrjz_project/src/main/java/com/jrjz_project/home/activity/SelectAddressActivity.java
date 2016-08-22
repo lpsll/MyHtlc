@@ -1,6 +1,5 @@
 package com.jrjz_project.home.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -16,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -48,10 +46,10 @@ public class SelectAddressActivity extends BaseTitleActivity {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         for (int i = 0; i < 10; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
-            map.put("name", "利" + i);
+            map.put("name", "王大拿" + i);
             map.put("title", "先生" + i);
-            map.put("info", "电话" + i);
-            map.put("add", "这是一个详细信息" + i);
+            map.put("info", "13166666666");
+            map.put("add", "北京市昌平区北京市昌平区北京市昌平区北京市昌平区");
             list.add(map);
         }
         mList.setAdapter(new SelectAddressAdapter(this, list));
