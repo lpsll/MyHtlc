@@ -27,7 +27,7 @@
                     android:layout_height="@dimen/ds_200"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/ds_90"
-                    android:background="@mipmap/mine_headimg_test" />
+                    android:background="@drawable/mine_headimg_test" />
 
                 <TextView
                     android:id="@+id/middle_image"
@@ -44,7 +44,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/ds_100"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </RelativeLayout>
 
             <View
@@ -70,7 +70,7 @@
                         android:layout_height="@dimen/ds_50"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/ds_90"
-                        android:src="@mipmap/score_mine" />
+                        android:src="@drawable/score_mine" />
 
                     <TextView
                         android:id="@+id/score_txt1"
@@ -109,7 +109,7 @@
                         android:layout_height="@dimen/ds_50"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="@dimen/ds_90"
-                        android:src="@mipmap/score_yue" />
+                        android:src="@drawable/score_yue" />
 
                     <TextView
                         android:id="@+id/tv_my_yue"
@@ -150,7 +150,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/locate_address" />
+                    android:src="@drawable/locate_address" />
 
                 <TextView
                     
@@ -165,7 +165,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -185,7 +185,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/top_up" />
+                    android:src="@drawable/top_up" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -199,7 +199,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -219,7 +219,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/order_mine" />
+                    android:src="@drawable/order_mine" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -233,7 +233,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -252,7 +252,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/share_mine" />
+                    android:src="@drawable/share_mine" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -266,7 +266,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -286,7 +286,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/coupons" />
+                    android:src="@drawable/coupons" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -300,7 +300,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -320,7 +320,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/suggest_mine" />
+                    android:src="@drawable/suggest_mine" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -334,7 +334,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -354,7 +354,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/setting_mine" />
+                    android:src="@drawable/setting_mine" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -368,7 +368,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View
@@ -387,7 +387,7 @@
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
                     android:layout_weight="2"
-                    android:src="@mipmap/about_us_mine" />
+                    android:src="@drawable/about_us_mine" />
 
                 <TextView
                     android:textSize="@dimen/fs_45"
@@ -401,7 +401,7 @@
                     android:layout_width="@dimen/ds_30"
                     android:layout_height="@dimen/ds_40"
                     android:layout_weight="2"
-                    android:src="@mipmap/arrow_right" />
+                    android:src="@drawable/arrow_right" />
             </LinearLayout>
 
             <View

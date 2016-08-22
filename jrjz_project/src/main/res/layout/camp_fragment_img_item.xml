@@ -8,6 +8,6 @@
         android:id="@+id/img_campaign_fragment_top"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_273"
-        android:background="@mipmap/test6" />
+        android:background="@drawable/test6" />
 
 </LinearLayout>

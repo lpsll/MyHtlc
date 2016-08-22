@@ -21,7 +21,6 @@
             android:id="@+id/et_feedback"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/username"
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/ds_50"
             android:layout_marginTop="@dimen/ds_50"

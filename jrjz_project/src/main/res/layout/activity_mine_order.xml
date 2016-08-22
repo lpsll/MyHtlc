@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jrjz_project.mine.activity.MineOrderActivity">
+    tools:context="com.shejijia.mine.activity.MineOrderActivity">
 
     <FrameLayout
         android:id="@+id/fl_mine_order"

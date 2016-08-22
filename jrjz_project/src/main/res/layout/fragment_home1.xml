@@ -36,7 +36,7 @@
                         android:id="@+id/middle_image1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/test1" />
+                        android:background="@drawable/test1" />
                     <TextView
                         android:id="@+id/tv01"
                         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                         android:id="@+id/middle_image2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/test2"/>
+                        android:background="@drawable/test1"/>
                     <TextView
                         android:id="@+id/tv02"
                         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                         android:id="@+id/middle_image3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/test3"/>
+                        android:background="@drawable/test1"/>
                     <TextView
                         android:id="@+id/tv03"
                         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                         android:id="@+id/middle_image4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/test4"/>
+                        android:background="@drawable/test1"/>
                     <TextView
                         android:id="@+id/tv04"
                         android:layout_width="match_parent"
@@ -124,7 +124,7 @@
                         android:id="@+id/middle_image5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@mipmap/test5"/>
+                        android:background="@drawable/test1"/>
                     <TextView
                         android:id="@+id/tv05"
                         android:layout_width="match_parent"
@@ -146,8 +146,7 @@
                 android:id="@+id/image_ad"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_273"
-
-                android:background="@mipmap/test6"/>
+                android:background="@drawable/test6"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_10"

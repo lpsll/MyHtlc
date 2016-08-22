@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.jrjz_project.common.widget.SlidingTabLayout
+    <com.autodesk.easyhome.shejijia.common.widget.SlidingTabLayout
         android:id="@+id/st_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
