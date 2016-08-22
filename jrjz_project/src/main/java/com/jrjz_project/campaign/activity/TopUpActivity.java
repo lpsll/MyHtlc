@@ -6,6 +6,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.htlc.jrjz.jrjz_project.R;
 import com.jrjz_project.common.base.BaseTitleActivity;
 import com.jrjz_project.common.utils.EditInputFilter;
+import com.jrjz_project.common.utils.StringUtils;
 import com.jrjz_project.common.utils.ToastUtils;
 
 import butterknife.Bind;
@@ -109,14 +111,30 @@ public class TopUpActivity extends BaseTitleActivity {
                 //当是用户输入时，先判定输入金额是否合法
                 if ("WriteForUser".equals(typeForTopUp)) {
                     moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
-                    break;
+                    Log.i("TAG","1111111111"+moneyForUserInput);
+                    //如果用户输入的金额末尾是“.”，就自动补成“.00”
+                     moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
+                    etTopUpChongzhi.setText(moneyForUserInput);
+                    Log.i("TAG","2222222222"+moneyForUserInput);
+                    if (cbTopupWX.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付，金额："+ moneyForUserInput);
+                    } else if (cbTopupZFB.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付，金额："+ moneyForUserInput);
+                    } else {
+                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+                    }
                 }
-                if (cbTopupWX.isChecked()) {
-                    ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付");
-                } else if (cbTopupZFB.isChecked()) {
-                    ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付");
-                } else {
-                    ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+
+                if ("fixed".equals(typeForTopUp)) {
+                    //传入固定值
+                    moneyForUserInput = tvTopUpChongzhi.getText().toString();
+                    if (cbTopupWX.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付，金额："+ moneyForUserInput);
+                    } else if (cbTopupZFB.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付，金额："+ moneyForUserInput);
+                    } else {
+                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+                    }
                 }
                 break;
             case R.id.base_titlebar_back:
@@ -135,7 +153,6 @@ public class TopUpActivity extends BaseTitleActivity {
         InputFilter[] filters = {new EditInputFilter(this)};
         etTopUpChongzhi.setFilters(filters);
         etTopUpChongzhi.addTextChangedListener(new TextWatcher() {   // 这是主要方法，下面为一些处理
-
             @Override
             public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
                 String str = etTopUpChongzhi.getText().toString().trim();

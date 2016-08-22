@@ -42,7 +42,7 @@ public class StringUtils {
 
     /***
      * 计算两个时间差，返回的是的秒s
-     * @return long
+     *
      * @param dete1
      * @param date2
      * @return
@@ -66,5 +66,18 @@ public class StringUtils {
         }
 
         return diff / 1000;
+    }
+
+    /**
+     * 如果用户输入的金额末尾是“.”，就自动补成“.00”
+     *
+     * @param str
+     * @return
+     */
+    public static String addTwoZero(String str) {
+        if (str.endsWith(".")) {
+            str += "00";
+        }
+        return str;
     }
 }
