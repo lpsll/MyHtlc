@@ -9,8 +9,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
+import com.htlc.jrjz.jrjz_project.R;
 
 /**
  * 带有标题的基类

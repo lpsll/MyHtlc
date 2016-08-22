@@ -7,13 +7,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 public class MoreSettingActivity extends BaseTitleActivity {
 
@@ -28,6 +29,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("设置");
+        ///ddddddd
 
     }
 
