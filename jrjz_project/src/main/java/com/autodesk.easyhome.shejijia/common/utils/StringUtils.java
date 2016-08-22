@@ -67,4 +67,17 @@ public class StringUtils {
 
         return diff / 1000;
     }
+
+    /**
+     * 如果用户输入的金额末尾是“.”，就自动补成“.00”
+     *
+     * @param str
+     * @return
+     */
+    public static String addTwoZero(String str) {
+        if (str.endsWith(".")) {
+            str += "00";
+        }
+        return str;
+    }
 }

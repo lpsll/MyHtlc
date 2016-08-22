@@ -76,13 +76,13 @@ public class MainActivity extends BaseTitleActivity {
         mBaseBack.setText("北京");
         // 初始化返回按钮图片大小
         TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.xiangxiaxdpi_03,
-                R.dimen.common_titlebar_icon_width,
-                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_RIGHT);
+                R.dimen.common_titlebar_left_icon_width,
+                R.dimen.common_titlebar_left_icon_height, TextViewUtils.DRAWABLE_RIGHT);
 
         // 初始化右边图片大小
         TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
-                R.dimen.common_titlebar_icon_width,
-                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
+                R.dimen.common_titlebar_right_icon_width,
+                R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
 
         fragmentManager = getSupportFragmentManager();
         mTabViews[0] = mTvTabHome;

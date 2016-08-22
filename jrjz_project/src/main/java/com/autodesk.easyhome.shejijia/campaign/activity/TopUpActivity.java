@@ -2,15 +2,21 @@ package com.autodesk.easyhome.shejijia.campaign.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
+import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,6 +71,31 @@ public class TopUpActivity extends BaseTitleActivity {
         }
 
 
+        setEditTextFilter();
+        etTopUpChongzhi.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                String str = etTopUpChongzhi.getText().toString().trim();
+                if(str.indexOf('0')==0){
+                    Toast.makeText(TopUpActivity.this, "首位不能为0", Toast.LENGTH_SHORT).show();
+                    etTopUpChongzhi.setText("");
+                }
+                if(str.indexOf('.')==0){
+                    Toast.makeText(TopUpActivity.this, "首位不能为.", Toast.LENGTH_SHORT).show();
+                    etTopUpChongzhi.setText("");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
     }
 
     @Override
@@ -102,17 +133,31 @@ public class TopUpActivity extends BaseTitleActivity {
                 //当是用户输入时，先判定输入金额是否合法
                 if ("WriteForUser".equals(typeForTopUp)) {
                     moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
-                    if (TextUtils.isEmpty(moneyForUserInput) || Integer.parseInt(moneyForUserInput) == 0) {
-                        ToastUtils.showShort(TopUpActivity.this, "请输入正确金额");
-                        break;
+                    moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
+                    etTopUpChongzhi.setText(moneyForUserInput);
+
+                    if (cbTopupWX.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额："+moneyForUserInput);
+                    } else if (cbTopupZFB.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额："+moneyForUserInput);
+                    } else {
+                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
                     }
+
+
                 }
-                if (cbTopupWX.isChecked()) {
-                    ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付");
-                } else if (cbTopupZFB.isChecked()) {
-                    ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付");
-                } else {
-                    ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+
+                if("fixed".equals(typeForTopUp)){
+                    moneyForUserInput = tvTopUpChongzhi.getText().toString();
+
+                    if (cbTopupWX.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额："+ moneyForUserInput);
+                    } else if (cbTopupZFB.isChecked()) {
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额："+moneyForUserInput);
+                    } else {
+                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+                    }
+
                 }
                 break;
             case R.id.base_titlebar_back:
@@ -123,4 +168,13 @@ public class TopUpActivity extends BaseTitleActivity {
 //                break;
         }
     }
+
+    /**
+     * 设置editText的过滤
+     */
+    private void setEditTextFilter() {
+        InputFilter[] filters = {new EditInputFilter(this)};
+        etTopUpChongzhi.setFilters(filters);
+    }
+
 }
