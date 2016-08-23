@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.register;
+package com.autodesk.easyhome.shejijia.register.activity;
 
 import android.os.Bundle;
 import android.view.View;

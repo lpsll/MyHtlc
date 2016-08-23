@@ -9,7 +9,7 @@ import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
 import com.autodesk.easyhome.shejijia.home.activity.TestActivity;
-import com.autodesk.easyhome.shejijia.register.RegisterActivity;
+import com.autodesk.easyhome.shejijia.register.activity.RegisterActivity;
 
 /**
  * Created by John_Libo on 2016/8/16.
