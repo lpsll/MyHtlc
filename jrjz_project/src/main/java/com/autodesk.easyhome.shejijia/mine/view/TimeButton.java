@@ -18,20 +18,18 @@ import java.util.TimerTask;
 /**
  * 鉴于经常用到获取验证码倒计时按钮 在网上也没有找到理想的 自己写一个
  *
- *
  * @author yung
- *         <P>
+ *         <p/>
  *         2015年1月14日[佛祖保佑 永无BUG]
- *         <p>
+ *         <p/>
  *         PS: 由于发现timer每次cancle()之后不能重新schedule方法,所以计时完毕只恐timer.
  *         每次开始计时的时候重新设置timer, 没想到好办法初次下策
  *         注意把该类的onCreate()onDestroy()和activity的onCreate()onDestroy()同步处理
- *
  */
 public class TimeButton extends Button implements OnClickListener {
     private long lenght = 60 * 1000;// 倒计时长度,这里给了默认60秒
     private String textafter = "秒后重新获取";
-    private String textbefore = "点击获取验证码";
+    private String textbefore = "获取验证码";
     private final String TIME = "time";
     private final String CTIME = "ctime";
     private OnClickListener mOnclickListener;
@@ -61,11 +59,23 @@ public class TimeButton extends Button implements OnClickListener {
                 TimeButton.this.setEnabled(true);
                 TimeButton.this.setText(textbefore);
                 clearTimer();
+
+                //自定义接口回调
+                if (mOnTimeOverListener != null) {
+                    mOnTimeOverListener.OnTimeOver(true);
+                }
+
+            }else {
+                //自定义接口回调
+                if (mOnTimeOverListener != null) {
+                    mOnTimeOverListener.OnTimeOver(false);
+                }
             }
-        };
+        }
+
     };
 
-    private void initTimer() {
+    public void initTimer() {
         time = lenght;
         t = new Timer();
         tt = new TimerTask() {
@@ -78,7 +88,7 @@ public class TimeButton extends Button implements OnClickListener {
         };
     }
 
-    private void clearTimer() {
+    public void clearTimer() {
         if (tt != null) {
             tt.cancel();
             tt = null;
@@ -112,9 +122,9 @@ public class TimeButton extends Button implements OnClickListener {
      */
     public void onDestroy() {
         if (map == null)
-             map = new HashMap<String, Long>();
-         map.put(TIME, time);
-         map.put(CTIME, System.currentTimeMillis());
+            map = new HashMap<String, Long>();
+        map.put(TIME, time);
+        map.put(CTIME, System.currentTimeMillis());
         clearTimer();
         Log.e("yung", "onDestroy");
     }
@@ -123,14 +133,14 @@ public class TimeButton extends Button implements OnClickListener {
      * 和activity的onCreate()方法同步
      */
     public void onCreate(Bundle bundle) {
-        Log.e("yung",  map + "");
-        if ( map == null)
+        Log.e("yung", map + "");
+        if (map == null)
             return;
-        if ( map.size() <= 0)// 这里表示没有上次未完成的计时
+        if (map.size() <= 0)// 这里表示没有上次未完成的计时
             return;
-        long time = System.currentTimeMillis() -  map.get(CTIME)
-                -  map.get(TIME);
-         map.clear();
+        long time = System.currentTimeMillis() - map.get(CTIME)
+                - map.get(TIME);
+        map.clear();
         if (time > 0)
             return;
         else {
@@ -142,13 +152,17 @@ public class TimeButton extends Button implements OnClickListener {
         }
     }
 
-    /** * 设置计时时候显示的文本 */
+    /**
+     * 设置计时时候显示的文本
+     */
     public TimeButton setTextAfter(String text1) {
         this.textafter = text1;
         return this;
     }
 
-    /** * 设置点击之前的文本 */
+    /**
+     * 设置点击之前的文本
+     */
     public TimeButton setTextBefore(String text0) {
         this.textbefore = text0;
         this.setText(textbefore);
@@ -158,16 +172,24 @@ public class TimeButton extends Button implements OnClickListener {
     /**
      * 设置到计时长度
      *
-     * @param lenght
-     *            时间 默认毫秒
+     * @param lenght 时间 默认毫秒
      * @return
      */
     public TimeButton setLenght(long lenght) {
         this.lenght = lenght;
         return this;
     }
-	/*
 
-*
-*/
+
+    private OnTimeOverListener mOnTimeOverListener;
+
+    public void setmOnTimeOverListener(OnTimeOverListener mOnTimeOverListener) {
+        this.mOnTimeOverListener = mOnTimeOverListener;
+    }
+
+
+    public interface OnTimeOverListener {
+
+        void OnTimeOver(boolean b);
+    }
 }

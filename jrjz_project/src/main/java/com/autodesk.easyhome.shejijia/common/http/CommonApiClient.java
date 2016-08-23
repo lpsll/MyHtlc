@@ -1,11 +1,9 @@
 package com.autodesk.easyhome.shejijia.common.http;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
-import com.autodesk.easyhome.shejijia.register.activity.RegisterActivity;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -25,5 +23,7 @@ public class CommonApiClient extends BaseApiClient{
         post(getAbsoluteUrl("user/getSmsVerifyCode"), dto,
                 asyncCallBack);
     }
+
+
 
 }
