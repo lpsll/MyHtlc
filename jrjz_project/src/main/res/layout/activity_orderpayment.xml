@@ -274,16 +274,10 @@
         android:background="@color/color_cc"/>
 
             <Button
+                android:layout_marginTop="@dimen/ds_100"
+                style="@style/button_click"
                 android:id="@+id/tj_btn"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_120"
-                android:layout_marginTop="@dimen/ds_160"
-                android:layout_marginLeft="@dimen/ds_50"
-                android:layout_marginRight="@dimen/ds_50"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/btn_blue_apt"
                 android:text="@string/op_tj"
-                android:textColor="@color/color_ff"
-                android:textSize="@dimen/fs_50" />
+                 />
 
 </LinearLayout>

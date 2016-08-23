@@ -10,10 +10,10 @@
     <dimen name="common_titlebar_height">@dimen/ds_120</dimen>
 
     <dimen name="common_titlebar_left_icon_height">@dimen/ds_25</dimen>
-    <dimen name="common_titlebar_left_icon_width">@dimen/ds_35</dimen>
+    <dimen name="common_titlebar_left_icon_width">@dimen/ds_40</dimen>
 
     <dimen name="common_titlebar_icon_height">@dimen/ds_50</dimen>
-    <dimen name="common_titlebar_icon_width">@dimen/ds_20</dimen>
+    <dimen name="common_titlebar_icon_width">@dimen/ds_25</dimen>
 
     <dimen name="common_titlebar_right_icon_height">@dimen/ds_60</dimen>
     <dimen name="common_titlebar_right_icon_width">@dimen/ds_60</dimen>

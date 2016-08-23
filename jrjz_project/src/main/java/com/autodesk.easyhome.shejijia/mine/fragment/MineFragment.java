@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
@@ -18,6 +17,7 @@ import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity;
 import com.autodesk.easyhome.shejijia.order.activity.CouponActivity;
+import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -96,6 +96,7 @@ public class MineFragment extends BaseFragment {
             case R.id.ll_mine_more_setting:
                 //跳转到更多设置页
                 getContext().startActivity(new Intent(getContext(), MoreSettingActivity.class));
+//                getContext().startActivity(new Intent(getContext(), More2Activity.class));
                 break;
             case R.id.ll_mine_address:
                 getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));

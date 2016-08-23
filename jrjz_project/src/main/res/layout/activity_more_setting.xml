@@ -1,57 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    android:orientation="vertical">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds_100"
+        android:background="@color/linear_gray" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_100"
-            android:background="@color/linear_gray"/>
-        <RelativeLayout
-            android:id="@+id/rl_moresetting_clear_cache"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_160"
-            android:background="#ffffff"
-            android:paddingLeft="@dimen/ds_60"
-            android:paddingRight="@dimen/ds_60">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:text="清除缓存"
-                android:textSize="@dimen/fs_45"
-                android:textColor="@color/tv_black"
-                android:layout_centerVertical="true"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:textSize="@dimen/fs_45"
-                android:id="@+id/tv_moresetting_cache"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/ds_65"
-                android:layout_width="wrap_content"
-                android:text="12.2KB"
-                android:textColor="@color/tv_hint"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_width="@dimen/ds_30"
-                android:layout_height="@dimen/ds_40"
-                android:src="@drawable/arrow_right"
-                 />
-
-        </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_moresetting_clear_cache"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ds_160"
+        android:background="#ffffff"
+        android:paddingLeft="@dimen/ds_60"
+        android:paddingRight="@dimen/ds_60">
 
         <TextView
-            android:layout_marginTop="@dimen/ds_200"
-            android:id="@+id/tv_moresetting_exit"
-           style="@style/button_click"
-            android:text="退出登录"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="清除缓存"
+            android:textColor="@color/tv_black"
+            android:textSize="@dimen/fs_45" />
+
+        <TextView
+            android:id="@+id/tv_moresetting_cache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/ds_65"
+            android:text="12.2KB"
+            android:textColor="@color/tv_hint"
+            android:textSize="@dimen/fs_45" />
+
+        <ImageView
+            android:layout_width="@dimen/ds_30"
+            android:layout_height="@dimen/ds_40"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow_right" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_moresetting_exit"
+        style="@style/button_click"
+        android:layout_marginTop="@dimen/ds_200"
+        android:text="退出登录" />
 
 
-    </LinearLayout>
+</LinearLayout>

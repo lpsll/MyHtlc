@@ -239,7 +239,7 @@
             android:layout_height="@dimen/ds_80"
             android:layout_marginLeft="@dimen/ds_360"
             android:layout_alignParentRight="true"
-            android:background="@drawable/btn_blue_apt"
+            android:background="@drawable/ok_selector"
             android:text="@string/op_tj"
             android:textColor="@color/color_ff"
             android:textSize="@dimen/fs_50" />
