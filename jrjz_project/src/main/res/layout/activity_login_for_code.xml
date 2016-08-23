@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ds_80"
+        android:paddingLeft="@dimen/ds_70">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:textColor="@color/tv_grey"
+            android:textSize="@dimen/fs_45" />
+
+        <EditText
+
+            android:id="@+id/et_login_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_80"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="number"
+            android:textColorHint="@color/btn_gray"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="@dimen/fs_45" />
+
+        <com.autodesk.easyhome.shejijia.mine.view.TimeButton
+            android:id="@+id/TimeButton_login"
+            android:layout_width="@dimen/ds_260"
+            android:layout_height="@dimen/ds_80"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/ds_60"
+            android:background="@drawable/ok_selector_dark"
+            android:text="获取验证码"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/fs_37" />
+
+
+    </RelativeLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/username_txt"
+        android:layout_marginLeft="@dimen/ds_70"
+        android:layout_marginRight="@dimen/ds_70"
+        android:layout_marginTop="@dimen/ds_30"
+        android:background="@color/linear_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ds_40"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/ds_70">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="验证码"
+            android:textColor="@color/tv_grey"
+            android:textSize="@dimen/fs_45" />
+
+        <EditText
+            android:id="@+id/et_login_pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_30"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:inputType="textPassword"
+            android:textColorHint="@color/btn_gray"
+            android:textCursorDrawable="@drawable/color_cursor"
+            android:textSize="@dimen/fs_45" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/username_txt"
+        android:layout_marginLeft="@dimen/ds_70"
+        android:layout_marginRight="@dimen/ds_70"
+        android:layout_marginTop="@dimen/ds_30"
+        android:background="@color/linear_gray" />
+
+
+
+    <TextView
+        android:id="@+id/tv_ok"
+        style="@style/button_click"
+        android:layout_marginTop="@dimen/ds_150"
+        android:text="登录" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/ds_60"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="没有用户名？"
+            android:textColor="#a8a8aa"
+            android:textSize="@dimen/fs_40" />
+
+        <TextView
+            android:id="@+id/et_login_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="立即注册"
+            android:textColor="#1d1d26"
+            android:textSize="@dimen/fs_40" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
