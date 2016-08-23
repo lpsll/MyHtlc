@@ -17,8 +17,6 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @Bind(R.id.et_register_phone)
     EditText etRegisterPhone;
-    @Bind(R.id.TimeButton_mine_changePhone)
-    TimeButton TimeButtonMineChangePhone;
     @Bind(R.id.et_register_code)
     EditText etRegisterCode;
     @Bind(R.id.et_register_password)
@@ -31,6 +29,9 @@ public class RegisterActivity extends BaseTitleActivity {
     TextView etRegisterLogin;
 
     String url = "http://101.200.167.130:8080/jrjz-api/swagger/index.html#!/api/user/getSmsVerifyCode";
+    @Bind(R.id.TimeButton_register)
+    TimeButton TimeButtonRegister;
+
     @Override
     protected int getContentResId() {
         return R.layout.activity_register;
@@ -54,14 +55,27 @@ public class RegisterActivity extends BaseTitleActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.TimeButton_mine_changePhone, R.id.tv_ok})
+
+    @OnClick(R.id.TimeButton_register)
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
-            case R.id.TimeButton_mine_changePhone:
-                break;
-            case R.id.tv_ok:
+            case  R.id.TimeButton_register:
+                //获取验证码
+                getSmsVerifyCode();
+        
                 break;
         }
+
     }
+
+    /**
+     * 获取验证码
+     */
+    private void getSmsVerifyCode() {
+
+
+    }
+
+
 }
