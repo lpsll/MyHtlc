@@ -60,10 +60,6 @@ public class AsyncCallBack<T> implements Callback {
 
 		if (response.isSuccessful()) {
 			String reader = response.body().string();
-			//LogUtils.e("原始数据："+reader);
-			int startIndex=reader.indexOf("{",reader.indexOf("{")+1);
-			int endIndex=reader.lastIndexOf("]");
-			reader=reader.substring(startIndex,endIndex);
 			LogUtils.e("response success json-->" + reader);
 			if(reader.contains("[{}]")){
 				reader=reader.replace("[{}]","null");
@@ -76,7 +72,7 @@ public class AsyncCallBack<T> implements Callback {
 
 					BaseEntity entity = (BaseEntity) t;
 					EventBus.getDefault().post(
-							new ErrorEvent(entity.getStatus(),
+							new ErrorEvent(entity.getCode(),
 									entity.getMsg(), tag));
 			}catch (Exception e){
 				callback.sendMsg(CallBack.FAIL, (T) AppConfig.ERROR_PARSER_MSG);

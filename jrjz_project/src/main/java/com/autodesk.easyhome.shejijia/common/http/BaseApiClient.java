@@ -3,6 +3,7 @@ package com.autodesk.easyhome.shejijia.common.http;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.autodesk.easyhome.shejijia.AppConfig;
 import com.google.gson.Gson;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 
@@ -154,15 +155,15 @@ public class BaseApiClient {
 		OkHttpUtils.getInstance().cancelTag(tag);
 	}
 
-//	/**
-//	 * 获取服务器绝对路径
-//	 *
-//	 * @param relativeUrl 相对路径
-//	 * @return 返回绝对路径地址
-//	 */
-//	public static String getAbsoluteUrl(String relativeUrl) {
-//		return AppConfig.BASE_URL+relativeUrl;
-//	}
+	/**
+	 * 获取服务器绝对路径
+	 *
+	 * @param relativeUrl 相对路径
+	 * @return 返回绝对路径地址
+	 */
+	public static String getAbsoluteUrl(String relativeUrl) {
+		return AppConfig.BASE_URL+relativeUrl;
+	}
 
 
 	public static Map<String, Object> objectToMap(Object o) {

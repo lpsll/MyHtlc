@@ -5,24 +5,26 @@ package com.autodesk.easyhome.shejijia.common.eventbus;
  */
 public class ErrorEvent {
 
-    private String status;
+
+
+    private String code;
     private String msg;
     private Object tag;
 
-    public ErrorEvent(String status, String msg, Object tag) {
+    public ErrorEvent(String code, String msg, Object tag) {
         super();
-        this.status = status;
+        this.code = code;
         this.msg = msg;
         this.tag = tag;
     }
 
 
-    public String getStatus() {
-        return status;
+    public String getCode() {
+        return code;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getMsg() {
