@@ -11,16 +11,20 @@ import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.htlc.jrjz.jrjz_project.R;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class MoreSettingActivity extends BaseTitleActivity {
 
 
-
-    private RelativeLayout rlMoresettingClearCache;
-    private TextView tvMoresettingOk;
-    private  TextView tvMoresettingCache;;
+    @Bind(R.id.rl_moresetting_clear_cache)
+    RelativeLayout rlMoresettingClearCache;
+    @Bind(R.id.tv_moresetting_exit)
+    TextView tvMoresettingOk;
+    @Bind(R.id.tv_moresetting_cache)
+    TextView tvMoresettingCache;
 
     @Override
     public void initView() {
@@ -53,10 +57,9 @@ public class MoreSettingActivity extends BaseTitleActivity {
         ButterKnife.bind(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
+    @OnClick({R.id.rl_moresetting_clear_cache, R.id.tv_moresetting_exit})
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.rl_moresetting_clear_cache:
                 //清除缓存
                 new AlertDialog.Builder(MoreSettingActivity.this).setMessage("确定清除缓存吗？")
@@ -79,5 +82,4 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 break;
         }
     }
-
 }
