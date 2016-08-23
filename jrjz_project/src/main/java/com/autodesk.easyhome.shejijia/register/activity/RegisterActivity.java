@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia.register.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,14 +12,11 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.common.widget.EmptyLayout;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.MediaType;
 
 public class RegisterActivity extends BaseTitleActivity {
 
@@ -55,6 +51,7 @@ public class RegisterActivity extends BaseTitleActivity {
     @Override
     public void initData() {
 
+        //11111111111
     }
 
 
