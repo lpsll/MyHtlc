@@ -91,6 +91,7 @@ public class RegisterActivity extends BaseTitleActivity {
             public void onSuccess(BaseEntity result) {
                 if(AppConfig.SUCCESS.equals(result.getCode())){
                     LogUtils.e("获取验证码成功");
+                    LogUtils.e("result---",""+result);
 
                 }
 
