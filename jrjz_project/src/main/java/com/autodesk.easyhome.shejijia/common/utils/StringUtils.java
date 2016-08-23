@@ -3,6 +3,7 @@ package com.autodesk.easyhome.shejijia.common.utils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -42,7 +43,7 @@ public class StringUtils {
 
     /***
      * 计算两个时间差，返回的是的秒s
-     * @return long
+     *
      * @param dete1
      * @param date2
      * @return
@@ -79,5 +80,16 @@ public class StringUtils {
             str += "00";
         }
         return str;
+    }
+
+    /**
+     * 获取4位随机整数
+     * @return
+     */
+    public static int getRandom() {
+        int x;//定义两变量
+        Random ne = new Random();//实例化一个random的对象ne
+        x = ne.nextInt(9999 - 1000 + 1) + 1000;//为变量赋随机值1000-9999
+        return x;
     }
 }
