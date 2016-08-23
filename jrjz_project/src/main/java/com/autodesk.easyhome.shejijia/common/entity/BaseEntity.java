@@ -9,6 +9,7 @@ public class BaseEntity implements Serializable {
     private String code;
     private String msg;
 
+
     public String getCode() {
         return code;
     }

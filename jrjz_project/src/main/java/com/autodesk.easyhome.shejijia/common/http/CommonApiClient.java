@@ -24,6 +24,21 @@ public class CommonApiClient extends BaseApiClient{
                 asyncCallBack);
     }
 
+    /**
+     * 注册
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void register(Activity act, BaseDTO
+            dto, CallBack<BaseEntity> callback) {
+        AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, BaseEntity.class);
+        post(getAbsoluteUrl("user/userRegister"), dto,
+                asyncCallBack);
+    }
+
+
 
 
 }
