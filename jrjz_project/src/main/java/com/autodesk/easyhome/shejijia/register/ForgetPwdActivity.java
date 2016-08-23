@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.login;
+package com.autodesk.easyhome.shejijia.register;
 
 import android.os.Bundle;
 import android.view.View;
@@ -13,30 +13,29 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * 验证码登录页面
- */
-public class LoginForCodeActivity extends BaseTitleActivity {
+public class ForgetPwdActivity extends BaseTitleActivity {
 
-    @Bind(R.id.et_login_phone)
-    EditText etLoginPhone;
-    @Bind(R.id.TimeButton_login)
-    TimeButton TimeButtonLogin;
-    @Bind(R.id.et_login_pwd)
-    EditText etLoginPwd;
+    @Bind(R.id.et_forgetpwd_phone)
+    EditText etForgetpwdPhone;
+    @Bind(R.id.TimeButton_forgetpwd)
+    TimeButton TimeButtonForgetpwd;
+    @Bind(R.id.et_forgetpwd_code)
+    EditText etForgetpwdCode;
+    @Bind(R.id.et_forgetpwd_pwd)
+    EditText etForgetpwdPwd;
+    @Bind(R.id.et_forgetpwd_pwd_again)
+    EditText etForgetpwdPwdAgain;
     @Bind(R.id.tv_ok)
     TextView tvOk;
-    @Bind(R.id.et_login_register)
-    TextView etLoginRegister;
 
     @Override
     protected int getContentResId() {
-        return R.layout.activity_login_for_code;
+        return R.layout.activity_forget_pwd;
     }
 
     @Override
     public void initView() {
-        setTitleText("登录");
+        setTitleText("忘记密码");
 
     }
 
@@ -52,10 +51,11 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.TimeButton_login, R.id.tv_ok})
+    @OnClick({R.id.TimeButton_forgetpwd, R.id.tv_ok})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
-            case R.id.TimeButton_login:
+            case R.id.TimeButton_forgetpwd:
                 break;
             case R.id.tv_ok:
                 break;

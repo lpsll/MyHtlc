@@ -112,14 +112,13 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15,R.id.lin_15, R.id.lin16, R.id.lin17, R.id.all_service})
+    @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15, R.id.lin_15, R.id.lin16, R.id.lin17, R.id.all_service})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin01:
@@ -143,7 +142,10 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin07:
-                HomeUiGoto.gotoApt(getActivity());
+                //跳转到注册页面
+
+                HomeUiGoto.gotoRegister(getActivity());
+//                HomeUiGoto.gotoApt(getActivity());
                 break;
             case R.id.lin08:
                 HomeUiGoto.gotoApt(getActivity());

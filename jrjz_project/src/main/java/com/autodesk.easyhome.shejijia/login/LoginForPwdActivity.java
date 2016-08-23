@@ -35,6 +35,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
+        setTitleText("登录");
 
     }
 

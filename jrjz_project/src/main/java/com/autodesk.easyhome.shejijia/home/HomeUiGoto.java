@@ -9,6 +9,7 @@ import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
 import com.autodesk.easyhome.shejijia.home.activity.TestActivity;
+import com.autodesk.easyhome.shejijia.register.RegisterActivity;
 
 /**
  * Created by John_Libo on 2016/8/16.
@@ -74,6 +75,16 @@ public class HomeUiGoto {
     public static void gotoCf(Context context){
 //        Intent intent = new Intent(context, ClassificationActivity.class);
         Intent intent = new Intent(context, TestActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     *
+     * @param context
+     * 跳转到注册页面
+     */
+    public static void gotoRegister(Context context){
+        Intent intent = new Intent(context, RegisterActivity.class);
         context.startActivity(intent);
     }
 }

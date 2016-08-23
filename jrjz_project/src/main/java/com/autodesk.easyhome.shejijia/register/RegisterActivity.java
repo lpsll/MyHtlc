@@ -30,6 +30,7 @@ public class RegisterActivity extends BaseTitleActivity {
     @Bind(R.id.et_register_login)
     TextView etRegisterLogin;
 
+    String url = "http://101.200.167.130:8080/jrjz-api/swagger/index.html#!/api/user/getSmsVerifyCode";
     @Override
     protected int getContentResId() {
         return R.layout.activity_register;
@@ -55,6 +56,7 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @OnClick({R.id.TimeButton_mine_changePhone, R.id.tv_ok})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.TimeButton_mine_changePhone:
                 break;
