@@ -92,4 +92,5 @@ public class StringUtils {
         x = ne.nextInt(9999 - 1000 + 1) + 1000;//为变量赋随机值1000-9999
         return x;
     }
+
 }

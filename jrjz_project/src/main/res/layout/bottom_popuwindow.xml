@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/linear_gray"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <Button
+        android:textColor="#ffffff"
+        android:id="@+id/popupwindow_Button_from_photos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:text="从相册中选择" />
+
+    <Button
+        android:textColor="#ffffff"
+        android:id="@+id/popupwindow_Button_open_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:gravity="center"
+        android:text="打开照相机" />
+
+    <Button
+        android:textColor="#ffffff"
+        android:id="@+id/popupwindow_cancelButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:gravity="center"
+        android:text="取消" />
+
+</LinearLayout>
