@@ -61,6 +61,9 @@
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.TestActivity"
             android:screenOrientation="portrait" />
+        <activity android:name="com.autodesk.easyhome.shejijia.register.RegisterActivity" />
+        <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForPwdActivity" />
+        <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForCodeActivity"></activity>
     </application>
 
 </manifest>
