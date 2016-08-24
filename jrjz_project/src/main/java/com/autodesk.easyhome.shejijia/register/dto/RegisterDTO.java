@@ -1,8 +1,7 @@
 package com.autodesk.easyhome.shejijia.register.dto;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
-
-import java.io.Serializable;
+import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 
 /**
  * Created by Administrator on 2016/8/24.

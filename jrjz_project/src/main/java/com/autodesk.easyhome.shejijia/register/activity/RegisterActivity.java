@@ -1,7 +1,6 @@
 package com.autodesk.easyhome.shejijia.register.activity;
 
 import android.app.AlertDialog;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -17,12 +16,12 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseTitleActivity {
@@ -37,8 +36,8 @@ public class RegisterActivity extends BaseTitleActivity {
     EditText etRegisterPasswordAgain;
     @Bind(R.id.tv_ok)
     TextView tvOk;
-    @Bind(R.id.et_register_login)
-    TextView etRegisterLogin;
+    @Bind(R.id.tv_register_login)
+    TextView tvRegisterLogin;
 
     @Bind(R.id.TimeButton_register)
     TimeButton TimeButtonRegister;
@@ -94,7 +93,7 @@ public class RegisterActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_register, R.id.tv_ok})
+    @OnClick({R.id.TimeButton_register, R.id.tv_ok,R.id.tv_register_login})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -113,6 +112,12 @@ public class RegisterActivity extends BaseTitleActivity {
             case R.id.tv_ok:
                 //验证
                 dataVerify();
+                break;
+
+            case R.id.tv_register_login:
+                //跳转到用户名密码登录页面
+                HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);
+                finish();
                 break;
         }
 
@@ -172,6 +177,9 @@ public class RegisterActivity extends BaseTitleActivity {
                     LogUtils.e("注册成功");
                     ToastUtils.showShort(RegisterActivity.this,"注册成功");
                     LogUtils.e("result---", "" + result);
+                    //跳转到登录页面
+                    HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);
+                    finish();
                 }
             }
         });
@@ -203,12 +211,6 @@ public class RegisterActivity extends BaseTitleActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
 
 }

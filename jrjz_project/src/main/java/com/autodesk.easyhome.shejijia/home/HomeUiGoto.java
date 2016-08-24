@@ -10,6 +10,7 @@ import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
+import com.autodesk.easyhome.shejijia.login.LoginForPwdActivity;
 import com.autodesk.easyhome.shejijia.register.activity.RegisterActivity;
 
 /**
@@ -95,6 +96,15 @@ public class HomeUiGoto {
      */
     public static void gotoRegister(Context context){
         Intent intent = new Intent(context, RegisterActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到登录页(密码登录)
+     * @param
+     */
+    public static void gotoLoginForPwd(Context context) {
+        Intent intent = new Intent(context, LoginForPwdActivity.class);
         context.startActivity(intent);
     }
 }

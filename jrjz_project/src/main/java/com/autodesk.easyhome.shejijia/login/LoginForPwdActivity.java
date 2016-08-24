@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.login;
 
+import android.app.AlertDialog;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
@@ -54,6 +56,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
     @OnClick({R.id.et_login_forgetpwd, R.id.tv_ok, R.id.tv_login_register, R.id.tv_login_to_code_login})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.et_login_forgetpwd:
                 //跳转到忘记密码页面
@@ -65,7 +68,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
 
                 break;
-            case R.id.et_login_register:
+            case R.id.tv_login_register:
                 //跳转到用户注册页面
                 HomeUiGoto.gotoRegister(this);
                 break;
@@ -95,7 +98,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
          usertype:用户类型
          */
-        String phone = etLoginPhone.getText().toString().trim();
+        final String phone = etLoginPhone.getText().toString().trim();
         String pwd = etLoginPwd.getText().toString().trim();
 
         LoginDTO loginDTO = new LoginDTO();
@@ -112,13 +115,25 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         CommonApiClient.login(this, loginDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
+                LogUtils.e("result========"+result.getMsg());
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("登录成功");
-                    LogUtils.e("result---------", "" + result.getData());
+                    ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
+                    LogUtils.e("用户令牌======" + result.getData().getAccessToken());
+
+                    //保存用户信息
+                    AppConfig.uid=phone;
+                    AppConfig.accessToken = result.getData().getAccessToken();
+                    AppConfig.isLogin = true;
+
+                    LogUtils.d("uid=="+phone+",accessToken=="+AppConfig.accessToken+",isLogin=="+AppConfig.isLogin);
+                    //跳转到预约页面
+                    HomeUiGoto.gotoApt(LoginForPwdActivity.this);
+                    finish();
+                }else {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("用户名密码错误").setPositiveButton("确定",null).show();
                 }
             }
         });
-
     }
-
 }

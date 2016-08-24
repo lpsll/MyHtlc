@@ -21,6 +21,10 @@ public class AppConfig {
 
     public static final int COMMON_USER_TYPE = 1;  //普通用户类型
 
+    public static String accessToken; //用户令牌
+    public static boolean isLogin; //用户是否登录
+    public static String uid;     //用户账号
+
     public static final String SUCCESS = "1";
     public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api/";
 

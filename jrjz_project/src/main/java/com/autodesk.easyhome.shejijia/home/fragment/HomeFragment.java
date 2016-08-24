@@ -6,13 +6,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
-import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout;
-import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
+import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
+import com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
+import com.htlc.jrjz.jrjz_project.R;
 
 import java.util.ArrayList;
 
@@ -161,7 +160,7 @@ public class HomeFragment extends BaseFragment {
 
 //                HomeUiGoto.gotoRegister(getActivity());
 //                HomeUiGoto.gotoApt(getActivity());
-                HomeUiGoto.gotoLogin(getActivity());
+                HomeUiGoto.gotoLoginForPwd(getActivity());
                 break;
             case R.id.lin08:
                 HomeUiGoto.gotoApt(getActivity());
