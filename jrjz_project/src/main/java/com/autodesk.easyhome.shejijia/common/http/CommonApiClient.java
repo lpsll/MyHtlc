@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
+import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
+import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 
 /**
@@ -36,6 +38,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, BaseEntity.class);
         post(getAbsoluteUrl("user/userRegister"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 登录
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void login(Activity act, LoginDTO
+            dto, CallBack<LoginEntity> callback) {
+        AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, LoginEntity.class);
+        post(getAbsoluteUrl("user/getAccessToken"), dto,
                 asyncCallBack);
     }
 

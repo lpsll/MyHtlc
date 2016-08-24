@@ -30,7 +30,23 @@ public class RegisterDTO extends BaseDTO {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = SecurityUtils.md5(password);
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public String getRandom() {
+        return random;
+    }
+
+    public void setRandom(String random) {
+        this.random = random;
     }
 
     public String getSmsverifycode() {
@@ -41,6 +57,9 @@ public class RegisterDTO extends BaseDTO {
         this.smsverifycode = smsverifycode;
     }
 
+    public String getSign() {
+        return sign;
+    }
 
 
 }

@@ -157,10 +157,11 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin07:
-                //跳转到注册页面
+                //跳转到用户名密码登录页面
 
-                HomeUiGoto.gotoRegister(getActivity());
+//                HomeUiGoto.gotoRegister(getActivity());
 //                HomeUiGoto.gotoApt(getActivity());
+                HomeUiGoto.gotoLogin(getActivity());
                 break;
             case R.id.lin08:
                 HomeUiGoto.gotoApt(getActivity());
