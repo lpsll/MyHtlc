@@ -12,10 +12,10 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
+            <com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout
+                android:id="@+id/vf_layout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/ds_567"
-                android:background="@drawable/test6"/>
+                android:layout_height="wrap_content" />
             <LinearLayout
                 android:id="@+id/layout_middle1"
                 android:layout_width="match_parent"

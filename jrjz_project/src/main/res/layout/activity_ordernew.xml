@@ -428,6 +428,7 @@
             <Button
                 android:id="@+id/tj_btn"
                 style="@style/button_click"
+                android:layout_marginBottom="@dimen/ds_40"
                 android:text="@string/op_tj" />
 
         </LinearLayout>

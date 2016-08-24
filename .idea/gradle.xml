@@ -10,6 +10,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PtrRecyclerView" />
             <option value="$PROJECT_DIR$/jrjz_project" />
+            <option value="$PROJECT_DIR$/photopicker" />
           </set>
         </option>
         <option name="myModules">
@@ -17,6 +18,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/PtrRecyclerView" />
             <option value="$PROJECT_DIR$/jrjz_project" />
+            <option value="$PROJECT_DIR$/photopicker" />
           </set>
         </option>
       </GradleProjectSettings>

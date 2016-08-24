@@ -3,18 +3,29 @@ package com.autodesk.easyhome.shejijia.home;
 import android.content.Context;
 import android.content.Intent;
 
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
+import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
-import com.autodesk.easyhome.shejijia.home.activity.TestActivity;
 import com.autodesk.easyhome.shejijia.register.activity.RegisterActivity;
 
 /**
  * Created by John_Libo on 2016/8/16.
  */
 public class HomeUiGoto {
+
+    /**
+     * 跳转到首页
+     * @param context
+     */
+
+    public static void gotoMain(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
 
 
     /**
@@ -73,8 +84,7 @@ public class HomeUiGoto {
      */
 
     public static void gotoCf(Context context){
-//        Intent intent = new Intent(context, ClassificationActivity.class);
-        Intent intent = new Intent(context, TestActivity.class);
+        Intent intent = new Intent(context, ClassificationActivity.class);
         context.startActivity(intent);
     }
 

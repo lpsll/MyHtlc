@@ -19,7 +19,7 @@ android {
     }
     sourceSets {
         main {
-            res.srcDirs = ['src/main/res', 'src/main/res/layout/pager_level1', 'src/main/res/layout/pager_utils']
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
@@ -37,4 +37,5 @@ dependencies {
     compile files('libs/fastjson-1.2.5.jar')
     compile project(':PtrRecyclerView')
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+    compile project(':photopicker')
 }

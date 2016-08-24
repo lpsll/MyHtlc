@@ -6,10 +6,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout;
 import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,7 +26,8 @@ import butterknife.OnClick;
  */
 public class HomeFragment extends BaseFragment {
 
-
+    @Bind(R.id.vf_layout)
+    ViewFlowLayout mVfLayout;
     @Bind(R.id.middle_image1)
     ImageView mMiddleImage1;
     @Bind(R.id.tv01)
@@ -103,7 +109,16 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+//        initViewFlow();
 
+    }
+
+    private void initViewFlow() {
+        ArrayList<ViewFlowBean> list = new ArrayList<>();
+        ViewFlowBean bean = new ViewFlowBean();
+//        bean.setImgUrl(R.drawable.about_us_mine);
+        list.add(bean);
+        mVfLayout.updateView(list);
     }
 
     @Override

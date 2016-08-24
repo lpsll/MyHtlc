@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/MyHtlc.iml" filepath="$PROJECT_DIR$/MyHtlc.iml" />
       <module fileurl="file://$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" filepath="$PROJECT_DIR$/PtrRecyclerView/PtrRecyclerView.iml" />
       <module fileurl="file://$PROJECT_DIR$/jrjz_project/jrjz_project.iml" filepath="$PROJECT_DIR$/jrjz_project/jrjz_project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photopicker/photopicker.iml" filepath="$PROJECT_DIR$/photopicker/photopicker.iml" />
     </modules>
   </component>
 </project>

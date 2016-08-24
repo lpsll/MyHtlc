@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ViewFlipper
+        android:id="@+id/id_vfow_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:id="@+id/id_vfow_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/id_vfow_flipper"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/ds_4"
+        android:gravity="center"
+        android:orientation="horizontal"/>
+
+</RelativeLayout>

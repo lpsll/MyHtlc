@@ -45,12 +45,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
     @OnClick({R.id.TimeButton_login, R.id.tv_ok})
     public void onClick(View view) {

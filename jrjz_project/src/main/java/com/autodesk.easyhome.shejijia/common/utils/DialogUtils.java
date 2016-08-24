@@ -70,6 +70,7 @@ public class DialogUtils {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+
             }
         });
         tv.setTextColor(ContextCompat.getColor(context,R.color.color_00));
@@ -115,6 +116,13 @@ public class DialogUtils {
         mExitDialog.show();
     }
 
+    /**
+     * 确认对话框
+     *
+     * @param context
+     * @param message
+     * @param listener
+     */
     public static void confirm(final Context context, String message, String pStr, DialogInterface.OnClickListener pListener, String nStr,
                                DialogInterface.OnClickListener nListener) {
         AlertDialog.Builder bui = new AlertDialog.Builder(context);

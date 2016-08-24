@@ -60,7 +60,7 @@ public class LeftListAdapter extends BaseAdapter {
         public void updataView(final int position) {
             left_list_item.setText(leftStr[position]);
             if (flagArray[position]) {
-                left_list_item.setBackgroundColor(Color.parseColor("#01e7df"));
+                left_list_item.setBackgroundColor(Color.parseColor("#bbffff"));
             } else {
                 left_list_item.setBackgroundColor(Color.TRANSPARENT);
             }

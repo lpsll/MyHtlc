@@ -44,12 +44,6 @@ public class ForgetPwdActivity extends BaseTitleActivity {
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 
     @OnClick({R.id.TimeButton_forgetpwd, R.id.tv_ok})
     public void onClick(View view) {

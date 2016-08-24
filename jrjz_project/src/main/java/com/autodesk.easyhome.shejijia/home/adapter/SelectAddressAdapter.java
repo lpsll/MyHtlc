@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.home.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,10 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.htlc.jrjz.jrjz_project.R;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.util.List;
 import java.util.Map;
@@ -21,6 +25,7 @@ public class SelectAddressAdapter extends BaseAdapter{
     private final Context context;
     private final List<Map<String, Object>> list;
     private  boolean flag;
+    DialogInterface.OnClickListener listener;
 
     public SelectAddressAdapter(Context context, List<Map<String, Object>> list) {
         this.context = context;
@@ -42,10 +47,10 @@ public class SelectAddressAdapter extends BaseAdapter{
         return position;
     }
 
-    static class ViewHolder
+    class ViewHolder
     {
         public TextView tv1,tv2,tv3,tv4;
-        public LinearLayout mLinSz;
+        public LinearLayout mLinSz,mLinSc,mLinBj;
         public TextView mTvCk;
         public CheckBox mCb;
     }
@@ -62,6 +67,8 @@ public class SelectAddressAdapter extends BaseAdapter{
             holder.mTvCk = (TextView)convertView.findViewById(R.id.tv_address);
             holder.mCb = (CheckBox)convertView.findViewById(R.id.box);
             holder.mLinSz = (LinearLayout)convertView.findViewById(R.id.lin_shezhi);
+            holder.mLinSc = (LinearLayout)convertView.findViewById(R.id.lin_sc);
+            holder.mLinBj = (LinearLayout)convertView.findViewById(R.id.lin_bj);
             convertView.setTag(holder);
 
         }else {
@@ -75,12 +82,41 @@ public class SelectAddressAdapter extends BaseAdapter{
         holder.tv4.setText((String)list.get(position).get("add"));
 
         flag = false;
+        final ViewHolder finalHolder = holder;
         holder.mLinSz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(flag){
-
+                    finalHolder.mCb.setChecked(false);
+                    finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
+                    flag = false;
+                }else {
+                    finalHolder.mCb.setChecked(true);
+                    finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+                    flag = true;
                 }
+            }
+        });
+
+        holder.mLinSc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogUtils.confirm(context, "是否删除地址", listener);
+            }
+        });
+
+        listener = new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        };
+
+
+        holder.mLinBj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeUiGoto.gotoAddress(context);
             }
         });
 

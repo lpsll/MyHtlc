@@ -4,8 +4,21 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.autodesk.easyhome.shejijia.MainActivity"
+            android:name="com.autodesk.easyhome.shejijia.SplashActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
@@ -23,9 +36,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="com.autodesk.easyhome.shejijia.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity"
             android:screenOrientation="portrait" />
@@ -58,9 +76,6 @@
         <activity
             android:name="com.autodesk.easyhome.shejijia.order.activity.CouponActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.TestActivity"
-            android:screenOrientation="portrait" />
         <activity android:name="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForPwdActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForCodeActivity" />
@@ -69,6 +84,19 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name="com.autodesk.easyhome.shejijia.register.activity.ForgetPwdActivity">
+
+        </activity>
+
+        <activity
+            android:name="com.lidong.photopicker.PhotoPickerActivity"
+            android:theme="@style/PhotoPickerTheme"
+            android:configChanges="orientation|screenSize"/>
+        <activity
+            android:name="com.lidong.photopicker.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme"
+            />
     </application>
 
 </manifest>

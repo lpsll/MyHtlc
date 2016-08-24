@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -25,7 +26,6 @@ public class SelectAddressActivity extends BaseTitleActivity {
     ListView mList;
     @Bind(R.id.select_lin)
     LinearLayout mSelectLin;
-
 
     @Override
     protected int getContentResId() {
@@ -53,6 +53,12 @@ public class SelectAddressActivity extends BaseTitleActivity {
             list.add(map);
         }
         mList.setAdapter(new SelectAddressAdapter(this, list));
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
     }
 
 
@@ -64,6 +70,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
+
                 break;
 
         }
