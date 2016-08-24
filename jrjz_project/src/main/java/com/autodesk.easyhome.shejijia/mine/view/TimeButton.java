@@ -60,17 +60,7 @@ public class TimeButton extends Button implements OnClickListener {
                 TimeButton.this.setText(textbefore);
                 clearTimer();
 
-                //自定义接口回调
-                if (mOnTimeOverListener != null) {
-                    mOnTimeOverListener.OnTimeOver(true);
-                }
-
-            }else {
-                //自定义接口回调
-                if (mOnTimeOverListener != null) {
-                    mOnTimeOverListener.OnTimeOver(false);
-                }
-            }
+          }
         }
 
     };
@@ -181,15 +171,4 @@ public class TimeButton extends Button implements OnClickListener {
     }
 
 
-    private OnTimeOverListener mOnTimeOverListener;
-
-    public void setmOnTimeOverListener(OnTimeOverListener mOnTimeOverListener) {
-        this.mOnTimeOverListener = mOnTimeOverListener;
-    }
-
-
-    public interface OnTimeOverListener {
-
-        void OnTimeOver(boolean b);
-    }
 }

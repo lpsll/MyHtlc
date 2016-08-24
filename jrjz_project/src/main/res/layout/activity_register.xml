@@ -111,6 +111,7 @@
                 android:textSize="@dimen/fs_45" />
 
             <EditText
+                android:inputType="textPassword"
                 android:id="@+id/et_register_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -148,6 +149,7 @@
                 android:textSize="@dimen/fs_45" />
 
             <EditText
+                android:inputType="textPassword"
                 android:id="@+id/et_register_password_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

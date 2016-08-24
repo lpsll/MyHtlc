@@ -2,7 +2,6 @@ package com.autodesk.easyhome.shejijia.register.activity;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -19,6 +18,7 @@ import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
@@ -42,6 +42,10 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @Bind(R.id.TimeButton_register)
     TimeButton TimeButtonRegister;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
 
 
     @Override
@@ -53,8 +57,6 @@ public class RegisterActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("新用户注册");
 
-        //设置倒计时中间电话号码不可修改
-        setTimeButtonEditable();
         //对密码格式验证
         pwdVerify();
 
@@ -85,24 +87,6 @@ public class RegisterActivity extends BaseTitleActivity {
 
     }
 
-    /**
-     * 设置倒计时中间电话号码不可修改
-     */
-    private void setTimeButtonEditable() {
-
-        TimeButtonRegister.setmOnTimeOverListener(new TimeButton.OnTimeOverListener() {
-            @Override
-            public void OnTimeOver(boolean b) {
-                if (b) {
-                    //电话号码可编辑状态
-                    etRegisterPhone.setInputType(InputType.TYPE_CLASS_NUMBER);
-                } else {
-                    //电话号码不可编辑状态
-                    etRegisterPhone.setInputType(InputType.TYPE_NULL);
-                }
-            }
-        });
-    }
 
     @Override
     public void initData() {
@@ -110,7 +94,7 @@ public class RegisterActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_register,R.id.tv_ok})
+    @OnClick({R.id.TimeButton_register, R.id.tv_ok})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -127,16 +111,8 @@ public class RegisterActivity extends BaseTitleActivity {
                 }
                 break;
             case R.id.tv_ok:
-                //判断手机号格式
-                boolean valid = PhoneUtils.isPhoneNumberValid(etRegisterPhone.getText().toString());
-                if (!valid) {
-                    TimeButtonRegister.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
-                } else {
-                    TimeButtonRegister.setLenght(60 * 1000);
-                    //验证两次密码是否一致
-                    pwdSameVerify();
-                }
+                //验证
+                dataVerify();
                 break;
         }
 
@@ -146,21 +122,59 @@ public class RegisterActivity extends BaseTitleActivity {
     /**
      * 验证两次密码是否一致
      */
-    private void pwdSameVerify() {
-        //密码非空验证
-        if(TextUtils.isEmpty(etRegisterPassword.getText().toString().trim())) {
-            new AlertDialog.Builder(this).setTitle("密码不能为空!").setPositiveButton("确定", null).show();
-        }else {
-            String pwd = etRegisterPassword.getText().toString().trim();
-            String pwdAgain = etRegisterPasswordAgain.getText().toString().trim();
-            if(pwd.equals(pwdAgain)) {
-
-                //进行注册操作
-                ToastUtils.showShort(this,"注册开始");
-            }else {
-                new AlertDialog.Builder(this).setTitle("两次密码不一致!").setPositiveButton("确定", null).show();
-            }
+    private void dataVerify() {
+        String phone = etRegisterPhone.getText().toString().trim();
+        String pwd = etRegisterPassword.getText().toString().trim();
+        String pwdAgain = etRegisterPasswordAgain.getText().toString().trim();
+        //手机号码格式验证
+        boolean valid = PhoneUtils.isPhoneNumberValid(phone);
+        if (!valid) {
+            new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+            return;
         }
+
+        //密码非空验证
+        if (TextUtils.isEmpty(pwd)) {
+            new AlertDialog.Builder(this).setTitle("密码不能为空!").setPositiveButton("确定", null).show();
+            return;
+        }
+
+        //两次密码一致验证
+        if (!pwd.equals(pwdAgain)) {
+            //进行注册操作
+            new AlertDialog.Builder(this).setTitle("两次密码不一致!").setPositiveButton("确定", null).show();
+            return;
+        }
+        ToastUtils.showShort(this, "注册开始");
+        //注册操作
+        register();
+    }
+
+
+    /**
+     * 用户注册
+     */
+    private void register() {
+
+        RegisterDTO registerDTO = new RegisterDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        registerDTO.setUid(etRegisterPhone.getText().toString());
+        registerDTO.setPassword(etRegisterPassword.getText().toString());
+        registerDTO.setTimestamp(time);
+        registerDTO.setRandom(random);
+        registerDTO.setSmsverifycode(etRegisterCode.getText().toString());
+        registerDTO.setSign(etRegisterPhone.getText().toString()+etRegisterPassword.getText().toString() + time + random);
+        CommonApiClient.register(this, registerDTO, new CallBack<BaseEntity>() {
+            @Override
+            public void onSuccess(BaseEntity result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("注册成功");
+                    ToastUtils.showShort(RegisterActivity.this,"注册成功");
+                    LogUtils.e("result---", "" + result);
+                }
+            }
+        });
     }
 
 
@@ -182,7 +196,7 @@ public class RegisterActivity extends BaseTitleActivity {
             public void onSuccess(BaseEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
-                    LogUtils.e("result---", "" + result);
+                    LogUtils.e("result---------", "" + result);
 
                 }
             }
@@ -195,5 +209,6 @@ public class RegisterActivity extends BaseTitleActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
 
 }

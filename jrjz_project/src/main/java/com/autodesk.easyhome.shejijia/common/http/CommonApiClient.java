@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
+import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -30,15 +31,13 @@ public class CommonApiClient extends BaseApiClient{
      * @param dto
      * @param callback
      */
-    public static void register(Activity act, BaseDTO
+    public static void register(Activity act, RegisterDTO
             dto, CallBack<BaseEntity> callback) {
         AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, BaseEntity.class);
         post(getAbsoluteUrl("user/userRegister"), dto,
                 asyncCallBack);
     }
-
-
 
 
 }
