@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.login;
+package com.autodesk.easyhome.shejijia.login.activity;
 
 import android.app.AlertDialog;
 import android.view.View;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
-import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
@@ -19,6 +18,7 @@ import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
@@ -57,8 +57,9 @@ public class LoginForCodeActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_login, R.id.tv_ok})
+    @OnClick({R.id.TimeButton_login, R.id.tv_ok,R.id.et_login_register})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.TimeButton_login:
 
@@ -80,6 +81,12 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                 loginForCode();
 
 
+                break;
+
+            case R.id.et_login_register:
+                //跳转到注册页面
+                HomeUiGoto.gotoRegister(LoginForCodeActivity.this);
+                finish();
                 break;
         }
     }
@@ -161,9 +168,9 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         dto.setSign(etLoginPhone.getText().toString() + time + random);
         LogUtils.e("time---", "" + time);
         LogUtils.e("random---", "" + random);
-        CommonApiClient.verifyCode(this, dto, new CallBack<BaseEntity>() {
+        CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
-            public void onSuccess(BaseEntity result) {
+            public void onSuccess(SmsVerifyEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
                     LogUtils.e("result---------", "" + result);

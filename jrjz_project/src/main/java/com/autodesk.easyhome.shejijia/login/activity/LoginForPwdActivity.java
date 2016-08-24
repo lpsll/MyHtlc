@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.login;
+package com.autodesk.easyhome.shejijia.login.activity;
 
 import android.app.AlertDialog;
 import android.view.View;
@@ -60,7 +60,8 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         switch (view.getId()) {
             case R.id.et_login_forgetpwd:
                 //跳转到忘记密码页面
-
+                HomeUiGoto.gotoForgetPwd(LoginForPwdActivity.this);
+                finish();
                 break;
             case R.id.tv_ok:
                 //登录
@@ -71,6 +72,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
             case R.id.tv_login_register:
                 //跳转到用户注册页面
                 HomeUiGoto.gotoRegister(this);
+                finish();
                 break;
 
             case R.id.tv_login_to_code_login:

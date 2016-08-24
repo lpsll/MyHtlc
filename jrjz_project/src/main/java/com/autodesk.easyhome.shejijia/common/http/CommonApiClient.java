@@ -7,7 +7,9 @@ import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
+import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
+import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -21,9 +23,9 @@ public class CommonApiClient extends BaseApiClient{
      * @param callback
      */
     public static void verifyCode(Activity act, BaseDTO
-            dto, CallBack<BaseEntity> callback) {
-        AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
-                act, callback, BaseEntity.class);
+            dto, CallBack<SmsVerifyEntity> callback) {
+        AsyncCallBack<SmsVerifyEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, SmsVerifyEntity.class);
         post(getAbsoluteUrl("user/getSmsVerifyCode"), dto,
                 asyncCallBack);
     }
@@ -67,6 +69,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, LoginEntity.class);
         post(getAbsoluteUrl("user/smsVerifyCodeAuth"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 忘记密码
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void forgetPwd(Activity act, ForgetPwdDTO
+            dto, CallBack<BaseEntity> callback) {
+        AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, BaseEntity.class);
+        post(getAbsoluteUrl("user/forgotPassword"), dto,
                 asyncCallBack);
     }
 

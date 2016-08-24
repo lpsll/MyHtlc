@@ -19,6 +19,7 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
+import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
@@ -150,7 +151,6 @@ public class RegisterActivity extends BaseTitleActivity {
             new AlertDialog.Builder(this).setTitle("两次密码不一致!").setPositiveButton("确定", null).show();
             return;
         }
-        ToastUtils.showShort(this, "注册开始");
         //注册操作
         register();
     }
@@ -199,9 +199,9 @@ public class RegisterActivity extends BaseTitleActivity {
         dto.setSign(etRegisterPhone.getText().toString() + time + random);
         LogUtils.e("time---", "" + time);
         LogUtils.e("random---", "" + random);
-        CommonApiClient.verifyCode(this, dto, new CallBack<BaseEntity>() {
+        CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
-            public void onSuccess(BaseEntity result) {
+            public void onSuccess(SmsVerifyEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
                     LogUtils.e("result---------", "" + result);

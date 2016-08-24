@@ -77,8 +77,8 @@
             android:name="com.autodesk.easyhome.shejijia.order.activity.CouponActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForPwdActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.login.LoginForCodeActivity" />
+        <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity" />
+        <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.register.activity.ForgetPwdActivity"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
         <meta-data
