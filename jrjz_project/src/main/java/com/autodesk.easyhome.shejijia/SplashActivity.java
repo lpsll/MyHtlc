@@ -36,6 +36,7 @@ public class SplashActivity extends BaseActivity {
             switch (msg.what) {
                 case 1:
                     HomeUiGoto.gotoMain(SplashActivity.this);
+                    finish();
                     break;
             }
         };

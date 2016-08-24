@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
-    android:orientation="vertical"
-    tools:context="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity">
+    android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 
         <RelativeLayout
@@ -87,10 +90,10 @@
         </LinearLayout>
 
         <View
-            android:layout_marginRight="@dimen/ds_70"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="@dimen/ds_70"
+            android:layout_marginRight="@dimen/ds_70"
             android:layout_marginTop="@dimen/ds_30"
             android:background="@color/linear_gray" />
 
@@ -109,13 +112,13 @@
                 android:textSize="@dimen/fs_45" />
 
             <EditText
-                android:inputType="textPassword"
                 android:id="@+id/et_register_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_30"
                 android:background="@null"
                 android:hint="6位以上字母或数字密码"
+                android:inputType="textPassword"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="@dimen/fs_45" />
@@ -124,10 +127,10 @@
         </LinearLayout>
 
         <View
-            android:layout_marginRight="@dimen/ds_70"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="@dimen/ds_70"
+            android:layout_marginRight="@dimen/ds_70"
             android:layout_marginTop="@dimen/ds_30"
             android:background="@color/linear_gray" />
 
@@ -146,13 +149,13 @@
                 android:textSize="@dimen/fs_45" />
 
             <EditText
-                android:inputType="textPassword"
                 android:id="@+id/et_register_password_again"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_30"
                 android:background="@null"
                 android:hint="请确认密码"
+                android:inputType="textPassword"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
                 android:textSize="@dimen/fs_45" />
@@ -199,31 +202,31 @@
 
         </LinearLayout>
 
-        <LinearLayout
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/ds_50"
+        android:layout_marginTop="@dimen/ds_180"
+        android:orientation="horizontal">
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/ds_180"
-            android:orientation="horizontal">
+            android:text="点击-注册，即表示您同意"
+            android:textColor="#a8a8aa"
+            android:textSize="@dimen/fs_35" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="点击-注册，即表示您同意"
-                android:textColor="#a8a8aa"
-                android:textSize="@dimen/fs_35" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《居然家政使用协议》"
+            android:textColor="@color/btn_blue"
+            android:textSize="@dimen/fs_35" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="《居然家政使用协议》"
-                android:textColor="@color/btn_blue"
-                android:textSize="@dimen/fs_35" />
+    </LinearLayout>
 
-        </LinearLayout>
-
-
-
-
-</LinearLayout>
-
+</RelativeLayout>
