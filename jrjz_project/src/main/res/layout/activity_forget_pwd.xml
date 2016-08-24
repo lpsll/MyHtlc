@@ -45,7 +45,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_40"
-        android:layout_below="@id/username_txt"
         android:background="@color/linear_gray" />
 
 
@@ -74,7 +73,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_40"
-        android:layout_below="@id/username_txt"
         android:background="@color/linear_gray" />
 
     <LinearLayout
@@ -102,7 +100,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds_1"
-            android:layout_below="@id/username_txt"
             android:layout_marginRight="@dimen/ds_70"
             android:layout_marginTop="@dimen/ds_50"
             android:background="@color/linear_gray" />

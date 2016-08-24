@@ -39,7 +39,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/username_txt"
         android:layout_marginLeft="@dimen/ds_70"
         android:layout_marginRight="@dimen/ds_70"
         android:layout_marginTop="@dimen/ds_30"
@@ -77,7 +76,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/username_txt"
         android:layout_marginLeft="@dimen/ds_70"
         android:layout_marginRight="@dimen/ds_70"
         android:layout_marginTop="@dimen/ds_30"
