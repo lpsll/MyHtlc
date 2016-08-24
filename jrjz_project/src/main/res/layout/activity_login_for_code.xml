@@ -73,7 +73,7 @@
             android:textSize="@dimen/fs_45" />
 
         <EditText
-            android:id="@+id/et_login_pwd"
+            android:id="@+id/et_login_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"

@@ -75,8 +75,8 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
             case R.id.tv_login_to_code_login:
                 //跳转到验证码登录页面
-
-
+                HomeUiGoto.gotoLoginForCode(LoginForPwdActivity.this);
+                finish();
                 break;
         }
     }
@@ -115,23 +115,23 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         CommonApiClient.login(this, loginDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
-                LogUtils.e("result========"+result.getMsg());
+                LogUtils.e("result========" + result.getMsg());
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("登录成功");
                     ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
                     LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
                     //保存用户信息
-                    AppConfig.uid=phone;
+                    AppConfig.uid = phone;
                     AppConfig.accessToken = result.getData().getAccessToken();
                     AppConfig.isLogin = true;
 
-                    LogUtils.d("uid=="+phone+",accessToken=="+AppConfig.accessToken+",isLogin=="+AppConfig.isLogin);
+                    LogUtils.d("uid==" + phone + ",accessToken==" + AppConfig.accessToken + ",isLogin==" + AppConfig.isLogin);
                     //跳转到预约页面
                     HomeUiGoto.gotoApt(LoginForPwdActivity.this);
                     finish();
-                }else {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("用户名密码错误").setPositiveButton("确定",null).show();
+                } else {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("用户名密码错误").setPositiveButton("确定", null).show();
                 }
             }
         });

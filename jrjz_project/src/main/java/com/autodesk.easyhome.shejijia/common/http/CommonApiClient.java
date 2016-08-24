@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
+import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 
@@ -42,7 +43,7 @@ public class CommonApiClient extends BaseApiClient{
     }
 
     /**
-     * 登录
+     * 用户名密码登录
      * @param act
      * @param dto
      * @param callback
@@ -52,6 +53,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, LoginEntity.class);
         post(getAbsoluteUrl("user/getAccessToken"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 验证码登录
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void loginForCode(Activity act, LoginForCodeDTO
+            dto, CallBack<LoginEntity> callback) {
+        AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, LoginEntity.class);
+        post(getAbsoluteUrl("user/smsVerifyCodeAuth"), dto,
                 asyncCallBack);
     }
 
