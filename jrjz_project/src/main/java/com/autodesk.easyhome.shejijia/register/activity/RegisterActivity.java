@@ -42,6 +42,7 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @Bind(R.id.TimeButton_register)
     TimeButton TimeButtonRegister;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -94,7 +95,7 @@ public class RegisterActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_register, R.id.tv_ok,R.id.tv_register_login})
+    @OnClick({R.id.TimeButton_register, R.id.tv_ok, R.id.tv_register_login})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -145,6 +146,14 @@ public class RegisterActivity extends BaseTitleActivity {
             return;
         }
 
+        //密码格式验证
+        boolean isMatches = pwd.matches(AppConfig.PWD_REG);
+        if (!isMatches) {
+            new AlertDialog.Builder(RegisterActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+            etRegisterPassword.setText("");
+            return;
+        }
+
         //两次密码一致验证
         if (!pwd.equals(pwdAgain)) {
             //进行注册操作
@@ -169,13 +178,13 @@ public class RegisterActivity extends BaseTitleActivity {
         registerDTO.setTimestamp(time);
         registerDTO.setRandom(random);
         registerDTO.setSmsverifycode(etRegisterCode.getText().toString());
-        registerDTO.setSign(etRegisterPhone.getText().toString()+etRegisterPassword.getText().toString() + time + random);
+        registerDTO.setSign(etRegisterPhone.getText().toString() + etRegisterPassword.getText().toString() + time + random);
         CommonApiClient.register(this, registerDTO, new CallBack<BaseEntity>() {
             @Override
             public void onSuccess(BaseEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("注册成功");
-                    ToastUtils.showShort(RegisterActivity.this,"注册成功");
+                    ToastUtils.showShort(RegisterActivity.this, "注册成功");
                     LogUtils.e("result---", "" + result);
                     //跳转到登录页面
                     HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);
@@ -204,13 +213,13 @@ public class RegisterActivity extends BaseTitleActivity {
             public void onSuccess(SmsVerifyEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
+                    ToastUtils.showShort(RegisterActivity.this,"获取验证码成功");
                     LogUtils.e("result---------", "" + result);
 
                 }
             }
         });
     }
-
 
 
 }

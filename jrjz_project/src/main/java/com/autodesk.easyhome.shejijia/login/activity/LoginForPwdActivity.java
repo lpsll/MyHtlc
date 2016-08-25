@@ -11,6 +11,7 @@ import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
@@ -66,14 +67,26 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 break;
             case R.id.tv_ok:
                 //登录
-                //判空
-                String pwd = etLoginForgetpwd.getText().toString().trim();
+                //判断电话，密码格式和是否为空
                 if(TextUtils.isEmpty(etLoginPhone.getText().toString().trim())) {
                     new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入用户名").setPositiveButton("确定",null).show();
                     break;
                 }
+                boolean isValid = PhoneUtils.isPhoneNumberValid(etLoginPhone.getText().toString());
+                if (!isValid) {
+                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    break;
+                }
                 if(TextUtils.isEmpty(etLoginPwd.getText().toString().trim())) {
                     new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入密码").setPositiveButton("确定",null).show();
+                    break;
+                }
+
+                //密码格式验证
+                boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
+                if (!isMatches) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+                    etLoginPwd.setText("");
                     break;
                 }
 
@@ -94,6 +107,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 break;
         }
     }
+
 
     /**
      * 登录操作
@@ -144,8 +158,6 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                     //跳转到预约页面
                     HomeUiGoto.gotoApt(LoginForPwdActivity.this);
                     finish();
-                } else {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("用户名密码错误").setPositiveButton("确定", null).show();
                 }
             }
         });

@@ -21,6 +21,8 @@ public class AppConfig {
 
     public static final int COMMON_USER_TYPE = 1;  //普通用户类型
 
+    public static final String PWD_REG = "^[a-zA-Z0-9]{6,20}$";  //密码格式验证正则表达式
+
     public static String accessToken; //用户令牌
     public static boolean isLogin; //用户是否登录
     public static String uid;     //用户账号
