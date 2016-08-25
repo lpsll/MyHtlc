@@ -1,7 +1,6 @@
 package com.autodesk.easyhome.shejijia.campaign.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -9,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +19,6 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -37,6 +36,10 @@ public class TopUpActivity extends BaseTitleActivity {
     CheckBox cbTopupWX;
     @Bind(R.id.cb_topup_zhifubao)
     CheckBox cbTopupZFB;
+    @Bind(R.id.rl_weixin)
+    RelativeLayout rlWeixin;
+    @Bind(R.id.rl_zhifubao)
+    RelativeLayout rlZhifubao;
 
     private Intent mIntent;
     private String typeForTopUp; //判断是否是用户输入充值金额
@@ -81,11 +84,11 @@ public class TopUpActivity extends BaseTitleActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 String str = etTopUpChongzhi.getText().toString().trim();
-                if(str.indexOf('0')==0){
+                if (str.indexOf('0') == 0) {
                     Toast.makeText(TopUpActivity.this, "首位不能为0", Toast.LENGTH_SHORT).show();
                     etTopUpChongzhi.setText("");
                 }
-                if(str.indexOf('.')==0){
+                if (str.indexOf('.') == 0) {
                     Toast.makeText(TopUpActivity.this, "首位不能为.", Toast.LENGTH_SHORT).show();
                     etTopUpChongzhi.setText("");
                 }
@@ -111,14 +114,7 @@ public class TopUpActivity extends BaseTitleActivity {
     }
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
-
-    @OnClick({R.id.tv_top_up_ok,R.id.cb_topup_weixin, R.id.cb_topup_zhifubao})
+    @OnClick({R.id.tv_top_up_ok, R.id.cb_topup_weixin, R.id.cb_topup_zhifubao, R.id.rl_weixin, R.id.rl_zhifubao})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cb_topup_weixin:  //微信支付
@@ -130,16 +126,22 @@ public class TopUpActivity extends BaseTitleActivity {
                 cbTopupZFB.setChecked(true);
                 break;
             case R.id.tv_top_up_ok: //确定按钮 确定支付方式
+
                 //当是用户输入时，先判定输入金额是否合法
                 if ("WriteForUser".equals(typeForTopUp)) {
                     moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
                     moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
                     etTopUpChongzhi.setText(moneyForUserInput);
 
+                    if(TextUtils.isEmpty(moneyForUserInput)) {
+                        ToastUtils.showShort(TopUpActivity.this,"请输入充值金额！");
+                        return;
+                    }
+
                     if (cbTopupWX.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额："+moneyForUserInput);
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
                     } else if (cbTopupZFB.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额："+moneyForUserInput);
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
                     } else {
                         ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
                     }
@@ -147,13 +149,13 @@ public class TopUpActivity extends BaseTitleActivity {
 
                 }
 
-                if("fixed".equals(typeForTopUp)){
+                if ("fixed".equals(typeForTopUp)) {
                     moneyForUserInput = tvTopUpChongzhi.getText().toString();
 
                     if (cbTopupWX.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额："+ moneyForUserInput);
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
                     } else if (cbTopupZFB.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额："+moneyForUserInput);
+                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
                     } else {
                         ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
                     }
@@ -166,6 +168,17 @@ public class TopUpActivity extends BaseTitleActivity {
 //            case R.id.base_titlebar_ensure:
 //                baseGoBack();
 //                break;
+
+            case R.id.rl_weixin:
+                cbTopupWX.setChecked(true);
+                cbTopupZFB.setChecked(false);
+
+                break;
+            case R.id.rl_zhifubao:
+                cbTopupWX.setChecked(false);
+                cbTopupZFB.setChecked(true);
+
+                break;
         }
     }
 
@@ -176,5 +189,4 @@ public class TopUpActivity extends BaseTitleActivity {
         InputFilter[] filters = {new EditInputFilter(this)};
         etTopUpChongzhi.setFilters(filters);
     }
-
 }

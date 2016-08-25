@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.login.activity;
 
 import android.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -65,6 +66,17 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 break;
             case R.id.tv_ok:
                 //登录
+                //判空
+                String pwd = etLoginForgetpwd.getText().toString().trim();
+                if(TextUtils.isEmpty(etLoginPhone.getText().toString().trim())) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入用户名").setPositiveButton("确定",null).show();
+                    break;
+                }
+                if(TextUtils.isEmpty(etLoginPwd.getText().toString().trim())) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入密码").setPositiveButton("确定",null).show();
+                    break;
+                }
+
                 login();
 
 

@@ -61,7 +61,7 @@ public class EditInputFilter implements InputFilter {
             }
         }
         //验证输入金额的大小
-        if(!src.toString().equals("")){
+        if(!"".equals(src.toString())&&!".".equals(src.toString())) {
             double dold = Double.parseDouble(oldtext+src.toString());
             if(dold > MAX_VALUE){
                 Toast.makeText(context, "输入的最大金额不能大于"+MAX_VALUE, Toast.LENGTH_SHORT).show();

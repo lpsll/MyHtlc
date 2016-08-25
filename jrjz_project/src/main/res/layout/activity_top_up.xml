@@ -70,7 +70,7 @@
 
 
     <RelativeLayout
-        android:id="@+id/rl_qb"
+        android:id="@+id/rl_weixin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_190"
         android:background="#ffffff">
@@ -117,7 +117,7 @@
         android:background="@color/color_cc" />
 
     <RelativeLayout
-        android:id="@+id/rl_wx"
+        android:id="@+id/rl_zhifubao"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_190"
         android:background="#ffffff">

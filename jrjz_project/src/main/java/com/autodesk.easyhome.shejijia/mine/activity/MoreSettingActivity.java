@@ -59,6 +59,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
 
     @OnClick({R.id.rl_moresetting_clear_cache, R.id.tv_moresetting_exit})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.rl_moresetting_clear_cache:
                 //清除缓存
