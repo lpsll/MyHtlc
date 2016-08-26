@@ -31,7 +31,7 @@ public class ImageLoaderUtils {
      */
     public static void displayImage(String imageUrl, ImageView imageView) {
         if(imageUrl!=null&&!imageUrl.contains("http://")){
-            imageUrl= ((AppConfig.BASE_URL).trim()+imageUrl.trim()).trim();
+            imageUrl= ((AppConfig.BASE_IMG_URL).trim()+imageUrl.trim()).trim();
         }
         ImageLoader.getInstance().displayImage(imageUrl,
                 imageView, getDefaultOptions());

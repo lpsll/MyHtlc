@@ -36,7 +36,7 @@
                         android:id="@+id/middle_image1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/test1" />
+                        />
                     <TextView
                         android:id="@+id/tv01"
                         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                         android:gravity="center"
                         android:textSize="@dimen/fs_40"
                         android:textColor="@color/color_33"
-                        android:text="家装维修"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin02"
@@ -58,7 +58,7 @@
                         android:id="@+id/middle_image2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/test1"/>
+                       />
                     <TextView
                         android:id="@+id/tv02"
                         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                         android:layout_marginTop="@dimen/ds_20"
                         android:textColor="@color/color_33"
                         android:textSize="@dimen/fs_40"
-                        android:text="家装维修"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin03"
@@ -80,7 +80,7 @@
                         android:id="@+id/middle_image3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/test1"/>
+                        />
                     <TextView
                         android:id="@+id/tv03"
                         android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                         android:layout_marginTop="@dimen/ds_20"
                         android:textSize="@dimen/fs_40"
                         android:textColor="@color/color_33"
-                        android:text="家装维修"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin04"
@@ -102,7 +102,7 @@
                         android:id="@+id/middle_image4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/test1"/>
+                        />
                     <TextView
                         android:id="@+id/tv04"
                         android:layout_width="match_parent"
@@ -111,7 +111,7 @@
                         android:layout_marginTop="@dimen/ds_20"
                         android:textSize="@dimen/fs_40"
                         android:textColor="@color/color_33"
-                        android:text="家装维修"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin05"
@@ -124,7 +124,7 @@
                         android:id="@+id/middle_image5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/test1"/>
+                      />
                     <TextView
                         android:id="@+id/tv05"
                         android:layout_width="match_parent"
@@ -133,7 +133,7 @@
                         android:layout_marginTop="@dimen/ds_20"
                         android:textColor="@color/color_33"
                         android:textSize="@dimen/fs_40"
-                        android:text="家装维修"/>
+                        android:text=""/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -163,6 +163,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_fce"/>
                 <TextView
+                    android:id="@+id/service_tv01"
                     android:layout_toRightOf="@+id/rl_tv01"
                     android:layout_marginLeft="@dimen/ds_50"
                     android:layout_width="wrap_content"
@@ -209,16 +210,18 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
+                        android:id="@+id/service_img01_01"
                         android:layout_width="@dimen/ds_140"
                         android:layout_height="@dimen/ds_140"
-                        android:background="@drawable/test1"/>
+                        />
                     <TextView
+                        android:id="@+id/service_tv01_01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
                         android:textSize="@dimen/fs_45"
                         android:textColor="@color/color_00"
-                        android:text="防水维修"
+
                         />
                 </LinearLayout>
                 <View
@@ -239,18 +242,20 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img01_02"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                         />
                         <TextView
+                            android:id="@+id/service_tv01_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+
                             />
                     </LinearLayout>
                     <View
@@ -265,18 +270,20 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img01_03"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                            />
                         <TextView
+                            android:id="@+id/service_tv01_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+
                             />
                     </LinearLayout>
 
@@ -298,6 +305,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_ff0"/>
                 <TextView
+                    android:id="@+id/service_tv02"
                     android:layout_toRightOf="@+id/rl_tv02"
                     android:layout_marginLeft="@dimen/ds_50"
                     android:layout_width="wrap_content"
@@ -344,16 +352,17 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
+                        android:id="@+id/service_img02_01"
                         android:layout_width="@dimen/ds_140"
                         android:layout_height="@dimen/ds_140"
-                        android:background="@drawable/test1"/>
+                       />
                     <TextView
+                        android:id="@+id/service_tv02_01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
                         android:textSize="@dimen/fs_45"
                         android:textColor="@color/color_00"
-                        android:text="防水维修"
                         />
                 </LinearLayout>
                 <View
@@ -374,18 +383,19 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img02_02"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                            />
                         <TextView
+                            android:id="@+id/service_tv02_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
                             />
                     </LinearLayout>
                     <View
@@ -400,18 +410,19 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img02_03"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                           />
                         <TextView
+                            android:id="@+id/service_tv02_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
                             />
                     </LinearLayout>
 
@@ -433,6 +444,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_62"/>
                 <TextView
+                    android:id="@+id/service_tv03"
                     android:layout_toRightOf="@+id/rl_tv03"
                     android:layout_marginLeft="@dimen/ds_50"
                     android:layout_width="wrap_content"
@@ -485,11 +497,13 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img03_01"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                          />
                         <TextView
+                            android:id="@+id/service_tv03_01"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
@@ -511,11 +525,13 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img03_02"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                            />
                         <TextView
+                            android:id="@+id/service_tv03_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
@@ -545,11 +561,13 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img03_03"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                          />
                         <TextView
+                            android:id="@+id/service_tv03_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"
@@ -571,11 +589,13 @@
                         android:orientation="horizontal"
                         android:gravity="center">
                         <ImageView
+                            android:id="@+id/service_img03_04"
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
                             android:background="@drawable/test1"/>
                         <TextView
+                            android:id="@+id/service_tv03_04"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:textSize="@dimen/fs_45"

@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.adapter.SectionedBaseAdapter;
 
@@ -114,4 +115,6 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
         }
         return layout;
     }
+
+
 }

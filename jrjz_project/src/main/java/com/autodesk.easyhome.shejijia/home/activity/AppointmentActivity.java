@@ -126,7 +126,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.lin_address, R.id.lin_time, R.id.img_ljd, R.id.apt_btn})
+    @OnClick({R.id.lin_address, R.id.lin_time, R.id.img_ljd, R.id.tv_project,R.id.apt_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
@@ -137,6 +137,9 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoSt(this);
                 break;
             case R.id.img_ljd:
+                break;
+            case R.id.tv_project:
+                HomeUiGoto.gotoProjectDetails(this);
                 break;
             case R.id.apt_btn:
                 HomeUiGoto.gotoOrder(this);

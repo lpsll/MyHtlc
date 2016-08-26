@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.adapter.LeftListAdapter;
 import com.autodesk.easyhome.shejijia.home.adapter.MainSectionedAdapter;
 import com.htlc.jrjz.jrjz_project.R;
@@ -137,6 +138,18 @@ public class ClassificationActivity extends BaseTitleActivity {
                 } else {
                     isScroll = true;
                 }
+            }
+        });
+
+        pinnedListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
+                HomeUiGoto.gotoApt(ClassificationActivity.this);
+            }
+
+            @Override
+            public void onSectionClick(AdapterView<?> adapterView, View view, int section, long id) {
+
             }
         });
 

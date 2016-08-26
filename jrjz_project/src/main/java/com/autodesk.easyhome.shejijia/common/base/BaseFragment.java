@@ -181,7 +181,7 @@ public abstract class BaseFragment extends Fragment implements
         String status = event.getCode();
         String message = event.getMsg();
         if (event.getTag().equals(this)) {
-            LogUtils.i("baseFragment error_status:" + status+"  "+"error_msg:" + message);
+            LogUtils.e("baseFragment error_status:" + status+"  "+"error_msg:" + message);
             if(!AppConfig.SUCCESS.equals(status)) {
                 ToastUtils.showShort(getActivity(),message);
                 retryBefore();

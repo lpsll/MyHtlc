@@ -12,6 +12,7 @@ import com.autodesk.easyhome.shejijia.common.eventbus.ErrorEvent;
 import com.autodesk.easyhome.shejijia.common.http.BaseApiClient;
 import com.autodesk.easyhome.shejijia.common.interf.IBaseActivity;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -139,6 +140,8 @@ public abstract class BaseActivity  extends FragmentActivity implements
         String message = event.getMsg();
         if (event.getTag().equals(this)) {
             if(!AppConfig.SUCCESS.equals(status)) {
+                LogUtils.e("event.getTag()---","event.getTag()");
+                LogUtils.e("message---",""+message);
                 ToastUtils.showShort(this,message);
             }
 

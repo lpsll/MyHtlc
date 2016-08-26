@@ -63,5 +63,16 @@
     <string name="photo_graph">拍照</string>
     <string name="photo_choose">从手机相册选取</string>
     <string name="photo_cancel">取消</string>
+    <string name="price_list">价格表</string>
+    <string name="service_description">服务说明</string>
+    <string name="service_guarantee">服务保障</string>
+    <string name="brand">居然之家，诚信品牌</string>
+    <string name="warranty">所有配件，质保6个月</string>
+    <string name="rework">3天不满意，无条件返工</string>
+    <string name="service_charge">服务费</string>
+    <string name="inspection_fee">检测费</string>
+    <string name="maintenance_cost">维修费</string>
+    <string name="accessories_cost">配件费</string>
+
 
 </resources>

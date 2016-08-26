@@ -8,6 +8,7 @@ import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
+import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity;
@@ -68,6 +69,16 @@ public class HomeUiGoto {
 
     public static void gotoSt(Context context){
         Intent intent = new Intent(context, ServiceTimeActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到项目详情
+     * @param context
+     */
+
+    public static void gotoProjectDetails(Context context){
+        Intent intent = new Intent(context, ProjectDetailsActivity.class);
         context.startActivity(intent);
     }
 

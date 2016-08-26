@@ -4,6 +4,9 @@ import android.app.Activity;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
+import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
+import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
@@ -27,7 +30,7 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<SmsVerifyEntity> callback) {
         AsyncCallBack<SmsVerifyEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, SmsVerifyEntity.class);
-        post(getAbsoluteUrl("user/getSmsVerifyCode"), dto,
+        post(getAbsoluteUrl("/user/getSmsVerifyCode"), dto,
                 asyncCallBack);
     }
 
@@ -41,7 +44,7 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<BaseEntity> callback) {
         AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, BaseEntity.class);
-        post(getAbsoluteUrl("user/userRegister"), dto,
+        post(getAbsoluteUrl("/user/userRegister"), dto,
                 asyncCallBack);
     }
 
@@ -55,7 +58,7 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<LoginEntity> callback) {
         AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, LoginEntity.class);
-        post(getAbsoluteUrl("user/getAccessToken"), dto,
+        post(getAbsoluteUrl("/user/getAccessToken"), dto,
                 asyncCallBack);
     }
 
@@ -69,7 +72,7 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<LoginEntity> callback) {
         AsyncCallBack<LoginEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, LoginEntity.class);
-        post(getAbsoluteUrl("user/smsVerifyCodeAuth"), dto,
+        post(getAbsoluteUrl("/user/smsVerifyCodeAuth"), dto,
                 asyncCallBack);
     }
 
@@ -83,7 +86,7 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<BaseEntity> callback) {
         AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, BaseEntity.class);
-        post(getAbsoluteUrl("user/forgotPassword"), dto,
+        post(getAbsoluteUrl("/user/forgotPassword"), dto,
                 asyncCallBack);
     }
 
@@ -97,7 +100,49 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<BaseEntity> callback) {
         AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
                 act, callback, BaseEntity.class);
-        post(getAbsoluteUrl("user/changeMobile"), dto,
+        post(getAbsoluteUrl("/user/changeMobile"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 轮播图
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void carousel(Activity act, BaseDTO
+            dto, CallBack<CarouselResult> callback) {
+        AsyncCallBack<CarouselResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, CarouselResult.class);
+        get(getAbsoluteUrl("/banner/bannerlist"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 全部服务类别
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void fullService(Activity act, BaseDTO
+            dto, CallBack<FullServiceResult> callback) {
+        AsyncCallBack<FullServiceResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, FullServiceResult.class);
+        get(getAbsoluteUrl("/service/allServiceClasses"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 制定服务类
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void service(Activity act, BaseDTO
+            dto, CallBack<ServiceResult> callback) {
+        AsyncCallBack<ServiceResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, ServiceResult.class);
+        get(getAbsoluteUrl("/service/indexServices"), dto,
                 asyncCallBack);
     }
 
