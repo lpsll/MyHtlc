@@ -212,7 +212,7 @@ public class MainActivity extends BaseTitleActivity {
         getTitleLayout().setVisibility(View.VISIBLE);
         switch (currentTab){
             case 0:
-                setTitleText("居然家装");
+                setTitleText("居然家政");
                 mBaseBack.setVisibility(View.VISIBLE);
                 mBaseEnsure.setVisibility(View.VISIBLE);
                 break;
