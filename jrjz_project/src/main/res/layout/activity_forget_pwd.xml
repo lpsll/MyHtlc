@@ -59,6 +59,7 @@
         android:paddingTop="@dimen/ds_50">
 
         <EditText
+            android:inputType="number"
             android:id="@+id/et_forgetpwd_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

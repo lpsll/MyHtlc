@@ -43,11 +43,6 @@ public class RegisterActivity extends BaseTitleActivity {
     @Bind(R.id.TimeButton_register)
     TimeButton TimeButtonRegister;
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-
 
     @Override
     protected int getContentResId() {
@@ -136,20 +131,20 @@ public class RegisterActivity extends BaseTitleActivity {
         //手机号码格式验证
         boolean valid = PhoneUtils.isPhoneNumberValid(phone);
         if (!valid) {
-            new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setMessage("请输入正确的电话号码!").setTitle("温馨提示").setPositiveButton("确定", null).show();
             return;
         }
 
         //密码非空验证
         if (TextUtils.isEmpty(pwd)) {
-            new AlertDialog.Builder(this).setTitle("密码不能为空!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setMessage("密码不能为空!").setTitle("温馨提示").setPositiveButton("确定", null).show();
             return;
         }
 
         //密码格式验证
         boolean isMatches = pwd.matches(AppConfig.PWD_REG);
         if (!isMatches) {
-            new AlertDialog.Builder(RegisterActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(RegisterActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
             etRegisterPassword.setText("");
             return;
         }
@@ -157,7 +152,7 @@ public class RegisterActivity extends BaseTitleActivity {
         //两次密码一致验证
         if (!pwd.equals(pwdAgain)) {
             //进行注册操作
-            new AlertDialog.Builder(this).setTitle("两次密码不一致!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setMessage("两次密码不一致!").setTitle("温馨提示").setPositiveButton("确定", null).show();
             return;
         }
         //注册操作
@@ -211,12 +206,11 @@ public class RegisterActivity extends BaseTitleActivity {
         CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
             public void onSuccess(SmsVerifyEntity result) {
-                if (AppConfig.SUCCESS.equals(result.getCode())) {
-                    LogUtils.e("获取验证码成功");
-                    ToastUtils.showShort(RegisterActivity.this,"获取验证码成功");
-                    LogUtils.e("result---------", "" + result);
-
-                }
+                    if (AppConfig.SUCCESS.equals(result.getCode())) {
+                        LogUtils.e("获取验证码成功");
+                        ToastUtils.showShort(RegisterActivity.this, "获取验证码成功");
+                        LogUtils.e("result---------", "" + result);
+                    }
             }
         });
     }

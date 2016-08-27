@@ -262,6 +262,10 @@ public class MainActivity extends BaseTitleActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
             meFragment.initView(null);
+
+
+            CampaignFragment campaignFragment = (CampaignFragment)fragmentManager.findFragmentByTag("tag2");
+//            campaignFragment.initData();
         }
         if(requestCode == MineUiGoto.SETTING_REQUEST)
         {
@@ -269,9 +273,16 @@ public class MainActivity extends BaseTitleActivity {
             MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
             meFragment.initView(null);
         }
+
+        if(requestCode == MineUiGoto.CHANGEPHONE_REQUEST)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("ta3");
+//            meFragment.initView(null);
+        }
+
+
     }
-
-
 }
 
 

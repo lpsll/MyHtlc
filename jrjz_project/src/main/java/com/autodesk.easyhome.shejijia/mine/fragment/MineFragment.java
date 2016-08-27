@@ -2,13 +2,11 @@ package com.autodesk.easyhome.shejijia.mine.fragment;
 
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
@@ -16,10 +14,8 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
-import com.autodesk.easyhome.shejijia.mine.activity.ChangePhoneActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
-import com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity;
 import com.autodesk.easyhome.shejijia.order.activity.CouponActivity;
 import com.htlc.jrjz.jrjz_project.R;
 
@@ -50,11 +46,10 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        LogUtils.e("isLogin---",""+AppContext.get("IS_LOGIN", false));
         if (AppContext.get("IS_LOGIN", false)) {
             LogUtils.e("true---","true");
             //登录状态时就设置为用户手机号
-            tvMinePhone.setText(AppContext.get(AppConfig.UID,""));
+            tvMinePhone.setText(AppContext.get("uid",""));
 
         }else {
             LogUtils.e("false---","false");
@@ -87,15 +82,16 @@ public class MineFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
                 //跳转到切换手机号页面
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
-                    getContext().startActivity(new Intent(getContext(), ChangePhoneActivity.class));
+                if (AppContext.get("IS_LOGIN", false)) {
+                    MineUiGoto.gotoChangePhone(getActivity());
+//                    getContext().startActivity(new Intent(getContext(), ChangePhoneActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
                 }
                 break;
             case R.id.ll_mine_chongzhi:
                 //跳转到充值页
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                if (AppContext.get("IS_LOGIN", false)) {
                     Intent intent = new Intent(new Intent(getContext(), TopUpActivity.class));
                     intent.putExtra("TypeForTopUp", "WriteForUser");
                     getContext().startActivity(intent);
@@ -112,14 +108,14 @@ public class MineFragment extends BaseFragment {
                 }
                 break;
             case R.id.ll_mine_address:
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
                 }
                 break;
             case R.id.ll_mine_myorder:
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), MineOrderActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
@@ -128,7 +124,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_mine_coupon:
                 //跳转到优惠券页面
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), CouponActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
@@ -136,7 +132,7 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.ll_mine_feedback:
-                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), FeedBackActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());

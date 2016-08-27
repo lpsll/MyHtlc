@@ -69,7 +69,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etForgetpwdPhone.getText().toString());
                 if (!isValid) {
                     TimeButtonForgetpwd.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
                     TimeButtonForgetpwd.setLenght(60 * 1000);
                     //获取验证码
@@ -103,7 +103,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
             public void onSuccess(SmsVerifyEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
-                    LogUtils.e("result---------" + result.getData());
+                    LogUtils.e("获取验证码成功---------" + result.getData().toString());
 
                 }
             }
@@ -123,7 +123,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
                     String reg = "^[a-zA-Z0-9]{6,20}$";
                     boolean isMatches = pwd.matches(reg);
                     if (!isMatches) {
-                        new AlertDialog.Builder(ForgetPwdActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+                        new AlertDialog.Builder(ForgetPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
                         etForgetpwdPwd.setText("");
                         etForgetpwdPwd.setFocusable(true);
                     }
@@ -143,20 +143,20 @@ public class ForgetPwdActivity extends BaseTitleActivity {
         //手机号码格式验证
         boolean valid = PhoneUtils.isPhoneNumberValid(phone);
         if (!valid) {
-            new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
             return;
         }
 
         //密码非空验证
         if (TextUtils.isEmpty(pwd)) {
-            new AlertDialog.Builder(this).setTitle("密码不能为空!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("密码不能为空!").setPositiveButton("确定", null).show();
             return;
         }
 
         //两次密码一致验证
         if (!pwd.equals(pwdAgain)) {
             //进行注册操作
-            new AlertDialog.Builder(this).setTitle("两次密码不一致!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("两次密码不一致!").setPositiveButton("确定", null).show();
             return;
         }
         //设置新密码操作

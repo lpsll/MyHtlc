@@ -1,10 +1,9 @@
 package com.autodesk.easyhome.shejijia.mine;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 
-import com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity;
+import com.autodesk.easyhome.shejijia.mine.activity.ChangePhoneActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity;
 
 /**
@@ -13,7 +12,7 @@ import com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity;
 public class MineUiGoto {
 
     /**
-     * 跳转到设置页面
+     * 跳转到设置页面(执行退出操作)
      * @param
      */
 
@@ -21,5 +20,12 @@ public class MineUiGoto {
     public static void gotoSetting(Activity act) {
         Intent intent = new Intent(act, MoreSettingActivity.class);
         act.startActivityForResult(intent, SETTING_REQUEST);
+    }
+
+    public static final int CHANGEPHONE_REQUEST = 0x1100;
+    public static void gotoChangePhone(Activity act) {
+        Intent intent = new Intent(act, ChangePhoneActivity.class);
+        act.startActivityForResult(intent, CHANGEPHONE_REQUEST);
+
     }
 }

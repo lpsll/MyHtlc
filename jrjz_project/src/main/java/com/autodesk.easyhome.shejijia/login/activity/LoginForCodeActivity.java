@@ -68,7 +68,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etLoginPhone.getText().toString());
                 if (!isValid) {
                     TimeButtonLogin.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
                     TimeButtonLogin.setLenght(60 * 1000);
                     //获取验证码
@@ -113,7 +113,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         //验证电话号码
         boolean isValid = PhoneUtils.isPhoneNumberValid(phone);
         if (!isValid) {
-            new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
             return;
         }
 
@@ -142,12 +142,11 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                         LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
                         //保存用户信息
-                        AppContext.set(AppConfig.UID, phone);
-                        AppContext.set(AppConfig.ACCESSTOKEN, result.getData().getAccessToken());
-                        AppContext.set(AppConfig.IS_LOGIN, true);
+                        AppContext.set("uid", phone);
+                        AppContext.set("accessToken", result.getData().getAccessToken());
+                        AppContext.set("IS_LOGIN", true);
 
-                        //跳转到预约页面
-//                        HomeUiGoto.gotoApt(LoginForCodeActivity.this);
+                        setResult(1001);
                         finish();
                     }
 

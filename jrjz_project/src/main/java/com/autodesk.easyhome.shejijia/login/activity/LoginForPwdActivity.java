@@ -70,23 +70,23 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 //登录
                 //判断电话，密码格式和是否为空
                 if (TextUtils.isEmpty(etLoginPhone.getText().toString().trim())) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入用户名").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("请输入用户名").setPositiveButton("确定", null).show();
                     break;
                 }
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etLoginPhone.getText().toString());
                 if (!isValid) {
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                     break;
                 }
                 if (TextUtils.isEmpty(etLoginPwd.getText().toString().trim())) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入密码").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("请输入密码").setPositiveButton("确定", null).show();
                     break;
                 }
 
                 //密码格式验证
                 boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
                 if (!isMatches) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
                     etLoginPwd.setText("");
                     break;
                 }
@@ -144,15 +144,15 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         CommonApiClient.login(this, loginDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
-                if (result != null) {
                     LogUtils.e("result========" + result.getMsg());
                     if (AppConfig.SUCCESS.equals(result.getCode())) {
                         LogUtils.e("登录成功");
                         ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
                         LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
-                        AppContext.set(AppConfig.UID, phone);
-                        AppContext.set(AppConfig.ACCESSTOKEN, result.getData().getAccessToken());
+                        //保存用户信息
+                        AppContext.set("uid", phone);
+                        AppContext.set("accessToken", result.getData().getAccessToken());
                         AppContext.set("IS_LOGIN", true);
 
                         //跳转到预约页面
@@ -161,7 +161,6 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                         finish();
                     }
                 }
-            }
         });
     }
 }

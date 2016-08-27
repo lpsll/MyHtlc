@@ -63,7 +63,7 @@ public class ChangePhoneActivity extends BaseTitleActivity {
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etChangePhonePhone.getText().toString());
                 if (!isValid) {
                     TimeButtonMineChangePhone.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
                     TimeButtonMineChangePhone.setLenght(60 * 1000);
                     //获取验证码
@@ -103,7 +103,7 @@ public class ChangePhoneActivity extends BaseTitleActivity {
         //验证电话号码
         boolean isValid = PhoneUtils.isPhoneNumberValid(phone);
         if (!isValid) {
-            new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+            new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
             return;
         }
 
@@ -128,10 +128,11 @@ public class ChangePhoneActivity extends BaseTitleActivity {
                     LogUtils.e("换绑手机成功");
                     ToastUtils.showShort(ChangePhoneActivity.this, "换绑手机成功");
 
-                    //修改用户信息
-                    AppContext.set(AppConfig.UID,phone);
-                    AppContext.set(AppConfig.IS_LOGIN,true);
+                    //保存用户信息
+                    AppContext.set("uid", phone);
+                    AppContext.set("IS_LOGIN", true);
 
+                    setResult(1001);
 
                     finish();
                 }

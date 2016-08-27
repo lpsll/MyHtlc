@@ -12,15 +12,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_370"
+        android:layout_height="wrap_content"
         android:background="#ffffff"
         android:paddingLeft="@dimen/ds_60"
         android:paddingRight="@dimen/ds_60">
 
         <EditText
+            android:minHeight="@dimen/ds_300"
             android:id="@+id/et_feedback"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginBottom="@dimen/ds_50"
             android:layout_marginTop="@dimen/ds_50"

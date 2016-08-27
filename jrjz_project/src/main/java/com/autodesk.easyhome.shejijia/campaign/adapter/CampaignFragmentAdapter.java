@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
+import com.autodesk.easyhome.shejijia.campaign.CampaignUIGoto;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
+import com.htlc.jrjz.jrjz_project.R;
 
 import java.util.List;
 
@@ -61,11 +63,16 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             myViewHolder.img_lijichongzhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(context, "充值", Toast.LENGTH_SHORT).show();
                     //跳转到充值页面
-                    Intent intent = new Intent(context, TopUpActivity.class);
-                    intent.putExtra("TypeForTopUp", "fixed");
-                    context.startActivity(intent);
+                    
+                    if(AppContext.get("IS_LOGIN",false)) {
+                        //跳转到登录页
+                        Intent intent = new Intent(context, TopUpActivity.class);
+                        intent.putExtra("TypeForTopUp", "fixed");
+                        context.startActivity(intent);
+                    }else {
+                        CampaignUIGoto.gotoLoginForPwd((MainActivity)context);
+                    }
                 }
             });
         }

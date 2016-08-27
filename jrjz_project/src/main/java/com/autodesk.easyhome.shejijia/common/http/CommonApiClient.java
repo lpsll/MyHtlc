@@ -11,6 +11,7 @@ import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
+import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
@@ -145,6 +146,21 @@ public class CommonApiClient extends BaseApiClient{
         get(getAbsoluteUrl("/service/indexServices"), dto,
                 asyncCallBack);
     }
+
+    /**
+     * 意见反馈
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void feedBack(Activity act, FeedBackDTO
+            dto, CallBack<BaseEntity> callback) {
+        AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, BaseEntity.class);
+        post(getAbsoluteUrl("/feedback/add"), dto,
+                asyncCallBack);
+    }
+
 
 
 }
