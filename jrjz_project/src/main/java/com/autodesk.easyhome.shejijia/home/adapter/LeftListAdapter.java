@@ -46,6 +46,7 @@ public class LeftListAdapter extends BaseAdapter {
             holder = new Holder();
             arg1 = LayoutInflater.from(context).inflate(R.layout.left_list_item, null);
             holder.left_list_item = (TextView) arg1.findViewById(R.id.left_list_item);
+            holder.left_view = (View) arg1.findViewById(R.id.left_view);
             arg1.setTag(holder);
         } else {
             holder = (Holder) arg1.getTag();
@@ -56,13 +57,18 @@ public class LeftListAdapter extends BaseAdapter {
 
     private class Holder {
         private TextView left_list_item;
+        private View left_view;
 
         public void updataView(final int position) {
             left_list_item.setText(leftStr[position]);
             if (flagArray[position]) {
                 left_list_item.setBackgroundColor(Color.parseColor("#bbffff"));
+                left_list_item.setTextColor(Color.parseColor("#008ce7"));
+                left_view.setVisibility(View.VISIBLE);
             } else {
                 left_list_item.setBackgroundColor(Color.TRANSPARENT);
+                left_list_item.setTextColor(Color.parseColor("#333333"));
+                left_view.setVisibility(View.GONE);
             }
         }
 

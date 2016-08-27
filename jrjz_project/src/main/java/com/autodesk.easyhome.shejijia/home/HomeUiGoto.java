@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.home;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -116,9 +117,11 @@ public class HomeUiGoto {
      * 跳转到登录页(密码登录)
      * @param
      */
-    public static void gotoLoginForPwd(Context context) {
-        Intent intent = new Intent(context, LoginForPwdActivity.class);
-        context.startActivity(intent);
+    public static final int LOFIN_REQUEST = 0x1100;
+    public static void gotoLoginForPwd(Activity act) {
+
+        Intent intent = new Intent(act, LoginForPwdActivity.class);
+        act.startActivityForResult(intent, LOFIN_REQUEST);
     }
 
     /**

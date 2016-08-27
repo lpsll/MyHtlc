@@ -122,6 +122,7 @@ public class ClassificationActivity extends BaseTitleActivity {
                     }
                     if (x != y) {
                         adapter.notifyDataSetChanged();
+                        sectionedAdapter.notifyDataSetChanged();
                         y = x;
                         //左侧ListView滚动到最后位置
                         if (y == leftListview.getLastVisiblePosition()) {

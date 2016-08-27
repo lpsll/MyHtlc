@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
@@ -253,7 +255,21 @@ public class MainActivity extends BaseTitleActivity {
     }
 
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == HomeUiGoto.LOFIN_REQUEST)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
+            meFragment.initView(null);
+        }
+        if(requestCode == MineUiGoto.SETTING_REQUEST)
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
+            meFragment.initView(null);
+        }
+    }
 
 
 }

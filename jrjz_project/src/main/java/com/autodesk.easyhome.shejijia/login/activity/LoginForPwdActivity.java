@@ -153,10 +153,11 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
                         AppContext.set(AppConfig.UID, phone);
                         AppContext.set(AppConfig.ACCESSTOKEN, result.getData().getAccessToken());
-                        AppContext.set(AppConfig.IS_LOGIN, true);
+                        AppContext.set("IS_LOGIN", true);
 
                         //跳转到预约页面
 //                        HomeUiGoto.gotoApt(LoginForPwdActivity.this);
+                        setResult(1001);
                         finish();
                     }
                 }

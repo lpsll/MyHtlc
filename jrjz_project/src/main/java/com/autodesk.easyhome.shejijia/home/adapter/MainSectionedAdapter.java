@@ -64,13 +64,13 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
         public void updataView(int section, final int position) {
             tv01.setText(rightStr[section][position]);
             tv02.setText(str[section][position]);
-//            if (flagArray[section]) {
-//                LogUtils.e("updataView---flagArray--if",""+flagArray+section);
-//                right_item.setBackgroundColor(Color.parseColor("#bbffff"));
-//            } else {
-//                LogUtils.e("updataView---flagArray--else",""+flagArray+section);
-//                right_item.setBackgroundColor(Color.TRANSPARENT);
-//            }
+            if (flagArray[section]) {
+                LogUtils.e("updataView---flagArray--if",""+flagArray+section);
+                right_item.setBackgroundColor(Color.parseColor("#bbffff"));
+            } else {
+                LogUtils.e("updataView---flagArray--else",""+flagArray+section);
+                right_item.setBackgroundColor(Color.TRANSPARENT);
+            }
 
         }
 

@@ -40,6 +40,7 @@
 
         <activity
             android:name="com.autodesk.easyhome.shejijia.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity"

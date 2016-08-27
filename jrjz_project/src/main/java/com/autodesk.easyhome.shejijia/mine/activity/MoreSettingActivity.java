@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.htlc.jrjz.jrjz_project.R;
@@ -50,12 +52,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
         return R.layout.activity_more_setting;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick({R.id.rl_moresetting_clear_cache, R.id.tv_moresetting_exit})
     public void onClick(View view) {
@@ -79,6 +76,10 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 break;
             case R.id.tv_moresetting_exit:
                 //退出
+                AppContext.set(AppConfig.UID, "");
+                AppContext.set(AppConfig.ACCESSTOKEN, "");
+                AppContext.set("IS_LOGIN", false);
+                setResult(1001);
                 finish();
                 break;
         }
