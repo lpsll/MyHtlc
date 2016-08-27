@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:text="手机号"
                 android:textColor="@color/tv_grey"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
             <EditText
 
@@ -36,7 +36,7 @@
                 android:inputType="number"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
             <com.autodesk.easyhome.shejijia.mine.view.TimeButton
                 android:id="@+id/TimeButton_register"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="请输入验证码"
                 android:textColor="@color/tv_grey"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
             <EditText
                 android:id="@+id/et_register_code"
@@ -84,7 +84,7 @@
                 android:inputType="number"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
 
         </LinearLayout>
@@ -109,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:text="设置密码"
                 android:textColor="@color/tv_grey"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
             <EditText
                 android:id="@+id/et_register_password"
@@ -121,7 +121,7 @@
                 android:inputType="textPassword"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
 
         </LinearLayout>
@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:text="确认密码"
                 android:textColor="@color/tv_grey"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
             <EditText
                 android:id="@+id/et_register_password_again"
@@ -158,7 +158,7 @@
                 android:inputType="textPassword"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
 
         </LinearLayout>
@@ -197,8 +197,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="点击登录"
-                android:textColor="#1d1d26"
-                android:textSize="@dimen/fs_40" />
+                android:textColor="@drawable/text_press_selector"
+                android:textSize="@dimen/fs_45" />
 
         </LinearLayout>
 
@@ -218,14 +218,14 @@
             android:layout_height="wrap_content"
             android:text="点击-注册，即表示您同意"
             android:textColor="#a8a8aa"
-            android:textSize="@dimen/fs_35" />
+            android:textSize="@dimen/fs_40" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《居然家政使用协议》"
             android:textColor="@color/btn_blue"
-            android:textSize="@dimen/fs_35" />
+            android:textSize="@dimen/fs_40" />
 
     </LinearLayout>
 

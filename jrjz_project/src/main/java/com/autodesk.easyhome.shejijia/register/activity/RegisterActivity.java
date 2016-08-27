@@ -73,7 +73,7 @@ public class RegisterActivity extends BaseTitleActivity {
                     String reg = "^[a-zA-Z0-9]{6,20}$";
                     boolean isMatches = pwd.matches(reg);
                     if (!isMatches) {
-                        new AlertDialog.Builder(RegisterActivity.this).setTitle("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+                        new AlertDialog.Builder(RegisterActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
                         etRegisterPassword.setText("");
                         etRegisterPassword.setFocusable(true);
                     }

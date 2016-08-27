@@ -24,7 +24,7 @@
             android:layout_marginLeft="@dimen/ds_50"
             android:text="金额(元)"
             android:textColor="@color/tv_black"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1000"
-                android:textSize="@dimen/ds_45"
+                android:textSize="@dimen/ds_50"
                 android:visibility="gone" />
 
             <EditText
@@ -50,7 +50,7 @@
                 android:hint="请输入充值金额"
                 android:inputType="numberDecimal"
                 android:textColorHint="#cccccc"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
 
 
         </FrameLayout>
@@ -95,7 +95,7 @@
                 android:layout_marginLeft="@dimen/ds_135"
                 android:text="微信支付"
                 android:textColor="@color/tv_black"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
         </LinearLayout>
 
         <CheckBox
@@ -142,7 +142,7 @@
                 android:layout_marginLeft="@dimen/ds_85"
                 android:text="支付宝支付"
                 android:textColor="@color/tv_black"
-                android:textSize="@dimen/fs_45" />
+                android:textSize="@dimen/fs_50" />
         </LinearLayout>
 
         <CheckBox

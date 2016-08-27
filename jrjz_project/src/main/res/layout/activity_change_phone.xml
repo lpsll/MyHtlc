@@ -12,6 +12,7 @@
         android:background="#ffffff">
 
         <EditText
+            android:paddingRight="@dimen/ds_250"
             android:id="@+id/et_change_phone_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +24,7 @@
             android:inputType="number"
             android:textColorHint="@color/tv_hint"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
 
         <com.autodesk.easyhome.shejijia.mine.view.TimeButton
@@ -51,8 +52,9 @@
         android:background="#ffffff">
 
         <EditText
+            android:inputType="number"
             android:id="@+id/et_change_phone_code"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/ds_70"
@@ -60,7 +62,7 @@
             android:hint="请输入验证码"
             android:textColorHint="@color/tv_hint"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
 
     </RelativeLayout>

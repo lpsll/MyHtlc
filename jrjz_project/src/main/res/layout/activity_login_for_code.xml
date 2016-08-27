@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="用户名"
             android:textColor="@color/tv_grey"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
         <EditText
 
@@ -31,7 +31,7 @@
             android:inputType="number"
             android:textColorHint="@color/btn_gray"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
         <com.autodesk.easyhome.shejijia.mine.view.TimeButton
             android:id="@+id/TimeButton_login"
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="验证码"
             android:textColor="@color/tv_grey"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
         <EditText
             android:id="@+id/et_login_code"
@@ -80,7 +80,7 @@
             android:inputType="number"
             android:textColorHint="@color/btn_gray"
             android:textCursorDrawable="@drawable/color_cursor"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50" />
 
 
     </LinearLayout>
@@ -119,8 +119,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="立即注册"
-            android:textColor="#1d1d26"
-            android:textSize="@dimen/fs_40" />
+            android:textColor="@drawable/text_press_selector"
+            android:textSize="@dimen/fs_45" />
 
     </LinearLayout>
 
