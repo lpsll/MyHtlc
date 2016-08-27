@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
@@ -111,11 +112,11 @@ public class ChangePhoneActivity extends BaseTitleActivity {
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
-        changePhoneDTO.setAccessToken(AppConfig.accessToken);
-        changePhoneDTO.setUid(AppConfig.uid);
+        changePhoneDTO.setAccessToken(AppContext.get(AppConfig.ACCESSTOKEN,""));
+        changePhoneDTO.setUid(AppContext.get(AppConfig.UID,""));
         changePhoneDTO.setTimestamp(time);
         changePhoneDTO.setRandom(random);
-        changePhoneDTO.setSign(AppConfig.uid +time+ random);
+        changePhoneDTO.setSign(AppContext.get(AppConfig.UID,"") +time+ random);
         changePhoneDTO.setNewmobile(phone);
         changePhoneDTO.setSmsverifycode(code);
 
@@ -128,10 +129,9 @@ public class ChangePhoneActivity extends BaseTitleActivity {
                     ToastUtils.showShort(ChangePhoneActivity.this, "换绑手机成功");
 
                     //修改用户信息
-                    AppConfig.uid = phone;
-                    AppConfig.isLogin = true;
+                    AppContext.set(AppConfig.UID,phone);
+                    AppContext.set(AppConfig.IS_LOGIN,true);
 
-                    LogUtils.d("uid==" + phone + ",accessToken==" + AppConfig.accessToken + ",isLogin==" + AppConfig.isLogin);
 
                     finish();
                 }

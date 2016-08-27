@@ -6,6 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -57,7 +58,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_login, R.id.tv_ok,R.id.et_login_register})
+    @OnClick({R.id.TimeButton_login, R.id.tv_ok, R.id.et_login_register})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -93,18 +94,18 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
     /**
      * 使用验证码登录
-     *
+     * <p/>
      * uid：用户ID，默认为手机号码
-
-     smsVerifyCode：短信验证码字符串
-
-     timestamp：当前时间戳
-
-     random：随机数
-
-     sign：签名【生成规则 uid+smsVerifyCode+timestamp+random 后md5加密串】
-
-     usertype:用户类型 1-普通用户 , 默认为1
+     * <p/>
+     * smsVerifyCode：短信验证码字符串
+     * <p/>
+     * timestamp：当前时间戳
+     * <p/>
+     * random：随机数
+     * <p/>
+     * sign：签名【生成规则 uid+smsVerifyCode+timestamp+random 后md5加密串】
+     * <p/>
+     * usertype:用户类型 1-普通用户 , 默认为1
      */
     private void loginForCode() {
         final String phone = etLoginPhone.getText().toString().trim();
@@ -125,7 +126,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         loginForCodeDTO.setSmsVerifyCode(code);
         loginForCodeDTO.setTimestamp(time);
         loginForCodeDTO.setRandom(random);
-        loginForCodeDTO.setSign(phone +code+ time + random);
+        loginForCodeDTO.setSign(phone + code + time + random);
         loginForCodeDTO.setUsertype(AppConfig.COMMON_USER_TYPE); //默认为普通用户
 
         LogUtils.e("time---", "" + time);
@@ -133,21 +134,23 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         CommonApiClient.loginForCode(this, loginForCodeDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
-                LogUtils.e("result========" + result.getMsg());
-                if (AppConfig.SUCCESS.equals(result.getCode())) {
-                    LogUtils.e("登录成功");
-                    ToastUtils.showShort(LoginForCodeActivity.this, "登录成功");
-                    LogUtils.e("用户令牌======" + result.getData().getAccessToken());
+                if (result != null) {
+                    LogUtils.e("result========" + result.getMsg());
+                    if (AppConfig.SUCCESS.equals(result.getCode())) {
+                        LogUtils.e("登录成功");
+                        ToastUtils.showShort(LoginForCodeActivity.this, "登录成功");
+                        LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
-                    //保存用户信息
-                    AppConfig.uid = phone;
-                    AppConfig.accessToken = result.getData().getAccessToken();
-                    AppConfig.isLogin = true;
+                        //保存用户信息
+                        AppContext.set(AppConfig.UID, phone);
+                        AppContext.set(AppConfig.ACCESSTOKEN, result.getData().getAccessToken());
+                        AppContext.set(AppConfig.IS_LOGIN, true);
 
-                    LogUtils.d("uid==" + phone + ",accessToken==" + AppConfig.accessToken + ",isLogin==" + AppConfig.isLogin);
-                    //跳转到预约页面
-                    HomeUiGoto.gotoApt(LoginForCodeActivity.this);
-                    finish();
+                        //跳转到预约页面
+//                        HomeUiGoto.gotoApt(LoginForCodeActivity.this);
+                        finish();
+                    }
+
                 }
             }
         });

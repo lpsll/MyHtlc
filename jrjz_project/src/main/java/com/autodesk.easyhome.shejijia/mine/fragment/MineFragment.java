@@ -2,15 +2,16 @@ package com.autodesk.easyhome.shejijia.mine.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.ChangePhoneActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
@@ -20,7 +21,6 @@ import com.autodesk.easyhome.shejijia.order.activity.CouponActivity;
 import com.htlc.jrjz.jrjz_project.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -42,9 +42,18 @@ public class MineFragment extends BaseFragment {
     LinearLayout llMineCoupon;
     @Bind(R.id.ll_mine_feedback)
     LinearLayout llMineFeedback;
+    @Bind(R.id.tv_mine_phone)
+    TextView tvMinePhone;
 
     @Override
     public void initView(View view) {
+        if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+            //登录状态时就设置为用户手机号
+            tvMinePhone.setText(AppContext.get(AppConfig.UID,"请登录"));
+
+        }else {
+            tvMinePhone.setText("请登录");
+        }
 
     }
 
@@ -65,51 +74,67 @@ public class MineFragment extends BaseFragment {
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
 
-    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting,R.id.ll_mine_myorder,R.id.ll_mine_address,R.id.ll_mine_coupon,R.id.ll_mine_feedback})
+    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
                 //跳转到切换手机号页面
-                getContext().startActivity(new Intent(getContext(), ChangePhoneActivity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), ChangePhoneActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
                 break;
             case R.id.ll_mine_chongzhi:
                 //跳转到充值页
-                Intent intent = new Intent(new Intent(getContext(), TopUpActivity.class));
-                intent.putExtra("TypeForTopUp", "WriteForUser");
-                getContext().startActivity(intent);
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    Intent intent = new Intent(new Intent(getContext(), TopUpActivity.class));
+                    intent.putExtra("TypeForTopUp", "WriteForUser");
+                    getContext().startActivity(intent);
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
                 break;
             case R.id.ll_mine_more_setting:
                 //跳转到更多设置页
-                getContext().startActivity(new Intent(getContext(), MoreSettingActivity.class));
-//                getContext().startActivity(new Intent(getContext(), More2Activity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), MoreSettingActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
                 break;
             case R.id.ll_mine_address:
-                getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
                 break;
             case R.id.ll_mine_myorder:
-                getContext().startActivity(new Intent(getContext(), MineOrderActivity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), MineOrderActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
+
                 break;
             case R.id.ll_mine_coupon:
                 //跳转到优惠券页面
-                getContext().startActivity(new Intent(getContext(), CouponActivity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), CouponActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
+
                 break;
             case R.id.ll_mine_feedback:
-                getContext().startActivity(new Intent(getContext(), FeedBackActivity.class));
+                if (AppContext.get(AppConfig.IS_LOGIN, false)) {
+                    getContext().startActivity(new Intent(getContext(), FeedBackActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getContext());
+                }
                 break;
         }
     }

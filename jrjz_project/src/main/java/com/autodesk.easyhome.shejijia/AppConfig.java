@@ -23,13 +23,19 @@ public class AppConfig {
 
     public static final String PWD_REG = "^[a-zA-Z0-9]{6,20}$";  //密码格式验证正则表达式
 
-    public static String accessToken; //用户令牌
-    public static boolean isLogin; //用户是否登录
-    public static String uid;     //用户账号
 
     public static final String SUCCESS = "1";
     public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api";
     public static final String BASE_IMG_URL = "http://101.200.167.130:8080/jrjz-api";
+
+    /**
+     * 用户信息全局常量
+     */
+
+    public static final String ACCESSTOKEN = "accessToken";
+    public static final String  UID = "uid";
+    public static final String IS_LOGIN = "isLogin";
+
 
 
 }

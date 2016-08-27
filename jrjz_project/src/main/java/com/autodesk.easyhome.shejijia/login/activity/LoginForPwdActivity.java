@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
@@ -68,8 +69,8 @@ public class LoginForPwdActivity extends BaseTitleActivity {
             case R.id.tv_ok:
                 //登录
                 //判断电话，密码格式和是否为空
-                if(TextUtils.isEmpty(etLoginPhone.getText().toString().trim())) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入用户名").setPositiveButton("确定",null).show();
+                if (TextUtils.isEmpty(etLoginPhone.getText().toString().trim())) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入用户名").setPositiveButton("确定", null).show();
                     break;
                 }
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etLoginPhone.getText().toString());
@@ -77,8 +78,8 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                     new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                     break;
                 }
-                if(TextUtils.isEmpty(etLoginPwd.getText().toString().trim())) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入密码").setPositiveButton("确定",null).show();
+                if (TextUtils.isEmpty(etLoginPwd.getText().toString().trim())) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setMessage("请输入密码").setPositiveButton("确定", null).show();
                     break;
                 }
 
@@ -143,21 +144,21 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         CommonApiClient.login(this, loginDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
-                LogUtils.e("result========" + result.getMsg());
-                if (AppConfig.SUCCESS.equals(result.getCode())) {
-                    LogUtils.e("登录成功");
-                    ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
-                    LogUtils.e("用户令牌======" + result.getData().getAccessToken());
+                if (result != null) {
+                    LogUtils.e("result========" + result.getMsg());
+                    if (AppConfig.SUCCESS.equals(result.getCode())) {
+                        LogUtils.e("登录成功");
+                        ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
+                        LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
-                    //保存用户信息
-                    AppConfig.uid = phone;
-                    AppConfig.accessToken = result.getData().getAccessToken();
-                    AppConfig.isLogin = true;
+                        AppContext.set(AppConfig.UID, phone);
+                        AppContext.set(AppConfig.ACCESSTOKEN, result.getData().getAccessToken());
+                        AppContext.set(AppConfig.IS_LOGIN, true);
 
-                    LogUtils.d("uid==" + phone + ",accessToken==" + AppConfig.accessToken + ",isLogin==" + AppConfig.isLogin);
-                    //跳转到预约页面
-                    HomeUiGoto.gotoApt(LoginForPwdActivity.this);
-                    finish();
+                        //跳转到预约页面
+//                        HomeUiGoto.gotoApt(LoginForPwdActivity.this);
+                        finish();
+                    }
                 }
             }
         });

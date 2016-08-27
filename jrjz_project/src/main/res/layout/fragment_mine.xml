@@ -30,11 +30,11 @@
                     android:background="@drawable/mine_headimg_test" />
 
                 <TextView
-                    android:id="@+id/middle_image"
+                    android:id="@+id/tv_mine_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="182938203482"
+                    android:text="请登录"
                     android:textColor="#1d1d26"
                     android:textSize="@dimen/fs_45" />
 
