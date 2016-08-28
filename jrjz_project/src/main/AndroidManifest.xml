@@ -3,7 +3,7 @@
     package="com.autodesk.easyhome.shejijia">
 
 
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -21,6 +21,21 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+
+    <!--极光推送开始-->
+    <permission
+        android:name="com.autodesk.easyhome.shejijia.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.autodesk.easyhome.shejijia.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!--极光推送结束-->
+
 
     <application
         android:name="com.autodesk.easyhome.shejijia.AppContext"
@@ -78,7 +93,7 @@
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity"
             android:screenOrientation="portrait" />
@@ -128,12 +143,71 @@
 
         <activity
             android:name="com.lidong.photopicker.PhotoPickerActivity"
-            android:theme="@style/PhotoPickerTheme"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/PhotoPickerTheme" />
         <activity
             android:name="com.lidong.photopicker.PhotoPreviewActivity"
-            android:theme="@style/PhotoPickerTheme"
-            />
+            android:theme="@style/PhotoPickerTheme" />
+
+
+        <!--极光推送开始-->
+
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <category android:name="com.autodesk.easyhome.shejijia" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.autodesk.easyhome.shejijia" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK-->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" >
+        </service>
+        <!-- Required SDK-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
+
+
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="dedf43229e69ed908c8e7bc0" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+
+
+
+        <!--极光推送结束-->
     </application>
 
 </manifest>

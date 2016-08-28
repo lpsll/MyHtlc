@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
@@ -20,10 +21,10 @@ import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 public class RegisterActivity extends BaseTitleActivity {
 
@@ -181,6 +182,14 @@ public class RegisterActivity extends BaseTitleActivity {
                     LogUtils.e("注册成功");
                     ToastUtils.showShort(RegisterActivity.this, "注册成功");
                     LogUtils.e("result---", "" + result);
+
+                    //注册成功后设置极光推送的别名和tag
+                    JPushInterface.setAlias(RegisterActivity.this, etRegisterPhone.getText().toString(), null);
+
+//                    HashSet<String> tag = new HashSet<>();
+//                    tag.add("");
+//                    JPushInterface.setTags(RegisterActivity.this,tag,null);
+
                     //跳转到登录页面
                     HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);
                     finish();
@@ -188,7 +197,6 @@ public class RegisterActivity extends BaseTitleActivity {
             }
         });
     }
-
 
     /**
      * 获取验证码
@@ -206,11 +214,11 @@ public class RegisterActivity extends BaseTitleActivity {
         CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
             public void onSuccess(SmsVerifyEntity result) {
-                    if (AppConfig.SUCCESS.equals(result.getCode())) {
-                        LogUtils.e("获取验证码成功");
-                        ToastUtils.showShort(RegisterActivity.this, "获取验证码成功");
-                        LogUtils.e("result---------", "" + result);
-                    }
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取验证码成功");
+                    ToastUtils.showShort(RegisterActivity.this, "获取验证码成功");
+                    LogUtils.e("result---------", "" + result);
+                }
             }
         });
     }

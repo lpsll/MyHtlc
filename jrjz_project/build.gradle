@@ -40,4 +40,5 @@ dependencies {
     compile project(':photopicker')
     compile files('libs/libammsdk.jar')
     compile files('libs/alipaySdk-20160223.jar')
+    compile files('libs/jpush-android-2.1.9.jar')
 }

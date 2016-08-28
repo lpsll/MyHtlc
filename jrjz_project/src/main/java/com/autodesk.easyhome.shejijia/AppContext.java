@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 
 import com.autodesk.easyhome.shejijia.common.base.BaseApplication;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by John_Libo on 2016/8/15.
  */
@@ -23,6 +25,12 @@ public class AppContext extends BaseApplication {
         instance = this;
         this.sp = this.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         this.editor = this.sp.edit();
+
+
+        //极光推送初始化
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+
     }
 
     /**
