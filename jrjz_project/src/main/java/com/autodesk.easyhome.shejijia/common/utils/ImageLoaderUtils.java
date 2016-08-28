@@ -6,7 +6,7 @@ import android.util.Base64;
 import android.widget.ImageView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;

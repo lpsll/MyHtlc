@@ -16,7 +16,7 @@ import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
 import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;

@@ -29,7 +29,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.bumptech.glide.Glide;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.lidong.photopicker.PhotoPickerActivity;
 import com.lidong.photopicker.SelectModel;
 import com.lidong.photopicker.intent.PhotoPickerIntent;

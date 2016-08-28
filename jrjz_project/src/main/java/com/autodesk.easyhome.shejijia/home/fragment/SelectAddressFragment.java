@@ -3,7 +3,7 @@ package com.autodesk.easyhome.shejijia.home.fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BasePullFragment;
 import com.autodesk.easyhome.shejijia.common.widget.FullyLinearLayoutManager;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;

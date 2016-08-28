@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

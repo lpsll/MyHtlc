@@ -1,6 +1,6 @@
 package com.autodesk.easyhome.shejijia.order.adapter;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;

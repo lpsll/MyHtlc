@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.adapter.CampaignFragmentAdapter;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 

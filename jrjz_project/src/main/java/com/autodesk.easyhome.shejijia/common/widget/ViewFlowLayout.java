@@ -18,7 +18,7 @@ import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LayoutUtil;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TDevice;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 

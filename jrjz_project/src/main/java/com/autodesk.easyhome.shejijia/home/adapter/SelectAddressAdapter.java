@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import java.util.List;

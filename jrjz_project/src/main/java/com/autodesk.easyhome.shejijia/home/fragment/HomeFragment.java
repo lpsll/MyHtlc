@@ -27,7 +27,7 @@ import com.autodesk.easyhome.shejijia.home.entity.ServiceClasses;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceData;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import java.util.ArrayList;
 import java.util.List;

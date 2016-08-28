@@ -19,7 +19,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;

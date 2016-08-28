@@ -3,7 +3,7 @@ package com.autodesk.easyhome.shejijia.common.base;
 import android.support.v4.widget.NestedScrollView;
 import android.view.View;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;

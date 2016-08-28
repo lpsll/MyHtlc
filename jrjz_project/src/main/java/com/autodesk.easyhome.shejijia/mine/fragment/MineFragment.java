@@ -17,7 +17,7 @@ import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
 import com.autodesk.easyhome.shejijia.order.activity.CouponActivity;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;

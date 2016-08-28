@@ -16,7 +16,7 @@ import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.adapter.SectionedBaseAdapter;
 
 import java.util.ArrayList;

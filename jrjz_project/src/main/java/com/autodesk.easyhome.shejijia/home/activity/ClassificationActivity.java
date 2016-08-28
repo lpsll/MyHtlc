@@ -16,7 +16,7 @@ import com.autodesk.easyhome.shejijia.home.adapter.MainSectionedAdapter;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 

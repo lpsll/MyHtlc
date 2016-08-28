@@ -1,6 +1,6 @@
 package com.autodesk.easyhome.shejijia.common.base;
 
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.home.fragment.SelectAddressFragment;
 
 /**

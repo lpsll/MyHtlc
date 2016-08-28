@@ -13,7 +13,7 @@ import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.campaign.CampaignUIGoto;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
-import com.htlc.jrjz.jrjz_project.R;
+import com.autodesk.easyhome.shejijia.R;
 
 import java.util.List;
 
