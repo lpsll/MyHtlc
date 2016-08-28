@@ -188,6 +188,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onSuccess(AddAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("新增地址成功");
+                    finish();
 
                 }
 
