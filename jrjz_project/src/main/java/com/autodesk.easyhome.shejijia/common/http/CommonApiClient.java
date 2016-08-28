@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
+import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
@@ -131,6 +133,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<ClassificationResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, ClassificationResult.class);
         get(getAbsoluteUrl("/service/allServicesByClass"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 新增地址
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void addAddress(Activity act, AddAddressDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/user/address/add"), dto,
                 asyncCallBack);
     }
 

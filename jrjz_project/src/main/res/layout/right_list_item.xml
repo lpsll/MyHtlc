@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="@dimen/ds_400"
     android:id="@+id/right_item"
     android:orientation="horizontal">
     <ImageView
         android:id="@+id/imageItem"
-        android:layout_width="@dimen/ds_100"
-        android:layout_height="@dimen/ds_100"
+        android:layout_marginLeft="@dimen/ds_40"
+        android:layout_width="@dimen/ds_160"
+        android:layout_height="@dimen/ds_160"
+        android:layout_gravity="center_vertical"
         android:scaleType="fitXY"
       />
 <LinearLayout
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/ds_40"
+    android:layout_gravity="center_vertical"
     android:orientation="vertical">
     <TextView
         android:id="@+id/rl_it_tv01"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/ds_100"
         android:gravity="center_vertical"
         android:textColor="@color/black"
         android:textSize="@dimen/fs_45"
-        android:text="111"/>
+        android:text=""/>
     <TextView
         android:id="@+id/rl_it_tv02"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/ds_100"
         android:gravity="center_vertical"
         android:layout_toRightOf="@+id/imageItem"
         android:textColor="@color/color_33"
         android:textSize="@dimen/fs_45"
-        android:text="111"/>
+        android:text=""/>
 </LinearLayout>
 </LinearLayout >

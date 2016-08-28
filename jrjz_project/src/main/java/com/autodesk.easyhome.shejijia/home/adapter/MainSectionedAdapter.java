@@ -5,12 +5,14 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
@@ -27,36 +29,25 @@ import java.util.List;
  */
 public class MainSectionedAdapter extends SectionedBaseAdapter {
     private final ArrayList<Boolean> flagArray;
-    private final List<ClassificationEntity> data;
     private final ArrayList<String> mList;
+    private final ArrayList<ArrayList<String>> sList;
+    private final ArrayList<ArrayList<String>> iList;
     private Context mContext;
     List<ClassificationServicesEntity> entity;
 
 
 
-    public MainSectionedAdapter(Context context, ArrayList<String> mList, List<ClassificationEntity> data, ArrayList<Boolean> flagArray) {
+    public MainSectionedAdapter(Context context, ArrayList<String> mList, ArrayList<ArrayList<String>> sList, ArrayList<ArrayList<String>> iList, ArrayList<Boolean> flagArray) {
         this.mContext = context;
         this.flagArray = flagArray;
         this.mList = mList;
-        this.data = data;
-        aList = new ArrayList<>();
-        bList = new ArrayList<>();
-//        for(int i= 0;i<data.size();i++){
-//            entity = data.get(i).getServices();
-//            LogUtils.e("entity---",""+entity);
-//            for(int j= 0;j<entity.size();j++){
-//                aList.add(entity.get(j).getName());
-//            }
-//            for(int k= 0;k<entity.size();k++){
-//                bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
-//            }
-//        }
-
+        this.sList = sList;
+        this.iList = iList;
     }
 
     @Override
     public Object getItem(int section, int position) {
-        return data.get(section).getServices().get(position);
+        return sList.get(section).get(position);
     }
 
     @Override
@@ -71,7 +62,7 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
 
     @Override
     public int getCountForSection(int section) {
-        return  data.size();
+        return  sList.get(section).size();
     }
 
 
@@ -79,12 +70,20 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
     private class Holder {
         private TextView tv01,tv02;
         private LinearLayout right_item;
+        private ImageView imageItem;
 
         public void updataView(int section, final int position) {
-            LogUtils.e("section---",""+section);
-            LogUtils.e("position---",""+position);
-            LogUtils.e("updataView---",""+data.get(section).getServices().get(position).getName());
-            tv01.setText( data.get(section).getServices().get(position).getName());
+            LogUtils.e("updataView----",""+sList.get(section).get(position));
+            if(sList.get(section).get(position).equals("")){
+                tv01.setText("");
+                imageItem.setVisibility(View.GONE);
+
+            }else {
+                imageItem.setVisibility(View.VISIBLE);
+                tv01.setText(sList.get(section).get(position));
+                ImageLoaderUtils.displayImage(iList.get(section).get(position), imageItem);
+            }
+
 //            tv02.setText(str[section][position]);
             if (flagArray.get(section)) {
                 right_item.setBackgroundColor(Color.parseColor("#bbffff"));
@@ -107,6 +106,7 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.right_list_item, null);
             holder.tv01 = (TextView) convertView.findViewById(R.id.rl_it_tv01);
             holder.tv02 = (TextView) convertView.findViewById(R.id.rl_it_tv02);
+            holder.imageItem = (ImageView) convertView.findViewById(R.id.imageItem);
             holder.right_item = (LinearLayout) convertView.findViewById(R.id.right_item);
             convertView.setTag(holder);
         } else {

@@ -36,20 +36,6 @@ public class ClassificationActivity extends BaseTitleActivity {
     private boolean isScroll = true;
     private LeftListAdapter adapter;
 
-//    private String[] mList = new String[]{"家装维修", "家电维修", "家具维修", "家政服务", "社区服务"};
-
-//    private boolean[] flagArray = {true, false, false, false, false};
-
-    private String[][] rightStr = new String[][]{{"长城干红", "燕京鲜啤", "青岛鲜啤","果盘","果啤"},
-            {"拌粉丝", "大拌菜", "菠菜花生","凉拌菜","花菜"}, {"小食组", "紫薯", "红薯", "白薯", "绿薯"},
-            {"小米粥", "大米粥", "南瓜粥", "玉米粥", "紫米粥"}, {"儿童小汽车", "悠悠球", "熊大", " 熊二", "光头强","","","",""}
-    };
-    private String[][] rightStr1 = new String[][]{{"长城", "燕京", "青岛","果","啤"},
-            {"拌丝", "大菜", "花生","凉菜","菜"}, {"小组", "薯", "红", "白", "绿"},
-            {"小粥", "大粥", "南粥", "玉粥", "紫粥"}, {"儿童", "悠球", "大", " 二", "头强","","","",""}
-    };
-    private String[] img = new String[]{"url2","url3","url4","url5","url1",};
-
     List<ClassificationEntity> data;
     List<ClassificationServicesEntity> entity;
 
@@ -93,8 +79,7 @@ public class ClassificationActivity extends BaseTitleActivity {
         mList = new ArrayList<>();
         sList = new ArrayList<>();
         iList = new ArrayList<>();
-//        aList = new ArrayList<>();
-        bList = new ArrayList<>();
+
 
         flagArray.add(true);
         for(int i= 0;i<data.size()-1;i++){
@@ -112,12 +97,21 @@ public class ClassificationActivity extends BaseTitleActivity {
 
         for(int i= 0;i<data.size();i++){
             entity = data.get(i).getServices();
-            LogUtils.e("entity---",""+entity);
+            aList = new ArrayList<>();
+            bList = new ArrayList<>();
             for(int j= 0;j<entity.size();j++){
-                aList = new ArrayList<>();
                 aList.add(entity.get(j).getName());
+                if(i==(data.size()-1)&&j==(entity.size()-1)){
+                    aList.add("");
+                    aList.add("");
+                    aList.add("");
+                    aList.add("");
+                    aList.add("");
+                    aList.add("");
+                }
             }
             sList.add(aList);
+
             for(int k= 0;k<entity.size();k++){
                 bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
             }
@@ -132,7 +126,7 @@ public class ClassificationActivity extends BaseTitleActivity {
     }
 
     private void bindResult() {
-        final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, mList, data,flagArray);
+        final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, mList, sList,iList,flagArray);
         pinnedListView.setAdapter(sectionedAdapter);
         adapter = new LeftListAdapter(this, mList, flagArray);
         leftListview.setAdapter(adapter);
@@ -189,7 +183,7 @@ public class ClassificationActivity extends BaseTitleActivity {
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (isScroll) {
-                    for (int i = 0; i < rightStr.length; i++) {
+                    for (int i = 0; i < sList.size(); i++) {
                         if (i == sectionedAdapter.getSectionForPosition(pinnedListView.getFirstVisiblePosition())) {
                             flagArray.set(i, true);
                             x = i;

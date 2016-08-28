@@ -9,8 +9,19 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +55,7 @@ public class AddAddressActivity extends BaseTitleActivity {
     Button mAddBtn;
     private ArrayAdapter<String> mAdapterCity,mAdapterAre,mAdapterHuan;
     private List<String> city_list,are_list,huan_list;
+    private String mCity,mAre,mHuan;
 
     @Override
     protected int getContentResId() {
@@ -54,56 +66,24 @@ public class AddAddressActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("新增地址");
 
-
-        //数据
-        city_list = new ArrayList<String>();
-        city_list.add("北京");
-        city_list.add("上海");
-        city_list.add("广州");
-        city_list.add("深圳");
-
         //将可选内容与ArrayAdapter连接
-        mAdapterCity=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,city_list);
+        mAdapterCity=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city));
         //设置下拉列表风格
         mAdapterCity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将adapter添加到spinner中
         mTvCity.setAdapter(mAdapterCity);
 
 
-        //数据
-        are_list = new ArrayList<String>();
-        are_list.add("北京");
-        are_list.add("上海");
-        are_list.add("广州");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
-        are_list.add("深圳");
         //将可选内容与ArrayAdapter连接
-        mAdapterAre=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,are_list);
+        mAdapterAre=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.area));
         //设置下拉列表风格
         mAdapterAre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将adapter添加到spinner中
         mTvAre.setAdapter(mAdapterAre);
 
 
-
-
-        //数据
-        huan_list = new ArrayList<String>();
-        huan_list.add("三环内");
-        huan_list.add("三环到五环");
-        huan_list.add("五环之外");
         //将可选内容与ArrayAdapter连接
-        mAdapterHuan=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,huan_list);
+        mAdapterHuan=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.range));
         //设置下拉列表风格
         mAdapterHuan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将adapter添加到spinner中
@@ -115,6 +95,8 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                mCity =tv.getText().toString();
+                LogUtils.e("mTvCity----",""+mCity);
             }
 
             @Override
@@ -127,6 +109,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                mAre =tv.getText().toString();
             }
 
             @Override
@@ -139,6 +122,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                mHuan =tv.getText().toString();
             }
 
             @Override
@@ -164,10 +148,50 @@ public class AddAddressActivity extends BaseTitleActivity {
             case R.id.lin03:
                 break;
             case R.id.add_btn:
+                if(mEtName.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请输入名字", "知道了");
+                }
+                else if(mEtPhone.getText().toString().equals("")||mEtPhone.getText().toString().length()<11){
+                    DialogUtils.showPrompt(this, "提示","请输入正确的电话号码", "知道了");
+                }
+                else if(mEtAddress.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请输入地址", "知道了");
+                }
+                else {
+                    reqAdd();
+                }
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
                 break;
         }
+    }
+
+    private void reqAdd() {
+        AddAddressDTO dto = new AddAddressDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setSign(AppContext.get("uid", "")+time+random);
+        dto.setName(mEtName.getText().toString());
+        dto.setMobile(mEtPhone.getText().toString());
+        dto.setCity(mCity);
+        dto.setDistrict(mAre);
+        dto.setArea(mHuan);
+        dto.setAddress(mEtAddress.getText().toString());
+        dto.setIsDefault("1");//默认为是，是/1,否/2
+        CommonApiClient.addAddress(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("新增地址成功");
+
+                }
+
+            }
+        });
     }
 }
