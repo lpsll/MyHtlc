@@ -28,6 +28,9 @@ public class AppConfig {
     public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api";
     public static final String BASE_IMG_URL = "http://101.200.167.130:8080/jrjz-api";
 
+
+    public static final String Wx_App_Id = "wxfd04ee1c78a46319";
+
     /**
      * 用户信息全局常量
      */
@@ -35,6 +38,7 @@ public class AppConfig {
     public static final String ACCESSTOKEN = "accessToken";
     public static final String  UID = "uid";
     public static final String IS_LOGIN = "isLogin";
+
 
 
 

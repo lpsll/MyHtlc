@@ -10,15 +10,17 @@ import android.widget.TextView;
 
 import com.htlc.jrjz.jrjz_project.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by John_Libo on 2016/8/22.
  */
 public class LeftListAdapter extends BaseAdapter {
-    private String[] leftStr;
-    boolean[] flagArray;
+    private ArrayList<String> leftStr;
+    ArrayList<Boolean> flagArray;
     private Context context;
 
-    public LeftListAdapter(Context context, String[] leftStr, boolean[] flagArray) {
+    public LeftListAdapter(Context context, ArrayList<String> leftStr, ArrayList<Boolean> flagArray) {
         this.leftStr = leftStr;
         this.context = context;
         this.flagArray = flagArray;
@@ -26,12 +28,12 @@ public class LeftListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return leftStr.length;
+        return leftStr.size();
     }
 
     @Override
     public Object getItem(int arg0) {
-        return leftStr[arg0];
+        return leftStr.get(arg0);
     }
 
     @Override
@@ -60,8 +62,8 @@ public class LeftListAdapter extends BaseAdapter {
         private View left_view;
 
         public void updataView(final int position) {
-            left_list_item.setText(leftStr[position]);
-            if (flagArray[position]) {
+            left_list_item.setText(leftStr.get(position));
+            if (flagArray.get(position)) {
                 left_list_item.setBackgroundColor(Color.parseColor("#bbffff"));
                 left_list_item.setTextColor(Color.parseColor("#008ce7"));
                 left_view.setVisibility(View.VISIBLE);

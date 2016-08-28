@@ -10,34 +10,53 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
+import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.adapter.SectionedBaseAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by John_Libo on 2016/8/22.
  */
 public class MainSectionedAdapter extends SectionedBaseAdapter {
-    private final String[][] str;
-    private final String[] img;
-    private final boolean[] flagArray;
+    private final ArrayList<Boolean> flagArray;
+    private final List<ClassificationEntity> data;
+    private final ArrayList<String> mList;
     private Context mContext;
-    private String[] leftStr;
-    private String[][] rightStr;
+    List<ClassificationServicesEntity> entity;
 
-    public MainSectionedAdapter(Context context, String[] leftStr, String[][] str, String[][] rightStr, String[] img, boolean[] flagArray) {
+
+
+    public MainSectionedAdapter(Context context, ArrayList<String> mList, List<ClassificationEntity> data, ArrayList<Boolean> flagArray) {
         this.mContext = context;
-        this.leftStr = leftStr;
-        this.rightStr = rightStr;
-        this.str = str;
-        this.img = img;
         this.flagArray = flagArray;
+        this.mList = mList;
+        this.data = data;
+        aList = new ArrayList<>();
+        bList = new ArrayList<>();
+//        for(int i= 0;i<data.size();i++){
+//            entity = data.get(i).getServices();
+//            LogUtils.e("entity---",""+entity);
+//            for(int j= 0;j<entity.size();j++){
+//                aList.add(entity.get(j).getName());
+//            }
+//            for(int k= 0;k<entity.size();k++){
+//                bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
+//            }
+//        }
+
     }
 
     @Override
     public Object getItem(int section, int position) {
-        return rightStr[section][position];
+        return data.get(section).getServices().get(position);
     }
 
     @Override
@@ -47,12 +66,12 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
 
     @Override
     public int getSectionCount() {
-        return leftStr.length;
+        return mList.size();
     }
 
     @Override
     public int getCountForSection(int section) {
-        return rightStr[section].length;
+        return  data.size();
     }
 
 
@@ -62,19 +81,23 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
         private LinearLayout right_item;
 
         public void updataView(int section, final int position) {
-            tv01.setText(rightStr[section][position]);
-            tv02.setText(str[section][position]);
-            if (flagArray[section]) {
-                LogUtils.e("updataView---flagArray--if",""+flagArray+section);
+            LogUtils.e("section---",""+section);
+            LogUtils.e("position---",""+position);
+            LogUtils.e("updataView---",""+data.get(section).getServices().get(position).getName());
+            tv01.setText( data.get(section).getServices().get(position).getName());
+//            tv02.setText(str[section][position]);
+            if (flagArray.get(section)) {
                 right_item.setBackgroundColor(Color.parseColor("#bbffff"));
             } else {
-                LogUtils.e("updataView---flagArray--else",""+flagArray+section);
                 right_item.setBackgroundColor(Color.TRANSPARENT);
             }
 
         }
 
     }
+
+    ArrayList<String>  aList ;
+    ArrayList<String>  bList ;
 
     @Override
     public View getItemView(final int section, final int position, View convertView, ViewGroup parent) {
@@ -105,8 +128,8 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
             layout = (LinearLayout) convertView;
         }
         layout.setClickable(false);
-        ((TextView) layout.findViewById(R.id.textItem)).setText(leftStr[section]);
-        if (flagArray[section]) {
+        ((TextView) layout.findViewById(R.id.textItem)).setText(mList.get(section));
+        if (flagArray.get(section)) {
             LogUtils.e("getSectionHeaderView---flagArray--if",""+flagArray);
             ((TextView) layout.findViewById(R.id.textItem)).setBackgroundColor(Color.parseColor("#bbffff"));
         } else {

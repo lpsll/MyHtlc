@@ -1,27 +1,29 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.adapter.LeftListAdapter;
 import com.autodesk.easyhome.shejijia.home.adapter.MainSectionedAdapter;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 import com.htlc.jrjz.jrjz_project.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.home.adapter.ClassificationAdapter;
-import com.autodesk.easyhome.shejijia.home.adapter.ClassificationTabAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
  * 分类页
@@ -34,9 +36,9 @@ public class ClassificationActivity extends BaseTitleActivity {
     private boolean isScroll = true;
     private LeftListAdapter adapter;
 
-    private String[] leftStr = new String[]{"家装维修", "家电维修", "家具维修", "家政服务", "社区服务"};
+//    private String[] mList = new String[]{"家装维修", "家电维修", "家具维修", "家政服务", "社区服务"};
 
-    private boolean[] flagArray = {true, false, false, false, false};
+//    private boolean[] flagArray = {true, false, false, false, false};
 
     private String[][] rightStr = new String[][]{{"长城干红", "燕京鲜啤", "青岛鲜啤","果盘","果啤"},
             {"拌粉丝", "大拌菜", "菠菜花生","凉拌菜","花菜"}, {"小食组", "紫薯", "红薯", "白薯", "绿薯"},
@@ -48,6 +50,9 @@ public class ClassificationActivity extends BaseTitleActivity {
     };
     private String[] img = new String[]{"url2","url3","url4","url5","url1",};
 
+    List<ClassificationEntity> data;
+    List<ClassificationServicesEntity> entity;
+
     @Override
     protected int getContentResId() {
         return R.layout.activity_test;
@@ -56,21 +61,93 @@ public class ClassificationActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("分类");
-        final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, leftStr, rightStr,rightStr1,img,flagArray);
+        reqClassification();
+
+    }
+
+    private void reqClassification() {
+        BaseDTO dto = new BaseDTO();
+        CommonApiClient.classification(this, dto, new CallBack<ClassificationResult>() {
+            @Override
+            public void onSuccess(ClassificationResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("分类成功");
+                    setResult(result);
+
+                }
+
+            }
+        });
+    }
+
+    ArrayList<String>  mList ;
+    ArrayList<ArrayList<String>> sList ;
+    ArrayList<ArrayList<String>>  iList ;
+    ArrayList<String>  aList ;
+    ArrayList<String>  bList ;
+    ArrayList<Boolean>  flagArray  = new ArrayList<>();;
+   
+    private void setResult(ClassificationResult result) {
+        data = result.getData();
+
+        mList = new ArrayList<>();
+        sList = new ArrayList<>();
+        iList = new ArrayList<>();
+//        aList = new ArrayList<>();
+        bList = new ArrayList<>();
+
+        flagArray.add(true);
+        for(int i= 0;i<data.size()-1;i++){
+            flagArray.add(false);
+        }
+        LogUtils.e("flagArray----",""+flagArray);
+
+
+        for(int i= 0;i<data.size();i++){
+            mList.add(data.get(i).getName());
+        }
+        LogUtils.e("mList---",""+mList);
+        LogUtils.e("mList.size---",""+mList.size());
+
+
+        for(int i= 0;i<data.size();i++){
+            entity = data.get(i).getServices();
+            LogUtils.e("entity---",""+entity);
+            for(int j= 0;j<entity.size();j++){
+                aList = new ArrayList<>();
+                aList.add(entity.get(j).getName());
+            }
+            sList.add(aList);
+            for(int k= 0;k<entity.size();k++){
+                bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
+            }
+            iList.add(bList);
+        }
+        LogUtils.e("sList---",""+sList);
+        LogUtils.e("sList.size---",""+sList.size());
+        LogUtils.e("iList---",""+iList);
+        LogUtils.e("iList.size---",""+iList.size());
+        bindResult();
+
+    }
+
+    private void bindResult() {
+        final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, mList, data,flagArray);
         pinnedListView.setAdapter(sectionedAdapter);
-        adapter = new LeftListAdapter(this, leftStr, flagArray);
+        adapter = new LeftListAdapter(this, mList, flagArray);
         leftListview.setAdapter(adapter);
+
         leftListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
                 isScroll = false;
 
-                for (int i = 0; i < leftStr.length; i++) {
+                for (int i = 0; i < mList.size(); i++) {
                     if (i == position) {
-                        flagArray[i] = true;
+                        flagArray.set(i, true);
                     } else {
-                        flagArray[i] = false;
+                        flagArray.set(i, false);
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -114,10 +191,10 @@ public class ClassificationActivity extends BaseTitleActivity {
                 if (isScroll) {
                     for (int i = 0; i < rightStr.length; i++) {
                         if (i == sectionedAdapter.getSectionForPosition(pinnedListView.getFirstVisiblePosition())) {
-                            flagArray[i] = true;
+                            flagArray.set(i, true);
                             x = i;
                         } else {
-                            flagArray[i] = false;
+                            flagArray.set(i, false);
                         }
                     }
                     if (x != y) {
@@ -153,11 +230,11 @@ public class ClassificationActivity extends BaseTitleActivity {
 
             }
         });
-
     }
 
     @Override
     public void initData() {
+
 
     }
 }

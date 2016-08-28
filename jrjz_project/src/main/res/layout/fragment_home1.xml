@@ -510,7 +510,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+                            android:text=""
                             />
                     </LinearLayout>
                     <View
@@ -538,7 +538,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+                            android:text=""
                             />
                     </LinearLayout>
 
@@ -574,7 +574,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+                            android:text=""
                             />
                     </LinearLayout>
                     <View
@@ -593,7 +593,7 @@
                             android:layout_width="@dimen/ds_140"
                             android:layout_height="@dimen/ds_140"
                             android:layout_marginLeft="@dimen/ds_60"
-                            android:background="@drawable/test1"/>
+                            />
                         <TextView
                             android:id="@+id/service_tv03_04"
                             android:layout_width="wrap_content"
@@ -602,7 +602,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             android:gravity="center"
                             android:textColor="@color/color_00"
-                            android:text="防水维修"
+                            android:text=""
                             />
                     </LinearLayout>
 

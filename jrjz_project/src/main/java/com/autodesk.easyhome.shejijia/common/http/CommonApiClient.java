@@ -5,6 +5,7 @@ import android.app.Activity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
@@ -118,6 +119,21 @@ public class CommonApiClient extends BaseApiClient{
         get(getAbsoluteUrl("/banner/bannerlist"), dto,
                 asyncCallBack);
     }
+
+    /**
+     * 分类
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void classification(Activity act, BaseDTO
+            dto, CallBack<ClassificationResult> callback) {
+        AsyncCallBack<ClassificationResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, ClassificationResult.class);
+        get(getAbsoluteUrl("/service/allServicesByClass"), dto,
+                asyncCallBack);
+    }
+
 
     /**
      * 全部服务类别
