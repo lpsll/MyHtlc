@@ -31,13 +31,13 @@ public class AppConfig {
 
     public static final String Wx_App_Id = "wxfd04ee1c78a46319";
 
-    /**
-     * 用户信息全局常量
-     */
-
-    public static final String ACCESSTOKEN = "accessToken";
-    public static final String  UID = "uid";
-    public static final String IS_LOGIN = "isLogin";
+//    /**
+//     * 用户信息全局常量
+//     */
+//
+//    public static final String ACCESSTOKEN = "accessToken";
+//    public static final String  UID = "uid";
+//    public static final String IS_LOGIN = "isLogin";
 
 
 

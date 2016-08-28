@@ -19,6 +19,7 @@
 
 
         <EditText
+            android:maxLength="11"
             android:id="@+id/et_forgetpwd_phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

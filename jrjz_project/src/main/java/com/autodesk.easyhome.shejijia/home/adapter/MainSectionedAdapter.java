@@ -7,19 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.autodesk.easyhome.shejijia.AppConfig;
-import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
-import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
-import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
-import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
-import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.adapter.SectionedBaseAdapter;
+import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 
 import java.util.ArrayList;
 import java.util.List;

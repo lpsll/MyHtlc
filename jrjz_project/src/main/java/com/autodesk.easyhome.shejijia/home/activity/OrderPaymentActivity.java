@@ -1,7 +1,6 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
 import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -10,23 +9,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alipay.sdk.app.PayTask;
 import com.autodesk.easyhome.shejijia.AppConfig;
-import com.autodesk.easyhome.shejijia.alipay.Keys;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
-import com.autodesk.easyhome.shejijia.alipay.Rsa;
+import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
-import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import butterknife.Bind;
 import butterknife.OnClick;

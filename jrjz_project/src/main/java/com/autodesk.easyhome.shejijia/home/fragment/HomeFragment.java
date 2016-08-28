@@ -1,15 +1,13 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
@@ -27,13 +25,11 @@ import com.autodesk.easyhome.shejijia.home.entity.ServiceClasses;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceData;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
-import com.autodesk.easyhome.shejijia.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 

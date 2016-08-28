@@ -112,11 +112,11 @@ public class ChangePhoneActivity extends BaseTitleActivity {
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
-        changePhoneDTO.setAccessToken(AppContext.get(AppConfig.ACCESSTOKEN,""));
-        changePhoneDTO.setUid(AppContext.get(AppConfig.UID,""));
+        changePhoneDTO.setAccessToken(AppContext.get("accessToken",""));
+        changePhoneDTO.setUid(AppContext.get("uid",""));
         changePhoneDTO.setTimestamp(time);
         changePhoneDTO.setRandom(random);
-        changePhoneDTO.setSign(AppContext.get(AppConfig.UID,"") +time+ random);
+        changePhoneDTO.setSign(AppContext.get("uid","") +time+ random);
         changePhoneDTO.setNewmobile(phone);
         changePhoneDTO.setSmsverifycode(code);
 

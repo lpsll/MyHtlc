@@ -12,6 +12,7 @@
         android:background="#ffffff">
 
         <EditText
+            android:maxLength="11"
             android:paddingRight="@dimen/ds_250"
             android:id="@+id/et_change_phone_phone"
             android:layout_width="wrap_content"
