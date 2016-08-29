@@ -216,7 +216,7 @@ public class ClassificationActivity extends BaseTitleActivity {
         pinnedListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
-                HomeUiGoto.gotoApt(ClassificationActivity.this);
+//                HomeUiGoto.gotoApt(ClassificationActivity.this, b9);
             }
 
             @Override

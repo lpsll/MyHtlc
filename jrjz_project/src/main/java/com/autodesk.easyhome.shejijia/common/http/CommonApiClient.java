@@ -1,14 +1,18 @@
 package com.autodesk.easyhome.shejijia.common.http;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
@@ -147,6 +151,48 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, AddAddressResult.class);
         post(getAbsoluteUrl("/user/address/add"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 修改地址
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void modifyAddress(Activity act, ModifyAddressDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/user/address/save"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 常用地址
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void selectdAddress(Activity act, BaseDTO
+            dto, CallBack<SelectAddressResult> callback) {
+        AsyncCallBack<SelectAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, SelectAddressResult.class);
+        get(getAbsoluteUrl("/user/address/list/"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 删除地址
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void deleteAddress(Activity act, DeleteAddressDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/user/address/delete"), dto,
                 asyncCallBack);
     }
 

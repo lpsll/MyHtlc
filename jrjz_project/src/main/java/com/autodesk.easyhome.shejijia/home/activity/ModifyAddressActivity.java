@@ -13,26 +13,25 @@ import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
-import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
+import com.autodesk.easyhome.shejijia.home.entity.SelectAddressEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
- * 新增地址页
+ * 修改地址页
  */
-public class AddAddressActivity extends BaseTitleActivity {
+public class ModifyAddressActivity extends BaseTitleActivity {
     @Bind(R.id.et_name)
     EditText mEtName;
     @Bind(R.id.et_phone)
@@ -55,16 +54,35 @@ public class AddAddressActivity extends BaseTitleActivity {
     Button mAddBtn;
     private ArrayAdapter<String> mAdapterCity,mAdapterAre,mAdapterHuan;
     private List<String> city_list,are_list,huan_list;
-    private String mCity,mAre,mHuan;
+    private String mCity,mAre,mHuan,mId,mName,mPhone,mCt,mAe,mFan,mAddress;
+    SelectAddressEntity entity;
+    int option ;
 
     @Override
     protected int getContentResId() {
-        return R.layout.activity_addaddress;
+        return R.layout.activity_modifyaddress;
     }
 
     @Override
     public void initView() {
-        setTitleText("新增地址");
+        setTitleText("修改地址");
+        option =1;
+        entity = (SelectAddressEntity) getIntent().getBundleExtra("bundle").getSerializable("SelectAddressEntity");
+        mId = entity.getId();
+        mName = entity.getName();
+        mPhone = entity.getMobile();
+        mCt = entity.getCity();
+        mAe = entity.getArea();
+        mFan = entity.getDistrict();
+        mAddress = entity.getAddress();
+
+        LogUtils.e("mName---",""+mName);
+        mEtName.setText(mName);
+        mEtPhone.setText(mPhone);
+        mCity = mCt;
+        mAre = mAe;
+        mHuan = mFan;
+        mEtAddress.setText(mAddress);
 
         //将可选内容与ArrayAdapter连接
         mAdapterCity=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.city));
@@ -95,6 +113,11 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                if(option==1){
+                    tv.setText(mCity);
+                    option =2;
+                }
+
                 mCity =tv.getText().toString();
                 LogUtils.e("mTvCity----",""+mCity);
             }
@@ -109,6 +132,11 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                if(option==1){
+                    tv.setText(mAre);
+                    option =2;
+                }
+
                 mAre =tv.getText().toString();
             }
 
@@ -122,6 +150,11 @@ public class AddAddressActivity extends BaseTitleActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
                 tv.setTextSize(12.0f);    //设置大小
+                if(option==1){
+                    tv.setText(mHuan);
+                    option =2;
+                }
+
                 mHuan =tv.getText().toString();
             }
 
@@ -158,7 +191,7 @@ public class AddAddressActivity extends BaseTitleActivity {
                     DialogUtils.showPrompt(this, "提示","请输入地址", "知道了");
                 }
                 else {
-                    reqAdd();//新增地址
+                    reqModify();//修改地址
                 }
                 break;
             case R.id.base_titlebar_back:
@@ -167,15 +200,15 @@ public class AddAddressActivity extends BaseTitleActivity {
         }
     }
 
-    private void reqAdd() {
-        AddAddressDTO dto = new AddAddressDTO();
+    private void reqModify() {
+        ModifyAddressDTO dto = new ModifyAddressDTO();
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setUid(AppContext.get("uid", ""));
         dto.setTimestamp(time);
         dto.setRandom(random);
-        dto.setSign(AppContext.get("uid", "")+time+random);
+        dto.setSign(AppContext.get("uid", "") + time + random);
         dto.setName(mEtName.getText().toString());
         dto.setMobile(mEtPhone.getText().toString());
         dto.setCity(mCity);
@@ -183,12 +216,13 @@ public class AddAddressActivity extends BaseTitleActivity {
         dto.setArea(mHuan);
         dto.setAddress(mEtAddress.getText().toString());
         dto.setIsDefault("1");//默认为是，是/1,否/2
-        CommonApiClient.addAddress(this, dto, new CallBack<AddAddressResult>() {
+        dto.setId(mId);
+        CommonApiClient.modifyAddress(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
-                    LogUtils.e("新增地址成功");
-                    setResult(102);
+                    LogUtils.e("修改地址成功");
+                    setResult(101);
                     finish();
 
                 }
@@ -196,12 +230,4 @@ public class AddAddressActivity extends BaseTitleActivity {
             }
         });
     }
-
-
-
-
-
-
-
-
 }

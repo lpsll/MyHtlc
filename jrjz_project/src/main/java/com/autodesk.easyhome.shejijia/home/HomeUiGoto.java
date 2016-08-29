@@ -3,11 +3,13 @@ package com.autodesk.easyhome.shejijia.home;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 
 import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
+import com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
@@ -36,10 +38,12 @@ public class HomeUiGoto {
     /**
      * 跳转到预约页
      * @param context
+     * @param bundle
      */
 
-    public static void gotoApt(Context context){
+    public static void gotoApt(Context context, Bundle bundle){
         Intent intent = new Intent(context, AppointmentActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 
@@ -87,10 +91,22 @@ public class HomeUiGoto {
      * 跳转到新增地址页
      * @param context
      */
+    public static final int ADDRSS_REQUEST = 001;
+    public static void gotoAddress(Activity act){
+        Intent intent = new Intent(act, AddAddressActivity.class);
+        act.startActivityForResult(intent,ADDRSS_REQUEST);
+    }
 
-    public static void gotoAddress(Context context){
-        Intent intent = new Intent(context, AddAddressActivity.class);
-        context.startActivity(intent);
+    /**
+     * 跳转到修改地址页
+     * @param context
+     * @param b
+     */
+    public static final int MODIFY_REQUEST = 002;
+    public static void gotoModify(Activity act, Bundle b){
+        Intent intent = new Intent(act, ModifyAddressActivity.class);
+        intent.putExtra("bundle",b);
+        act.startActivityForResult(intent,MODIFY_REQUEST);
     }
 
     /**

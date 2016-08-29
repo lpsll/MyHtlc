@@ -17,6 +17,7 @@ public class MineUiGoto {
      */
 
     public static final int SETTING_REQUEST = 0x1101;
+
     public static void gotoSetting(Activity act) {
         Intent intent = new Intent(act, MoreSettingActivity.class);
         act.startActivityForResult(intent, SETTING_REQUEST);

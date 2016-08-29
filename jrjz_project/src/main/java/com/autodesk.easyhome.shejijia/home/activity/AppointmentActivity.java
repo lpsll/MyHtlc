@@ -86,6 +86,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_CAMERA_CODE = 10;
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
+    private String mName;
 
 
 
@@ -97,6 +98,9 @@ public class AppointmentActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("预约");
+        mName = getIntent().getBundleExtra("bundle").getString("mName");
+        mTvProject.setText(mName);
+
         int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
         cols = cols < 3 ? 3 : cols;
         mGv.setNumColumns(cols);

@@ -1,12 +1,14 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
@@ -156,6 +158,8 @@ public class HomeFragment extends BaseFragment {
     ImageView serviceImg0304;
     @Bind(R.id.service_tv03_04)
     TextView serviceTv0304;
+    List<ServiceClasses> classes;
+    private String mName;
 
     @Override
     protected void retry() {
@@ -198,7 +202,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setServiceData(ServiceData data) {
-        List<ServiceClasses> classes = data.getClasses();
+        classes = data.getClasses();
         serviceTv01.setText(classes.get(0).getName());
         serviceTv02.setText(classes.get(1).getName());
         serviceTv03.setText(classes.get(2).getName());
@@ -306,50 +310,68 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin07:
-                //跳转到用户名密码登录页面
-
-//                HomeUiGoto.gotoRegister(getActivity());
-//                HomeUiGoto.gotoApt(getActivity());
-                HomeUiGoto.gotoLoginForPwd(getActivity());
+                Bundle b1 = new Bundle();
+                b1.putString("mName",classes.get(0).getServices().get(0).getName());
+                HomeUiGoto.gotoApt(getActivity(),b1);
                 break;
             case R.id.lin08:
-                HomeUiGoto.gotoApt(getActivity());
-                break;
+                Bundle b2 = new Bundle();
+                b2.putString("mName",classes.get(0).getServices().get(1).getName());
+                HomeUiGoto.gotoApt(getActivity(),b2);
+
             case R.id.lin09:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b3 = new Bundle();
+                b3.putString("mName",classes.get(0).getServices().get(2).getName());
+                HomeUiGoto.gotoApt(getActivity(),b3);
                 break;
             case R.id.lin10:
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin11:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b4 = new Bundle();
+                b4.putString("mName",classes.get(1).getServices().get(0).getName());
+                HomeUiGoto.gotoApt(getActivity(),b4);
                 break;
             case R.id.lin12:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b5 = new Bundle();
+                b5.putString("mName",classes.get(1).getServices().get(1).getName());
+                HomeUiGoto.gotoApt(getActivity(),b5);
                 break;
             case R.id.lin13:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b6 = new Bundle();
+                b6.putString("uid",classes.get(1).getServices().get(2).getName());
+                HomeUiGoto.gotoApt(getActivity(),b6);
                 break;
             case R.id.lin14:
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin15:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b7 = new Bundle();
+                b7.putString("mName",classes.get(2).getServices().get(0).getName());
+                HomeUiGoto.gotoApt(getActivity(),b7);
                 break;
             case R.id.lin_15:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b8 = new Bundle();
+                b8.putString("uid",classes.get(2).getServices().get(1).getName());
+                HomeUiGoto.gotoApt(getActivity(),b8);
                 break;
             case R.id.lin16:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b9 = new Bundle();
+                b9.putString("mName",classes.get(2).getServices().get(2).getName());
+                HomeUiGoto.gotoApt(getActivity(),b9);
                 break;
             case R.id.lin17:
-                HomeUiGoto.gotoApt(getActivity());
+                Bundle b10 = new Bundle();
+                b10.putString("mName",classes.get(2).getServices().get(3).getName());
+                HomeUiGoto.gotoApt(getActivity(),b10);
                 break;
             case R.id.all_service:
                 HomeUiGoto.gotoCf(getActivity());
                 break;
         }
     }
+
+
 
 
 }

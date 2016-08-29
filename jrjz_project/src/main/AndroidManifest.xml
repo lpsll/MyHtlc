@@ -149,6 +149,10 @@
             android:name="com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name="com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity"
+            android:screenOrientation="portrait" />
+
 
         <activity android:name="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity" />

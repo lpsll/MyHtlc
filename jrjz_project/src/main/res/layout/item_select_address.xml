@@ -3,54 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-        <LinearLayout
-            android:paddingTop="@dimen/ds_50"
-            android:paddingBottom="@dimen/ds_30"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/add_tv01"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_60"
-                android:text="ddddd"
-                android:textColor="@color/color_01"
-                android:textSize="@dimen/fs_50"/>
-            <TextView
-                android:id="@+id/add_tv02"
-                android:layout_marginLeft="@dimen/ds_60"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="ddddd"
-                android:textColor="@color/color_01"
-                android:textSize="@dimen/fs_50"/>
-            <TextView
-                android:id="@+id/add_tv03"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_330"
-                android:text="13166666666"
-                android:textColor="@color/color_01"
-                android:textSize="@dimen/fs_50"/>
-        </LinearLayout>
+
+
         <TextView
             android:paddingBottom="@dimen/ds_40"
             android:layout_marginRight="@dimen/ds_80"
-            android:id="@+id/add_tv04"
+            android:id="@+id/add_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"
             android:layout_marginLeft="@dimen/ds_60"
-            android:text="dddddddddddddddddddddddddddddsssssssssssssssssssssssssdddd"
+            android:text="ddddddddddssssssssssssssssssssssdddd"
             android:textColor="@color/color_01"
             android:textSize="@dimen/fs_50"/>
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

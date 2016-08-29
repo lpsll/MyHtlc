@@ -38,9 +38,10 @@ public class BaseApiClient {
 
 	public static <T> void get(String url,Object dto,
 							   AsyncCallBack<T> asyncCallBack) {
+		LogUtils.e("http_request_url:" + url);
 
 		if(dto!=null){
-
+			LogUtils.e("get-------------reqParams   start-------------");
 			Map<String, ?> map = objectToMap(dto);
 			if (map == null)
 				return;
@@ -49,13 +50,14 @@ public class BaseApiClient {
 			String beginLetter="?";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
-				if(TextUtils.isEmpty(map.get(s).toString())){
-					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
-					continue;
-				}
+//				if(TextUtils.isEmpty(map.get(s).toString())){
+//					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+//					continue;
+//				}
 				if (params.equals(""))
 				{
-					params += beginLetter + s + "=" + map.get(s);
+//					params += beginLetter + s + "=" + map.get(s);
+					params += map.get(s);
 				}
 				else
 				{
@@ -63,10 +65,11 @@ public class BaseApiClient {
 				}
 
 			}
+			LogUtils.e("get-------------reqParams    end-------------");
 			url+=params;
 
 		}
-		LogUtils.e("tag","get url:"+url);
+		LogUtils.e("get url:",""+url);
 		Request request = new Request.Builder().tag(asyncCallBack.getTag())
 				.url(url).get().build();
 		enqueue(request, asyncCallBack);

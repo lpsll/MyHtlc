@@ -80,7 +80,7 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
 
 //            tv02.setText(str[section][position]);
             if (flagArray.get(section)) {
-                right_item.setBackgroundColor(Color.parseColor("#bbffff"));
+                right_item.setBackgroundColor(Color.parseColor("#E0FFFF"));
             } else {
                 right_item.setBackgroundColor(Color.TRANSPARENT);
             }
@@ -125,7 +125,7 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
         ((TextView) layout.findViewById(R.id.textItem)).setText(mList.get(section));
         if (flagArray.get(section)) {
             LogUtils.e("getSectionHeaderView---flagArray--if",""+flagArray);
-            ((TextView) layout.findViewById(R.id.textItem)).setBackgroundColor(Color.parseColor("#bbffff"));
+            ((TextView) layout.findViewById(R.id.textItem)).setBackgroundColor(Color.parseColor("#E0FFFF"));
         } else {
             LogUtils.e("getSectionHeaderView---flagArray--else",""+flagArray);
             ((TextView) layout.findViewById(R.id.textItem)).setBackgroundColor(Color.TRANSPARENT);
