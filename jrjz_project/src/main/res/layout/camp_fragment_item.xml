@@ -10,36 +10,38 @@
 
 
         <ImageView
-            android:layout_width="@dimen/ds_40"
-            android:layout_height="@dimen/ds_60"
-            android:layout_marginTop="@dimen/ds_80"
-            android:layout_marginLeft="@dimen/ds_70"
             android:id="@+id/img_campaign_fragment_item_rmb"
+            android:layout_width="@dimen/ds_45"
+            android:layout_height="@dimen/ds_60"
+            android:layout_marginLeft="@dimen/ds_70"
+            android:layout_marginTop="@dimen/ds_80"
             android:background="@drawable/hongse_03" />
 
 
         <TextView
+            android:id="@+id/tv_campaign_fragment_item_chongzhi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_campaign_fragment_item_chongzhi"
             android:layout_marginLeft="@dimen/ds_180"
             android:layout_marginTop="@dimen/ds_70"
             android:text="充值500元"
             android:textColor="#000000"
-            android:textSize="@dimen/fs_45" />
+            android:textSize="@dimen/fs_50"
+            android:textStyle="bold" />
 
 
         <TextView
+            android:id="@+id/tv_campaign_fragment_item_zengsong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/ds_145"
             android:layout_marginLeft="@dimen/ds_180"
-            android:textSize="@dimen/fs_45"
-            android:id="@+id/tv_campaign_fragment_item_zengsong"
-            android:text="赠送价值30元的优惠券" />
+            android:layout_marginTop="@dimen/ds_145"
+            android:text="赠送价值30元的优惠券"
+            android:textColor="#d20000"
+            android:textSize="@dimen/fs_50"
+            android:textStyle="bold" />
 
         <TextView
-            android:textSize="@dimen/ds_45"
             android:id="@+id/img_lijichongzhi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,7 +54,8 @@
             android:paddingRight="@dimen/ds_20"
             android:paddingTop="@dimen/ds_15"
             android:text="立即充值"
-            android:textColor="@drawable/top_up_text_selector" />
+            android:textColor="@drawable/top_up_text_selector"
+            android:textSize="@dimen/ds_45" />
 
     </RelativeLayout>
 

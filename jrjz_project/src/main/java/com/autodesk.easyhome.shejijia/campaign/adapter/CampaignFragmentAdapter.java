@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.MainActivity;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.CampaignUIGoto;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
-import com.autodesk.easyhome.shejijia.R;
 
 import java.util.List;
 
@@ -60,13 +60,18 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             final MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + mZengsong.get(position - 1) + "元的优惠券");
             myViewHolder.tv_campaign_fragment_item_chongzhi.setText("充值" + mChongzhi.get(position - 1) + "元");
+
+            int[] images = {R.drawable.tupian1_03,R.drawable.green_03,R.drawable.huangse_03,R.drawable.juhuang_03,R.drawable.hongse_03};
+//            int ramdom =  new Random().nextInt(5);
+            myViewHolder.img_campaign_fragment_item_rmb.setBackgroundResource(images[(position-1)%5]);
+
+
             myViewHolder.img_lijichongzhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //跳转到充值页面
-                    
                     if(AppContext.get("IS_LOGIN",false)) {
-                        //跳转到登录页
+                        //跳转充值页
                         Intent intent = new Intent(context, TopUpActivity.class);
                         intent.putExtra("TypeForTopUp", "fixed");
                         context.startActivity(intent);

@@ -22,17 +22,9 @@ import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
  */
 public class ChangePhoneDTO extends BaseDTO {
 
-    private String accessToken;
     private String newmobile;
     private String smsverifycode;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
 
     public String getNewmobile() {
         return newmobile;

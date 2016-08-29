@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia.register.dto;
 
-import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 
 /**
@@ -19,9 +18,15 @@ import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 
  sign:签名
  */
-public class RegisterDTO extends BaseDTO {
+public class RegisterDTO  {
+
+
+    public String uid;
     public String password;
+    public String timestamp;
+    public String random;
     public String smsverifycode;
+    public String sign;
 
 
     public String getPassword() {
@@ -60,5 +65,15 @@ public class RegisterDTO extends BaseDTO {
         return sign;
     }
 
+    public String getUid() {
+        return uid;
+    }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public void setSign(String sign) {
+        this.sign = SecurityUtils.md5(sign);
+    }
 }

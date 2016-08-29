@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds_273"
+    android:layout_height="@dimen/ds_300"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/img_campaign_fragment_top"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_273"
+        android:layout_height="@dimen/ds_300"
         android:background="@drawable/test6" />
 
 </LinearLayout>

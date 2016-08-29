@@ -7,16 +7,8 @@ import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
  */
 public class FeedBackDTO  extends BaseDTO{
 
-    private String accessToken;
     private String fcontent;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
 
     public String getFcontent() {
         return fcontent;
