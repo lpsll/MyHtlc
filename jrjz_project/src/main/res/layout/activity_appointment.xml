@@ -4,6 +4,15 @@
     android:id="@+id/main"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+     >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +38,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_40"
-                    android:text="ddddd"
+                    android:text="@string/select_address"
                     android:textColor="@color/color_8E"
                     android:textSize="@dimen/fs_45"/>
             <TextView
@@ -37,7 +46,7 @@
                 android:layout_marginLeft="@dimen/ds_40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ddddd"
+                android:text=""
                 android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
             <TextView
@@ -45,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_40"
-                android:text="ddddd"
+                android:text=""
                 android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
             </LinearLayout>
@@ -55,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_30"
                 android:layout_marginLeft="@dimen/ds_40"
-                android:text="ddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                android:text=""
                 android:textColor="@color/color_8E"
                 android:textSize="@dimen/fs_45"/>
         </LinearLayout>
@@ -116,6 +125,7 @@
             android:textColor="@color/color_8E"
             android:text="@string/apt_time"/>
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
@@ -137,12 +147,14 @@
         android:background="@color/color_cc"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_150"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_40"
+            android:layout_marginBottom="@dimen/ds_40"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
             android:textColor="@color/color_8E"
@@ -151,6 +163,8 @@
             android:id="@+id/et_describe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ds_20"
+            android:layout_marginBottom="@dimen/ds_20"
             android:background="@null"
             android:hint="@string/app_describe"
             android:textSize="@dimen/fs_45"
@@ -164,11 +178,11 @@
         android:background="@color/color_cc"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_600"
+        android:layout_height="500dip"
         android:layout_marginTop="@dimen/ds_30"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/ds_250"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
@@ -184,11 +198,11 @@
             <GridView
                 android:id="@+id/gridView"
                 android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/ds_40"
                 android:horizontalSpacing="@dimen/ds_20"
                 android:numColumns="3"
-                android:verticalSpacing="@dimen/ds_100" />
+                android:verticalSpacing="@dimen/ds_30" />
 
 
             <ImageView
@@ -202,29 +216,20 @@
     </LinearLayout>
 
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ds_30"
-        android:layout_weight="1">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_cc"/>
+        </LinearLayout>
+    </ScrollView>
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:background="@color/color_ff"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_180"
-        android:layout_marginTop="@dimen/ds_30"
-        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_40"
+            android:layout_gravity="center_vertical"
             android:textColor="@color/color_8E"
             android:gravity="center"
             android:text="@string/app_money"/>
@@ -232,6 +237,7 @@
             android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
             android:textColor="@color/color_bottom"
@@ -242,12 +248,11 @@
             android:layout_width="@dimen/ds_240"
             android:layout_height="@dimen/ds_80"
             android:layout_marginLeft="@dimen/ds_360"
-            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/ok_selector"
             android:text="@string/op_tj"
             android:textColor="@color/color_ff"
             android:textSize="@dimen/fs_50" />
     </LinearLayout>
-    </RelativeLayout>
 
 </LinearLayout>

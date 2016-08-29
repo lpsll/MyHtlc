@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,6 +8,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -23,11 +25,20 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
+import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.bumptech.glide.Glide;
 import com.autodesk.easyhome.shejijia.R;
 import com.lidong.photopicker.PhotoPickerActivity;
@@ -40,6 +51,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -76,6 +88,8 @@ public class AppointmentActivity extends BaseTitleActivity {
     TextView mTvMoney;
     @Bind(R.id.apt_btn)
     Button mAptBtn;
+    @Bind(R.id.tv_time)
+    TextView mTime;
 
     PopupWindow popWindow;
     TextView mCamera,mPhoto,mExit;
@@ -86,7 +100,13 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_CAMERA_CODE = 10;
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
-    private String mName;
+    private String mName,mId;
+    private String mPImg1;
+    private String mPImg2;
+    private String mPImg3;
+    private String mPic1;
+    private String mPic2;
+    private String mPic3;
 
 
 
@@ -99,6 +119,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("预约");
         mName = getIntent().getBundleExtra("bundle").getString("mName");
+        mId = getIntent().getBundleExtra("bundle").getString("mId");
         mTvProject.setText(mName);
 
         int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
@@ -123,10 +144,26 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        reqService();//服务费
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
 
+    }
+
+    private void reqService() {
+        DeleteAddressDTO dto = new DeleteAddressDTO();
+        dto.setId(mId);
+        CommonApiClient.serviceCharge(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取服务费成功");
+                    mTvMoney.setText(result.getData());
+                }
+
+            }
+        });
     }
 
 
@@ -146,7 +183,23 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoProjectDetails(this);
                 break;
             case R.id.apt_btn:
-                HomeUiGoto.gotoOrder(this);
+                if(mAddTv02.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
+                }
+//                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
+//                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+//                }
+                else if(mEtDescribe.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
+                }
+                else if(mAddTv02.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
+                }
+                else {
+                    reqAppointment();//预约
+
+                }
+
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
@@ -162,7 +215,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 PhotoPickerIntent intent = new PhotoPickerIntent(AppointmentActivity.this);
                 intent.setSelectModel(SelectModel.MULTI);
                 intent.setShowCarema(true); // 是否显示拍照
-                intent.setMaxTotal(3); // 最多选择照片数量，默认为6
+                intent.setMaxTotal(8); // 最多选择照片数量，默认为6
                 intent.setSelectedPaths(imagePaths); // 已选中的照片地址， 用于回显选中状态
                 LogUtils.e("imagePaths---", "" + imagePaths);
                 startActivityForResult(intent, REQUEST_CAMERA_CODE);
@@ -173,6 +226,77 @@ public class AppointmentActivity extends BaseTitleActivity {
                 popWindow.dismiss();
                 break;
         }
+    }
+
+    private void initPic() {
+        mPImg1 = AppContext.get("mPImg1","");
+        mPImg2 = AppContext.get("mPImg2", "");
+        mPImg3 = AppContext.get("mPImg3", "");
+        if(TextUtils.isEmpty(mPImg1)){
+            mPImg1 ="";
+        }else {
+
+            LogUtils.e("byte----",""+ImageLoaderUtils.getBitmapByte(mPImg1,null));
+            mPic1 = ImageLoaderUtils.imgToBase64(mPImg1, null, null);
+
+//            try {
+//                mPic1 = new String(ImageLoaderUtils.getBitmapByte(mPImg1,null),"UTF-8");
+//            } catch (UnsupportedEncodingException e) {
+//                e.printStackTrace();
+//            }
+
+        }
+        if(TextUtils.isEmpty(mPImg2)){
+            mPImg2 ="";
+        }else {
+
+            mPic2 = ImageLoaderUtils.imgToBase64(mPImg2, null, null);
+        }
+        if(TextUtils.isEmpty(mPImg3)){
+            mPImg3 ="";
+        }else {
+            mPic3 = ImageLoaderUtils.imgToBase64(mPImg3, null, null);
+        }
+        LogUtils.e("initPic---mPImg1---", "" + mPic1);
+        LogUtils.e("initPic---mPImg2---",""+mPic2);
+        LogUtils.e("initPic---mPImg3---", "" + mPic3);
+    }
+
+    private void reqAppointment() {
+        initPic();
+        AppointmentDTO dto = new AppointmentDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken",""));
+        dto.setRandom(random);
+        dto.setUid(AppContext.get("uid",""));
+        dto.setTimestamp(time);
+        dto.setSign(AppContext.get("uid","")+time+random);
+        dto.setCustName(mAddTv01.getText().toString());
+        dto.setPhone(mAddTv02.getText().toString());
+        dto.setAddress(mAddTv04.getText().toString());
+        dto.setServiceItemId(mId);
+        dto.setServiceTime("12:00");
+        dto.setDescr(mEtDescribe.getText().toString());
+        dto.setHomeVisitFee(mTvMoney.getText().toString());
+        dto.setImage1("");
+//        dto.setImage2("");
+//        dto.setImage3("");
+//        dto.setImage4("");
+//        dto.setImage5("");
+//        dto.setImage6("");
+//        dto.setImage7("");
+//        dto.setImage8("");
+        CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("预约成功");
+                    HomeUiGoto.gotoOrder(AppointmentActivity.this);
+                }
+
+            }
+        });
     }
 
     private void showPicPop() {
@@ -332,6 +456,28 @@ public class AppointmentActivity extends BaseTitleActivity {
 
                 break;
 
+            case HomeUiGoto.SELECT_REQUEST:
+                LogUtils.e("SELECT_REQUEST----","SELECT_REQUEST");
+                if(resultCode==00001){
+                    if(TextUtils.isEmpty(AppContext.get("name",""))){
+                        return;
+                    }else
+                    {
+                        mAddTv01.setText(AppContext.get("name",""));
+                        mAddTv02.setText(AppContext.get("mobile",""));
+                        mAddTv04.setText(AppContext.get("address",""));
+                        AppContext.set("name","");
+                        AppContext.set("mobile","");
+                        AppContext.set("address","");
+
+                    }
+                }
+                else if(resultCode==00002){
+
+                }
+
+                break;
+
             default:
                 break;
 
@@ -367,7 +513,7 @@ public class AppointmentActivity extends BaseTitleActivity {
         private LayoutInflater inflater;
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
-            if(listUrls.size() == 4){
+            if(listUrls.size() == 9){
                 listUrls.remove(listUrls.size()-1);
             }
             inflater = LayoutInflater.from(AppointmentActivity.this);
@@ -402,35 +548,35 @@ public class AppointmentActivity extends BaseTitleActivity {
             LogUtils.e("path",""+path);
             LogUtils.e("listUrls.size()---",""+listUrls.size());
 
-//            if(listUrls.size()==1){
-//                mPImg1 = "";
-//                mPImg2 = "";
-//                mPImg3 = "";
-//                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-//            }
-//            if(listUrls.size()==2){
-//                mPImg1 =listUrls.get(0);
-//                mPImg2 = "";
-//                mPImg3 = "";
-//                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-//                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
-//            }
-//            if(listUrls.size()==3){
-//                mPImg1 =listUrls.get(0);
-//                mPImg2 =listUrls.get(1);
-//                if(listUrls.get(2).equals("000000")){
-//                    mPImg3 = "";
-//                }else {
-//                    mPImg3 = listUrls.get(2);
-//                }
-//                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-//                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
-//                LogUtils.e("listUrls.get(2)----", "" + listUrls.get(2));
-//            }
-//
-//            AppContext.set("mPImg1",mPImg1);
-//            AppContext.set("mPImg2",mPImg2);
-//            AppContext.set("mPImg3",mPImg3);
+            if(listUrls.size()==1){
+                mPImg1 = "";
+                mPImg2 = "";
+                mPImg3 = "";
+                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
+            }
+            if(listUrls.size()==2){
+                mPImg1 =listUrls.get(0);
+                mPImg2 = "";
+                mPImg3 = "";
+                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
+                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
+            }
+            if(listUrls.size()==3){
+                mPImg1 =listUrls.get(0);
+                mPImg2 =listUrls.get(1);
+                if(listUrls.get(2).equals("000000")){
+                    mPImg3 = "";
+                }else {
+                    mPImg3 = listUrls.get(2);
+                }
+                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
+                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
+                LogUtils.e("listUrls.get(2)----", "" + listUrls.get(2));
+            }
+
+            AppContext.set("mPImg1",mPImg1);
+            AppContext.set("mPImg2",mPImg2);
+            AppContext.set("mPImg3",mPImg3);
 
 
 
@@ -452,6 +598,9 @@ public class AppointmentActivity extends BaseTitleActivity {
             ImageView image;
         }
     }
+
+
+
 
 
 

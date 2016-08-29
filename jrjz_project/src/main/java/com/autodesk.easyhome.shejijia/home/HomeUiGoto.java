@@ -61,20 +61,20 @@ public class HomeUiGoto {
      * 跳转到常用地址页
      * @param context
      */
-
-    public static void gotoSelect(Context context){
-        Intent intent = new Intent(context, SelectAddressActivity.class);
-        context.startActivity(intent);
+    public static final int SELECT_REQUEST = 010;
+    public static void gotoSelect(Activity act){
+        Intent intent = new Intent(act, SelectAddressActivity.class);
+        act.startActivityForResult(intent,SELECT_REQUEST);
     }
 
     /**
      * 跳转到服务时间页
-     * @param context
+     * @param act
      */
 
-    public static void gotoSt(Context context){
-        Intent intent = new Intent(context, ServiceTimeActivity.class);
-        context.startActivity(intent);
+    public static void gotoSt(Activity act){
+        Intent intent = new Intent(act, ServiceTimeActivity.class);
+        act.startActivityForResult(intent,SELECT_REQUEST);
     }
 
     /**

@@ -13,6 +13,7 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -207,6 +208,27 @@ public class ImageLoaderUtils {
         while ((read = in.read(b)) != -1) {
             out.write(b, 0, read);
         }
+    }
+
+    //将图片转换成二进制流
+    public static byte[] getBitmapByte(String imgPath, Bitmap bitmap){
+        LogUtils.e("imgPath---",""+imgPath);
+        if (imgPath !=null && imgPath.length() > 0) {
+            bitmap = readBitmap(imgPath);
+            LogUtils.e("bitmap---",""+bitmap);
+        }
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+//        Byte[] bytes ;
+//        ByteArrayInputStream inputStream = new ByteArrayInputStream(byte);
+        //参数1转换类型，参数2压缩质量，参数3字节流资源
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
+        try {
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return out.toByteArray();
     }
 
 

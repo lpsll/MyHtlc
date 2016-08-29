@@ -29,6 +29,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressEntity;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
@@ -51,7 +52,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
     LinearLayout mSelectLin;
     List<SelectAddressEntity> data;
     SelectAddressAdapter adapter;
-    int option;
+    int option,def;
 
     @Override
     protected int getContentResId() {
@@ -84,16 +85,33 @@ public class SelectAddressActivity extends BaseTitleActivity {
         data = result.getData();
         adapter = new SelectAddressAdapter(this, data);
         mList.setAdapter(adapter);
+        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                AppContext.set("name",data.get(position).getName());
+                AppContext.set("mobile",data.get(position).getMobile());
+                AppContext.set("address",data.get(position).getAddress());
+                setResult(00001);
+                finish();
+            }
+        });
     }
 
     @Override
     public void initData() {
-        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-        });
+
+//        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                AppContext.set("name",data.get(position).getName());
+//                AppContext.set("mobile",data.get(position).getMobile());
+//                AppContext.set("address",data.get(position).getAddress());
+//                setResult(00001);
+//                finish();
+//
+//            }
+//        });
     }
 
 
@@ -189,20 +207,33 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
             mList.add(position, list.get(position));
             holder.mTv.setText(list.get(position).getAddress());
+            if(holder.mLinSz.isEnabled()){
+                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
+                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
+            }else {
+                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+            }
+            LogUtils.e("notifyDataSetChanged---","notifyDataSetChanged");
 
             flag = false;
             final ViewHolder finalHolder = holder;
             holder.mLinSz.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (flag) {
-                        finalHolder.mCb.setChecked(false);
-                        finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
-                        flag = false;
-                    } else {
-                        finalHolder.mCb.setChecked(true);
+                    def = position;
+                    if (finalHolder.mLinSz.isEnabled()) {
+                        LogUtils.e("isEnabled---if---",""+finalHolder.mLinSz.isEnabled());
+                        reqSetUp(def);
                         finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+                        finalHolder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+                        finalHolder.mLinSz.setEnabled(false);
+                        adapter.notifyDataSetChanged();
                         flag = true;
+                    } else {
+                        LogUtils.e("isEnabled---else--",""+finalHolder.mLinSz.isEnabled());
+
+                        flag = false;
                     }
                 }
             });
@@ -235,6 +266,35 @@ public class SelectAddressActivity extends BaseTitleActivity {
             });
 
             return convertView;
+        }
+
+        private void reqSetUp(int def) {
+            ModifyAddressDTO dto = new ModifyAddressDTO();
+            String time = TimeUtils.getSignTime();
+            String random = TimeUtils.genNonceStr();
+            dto.setAccessToken(AppContext.get("accessToken", ""));
+            dto.setUid(AppContext.get("uid", ""));
+            dto.setTimestamp(time);
+            dto.setRandom(random);
+            dto.setSign(AppContext.get("uid", "") + time + random);
+            dto.setName(list.get(def).getName());
+            dto.setMobile(list.get(def).getMobile());
+            dto.setCity(list.get(def).getCity());
+            dto.setDistrict(list.get(def).getDistrict());
+            dto.setArea(list.get(def).getArea());
+            dto.setAddress(list.get(def).getAddress());
+            dto.setIsDefault("1");//默认为是，是/1,否/2
+            dto.setId(mList.get(def).getId());
+            CommonApiClient.modifyAddress(SelectAddressActivity.this, dto, new CallBack<AddAddressResult>() {
+                @Override
+                public void onSuccess(AddAddressResult result) {
+                    if (AppConfig.SUCCESS.equals(result.getCode())) {
+                        LogUtils.e("设置默认地址成功");
+
+                    }
+
+                }
+            });
         }
 
         private void reqDelete(final int option) {

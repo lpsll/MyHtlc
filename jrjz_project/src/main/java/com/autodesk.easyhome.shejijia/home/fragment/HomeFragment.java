@@ -312,16 +312,19 @@ public class HomeFragment extends BaseFragment {
             case R.id.lin07:
                 Bundle b1 = new Bundle();
                 b1.putString("mName",classes.get(0).getServices().get(0).getName());
+                b1.putString("mId",classes.get(0).getServices().get(0).getId());
                 HomeUiGoto.gotoApt(getActivity(),b1);
                 break;
             case R.id.lin08:
                 Bundle b2 = new Bundle();
                 b2.putString("mName",classes.get(0).getServices().get(1).getName());
+                b2.putString("mId",classes.get(0).getServices().get(1).getId());
                 HomeUiGoto.gotoApt(getActivity(),b2);
 
             case R.id.lin09:
                 Bundle b3 = new Bundle();
                 b3.putString("mName",classes.get(0).getServices().get(2).getName());
+                b3.putString("mId",classes.get(0).getServices().get(2).getId());
                 HomeUiGoto.gotoApt(getActivity(),b3);
                 break;
             case R.id.lin10:
@@ -330,16 +333,19 @@ public class HomeFragment extends BaseFragment {
             case R.id.lin11:
                 Bundle b4 = new Bundle();
                 b4.putString("mName",classes.get(1).getServices().get(0).getName());
+                b4.putString("mId",classes.get(1).getServices().get(0).getId());
                 HomeUiGoto.gotoApt(getActivity(),b4);
                 break;
             case R.id.lin12:
                 Bundle b5 = new Bundle();
                 b5.putString("mName",classes.get(1).getServices().get(1).getName());
+                b5.putString("mId",classes.get(1).getServices().get(1).getId());
                 HomeUiGoto.gotoApt(getActivity(),b5);
                 break;
             case R.id.lin13:
                 Bundle b6 = new Bundle();
                 b6.putString("uid",classes.get(1).getServices().get(2).getName());
+                b6.putString("mId",classes.get(1).getServices().get(2).getId());
                 HomeUiGoto.gotoApt(getActivity(),b6);
                 break;
             case R.id.lin14:
@@ -348,21 +354,25 @@ public class HomeFragment extends BaseFragment {
             case R.id.lin15:
                 Bundle b7 = new Bundle();
                 b7.putString("mName",classes.get(2).getServices().get(0).getName());
+                b7.putString("mId",classes.get(2).getServices().get(0).getId());
                 HomeUiGoto.gotoApt(getActivity(),b7);
                 break;
             case R.id.lin_15:
                 Bundle b8 = new Bundle();
                 b8.putString("uid",classes.get(2).getServices().get(1).getName());
+                b8.putString("mId",classes.get(2).getServices().get(1).getId());
                 HomeUiGoto.gotoApt(getActivity(),b8);
                 break;
             case R.id.lin16:
                 Bundle b9 = new Bundle();
                 b9.putString("mName",classes.get(2).getServices().get(2).getName());
+                b9.putString("mId",classes.get(2).getServices().get(2).getId());
                 HomeUiGoto.gotoApt(getActivity(),b9);
                 break;
             case R.id.lin17:
                 Bundle b10 = new Bundle();
                 b10.putString("mName",classes.get(2).getServices().get(3).getName());
+                b10.putString("mId",classes.get(2).getServices().get(3).getId());
                 HomeUiGoto.gotoApt(getActivity(),b10);
                 break;
             case R.id.all_service:

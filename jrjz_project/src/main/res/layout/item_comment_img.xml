@@ -5,8 +5,9 @@
     android:orientation="vertical">
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/ds_150"
+        android:layout_height="@dimen/ds_150"
         android:layout_marginTop="@dimen/ds_50"
+        android:scaleType="centerCrop"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>

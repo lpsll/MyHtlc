@@ -6,6 +6,7 @@ import android.content.Context;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
@@ -19,6 +20,7 @@ import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
 import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
+import com.autodesk.easyhome.shejijia.order.dto.CouponDTO;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
@@ -193,6 +195,48 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, AddAddressResult.class);
         post(getAbsoluteUrl("/user/address/delete"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 获取服务费
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void serviceCharge(Activity act, DeleteAddressDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        get(getAbsoluteUrl("/service/homeVisitFee/"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 优惠券
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void coupon(Activity act, CouponDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        get(getAbsoluteUrl("/coupon/couponByPage?"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 预约
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void appointment(Activity act, AppointmentDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/service/service/book"), dto,
                 asyncCallBack);
     }
 

@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -216,7 +217,10 @@ public class ClassificationActivity extends BaseTitleActivity {
         pinnedListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
-//                HomeUiGoto.gotoApt(ClassificationActivity.this, b9);
+                Bundle bundle = new Bundle();
+                bundle.putString("mName",data.get(section).getServices().get(position).getName());
+                bundle.putString("mId",data.get(section).getServices().get(position).getId());
+                HomeUiGoto.gotoApt(ClassificationActivity.this, bundle);
             }
 
             @Override

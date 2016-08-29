@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:descendantFocusability="afterDescendants"
     android:orientation="vertical">
 
 
@@ -26,13 +27,13 @@
         android:paddingTop="@dimen/ds_50"
         android:paddingBottom="@dimen/ds_50"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/ds_150"
         android:gravity="center_vertical"
         android:orientation="horizontal">
         <LinearLayout
             android:id="@+id/lin_shezhi"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/ds_150"
             android:orientation="horizontal"
             android:gravity="center">
 
@@ -44,6 +45,9 @@
             android:background="@drawable/select_check"
             android:button="@null"
             android:checked="false"
+            android:focusable="false"
+            android:clickable="false"
+            android:focusableInTouchMode="false"
             />
 
         <TextView
@@ -57,14 +61,14 @@
         </LinearLayout>
         <LinearLayout
             android:id="@+id/lin_sc"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/ds_200"
+            android:layout_height="@dimen/ds_150"
+            android:layout_marginLeft="@dimen/ds_220"
             android:gravity="center"
             android:orientation="horizontal">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/ds_200"
             android:background="@drawable/shanchuxdpi_03"/>
         <TextView
             android:layout_width="wrap_content"
@@ -78,8 +82,8 @@
         <LinearLayout
             android:layout_marginLeft="@dimen/ds_20"
             android:id="@+id/lin_bj"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/ds_200"
+            android:layout_height="@dimen/ds_150"
             android:gravity="center"
             android:orientation="horizontal">
         <ImageView
