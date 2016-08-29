@@ -26,12 +26,15 @@ public class AppContext extends BaseApplication {
         this.sp = this.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
         this.editor = this.sp.edit();
 
-
         //极光推送初始化
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
+
+
     }
+
+
 
     /**
      * 获得当前app运行的AppContext
@@ -41,7 +44,6 @@ public class AppContext extends BaseApplication {
     public static AppContext getInstance() {
         return instance;
     }
-
 
 
 }

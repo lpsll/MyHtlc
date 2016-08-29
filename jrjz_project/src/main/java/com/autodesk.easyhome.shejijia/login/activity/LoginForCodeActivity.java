@@ -24,6 +24,7 @@ import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 验证码登录页面
@@ -145,6 +146,10 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                         AppContext.set("uid", phone);
                         AppContext.set("accessToken", result.getData().getAccessToken());
                         AppContext.set("IS_LOGIN", true);
+
+                        //注册成功后设置极光推送的别名和tag
+                        JPushInterface.setAlias(LoginForCodeActivity.this, etLoginPhone.getText().toString(), null);
+
 
                         setResult(1001);
                         finish();

@@ -8,17 +8,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
-import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
-import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
+import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
 import com.autodesk.easyhome.shejijia.order.fragment.OrderFragment;
-import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +38,7 @@ public class MainActivity extends BaseTitleActivity {
     ImageView mTvTabCampaign;
     @Bind(R.id.tv_tab_mine)
     ImageView mTvTabMine;
+
 
     public static final int TAB_NUM = 4;
     private ImageView[] mTabViews = new ImageView[TAB_NUM];

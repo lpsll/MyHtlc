@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
@@ -18,10 +19,10 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 密码登录页面
@@ -144,23 +145,31 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         CommonApiClient.login(this, loginDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
-                    LogUtils.e("result========" + result.getMsg());
-                    if (AppConfig.SUCCESS.equals(result.getCode())) {
-                        LogUtils.e("登录成功");
-                        ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
-                        LogUtils.e("用户令牌======" + result.getData().getAccessToken());
+                LogUtils.e("result========" + result.getMsg());
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("登录成功");
+                    ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
+                    LogUtils.e("用户令牌======" + result.getData().getAccessToken());
 
-                        //保存用户信息
-                        AppContext.set("uid", phone);
-                        AppContext.set("accessToken", result.getData().getAccessToken());
-                        AppContext.set("IS_LOGIN", true);
+                    //保存用户信息
+                    AppContext.set("uid", phone);
+                    AppContext.set("accessToken", result.getData().getAccessToken());
+                    AppContext.set("IS_LOGIN", true);
 
-                        //跳转到预约页面
+
+                    //注册成功后设置极光推送的别名和tag
+                    JPushInterface.setAlias(LoginForPwdActivity.this, etLoginPhone.getText().toString(), null);
+
+//                    HashSet<String> tag = new HashSet<>();
+//                    tag.add("");
+//                    JPushInterface.setTags(RegisterActivity.this,tag,null);
+
+                    //跳转到预约页面
 //                        HomeUiGoto.gotoApt(LoginForPwdActivity.this);
-                        setResult(1001);
-                        finish();
-                    }
+                    setResult(1001);
+                    finish();
                 }
+            }
         });
     }
 }

@@ -24,7 +24,6 @@ import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import cn.jpush.android.api.JPushInterface;
 
 public class RegisterActivity extends BaseTitleActivity {
 
@@ -182,13 +181,6 @@ public class RegisterActivity extends BaseTitleActivity {
                     LogUtils.e("注册成功");
                     ToastUtils.showShort(RegisterActivity.this, "注册成功");
                     LogUtils.e("result---", "" + result);
-
-                    //注册成功后设置极光推送的别名和tag
-                    JPushInterface.setAlias(RegisterActivity.this, etRegisterPhone.getText().toString(), null);
-
-//                    HashSet<String> tag = new HashSet<>();
-//                    tag.add("");
-//                    JPushInterface.setTags(RegisterActivity.this,tag,null);
 
                     //跳转到登录页面
                     HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);

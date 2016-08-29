@@ -1,10 +1,10 @@
 package com.autodesk.easyhome.shejijia.common.base;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
-
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppManager;
@@ -16,6 +16,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 
 import butterknife.ButterKnife;
+import cn.jpush.android.api.JPushInterface;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -42,7 +43,11 @@ public abstract class BaseActivity  extends FragmentActivity implements
 
         initView();
         initData();
+
+        JPushInterface.init(getApplicationContext());
     }
+
+
 
     /**
      * 资源文件Layout ID
