@@ -173,7 +173,7 @@ public class RegisterActivity extends BaseTitleActivity {
         registerDTO.setTimestamp(time);
         registerDTO.setRandom(random);
         registerDTO.setSmsverifycode(etRegisterCode.getText().toString());
-        registerDTO.setSign(etRegisterPhone.getText().toString() + etRegisterPassword.getText().toString() + time + random);
+        registerDTO.setSign(etRegisterPhone.getText().toString() + registerDTO.getPassword() + time + random);
         CommonApiClient.register(this, registerDTO, new CallBack<BaseEntity>() {
             @Override
             public void onSuccess(BaseEntity result) {

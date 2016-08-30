@@ -138,7 +138,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         loginDTO.setPassword(pwd);
         loginDTO.setTimestamp(time);
         loginDTO.setRandom(random);
-        loginDTO.setSign(phone + pwd + time + random);
+        loginDTO.setSign(phone + loginDTO.getPassword() + time + random);
         loginDTO.setUsertype(AppConfig.COMMON_USER_TYPE); //默认为普通用户
         LogUtils.e("time---", "" + time);
         LogUtils.e("random---", "" + random);

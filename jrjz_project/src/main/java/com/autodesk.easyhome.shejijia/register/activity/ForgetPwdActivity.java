@@ -192,7 +192,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
         forgetPwdDTO.setRandom(random);
         forgetPwdDTO.setSmsverifycode(code);
         forgetPwdDTO.setPassword(pwd);
-        forgetPwdDTO.setSign(phone + pwd + time + random);
+        forgetPwdDTO.setSign(phone + forgetPwdDTO.getPassword() + time + random);
 
         CommonApiClient.forgetPwd(this, forgetPwdDTO, new CallBack<BaseEntity>() {
             @Override
