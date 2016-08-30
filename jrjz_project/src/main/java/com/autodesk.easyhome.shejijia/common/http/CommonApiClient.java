@@ -1,7 +1,6 @@
 package com.autodesk.easyhome.shejijia.common.http;
 
 import android.app.Activity;
-import android.content.Context;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
@@ -18,6 +17,7 @@ import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
+import com.autodesk.easyhome.shejijia.mine.Entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
 import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
 import com.autodesk.easyhome.shejijia.order.dto.CouponDTO;
@@ -284,5 +284,32 @@ public class CommonApiClient extends BaseApiClient{
     }
 
 
+    /**
+     * 用户登出
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void logout(Activity act, BaseDTO
+            dto, CallBack<BaseEntity> callback) {
+        AsyncCallBack<BaseEntity> asyncCallBack = new AsyncCallBack<>(
+                act, callback, BaseEntity.class);
+        post(getAbsoluteUrl("/user/logout"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 获取用户信息
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void getUserDetail(Activity act, BaseDTO
+            dto, CallBack<UserDetailResult> callback) {
+        AsyncCallBack<UserDetailResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, UserDetailResult.class);
+        get(getAbsoluteUrl("/user/userDetail?"), dto,
+                asyncCallBack);
+    }
 
 }

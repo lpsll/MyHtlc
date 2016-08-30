@@ -83,6 +83,7 @@
                         android:textSize="@dimen/fs_43" />
 
                     <TextView
+                        android:id="@+id/tv_mine_point"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/score_txt1"
@@ -123,6 +124,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_mine_balance"
                         android:layout_below="@id/tv_my_yue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

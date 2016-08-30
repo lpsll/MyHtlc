@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.autodesk.easyhome.shejijia">
 
-    <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />

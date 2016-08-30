@@ -43,7 +43,7 @@ public class MainActivity extends BaseTitleActivity {
     public static final int TAB_NUM = 4;
     private ImageView[] mTabViews = new ImageView[TAB_NUM];
     private FragmentManager fragmentManager;
-    private List<BaseFragment> fragmentList=new ArrayList<>();
+    private List<BaseFragment> fragmentList = new ArrayList<>();
     /**
      * Tab图片没有选中的状态资源ID
      */
@@ -61,8 +61,8 @@ public class MainActivity extends BaseTitleActivity {
             R.drawable.huodongdxdpi_03_03,
             R.drawable.wodedxdpi_03};
 
-    private int currentTab=-1; // 当前Tab页面索引
-    private TextView mBaseEnsure,mBaseBack;
+    private int currentTab = -1; // 当前Tab页面索引
+    private TextView mBaseEnsure, mBaseBack;
 
     @Override
     protected int getContentResId() {
@@ -99,7 +99,7 @@ public class MainActivity extends BaseTitleActivity {
             mTabViews[i].setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LogUtils.e("j----",""+j);
+                    LogUtils.e("j----", "" + j);
                     showTab(j);
                 }
             });
@@ -108,14 +108,13 @@ public class MainActivity extends BaseTitleActivity {
     }
 
     /**
-     *
      * @param fragment 除了fragment，其他的都hide
      */
     private void hideAllFragments(BaseFragment fragment) {
         for (int i = 0; i < TAB_NUM; i++) {
             Fragment f = fragmentManager.findFragmentByTag("tag" + i);
-            LogUtils.e("f----","i--"+i+"---"+f);
-            if (f != null&&f.isAdded()&&f!=fragment) {
+            LogUtils.e("f----", "i--" + i + "---" + f);
+            if (f != null && f.isAdded() && f != fragment) {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.hide(f);
                 transaction.commitAllowingStateLoss();
@@ -144,7 +143,7 @@ public class MainActivity extends BaseTitleActivity {
         }
         LogUtils.e("index----", "" + index);
         LogUtils.e("fragment----", "" + fragment);
-        fragmentList.add(index,fragment);
+        fragmentList.add(index, fragment);
         transaction.add(R.id.realtabcontent, fragment, "tag" + index);
         transaction.commitAllowingStateLoss();
         // fragmentManager.executePendingTransactions();
@@ -161,11 +160,11 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void onNewIntent(Intent intent) {
-        LogUtils.e("intent-----",intent+"");
-        if(intent != null) {
-            if(intent.getExtras()!=null){
+        LogUtils.e("intent-----", intent + "");
+        if (intent != null) {
+            if (intent.getExtras() != null) {
                 int tag = intent.getExtras().getInt("tag");
-                LogUtils.e("tag-----",tag+"");
+                LogUtils.e("tag-----", tag + "");
                 showTab(tag);
             }
 
@@ -179,21 +178,23 @@ public class MainActivity extends BaseTitleActivity {
      * @param idx
      */
     private void showTab(int idx) {
-        if(currentTab==idx){return;}
+        if (currentTab == idx) {
+            return;
+        }
         BaseFragment targetFragment = (BaseFragment) fragmentManager
                 .findFragmentByTag("tag" + idx);
-        LogUtils.e("showTab---idx----",""+idx);
+        LogUtils.e("showTab---idx----", "" + idx);
         LogUtils.e("targetFragment----", "" + targetFragment);
 //        targetFragment = fragmentList.get(idx);
 
         if (targetFragment == null || !targetFragment.isAdded()) {
             LogUtils.e("size----", "" + fragmentList.size());
-            if(idx<fragmentList.size()&&fragmentList.get(idx)!=null) {
+            if (idx < fragmentList.size() && fragmentList.get(idx) != null) {
                 targetFragment = fragmentList.get(idx);
-                LogUtils.e("targetFragment----idx---if", "" + idx+"---"+targetFragment);
-            }else{
-                targetFragment=addFragment(idx);
-                LogUtils.e("targetFragment----idx---else", "" +idx+"---"+ targetFragment);
+                LogUtils.e("targetFragment----idx---if", "" + idx + "---" + targetFragment);
+            } else {
+                targetFragment = addFragment(idx);
+                LogUtils.e("targetFragment----idx---else", "" + idx + "---" + targetFragment);
             }
         }
 
@@ -212,7 +213,7 @@ public class MainActivity extends BaseTitleActivity {
         currentTab = idx; // 更新目标tab为当前tab
         LogUtils.e("currentTab----", "" + currentTab);
         getTitleLayout().setVisibility(View.VISIBLE);
-        switch (currentTab){
+        switch (currentTab) {
             case 0:
                 setTitleText("居然家政");
                 mBaseBack.setVisibility(View.VISIBLE);
@@ -242,8 +243,6 @@ public class MainActivity extends BaseTitleActivity {
     }
 
 
-
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -257,27 +256,29 @@ public class MainActivity extends BaseTitleActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == HomeUiGoto.LOFIN_REQUEST)
-        {
+        if (requestCode == HomeUiGoto.LOFIN_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
-            meFragment.initView(null);
+            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
+            if (meFragment != null) {
 
+                meFragment.initView(null);
+                CampaignFragment campaignFragment = (CampaignFragment) fragmentManager.findFragmentByTag("tag2");
+            }
 
-            CampaignFragment campaignFragment = (CampaignFragment)fragmentManager.findFragmentByTag("tag2");
 //            campaignFragment.initData();
         }
-        if(requestCode == MineUiGoto.SETTING_REQUEST)
-        {
+        if (requestCode == MineUiGoto.SETTING_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("tag3");
-            meFragment.initView(null);
+            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
+            if (meFragment != null) {
+
+                meFragment.initView(null);
+            }
         }
 
-        if(requestCode == MineUiGoto.CHANGEPHONE_REQUEST)
-        {
+        if (requestCode == MineUiGoto.CHANGEPHONE_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            MineFragment meFragment = (MineFragment)fragmentManager.findFragmentByTag("ta3");
+            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("ta3");
 //            meFragment.initView(null);
         }
 

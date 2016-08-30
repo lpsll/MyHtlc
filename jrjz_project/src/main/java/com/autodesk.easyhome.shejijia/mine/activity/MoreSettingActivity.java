@@ -5,13 +5,19 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
+import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.GetFileSizeUtil;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
-import com.autodesk.easyhome.shejijia.R;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -49,6 +55,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
             LogUtils.d("获取缓存异常=========="+e.getMessage());
             e.printStackTrace();
         }
+        
 
     }
 
@@ -58,13 +65,11 @@ public class MoreSettingActivity extends BaseTitleActivity {
     }
 
     /**
-     *
+     *获取缓存大小
      */
     private void getCache() throws Exception {
         DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
         File directory = diskCache.getDirectory();
-
-
         long fileSizes = GetFileSizeUtil.getInstance().getFileSize(directory);
         String size = GetFileSizeUtil.getInstance().FormetFileSize(fileSizes);
         LogUtils.d("缓存大小==========" + size);
@@ -103,16 +108,52 @@ public class MoreSettingActivity extends BaseTitleActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //保存用户信息
-                        AppContext.set("uid", "");
-                        AppContext.set("accessToken", "");
-                        AppContext.set("IS_LOGIN", false);
-                        setResult(1001);
-                        finish();
+
+                        exit();
+
+
+
                     }
                 });
 
                 break;
         }
+    }
+
+    /**
+     * 退出操作
+     * sign:签名【生成规则uid+timestamp+random 后md5加密串】
+     */
+    private void exit() {
+
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+
+        BaseDTO baseDTO = new BaseDTO();
+        baseDTO.setUid(AppContext.get("uid",""));
+        baseDTO.setAccessToken(AppContext.get("accessToken",""));
+        baseDTO.setRandom(random);
+        baseDTO.setTimestamp(time);
+        baseDTO.setSign(AppContext.get("uid","")+time+random);
+
+        CommonApiClient.logout(this, baseDTO, new CallBack<BaseEntity>() {
+            @Override
+            public void onSuccess(BaseEntity result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("退出成功");
+                    ToastUtils.showShort(MoreSettingActivity.this, "退出成功");
+
+                }
+            }
+        });
+
+
+        AppContext.set("uid", "");
+        AppContext.set("accessToken", "");
+        AppContext.set("IS_LOGIN", false);
+        setResult(1001);
+        finish();
+
     }
 
     /**
@@ -123,4 +164,6 @@ public class MoreSettingActivity extends BaseTitleActivity {
         imageLoader.clearMemoryCache();
         imageLoader.clearDiskCache();
     }
+
+    
 }

@@ -17,12 +17,11 @@ android {
         }
     }
 
-    sourceSets.main{
+    sourceSets.main {
 
-            jniLibs.srcDirs 'src/main/jniLibs'
+        jniLibs.srcDirs 'src/main/jniLibs'
 
     }
-
 
 
 }

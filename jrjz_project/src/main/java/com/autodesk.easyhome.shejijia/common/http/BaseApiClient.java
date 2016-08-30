@@ -1,11 +1,9 @@
 package com.autodesk.easyhome.shejijia.common.http;
 
-import android.text.TextUtils;
-
 import com.alibaba.fastjson.JSON;
 import com.autodesk.easyhome.shejijia.AppConfig;
-import com.google.gson.Gson;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.google.gson.Gson;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -47,7 +45,7 @@ public class BaseApiClient {
 				return;
 			Set<String> key = map.keySet();
 			String params="";
-			String beginLetter="?";
+//			String beginLetter="?";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
 //				if(TextUtils.isEmpty(map.get(s).toString())){
@@ -56,8 +54,8 @@ public class BaseApiClient {
 //				}
 				if (params.equals(""))
 				{
-//					params += beginLetter + s + "=" + map.get(s);
-					params += map.get(s);
+					params += s + "=" + map.get(s);
+//					params += map.get(s);
 				}
 				else
 				{
