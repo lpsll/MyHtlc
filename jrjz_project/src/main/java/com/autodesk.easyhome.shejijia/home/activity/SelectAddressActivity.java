@@ -88,9 +88,9 @@ public class SelectAddressActivity extends BaseTitleActivity {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AppContext.set("name",data.get(position).getName());
-                AppContext.set("mobile",data.get(position).getMobile());
-                AppContext.set("address",data.get(position).getAddress());
+                AppContext.set("mSelName",data.get(position).getName());
+                AppContext.set("mSelPhone",data.get(position).getMobile());
+                AppContext.set("mSelAddress",data.get(position).getAddress());
                 setResult(00001);
                 finish();
             }
@@ -155,11 +155,11 @@ public class SelectAddressActivity extends BaseTitleActivity {
     public class SelectAddressAdapter extends BaseAdapter {
         private final Context context;
         private final List<SelectAddressEntity> list;
-        private boolean flag = true;
+        boolean flag =true;
         DialogInterface.OnClickListener listener;
         List<SelectAddressEntity> mList = new ArrayList<>();
         List<Boolean> bList = new ArrayList<>();
-
+        LinearLayout lin;
         public SelectAddressAdapter(Context context, List<SelectAddressEntity> list) {
             this.context = context;
             this.list = list;
@@ -199,29 +199,29 @@ public class SelectAddressActivity extends BaseTitleActivity {
                 holder.mLinSz = (LinearLayout) convertView.findViewById(R.id.lin_shezhi);
                 holder.mLinSc = (LinearLayout) convertView.findViewById(R.id.lin_sc);
                 holder.mLinBj = (LinearLayout) convertView.findViewById(R.id.lin_bj);
+                lin = holder.mLinSz;
                 convertView.setTag(holder);
 
             } else {
 
                 holder = (ViewHolder) convertView.getTag();
             }
+            holder.mTv.setText(list.get(position).getAddress());
 
             mList.add(position, list.get(position));
+            LogUtils.e("flag---",""+flag);
             if(flag){
-                bList.add(position, false);
+                bList.add(position, true);
             }
-
             LogUtils.e("bList---",""+bList);
-            holder.mTv.setText(list.get(position).getAddress());
-            LogUtils.e("def---",""+def);
-            LogUtils.e("bList.get(def)---",""+bList.get(def));
-            if(bList.get(def)==false){
+
+            if(bList.get(position)==true){
+                holder.mLinSz.setEnabled(true);
                 holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
                 holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
-                holder.mCb.setEnabled(true);
             }else {
-                holder.mCb.setEnabled(false);
-//                bList.set(def,false);
+                holder.mLinSz.setEnabled(false);
+                bList.set(def,true);
                 holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
                 holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
             }
@@ -229,25 +229,22 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
 
             final ViewHolder finalHolder = holder;
-            holder.mLinSz.setOnClickListener(new View.OnClickListener() {
+            lin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     def = position;
-                    if (finalHolder.mLinSz.isEnabled()) {
-                        LogUtils.e("isEnabled---if---",""+finalHolder.mLinSz.isEnabled());
-                        reqSetUp(def);
-//                        finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
-//                        finalHolder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
-                        bList.set(def,true);
-                        LogUtils.e("bList---click---",""+bList);
-                        flag =false;
-                        adapter.notifyDataSetChanged();
-
-                    } else {
-                        LogUtils.e("isEnabled---else--",""+finalHolder.mLinSz.isEnabled());
-
+                    LinearLayout ll = (LinearLayout) v;
+                    if (bList.get(def)) {
                         flag = false;
+                        bList.set(def,false);
+                        LogUtils.e("bList---click---",""+bList);
+                        adapter.notifyDataSetChanged();
+//                        reqSetUp(def);//设置默认地址
                     }
+//                    else {
+//                        adapter.notifyDataSetChanged();
+//                        flag = false;
+//                    }
                 }
             });
 

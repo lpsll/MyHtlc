@@ -47,7 +47,6 @@ public class BaseApiClient {
 				return;
 			Set<String> key = map.keySet();
 			String params="";
-//			String beginLetter="?";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
 				if(TextUtils.isEmpty(map.get(s).toString())){

@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.http.UploadFileTask;
@@ -102,7 +103,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
     private String mName,mId;
-    private String mPImg1,mPImg2,mPImg3,mPImg4,mPImg5,mPImg6,mPImg7,mPImg8;
+    private String mSelName,mSelPhone,mSelAddress,mPrice;
 
     private ArrayList<String> mPic = new ArrayList<>();
 
@@ -137,15 +138,36 @@ public class AppointmentActivity extends BaseTitleActivity {
 
             }
         });
+
+        LogUtils.e("mPic.size()----",""+mPic.size());
     }
 
     @Override
     public void initData() {
         reqService();//服务费
+        reqDfault();//获取默认地址
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
 
+    }
+
+    private void reqDfault() {
+        BaseDTO dto = new BaseDTO();
+        dto.setUid(AppContext.get("uid",""));
+        CommonApiClient.dfault(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if(AppConfig.NOTHING.equals(result.getCode())){
+                    LogUtils.e("无默认地址");
+
+                }
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取默认地址成功");
+                }
+
+            }
+        });
     }
 
     private void reqService() {
@@ -156,7 +178,8 @@ public class AppointmentActivity extends BaseTitleActivity {
             public void onSuccess(AddAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取服务费成功");
-                    mTvMoney.setText(result.getData());
+                    mPrice = result.getData();
+                    mTvMoney.setText(mPrice);
                 }
 
             }
@@ -180,26 +203,23 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoProjectDetails(this);
                 break;
             case R.id.apt_btn:
-                reqPic();//上传图片
+                if(mAddTv02.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
+                }
+//                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
+//                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+//                }
+                else if(mEtDescribe.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
+                }
+                else if(mPic.size()==0||mPic==null){
+                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
+                }
+                else {
+                    reqPic();//上传图片
+                    reqAppointment();//预约
 
-
-//                if(mAddTv02.getText().toString().equals("")){
-//                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
-//                }
-////                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
-////                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
-////                }
-//                else if(mEtDescribe.getText().toString().equals("")){
-//                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
-//                }
-//                else if(mAddTv02.getText().toString().equals("")){
-//                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
-//                }
-//                else {
-//                    reqPic();//上传图片
-//                    reqAppointment();//预约
-//
-//                }
+                }
 
                 break;
             case R.id.base_titlebar_back:
@@ -263,7 +283,13 @@ public class AppointmentActivity extends BaseTitleActivity {
             public void onSuccess(AddAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("预约成功");
-                    HomeUiGoto.gotoOrder(AppointmentActivity.this);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mName",mName);
+//                    bundle.putString("mSelName",mSelName);
+//                    bundle.putString("mSelPhone",mSelPhone);
+//                    bundle.putString("mSelAddress",mSelAddress);
+                    bundle.putString("mPrice",mPrice);
+                    HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
                 }
 
             }
@@ -382,47 +408,6 @@ public class AppointmentActivity extends BaseTitleActivity {
                         imagePaths.add("000000");
                         LogUtils.e("imagePaths----set----", "   " + (imagePaths.size()-1) + "---"+imagePaths);
                     }
-//                    else if (imagePaths.size()==2){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(1, fileName);
-//                        LogUtils.e("imagePaths----2", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==3){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(2, fileName);
-//                        LogUtils.e("imagePaths----3", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==4){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(3, fileName);
-//                        LogUtils.e("imagePaths----4", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==5){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(4, fileName);
-//                        LogUtils.e("imagePaths----5", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==6){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(5, fileName);
-//                        LogUtils.e("imagePaths----6", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==7){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(6, fileName);
-//                        LogUtils.e("imagePaths----7", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==8){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(7, fileName);
-//                        LogUtils.e("imagePaths----8", "" + imagePaths);
-//                    }
-//                    else if (imagePaths.size()==9){
-//                        imagePaths.add("000000");
-//                        imagePaths.set(8, fileName);
-//                        LogUtils.e("imagePaths----9", "" + imagePaths);
-//                    }
-
 
                     gridAdapter  = new GridAdapter(imagePaths);
                     mGv.setAdapter(gridAdapter);
@@ -450,17 +435,22 @@ public class AppointmentActivity extends BaseTitleActivity {
 
             case HomeUiGoto.SELECT_REQUEST:
                 LogUtils.e("SELECT_REQUEST----","SELECT_REQUEST");
+                //选择地址
                 if(resultCode==00001){
-                    if(TextUtils.isEmpty(AppContext.get("name",""))){
+
+                    if(TextUtils.isEmpty(AppContext.get("mSelName",""))){
                         return;
                     }else
                     {
-                        mAddTv01.setText(AppContext.get("name",""));
-                        mAddTv02.setText(AppContext.get("mobile",""));
-                        mAddTv04.setText(AppContext.get("address",""));
-                        AppContext.set("name","");
-                        AppContext.set("mobile","");
-                        AppContext.set("address","");
+                        mSelName = AppContext.get("mSelName","");
+                        mSelPhone = AppContext.get("mSelPhone","");
+                        mSelAddress = AppContext.get("mSelAddress","");
+                        mAddTv01.setText(mSelName);
+                        mAddTv02.setText(mSelPhone);
+                        mAddTv04.setText(mSelAddress);
+//                        AppContext.set("mSelName","");
+//                        AppContext.set("mSelPhone","");
+//                        AppContext.set("mSelAddress","");
 
                     }
                 }
@@ -555,97 +545,6 @@ public class AppointmentActivity extends BaseTitleActivity {
                 LogUtils.e("flag---",""+flag);
 
             }
-
-
-//            if(listUrls.size()==1){
-//                LogUtils.e("listUrls.get(0)----1", "" + listUrls.get(0));
-//            }
-//            else if(listUrls.size()==2){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//
-//                LogUtils.e("list----2", "" + mPic);
-//            }
-//            else if(listUrls.size()==3){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//
-//                LogUtils.e("list----3", "" + mPic);
-//            }
-//
-//            else if(listUrls.size()==4){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//
-//                LogUtils.e("list----4", "" + mPic);
-//            }
-//
-//            else if(listUrls.size()==5){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//                mPic.add(listUrls.get(3));
-//
-//                LogUtils.e("list----5", "" + mPic);
-//            }
-//
-//            else if(listUrls.size()==6){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//                mPic.add(listUrls.get(3));
-//                mPic.add(listUrls.get(4));
-//
-//                LogUtils.e("list----6", "" + mPic);
-//            }
-//
-//            else if(listUrls.size()==7){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//                mPic.add(listUrls.get(3));
-//                mPic.add(listUrls.get(4));
-//                mPic.add(listUrls.get(5));
-//
-//                LogUtils.e("list----7", "" + mPic);
-//            }
-//
-//            else if(listUrls.size()==8){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//                mPic.add(listUrls.get(3));
-//                mPic.add(listUrls.get(4));
-//                mPic.add(listUrls.get(5));
-//                mPic.add(listUrls.get(6));
-//                if(flag){
-//                    mPic.add(listUrls.get(7));
-//                    flag = false;
-//                    LogUtils.e("list----8---++++", "" + mPic);
-//                }
-//                LogUtils.e("list----8", "" + mPic);
-//            }
-
-//            else if(listUrls.size()==9){
-//                mPic.clear();
-//                mPic.add(listUrls.get(0));
-//                mPic.add(listUrls.get(1));
-//                mPic.add(listUrls.get(2));
-//                mPic.add(listUrls.get(3));
-//                mPic.add(listUrls.get(4));
-//                mPic.add(listUrls.get(5));
-//                mPic.add(listUrls.get(6));
-//
-//                LogUtils.e("list----9", "" + mPic);
-//            }
-
 
             if (path.equals("000000")){
                 holder.image.setImageResource(R.drawable.tianjiatupianxdpi_03);

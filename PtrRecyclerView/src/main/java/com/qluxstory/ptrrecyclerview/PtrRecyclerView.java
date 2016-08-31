@@ -18,7 +18,6 @@ import in.srain.cube.views.ptr.PtrUIHandler;
 
 /**
  * 用PtrFrameLayout包裹一层RecyclerView
- * Created by bixinwei on 16/3/9.
  */
 public class PtrRecyclerView extends PtrFrameLayout {
 
@@ -199,7 +198,7 @@ public class PtrRecyclerView extends PtrFrameLayout {
     public void noMoreData() {
         Toast.makeText(mContext, "没有更多数据了", Toast.LENGTH_SHORT).show();
         noMoreData = true;
-        mAdapter.showloadMoreFooterView(false);
+        mAdapter.showloadMoreFooterView(true);
 
     }
 

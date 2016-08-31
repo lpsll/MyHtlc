@@ -50,10 +50,12 @@ public class HomeUiGoto {
     /**
      * 跳转到订单支付页
      * @param context
+     * @param bundle
      */
 
-    public static void gotoOrder(Context context){
+    public static void gotoOrder(Context context, Bundle bundle){
         Intent intent = new Intent(context, OrderPaymentActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 

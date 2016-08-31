@@ -30,8 +30,8 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
 
     protected PtrRecyclerView mPtrRecyclerView;
     protected BaseRecyclerAdapter<T> mAdapter;
-    protected int mCurrentPage = 1;
-    protected final static int PAGE_SIZE = 20;
+    protected int mCurrentPage = 0;
+    protected final static int PAGE_SIZE = 10;
     private final static int ACTION_PULL_REFRESH = 1;
     private final static int ACTION_LOAD_MORE = 2;
     private AsyncTask<String, Void, List<T>> mCacheTask;
@@ -86,7 +86,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
                 @Override
                 public void onPullRefresh() {
                     action = ACTION_PULL_REFRESH;
-                    mCurrentPage = 1;
+                    mCurrentPage = 0;
                     requestData();
                 }
             });
@@ -95,6 +95,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
             mPtrRecyclerView.setOnLoadMoreListener(new PtrRecyclerView.OnLoadMoreListener() {
                 @Override
                 public void onloadMore() {
+                    LogUtils.e("onloadMore----","onloadMore");
                     action = ACTION_LOAD_MORE;
                     requestData();
                 }
@@ -109,7 +110,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
                     public void run() {
                         showDialogLoading();
                         action = ACTION_PULL_REFRESH;
-                        mCurrentPage = 1;
+                        mCurrentPage = 0;
                         requestData();
                     }
                 }, 100);
@@ -154,19 +155,25 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
         hideDialogLoading();
         reset();
         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
+        LogUtils.e("list----",""+list);
         if (list == null || list.size() == 0) {
-            if (mCurrentPage == 1) {
+            if (mCurrentPage == 0) {
                 mErrorLayout.setErrorType(EmptyLayout.NODATA);
             } else {
+                LogUtils.e("noMoreData----","noMoreData");
                 mPtrRecyclerView.noMoreData();
             }
-        } else if (list != null && list.size() > 0) {
+        }
+        else if (list != null && list.size() > 0) {
             mCurrentPage += 1;
             if (action == ACTION_PULL_REFRESH) {
+                LogUtils.e("ACTION_PULL_REFRESH----","ACTION_PULL_REFRESH");
                 mAdapter.removeAll();
                 mAdapter.append(list);
                 mPtrRecyclerView.pullRefreshComplete();
             } else if (action == ACTION_LOAD_MORE) {
+                LogUtils.e("ACTION_LOAD_MORE----","ACTION_LOAD_MORE");
+                LogUtils.e("size----",""+list.size());
                 mAdapter.append(list);
                 mPtrRecyclerView.loadMoreComplete();
                 if (list.size() < PAGE_SIZE) {

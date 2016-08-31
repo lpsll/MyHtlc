@@ -73,8 +73,8 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
         dto.setUid(AppContext.get("uid",""));
         dto.setTimestamp(time);
         dto.setSign(AppContext.get("uid","")+time+random);
-        dto.setPage("0");
-        dto.setSize("10");
+        dto.setPage(String.valueOf(mCurrentPage));
+        dto.setSize(String.valueOf(PAGE_SIZE));
         LogUtils.e("type----",""+type);
         if(type ==1){
             CommonApiClient.unfinished(getActivity(), dto, new CallBack<OrderResult>() {

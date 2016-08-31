@@ -25,6 +25,7 @@ public class AppConfig {
 
 
     public static final String SUCCESS = "1";
+    public static final String NOTHING = "0";
     public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api";
     public static final String BASE_IMG_URL = "http://101.200.167.130:8080/jrjz-api";
 

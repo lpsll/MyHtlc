@@ -18,6 +18,7 @@ import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
+import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
 import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
@@ -84,9 +85,9 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                     dto.setTimestamp(time);
                     dto.setSign(AppContext.get("uid","")+time+random);
                     dto.setOrderId(list.get(position).getOrderId());
-                    CommonApiClient.cancel((Activity) context, dto, new CallBack<OrderResult>() {
+                    CommonApiClient.cancel((Activity) context, dto, new CallBack<OrderCancelResult>() {
                         @Override
-                        public void onSuccess(OrderResult result) {
+                        public void onSuccess(OrderCancelResult result) {
                             if (AppConfig.SUCCESS.equals(result.getCode())) {
                                 LogUtils.e("取消订单成功");
                                 tv.setText("已取消");

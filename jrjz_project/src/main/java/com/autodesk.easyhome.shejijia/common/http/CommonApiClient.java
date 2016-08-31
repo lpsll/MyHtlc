@@ -26,6 +26,7 @@ import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
+import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
@@ -219,6 +220,20 @@ public class CommonApiClient extends BaseApiClient{
     }
 
     /**
+     * 获取默认地址
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void dfault(Activity act, BaseDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        get(getAbsoluteUrl("/user/address/default/"), dto,
+                asyncCallBack);
+    }
+
+    /**
      * 服务优惠券
      * @param act
      * @param dto
@@ -324,9 +339,9 @@ public class CommonApiClient extends BaseApiClient{
      * @param callback
      */
     public static void cancel (Activity act, CancelOrderDTO
-            dto, CallBack<OrderResult> callback) {
-        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
-                act, callback, OrderResult.class);
+            dto, CallBack<OrderCancelResult> callback) {
+        AsyncCallBack<OrderCancelResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderCancelResult.class);
         post(getAbsoluteUrl("/custServiceOrder/cancel"), dto,
                 asyncCallBack);
     }

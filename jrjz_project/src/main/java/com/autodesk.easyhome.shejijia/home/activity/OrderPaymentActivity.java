@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
@@ -35,6 +36,8 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     TextView mTvTel;
     @Bind(R.id.tv_address)
     TextView mTvAddress;
+    @Bind(R.id.home_fee)
+    TextView mHomeFee;
     @Bind(R.id.place_cb_qb)
     CheckBox mPlaceCbQb;
     @Bind(R.id.rl_qb)
@@ -51,6 +54,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     Button mTjBtn;
 
     private static final int RQF_PAY = 1;
+    private String mSelName,mSelPhone,mSelAddress,mPrice,mName;
 
     @Override
     protected int getContentResId() {
@@ -60,6 +64,20 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("订单支付");
+        mName = getIntent().getBundleExtra("bundle").getString("mName");
+        mPrice = getIntent().getBundleExtra("bundle").getString("mPrice");
+        mSelName = AppContext.get("mSelName","");
+        mSelPhone = AppContext.get("mSelPhone","");
+        mSelAddress = AppContext.get("mSelAddress","");
+//        mSelName = getIntent().getBundleExtra("bundle").getString("mName");
+//        mSelPhone = getIntent().getBundleExtra("bundle").getString("mName");
+//        mSelAddress = getIntent().getBundleExtra("bundle").getString("mName");
+
+        mTvProject.setText(mName);
+        mTvName.setText(mSelName);
+        mTvTel.setText(mSelPhone);
+        mTvAddress.setText(mSelAddress);
+        mHomeFee.setText(mPrice);
 
     }
 
