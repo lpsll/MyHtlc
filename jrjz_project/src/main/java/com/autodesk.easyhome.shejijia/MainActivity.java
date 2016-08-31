@@ -262,7 +262,7 @@ public class MainActivity extends BaseTitleActivity {
             if (meFragment != null) {
 
                 meFragment.initView(null);
-                CampaignFragment campaignFragment = (CampaignFragment) fragmentManager.findFragmentByTag("tag2");
+//                CampaignFragment campaignFragment = (CampaignFragment) fragmentManager.findFragmentByTag("tag2");
             }
 
 //            campaignFragment.initData();

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
@@ -18,15 +19,16 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
-import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
-import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.onekeyshare.OnekeyShare;
 
 /**
  * 我的页
@@ -53,6 +55,8 @@ public class MineFragment extends BaseFragment {
     TextView tvMinePoint;
     @Bind(R.id.tv_mine_balance)
     TextView tvMineBalance;
+    @Bind(R.id.ll_mine_share)
+    LinearLayout llMineShare;
 
     @Override
     public void initView(View view) {
@@ -107,11 +111,11 @@ public class MineFragment extends BaseFragment {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取用户信息成功=====" + result.getData().toString());
 
-                    int points = (int)result.getData().getPoints();
+                    int points = (int) result.getData().getPoints();
                     double balance = result.getData().getBalance();
 
-                    tvMinePoint.setText(points+"分");
-                    tvMineBalance.setText(balance+"元");
+                    tvMinePoint.setText(points + "分");
+                    tvMineBalance.setText(balance + "元");
                     LogUtils.d("用户积分=======" + points);
                     LogUtils.d("用户余额=======" + balance);
 
@@ -139,7 +143,7 @@ public class MineFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
+    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting,R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
@@ -200,7 +204,42 @@ public class MineFragment extends BaseFragment {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
                 }
                 break;
+
+            case R.id.ll_mine_share:
+
+                showShare();
+                break;
         }
     }
+
+
+    private void showShare() {
+        ShareSDK.initSDK(getContext());
+        OnekeyShare oks = new OnekeyShare();
+        //关闭sso授权
+        oks.disableSSOWhenAuthorize();
+
+        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间等使用
+        oks.setTitle("居然之家");
+        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+        oks.setTitleUrl("http://sharesdk.cn");
+        // text是分享文本，所有平台都需要这个字段
+        oks.setText("居然之家推荐给您~");
+        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+        //oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+        // url仅在微信（包括好友和朋友圈）中使用
+        oks.setUrl("http://sharesdk.cn");
+        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+        oks.setComment("居然之家推荐给您~");
+        // site是分享此内容的网站名称，仅在QQ空间使用
+        oks.setSite(getString(R.string.app_name));
+        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+        oks.setSiteUrl("http://sharesdk.cn");
+
+// 启动分享GUI
+        oks.show(getContext());
+    }
+
+
 
 }

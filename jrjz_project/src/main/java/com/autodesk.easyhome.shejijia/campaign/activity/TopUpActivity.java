@@ -66,6 +66,9 @@ public class TopUpActivity extends BaseTitleActivity {
             if ("fixed".equals(typeForTopUp)) {
                 tvTopUpChongzhi.setVisibility(View.VISIBLE);
                 etTopUpChongzhi.setVisibility(View.GONE);
+
+                moneyForUserInput = mIntent.getStringExtra("amount");
+                tvTopUpChongzhi.setText(moneyForUserInput);
                 //当需要用户输入金额时
             } else if ("WriteForUser".equals(typeForTopUp)) {
                 tvTopUpChongzhi.setVisibility(View.GONE);

@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia.common.http;
 
 import android.app.Activity;
 
+import com.autodesk.easyhome.shejijia.campaign.entity.CampaignResult;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
@@ -17,11 +18,11 @@ import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
-import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
-import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
 import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
 import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
+import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
@@ -413,6 +414,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<UserDetailResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, UserDetailResult.class);
         getNew(getAbsoluteUrl("/user/userDetail?"), dto,
+                asyncCallBack);
+    }
+
+    /**活动页面数据
+     *
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void campaign(Activity act, BaseDTO
+            dto, CallBack<CampaignResult> callback) {
+        AsyncCallBack<CampaignResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, CampaignResult.class);
+        post(getAbsoluteUrl("/activity/activityList"), dto,
                 asyncCallBack);
     }
 

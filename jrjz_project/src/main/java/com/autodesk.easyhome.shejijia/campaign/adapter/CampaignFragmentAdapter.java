@@ -14,6 +14,7 @@ import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.CampaignUIGoto;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
+import com.autodesk.easyhome.shejijia.campaign.entity.CampaignEntity;
 
 import java.util.List;
 
@@ -24,15 +25,12 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     private static final int RECYCLERVIEW_HEAD = 0;
     private static final int RECYCLERVIEW_BODY = 1;
-    private List mChongzhi;  //数据的集合
-    private List mZengsong;  //数据的集合
     private Context context;
+    private List<CampaignEntity> list;
 
-    public CampaignFragmentAdapter(Context context, List mChongzhi, List mZengsong) {
+    public CampaignFragmentAdapter(Context context, List<CampaignEntity> list) {
         this.context = context;
-        this.mChongzhi = mChongzhi;
-        this.mZengsong = mZengsong;
-
+        this.list = list;
     }
 
     @Override
@@ -57,26 +55,34 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
-            final MyViewHolder myViewHolder = (MyViewHolder) holder;
-            myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + mZengsong.get(position - 1) + "元的优惠券");
-            myViewHolder.tv_campaign_fragment_item_chongzhi.setText("充值" + mChongzhi.get(position - 1) + "元");
 
-            int[] images = {R.drawable.tupian1_03,R.drawable.green_03,R.drawable.huangse_03,R.drawable.juhuang_03,R.drawable.hongse_03};
+            CampaignEntity entity = list.get(position-1);
+             final String chongzhi = entity.getRechargeAmount();
+             String youhui = entity.getCouponAmount();
+
+            final MyViewHolder myViewHolder = (MyViewHolder) holder;
+            myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + youhui + "元的优惠券");
+            myViewHolder.tv_campaign_fragment_item_chongzhi.setText("充值" + chongzhi + "元");
+
+            int[] images = {R.drawable.tupian1_03, R.drawable.green_03, R.drawable.huangse_03, R.drawable.juhuang_03, R.drawable.hongse_03};
 //            int ramdom =  new Random().nextInt(5);
-            myViewHolder.img_campaign_fragment_item_rmb.setBackgroundResource(images[(position-1)%5]);
+            myViewHolder.img_campaign_fragment_item_rmb.setBackgroundResource(images[(position - 1) % 5]);
 
 
             myViewHolder.img_lijichongzhi.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //跳转到充值页面
-                    if(AppContext.get("IS_LOGIN",false)) {
+                    if (AppContext.get("IS_LOGIN", false)) {
                         //跳转充值页
                         Intent intent = new Intent(context, TopUpActivity.class);
                         intent.putExtra("TypeForTopUp", "fixed");
+                        //携带充值额
+                        intent.putExtra("amount",chongzhi);
                         context.startActivity(intent);
-                    }else {
-                        CampaignUIGoto.gotoLoginForPwd((MainActivity)context);
+
+                    } else {
+                        CampaignUIGoto.gotoLoginForPwd((MainActivity) context);
                     }
                 }
             });
@@ -85,7 +91,7 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
 
     @Override
     public int getItemCount() {
-        return mChongzhi.size() + 1;
+        return list.size() + 1;
     }
 
     @Override
@@ -122,15 +128,7 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-//    public interface OnItemClickLitener {
-//        void onItemClick(View view, int position);
-//    }
-//
-//    private OnItemClickLitener mOnItemClickLitener;
-//
-//    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
-//        this.mOnItemClickLitener = mOnItemClickLitener;
-//    }
+
 
 }
 

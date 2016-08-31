@@ -50,7 +50,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -72,37 +72,44 @@
                         android:layout_marginLeft="@dimen/ds_90"
                         android:src="@drawable/score_mine" />
 
-                    <TextView
-                        android:id="@+id/score_txt1"
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_220"
                         android:layout_marginTop="@dimen/ds_15"
-                        android:text="我的积分"
-                        android:textColor="@color/color_33"
-                        android:textSize="@dimen/fs_43" />
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_mine_point"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/score_txt1"
-                        android:layout_marginLeft="@dimen/ds_240"
-                        android:text="0分"
-                        android:textColor="#0b8ce6"
-                        android:textSize="@dimen/fs_43" />
+                        <TextView
+                            android:id="@+id/score_txt1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="我的积分"
+                            android:textColor="@color/color_33"
+                            android:textSize="@dimen/fs_43" />
+
+                        <TextView
+                            android:id="@+id/tv_mine_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="0分"
+                            android:textColor="#0b8ce6"
+                            android:textSize="@dimen/fs_43" />
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
 
                 <View
                     android:layout_width="0.5dp"
                     android:layout_height="match_parent"
-                    android:background="#f5f5f5"/>
+                    android:background="#f5f5f5" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    >
+                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/score_img2"
@@ -112,33 +119,43 @@
                         android:layout_marginLeft="@dimen/ds_90"
                         android:src="@drawable/score_yue" />
 
-                    <TextView
-                        android:id="@+id/tv_my_yue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
                         android:layout_marginLeft="@dimen/ds_210"
                         android:layout_marginTop="@dimen/ds_15"
-                        android:text="我的余额"
-                        android:textColor="@color/color_33"
-                        android:textSize="@dimen/fs_43"
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_mine_balance"
-                        android:layout_below="@id/tv_my_yue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/ds_230"
-                        android:text="0元"
-                        android:textColor="#0b8ce6"
-                        android:textSize="@dimen/fs_43" />
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:id="@+id/tv_my_yue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:text="我的余额"
+                            android:textColor="@color/color_33"
+                            android:textSize="@dimen/fs_43" />
+
+                        <TextView
+                            android:layout_gravity="center_horizontal"
+                            android:id="@+id/tv_mine_balance"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0元"
+                            android:textColor="#0b8ce6"
+                            android:textSize="@dimen/fs_43" />
+
+
+                    </LinearLayout>
+
+
                 </RelativeLayout>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_40"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_address"
@@ -148,20 +165,20 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/locate_address" />
 
                 <TextView
-                    
-                    android:textSize="@dimen/fs_45"
+
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="常用地址"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -173,7 +190,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_chongzhi"
@@ -183,19 +200,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/top_up" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="充值"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -207,7 +224,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_myorder"
@@ -217,19 +234,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/order_mine" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="我的订单"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -241,28 +258,29 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
+                android:id="@+id/ll_mine_share"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_160"
                 android:gravity="center_vertical"
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/share_mine" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="分享给好友"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -274,7 +292,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_coupon"
@@ -284,19 +302,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/coupons" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="优惠券"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -308,7 +326,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_feedback"
@@ -318,19 +336,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/suggest_mine" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="意见反馈"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -342,7 +360,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:id="@+id/ll_mine_more_setting"
@@ -352,19 +370,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/setting_mine" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="更多设置"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -376,7 +394,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -385,19 +403,19 @@
                 android:weightSum="13">
 
                 <ImageView
-                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/ds_50"
+                    android:layout_marginLeft="@dimen/ds_30"
                     android:layout_weight="2"
                     android:src="@drawable/about_us_mine" />
 
                 <TextView
-                    android:textSize="@dimen/fs_45"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="9"
                     android:text="关于居然"
-                    android:textColor="@color/color_33" />
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
 
                 <ImageView
                     android:layout_width="@dimen/ds_30"
@@ -409,7 +427,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#f5f5f5"/>
+                android:background="#f5f5f5" />
 
         </LinearLayout>
 
