@@ -10,8 +10,6 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
-import com.autodesk.easyhome.shejijia.mine.entity.MineResult;
 import com.autodesk.easyhome.shejijia.order.adapter.OrderInsideAdapter;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;

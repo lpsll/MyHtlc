@@ -1,7 +1,6 @@
 package com.autodesk.easyhome.shejijia.mine.adapter;
 
 import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.mine.entity.MineEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
 

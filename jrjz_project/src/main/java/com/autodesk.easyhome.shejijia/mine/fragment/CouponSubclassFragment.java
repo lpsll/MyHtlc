@@ -9,21 +9,17 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity;
 import com.autodesk.easyhome.shejijia.mine.adapter.MineCouponAdapter;
 import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
-import com.autodesk.easyhome.shejijia.mine.entity.MineEntity;
-import com.autodesk.easyhome.shejijia.mine.entity.MineResult;
-import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
-import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
+import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by John_Libo on 2016/8/30.
+ * 我的优惠券fragment
  */
 public class CouponSubclassFragment extends BaseListFragment<MineEntity> {
     private static final String TYPE = "type";
@@ -79,9 +75,9 @@ public class CouponSubclassFragment extends BaseListFragment<MineEntity> {
             dto.setUseStatus("3");
         }
 
-        CommonApiClient.mineCoupon(getActivity(), dto, new CallBack<MineResult>() {
+        CommonApiClient.mineCoupon(getActivity(), dto, new CallBack<MineCouponResult>() {
             @Override
-            public void onSuccess(MineResult result) {
+            public void onSuccess(MineCouponResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("我的优惠券成功");
                 }
