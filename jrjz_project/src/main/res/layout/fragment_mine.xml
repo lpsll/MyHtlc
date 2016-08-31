@@ -88,7 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/score_txt1"
                         android:layout_marginLeft="@dimen/ds_240"
-                        android:text="200分"
+                        android:text="0分"
                         android:textColor="#0b8ce6"
                         android:textSize="@dimen/fs_43" />
                 </RelativeLayout>
@@ -129,7 +129,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_230"
-                        android:text="2000元"
+                        android:text="0元"
                         android:textColor="#0b8ce6"
                         android:textSize="@dimen/fs_43" />
                 </RelativeLayout>
