@@ -17,7 +17,6 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
-import cn.sharesdk.framework.ShareSDK;
 import de.greenrobot.event.EventBus;
 
 /**
@@ -46,7 +45,6 @@ public abstract class BaseActivity  extends FragmentActivity implements
         initData();
 
         JPushInterface.init(getApplicationContext());
-        ShareSDK.initSDK(this,"16ab104736290");
     }
 
 
