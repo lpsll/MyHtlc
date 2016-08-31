@@ -186,13 +186,12 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_mine_coupon:
                 //跳转到我的优惠券页面
-//                if (AppContext.get("IS_LOGIN", false)) {
-//                    getContext().startActivity(new Intent(getContext(), MineCouponActivity.class));
-//                } else {
-//                    HomeUiGoto.gotoLoginForPwd(getActivity());
-//                }
+                if (AppContext.get("IS_LOGIN", false)) {
+                    getContext().startActivity(new Intent(getContext(), MineCouponActivity.class));
+                } else {
+                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                }
 
-                HomeUiGoto.gotoSelect(getActivity());
                 break;
             case R.id.ll_mine_feedback:
                 if (AppContext.get("IS_LOGIN", false)) {

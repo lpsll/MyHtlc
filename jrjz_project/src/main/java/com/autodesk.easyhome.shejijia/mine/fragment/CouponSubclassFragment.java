@@ -12,6 +12,7 @@ import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity;
 import com.autodesk.easyhome.shejijia.mine.adapter.MineCouponAdapter;
 import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
+import com.autodesk.easyhome.shejijia.mine.entity.MineCouponEntity;
 import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 
@@ -21,7 +22,7 @@ import java.util.List;
 /**
  * 我的优惠券fragment
  */
-public class CouponSubclassFragment extends BaseListFragment<MineEntity> {
+public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
     private static final String TYPE = "type";
     private int type;
 
@@ -33,7 +34,7 @@ public class CouponSubclassFragment extends BaseListFragment<MineEntity> {
         return fragment;
     }
     @Override
-    public BaseRecyclerAdapter<MineEntity> createAdapter() {
+    public BaseRecyclerAdapter<MineCouponEntity> createAdapter() {
         return new MineCouponAdapter();
     }
 
@@ -43,8 +44,8 @@ public class CouponSubclassFragment extends BaseListFragment<MineEntity> {
     }
 
     @Override
-    public List<MineEntity> readList(Serializable seri) {
-        return ((MineResult)seri).getData();
+    public List<MineCouponEntity> readList(Serializable seri) {
+        return ((MineCouponResult)seri).getData();
     }
 
     @Override
