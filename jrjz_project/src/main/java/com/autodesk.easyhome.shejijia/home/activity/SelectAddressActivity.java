@@ -155,9 +155,10 @@ public class SelectAddressActivity extends BaseTitleActivity {
     public class SelectAddressAdapter extends BaseAdapter {
         private final Context context;
         private final List<SelectAddressEntity> list;
-        private boolean flag;
+        private boolean flag = true;
         DialogInterface.OnClickListener listener;
         List<SelectAddressEntity> mList = new ArrayList<>();
+        List<Boolean> bList = new ArrayList<>();
 
         public SelectAddressAdapter(Context context, List<SelectAddressEntity> list) {
             this.context = context;
@@ -206,17 +207,27 @@ public class SelectAddressActivity extends BaseTitleActivity {
             }
 
             mList.add(position, list.get(position));
+            if(flag){
+                bList.add(position, false);
+            }
+
+            LogUtils.e("bList---",""+bList);
             holder.mTv.setText(list.get(position).getAddress());
-            if(holder.mLinSz.isEnabled()){
+            LogUtils.e("def---",""+def);
+            LogUtils.e("bList.get(def)---",""+bList.get(def));
+            if(bList.get(def)==false){
                 holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
                 holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
+                holder.mCb.setEnabled(true);
             }else {
+                holder.mCb.setEnabled(false);
+//                bList.set(def,false);
                 holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
                 holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
             }
             LogUtils.e("notifyDataSetChanged---","notifyDataSetChanged");
 
-            flag = false;
+
             final ViewHolder finalHolder = holder;
             holder.mLinSz.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -225,11 +236,13 @@ public class SelectAddressActivity extends BaseTitleActivity {
                     if (finalHolder.mLinSz.isEnabled()) {
                         LogUtils.e("isEnabled---if---",""+finalHolder.mLinSz.isEnabled());
                         reqSetUp(def);
-                        finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
-                        finalHolder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
-                        finalHolder.mLinSz.setEnabled(false);
+//                        finalHolder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+//                        finalHolder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+                        bList.set(def,true);
+                        LogUtils.e("bList---click---",""+bList);
+                        flag =false;
                         adapter.notifyDataSetChanged();
-                        flag = true;
+
                     } else {
                         LogUtils.e("isEnabled---else--",""+finalHolder.mLinSz.isEnabled());
 

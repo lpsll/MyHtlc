@@ -142,10 +142,10 @@
         <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.order.activity.CouponActivity"
+            android:name="com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity"
+            android:name="com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity"
             android:screenOrientation="portrait" />
 
         <activity

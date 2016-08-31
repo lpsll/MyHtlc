@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.mine.Entity;
+package com.autodesk.easyhome.shejijia.mine.entity;
 
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 

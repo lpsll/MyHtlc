@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.order.activity;
+package com.autodesk.easyhome.shejijia.mine.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -7,8 +7,8 @@ import android.view.View;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.widget.SlidingTabLayout;
-import com.autodesk.easyhome.shejijia.order.adapter.CouponTabListAdapter;
-import com.autodesk.easyhome.shejijia.order.fragment.CouponFragment;
+import com.autodesk.easyhome.shejijia.mine.adapter.CouponTabListAdapter;
+import com.autodesk.easyhome.shejijia.mine.fragment.CouponSubclassFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,9 @@ import java.util.List;
 import butterknife.Bind;
 
 /**
- * 优惠券页
+ * 我的优惠券
  */
-public class CouponActivity extends BaseTitleActivity {
+public class MineCouponActivity extends BaseTitleActivity{
     public static final int TAB_A = 1;
     public static final int TAB_B = 2;
     public static final int TAB_C = 3;
@@ -36,11 +36,11 @@ public class CouponActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        setTitleText("优惠券");
+        setTitleText("我的优惠券");
         fragmentList = new ArrayList<Fragment>();
-        fragmentList.add(CouponFragment.newInstance(TAB_A));
-        fragmentList.add(CouponFragment.newInstance(TAB_B));
-        fragmentList.add(CouponFragment.newInstance(TAB_C));
+        fragmentList.add(CouponSubclassFragment.newInstance(TAB_A));
+        fragmentList.add(CouponSubclassFragment.newInstance(TAB_B));
+        fragmentList.add(CouponSubclassFragment.newInstance(TAB_C));
         String str1 = "未使用"+"(4)";
         String str2 = "已过期"+"(10)";
         String str3 = "已使用"+"(15)";

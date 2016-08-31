@@ -1,4 +1,4 @@
-package com.autodesk.easyhome.shejijia.mine.Entity;
+package com.autodesk.easyhome.shejijia.mine.entity;
 
 /**
  * Created by Administrator on 2016/8/30.

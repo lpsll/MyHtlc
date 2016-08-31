@@ -1,11 +1,11 @@
-package com.autodesk.easyhome.shejijia.order.dto;
+package com.autodesk.easyhome.shejijia.mine.dto;
 
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 
 /**
- * Created by John_Libo on 2016/8/29.
+ * Created by John_Libo on 2016/8/30.
  */
-public class CouponDTO extends BaseDTO {
+public class MineCouponDTO extends BaseDTO{
     private String page;
     private String size;
     private String useStatus;
@@ -33,7 +33,6 @@ public class CouponDTO extends BaseDTO {
     public void setUseStatus(String useStatus) {
         this.useStatus = useStatus;
     }
-
 
 
 }

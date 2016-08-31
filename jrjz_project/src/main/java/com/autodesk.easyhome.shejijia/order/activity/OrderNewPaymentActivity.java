@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.order.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -8,6 +9,8 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.base.SimplePage;
+import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 
 import butterknife.Bind;
@@ -88,7 +91,10 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             case R.id.rl_jf:
                 break;
             case R.id.rl_yhj:
-                OrderUiGoto.gotoCoupon(this);
+                Bundle b = new Bundle();
+
+                UIHelper.showFragment(this, SimplePage.SERVICE_COUPON,b);
+//                OrderUiGoto.gotoCoupon(this);
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();

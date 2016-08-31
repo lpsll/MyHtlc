@@ -30,6 +30,7 @@ import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.http.UploadFileTask;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
@@ -101,13 +102,9 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
     private String mName,mId;
-    private String mPImg1;
-    private String mPImg2;
-    private String mPImg3;
-    private String mPic1;
-    private String mPic2;
-    private String mPic3;
+    private String mPImg1,mPImg2,mPImg3,mPImg4,mPImg5,mPImg6,mPImg7,mPImg8;
 
+    private ArrayList<String> mPic = new ArrayList<>();
 
 
     @Override
@@ -183,22 +180,26 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoProjectDetails(this);
                 break;
             case R.id.apt_btn:
-                if(mAddTv02.getText().toString().equals("")){
-                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
-                }
-//                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
-//                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
-//                }
-                else if(mEtDescribe.getText().toString().equals("")){
-                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
-                }
-                else if(mAddTv02.getText().toString().equals("")){
-                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
-                }
-                else {
-                    reqAppointment();//预约
+                reqPic();//上传图片
 
-                }
+
+//                if(mAddTv02.getText().toString().equals("")){
+//                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
+//                }
+////                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
+////                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+////                }
+//                else if(mEtDescribe.getText().toString().equals("")){
+//                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
+//                }
+//                else if(mAddTv02.getText().toString().equals("")){
+//                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
+//                }
+//                else {
+//                    reqPic();//上传图片
+//                    reqAppointment();//预约
+//
+//                }
 
                 break;
             case R.id.base_titlebar_back:
@@ -228,42 +229,20 @@ public class AppointmentActivity extends BaseTitleActivity {
         }
     }
 
-    private void initPic() {
-        mPImg1 = AppContext.get("mPImg1","");
-        mPImg2 = AppContext.get("mPImg2", "");
-        mPImg3 = AppContext.get("mPImg3", "");
-        if(TextUtils.isEmpty(mPImg1)){
-            mPImg1 ="";
-        }else {
 
-            LogUtils.e("byte----",""+ImageLoaderUtils.getBitmapByte(mPImg1,null));
-            mPic1 = ImageLoaderUtils.imgToBase64(mPImg1, null, null);
-
-//            try {
-//                mPic1 = new String(ImageLoaderUtils.getBitmapByte(mPImg1,null),"UTF-8");
-//            } catch (UnsupportedEncodingException e) {
-//                e.printStackTrace();
-//            }
+    private void reqPic() {
+        if(mPic.size()>0){
+            for(int i =0;i<mPic.size();i++){
+                UploadFileTask uploadFileTask=new UploadFileTask(this);
+                LogUtils.e("list.get(i)---",""+mPic.get(i));
+                uploadFileTask.execute(mPic.get(i));
+            }
 
         }
-        if(TextUtils.isEmpty(mPImg2)){
-            mPImg2 ="";
-        }else {
 
-            mPic2 = ImageLoaderUtils.imgToBase64(mPImg2, null, null);
-        }
-        if(TextUtils.isEmpty(mPImg3)){
-            mPImg3 ="";
-        }else {
-            mPic3 = ImageLoaderUtils.imgToBase64(mPImg3, null, null);
-        }
-        LogUtils.e("initPic---mPImg1---", "" + mPic1);
-        LogUtils.e("initPic---mPImg2---",""+mPic2);
-        LogUtils.e("initPic---mPImg3---", "" + mPic3);
     }
 
     private void reqAppointment() {
-        initPic();
         AppointmentDTO dto = new AppointmentDTO();
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
@@ -279,14 +258,6 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setServiceTime("12:00");
         dto.setDescr(mEtDescribe.getText().toString());
         dto.setHomeVisitFee(mTvMoney.getText().toString());
-        dto.setImage1("");
-//        dto.setImage2("");
-//        dto.setImage3("");
-//        dto.setImage4("");
-//        dto.setImage5("");
-//        dto.setImage6("");
-//        dto.setImage7("");
-//        dto.setImage8("");
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {
@@ -406,31 +377,52 @@ public class AppointmentActivity extends BaseTitleActivity {
                         imagePaths.add("000000");
                         LogUtils.e("imagePaths----1", "" + imagePaths);
                     }
-                    else if (imagePaths.size()==2){
+                    if(imagePaths.size()>1){
+                        imagePaths.set(imagePaths.size()-1, fileName);
                         imagePaths.add("000000");
-                        imagePaths.set(1, fileName);
-                        LogUtils.e("imagePaths----2", "" + imagePaths);
+                        LogUtils.e("imagePaths----set----", "   " + (imagePaths.size()-1) + "---"+imagePaths);
                     }
-                    else if (imagePaths.size()==3){
-                        imagePaths.add("000000");
-                        imagePaths.set(2, fileName);
-                        LogUtils.e("imagePaths----3", "" + imagePaths);
-                    }
+//                    else if (imagePaths.size()==2){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(1, fileName);
+//                        LogUtils.e("imagePaths----2", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==3){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(2, fileName);
+//                        LogUtils.e("imagePaths----3", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==4){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(3, fileName);
+//                        LogUtils.e("imagePaths----4", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==5){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(4, fileName);
+//                        LogUtils.e("imagePaths----5", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==6){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(5, fileName);
+//                        LogUtils.e("imagePaths----6", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==7){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(6, fileName);
+//                        LogUtils.e("imagePaths----7", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==8){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(7, fileName);
+//                        LogUtils.e("imagePaths----8", "" + imagePaths);
+//                    }
+//                    else if (imagePaths.size()==9){
+//                        imagePaths.add("000000");
+//                        imagePaths.set(8, fileName);
+//                        LogUtils.e("imagePaths----9", "" + imagePaths);
+//                    }
 
-
-//                    if(TextUtils.isEmpty(imagePaths.get(1))){
-//                        imagePaths.add(1,fileName);
-//                        imagePaths.add(2,"000000");
-//                    }
-//                    if(imagePaths.get(2).equals("000000")){
-//                        imagePaths.add(2,fileName);
-//                        imagePaths.add(2,"000000");
-//                    }
-//                    if(imagePaths.get(3).equals("000000")){
-//                        imagePaths.add(3,fileName);
-//                    }
-//
-//                    LogUtils.e("imagePaths----", "" + imagePaths);
 
                     gridAdapter  = new GridAdapter(imagePaths);
                     mGv.setAdapter(gridAdapter);
@@ -446,7 +438,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 }else
                 {
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
-                    LogUtils.e("list: ", "list = " + list + "size" + list.size());
+                    LogUtils.e("list: ", "list = " + list + "--size = " + list.size());
                     if(null==list){
                         return;
                     }else {
@@ -501,20 +493,23 @@ public class AppointmentActivity extends BaseTitleActivity {
 
         try{
             JSONArray obj = new JSONArray(imagePaths);
-            LogUtils.e("obj--", obj.toString());
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-
+    boolean flag = false;
     private class GridAdapter extends BaseAdapter {
         private ArrayList<String> listUrls;
         private LayoutInflater inflater;
+
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
             if(listUrls.size() == 9){
+                LogUtils.e("listUrls---remove----1---",""+listUrls);
                 listUrls.remove(listUrls.size()-1);
+                flag =true;
+                LogUtils.e("listUrls---remove----2---",""+listUrls);
             }
             inflater = LayoutInflater.from(AppointmentActivity.this);
         }
@@ -543,42 +538,113 @@ public class AppointmentActivity extends BaseTitleActivity {
             } else {
                 holder = (ViewHolder)convertView.getTag();
             }
-            LogUtils.e("listUrls---",""+listUrls);
             final String path=listUrls.get(position);
-            LogUtils.e("path",""+path);
+            LogUtils.e("listUrls---",""+listUrls);
             LogUtils.e("listUrls.size()---",""+listUrls.size());
 
-            if(listUrls.size()==1){
-                mPImg1 = "";
-                mPImg2 = "";
-                mPImg3 = "";
-                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-            }
-            if(listUrls.size()==2){
-                mPImg1 =listUrls.get(0);
-                mPImg2 = "";
-                mPImg3 = "";
-                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
-            }
-            if(listUrls.size()==3){
-                mPImg1 =listUrls.get(0);
-                mPImg2 =listUrls.get(1);
-                if(listUrls.get(2).equals("000000")){
-                    mPImg3 = "";
-                }else {
-                    mPImg3 = listUrls.get(2);
+            if(listUrls.size()>1){
+                mPic.clear();
+                for(int i =0;i<listUrls.size()-1;i++){
+                    mPic.add(listUrls.get(i));
                 }
-                LogUtils.e("listUrls.get(0)----", "" + listUrls.get(0));
-                LogUtils.e("listUrls.get(1)----", "" + listUrls.get(1));
-                LogUtils.e("listUrls.get(2)----", "" + listUrls.get(2));
+                if(listUrls.size()==8&&flag==true){
+                    mPic.add(listUrls.get(listUrls.size()-1));
+                    LogUtils.e("mPic---flag---", "" + listUrls.size()+"-------"+mPic);
+                }
+                LogUtils.e("listUrls.get(i)----", "" + listUrls.size()+"-------"+mPic);
+                LogUtils.e("flag---",""+flag);
+
             }
 
-            AppContext.set("mPImg1",mPImg1);
-            AppContext.set("mPImg2",mPImg2);
-            AppContext.set("mPImg3",mPImg3);
 
+//            if(listUrls.size()==1){
+//                LogUtils.e("listUrls.get(0)----1", "" + listUrls.get(0));
+//            }
+//            else if(listUrls.size()==2){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//
+//                LogUtils.e("list----2", "" + mPic);
+//            }
+//            else if(listUrls.size()==3){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//
+//                LogUtils.e("list----3", "" + mPic);
+//            }
+//
+//            else if(listUrls.size()==4){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//
+//                LogUtils.e("list----4", "" + mPic);
+//            }
+//
+//            else if(listUrls.size()==5){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//                mPic.add(listUrls.get(3));
+//
+//                LogUtils.e("list----5", "" + mPic);
+//            }
+//
+//            else if(listUrls.size()==6){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//                mPic.add(listUrls.get(3));
+//                mPic.add(listUrls.get(4));
+//
+//                LogUtils.e("list----6", "" + mPic);
+//            }
+//
+//            else if(listUrls.size()==7){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//                mPic.add(listUrls.get(3));
+//                mPic.add(listUrls.get(4));
+//                mPic.add(listUrls.get(5));
+//
+//                LogUtils.e("list----7", "" + mPic);
+//            }
+//
+//            else if(listUrls.size()==8){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//                mPic.add(listUrls.get(3));
+//                mPic.add(listUrls.get(4));
+//                mPic.add(listUrls.get(5));
+//                mPic.add(listUrls.get(6));
+//                if(flag){
+//                    mPic.add(listUrls.get(7));
+//                    flag = false;
+//                    LogUtils.e("list----8---++++", "" + mPic);
+//                }
+//                LogUtils.e("list----8", "" + mPic);
+//            }
 
+//            else if(listUrls.size()==9){
+//                mPic.clear();
+//                mPic.add(listUrls.get(0));
+//                mPic.add(listUrls.get(1));
+//                mPic.add(listUrls.get(2));
+//                mPic.add(listUrls.get(3));
+//                mPic.add(listUrls.get(4));
+//                mPic.add(listUrls.get(5));
+//                mPic.add(listUrls.get(6));
+//
+//                LogUtils.e("list----9", "" + mPic);
+//            }
 
 
             if (path.equals("000000")){

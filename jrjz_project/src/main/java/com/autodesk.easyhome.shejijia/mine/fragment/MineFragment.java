@@ -2,17 +2,13 @@ package com.autodesk.easyhome.shejijia.mine.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
-import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
@@ -22,14 +18,14 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
-import com.autodesk.easyhome.shejijia.mine.Entity.UserDetailResult;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
+import com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
-import com.autodesk.easyhome.shejijia.order.activity.CouponActivity;
+import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -189,9 +185,9 @@ public class MineFragment extends BaseFragment {
 
                 break;
             case R.id.ll_mine_coupon:
-                //跳转到优惠券页面
+                //跳转到我的优惠券页面
                 if (AppContext.get("IS_LOGIN", false)) {
-                    getContext().startActivity(new Intent(getContext(), CouponActivity.class));
+                    getContext().startActivity(new Intent(getContext(), MineCouponActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
                 }
@@ -207,17 +203,4 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

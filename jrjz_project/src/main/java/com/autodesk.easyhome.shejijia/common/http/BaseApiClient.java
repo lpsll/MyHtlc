@@ -1,5 +1,7 @@
 package com.autodesk.easyhome.shejijia.common.http;
 
+import android.text.TextUtils;
+
 import com.alibaba.fastjson.JSON;
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
@@ -48,14 +50,48 @@ public class BaseApiClient {
 //			String beginLetter="?";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
-//				if(TextUtils.isEmpty(map.get(s).toString())){
-//					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
-//					continue;
-//				}
+				if(TextUtils.isEmpty(map.get(s).toString())){
+					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+				}
+				if (params.equals(""))
+				{
+					params += map.get(s);
+				}
+				else
+				{
+					params += "&" + s + "=" + map.get(s);
+				}
+
+			}
+			LogUtils.e("get-------------reqParams    end-------------");
+			url+=params;
+
+		}
+		LogUtils.e("get url:",""+url);
+		Request request = new Request.Builder().tag(asyncCallBack.getTag())
+				.url(url).get().build();
+		enqueue(request, asyncCallBack);
+	}
+
+	public static <T> void getNew(String url,Object dto,
+							   AsyncCallBack<T> asyncCallBack) {
+		LogUtils.e("http_request_url:" + url);
+
+		if(dto!=null){
+			LogUtils.e("get-------------reqParams   start-------------");
+			Map<String, ?> map = objectToMap(dto);
+			if (map == null)
+				return;
+			Set<String> key = map.keySet();
+			String params="";
+			for (Iterator<String> it = key.iterator(); it.hasNext();) {
+				String s =  it.next();
+				if(TextUtils.isEmpty(map.get(s).toString())){
+					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+				}
 				if (params.equals(""))
 				{
 					params += s + "=" + map.get(s);
-//					params += map.get(s);
 				}
 				else
 				{

@@ -17,10 +17,15 @@ import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
-import com.autodesk.easyhome.shejijia.mine.Entity.UserDetailResult;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
 import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
-import com.autodesk.easyhome.shejijia.order.dto.CouponDTO;
+import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
+import com.autodesk.easyhome.shejijia.mine.entity.MineResult;
+import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
+import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
+import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
+import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
@@ -213,16 +218,115 @@ public class CommonApiClient extends BaseApiClient{
     }
 
     /**
-     * 优惠券
+     * 服务优惠券
      * @param act
      * @param dto
      * @param callback
      */
-    public static void coupon(Activity act, CouponDTO
+    public static void serviceCoupon(Activity act, ServiceCouponDTO
             dto, CallBack<AddAddressResult> callback) {
         AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, AddAddressResult.class);
-        get(getAbsoluteUrl("/coupon/couponByPage?"), dto,
+        get(getAbsoluteUrl("/coupon/couponByPageForService?"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 我的优惠券
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void mineCoupon(Activity act, MineCouponDTO
+            dto, CallBack<MineResult> callback) {
+        AsyncCallBack<MineResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, MineResult.class);
+        post(getAbsoluteUrl("/coupon/couponByPage"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 全部订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void whole(Activity act, OrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/all"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 已完成订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void completed(Activity act, OrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/finished"), dto,
+                asyncCallBack);
+    }
+
+
+    /**
+     * 未完成订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void unfinished (Activity act, OrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/unFinished"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 待评价订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void tobeEvaluated(Activity act, OrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/waitComment"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 待支付订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void tobePaid(Activity act, OrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/waitPay"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 取消订单
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void cancel (Activity act, CancelOrderDTO
+            dto, CallBack<OrderResult> callback) {
+        AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderResult.class);
+        post(getAbsoluteUrl("/custServiceOrder/cancel"), dto,
                 asyncCallBack);
     }
 
@@ -308,8 +412,10 @@ public class CommonApiClient extends BaseApiClient{
             dto, CallBack<UserDetailResult> callback) {
         AsyncCallBack<UserDetailResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, UserDetailResult.class);
-        get(getAbsoluteUrl("/user/userDetail?"), dto,
+        getNew(getAbsoluteUrl("/user/userDetail?"), dto,
                 asyncCallBack);
     }
+
+
 
 }

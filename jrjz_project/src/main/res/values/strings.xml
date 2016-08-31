@@ -58,6 +58,7 @@
     <string name="total">总计金额：</string>
     <string name="integral">积分支付</string>
     <string name="coupon">使用优惠券</string>
+    <string name="cp">优惠券</string>
     <string name="money">¥</string>
     <string name="common">常用地址</string>
     <string name="photo_graph">拍照</string>

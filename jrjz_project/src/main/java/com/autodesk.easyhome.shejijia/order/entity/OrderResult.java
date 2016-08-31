@@ -8,14 +8,17 @@ import java.util.List;
  * Created by John_Libo on 2016/8/15.
  */
 public class OrderResult extends BaseEntity {
-    List<OrderEntity> data;
+    OrderData data;
 
-    public List<OrderEntity> getData() {
+    public OrderData getData() {
         return data;
     }
 
-    public void setData(List<OrderEntity> data) {
+    public void setData(OrderData data) {
         this.data = data;
     }
+
+
+
 
 }

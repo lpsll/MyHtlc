@@ -299,12 +299,10 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin04:
-//                HomeUiGoto.gotoCf(getActivity());
-                OrderUiGoto.gotoOrderNew(getActivity());
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin05:
-//                HomeUiGoto.gotoCf(getActivity());
-                OrderUiGoto.gotoEvaluate(getActivity());
+                HomeUiGoto.gotoCf(getActivity());
                 break;
             case R.id.lin06:
                 HomeUiGoto.gotoCf(getActivity());

@@ -2,13 +2,14 @@ package com.autodesk.easyhome.shejijia.common.base;
 
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.home.fragment.SelectAddressFragment;
+import com.autodesk.easyhome.shejijia.order.fragment.ServiceCouponFragment;
 
 /**
  * Created by John_Libo on 2016/8/18.
  */
 public enum SimplePage {
 
-        SELECT_ADDRESS(1, R.string.common, SelectAddressFragment.class),
+    SERVICE_COUPON(1, R.string.cp, ServiceCouponFragment.class),
     ;
 
     private int title;
