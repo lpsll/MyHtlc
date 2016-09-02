@@ -73,7 +73,7 @@ public class HomeUiGoto {
      * 跳转到服务时间页
      * @param act
      */
-
+//    public static final int TIME_REQUEST = 010;
     public static void gotoSt(Activity act){
         Intent intent = new Intent(act, ServiceTimeActivity.class);
         act.startActivityForResult(intent,SELECT_REQUEST);

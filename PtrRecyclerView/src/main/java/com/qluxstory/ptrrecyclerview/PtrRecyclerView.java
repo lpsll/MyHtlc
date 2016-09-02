@@ -149,11 +149,11 @@ public class PtrRecyclerView extends PtrFrameLayout {
                 }
             }
             if (isScrolled && loadMoreFooterView == null) {
-                Log.e("onScrolled----","loadMoreFooterView");
+                Log.e("onScrolled----1---","loadMoreFooterView");
                 addLoadMoreFooterView();
             }
             if (isScrolled && !noMoreData) {
-                Log.e("onScrolled----","noMoreData");
+                Log.e("onScrolled----2----","noMoreData");
                 mAdapter.showloadMoreFooterView(true);
             }
         }
@@ -201,7 +201,7 @@ public class PtrRecyclerView extends PtrFrameLayout {
     public void noMoreData() {
         Toast.makeText(mContext, "没有更多数据了", Toast.LENGTH_SHORT).show();
         noMoreData = true;
-        mAdapter.showloadMoreFooterView(true);
+        mAdapter.showloadMoreFooterView(false);
 
     }
 

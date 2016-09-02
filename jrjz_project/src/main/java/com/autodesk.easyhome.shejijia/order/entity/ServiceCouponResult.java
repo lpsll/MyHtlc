@@ -8,14 +8,16 @@ import java.util.List;
  * Created by John_Libo on 2016/8/30.
  */
 public class ServiceCouponResult extends BaseEntity {
-    List<ServiceCouponEntity> data;
-    public List<ServiceCouponEntity> getData() {
+    ServiceCouponData data;
+    public ServiceCouponData getData() {
         return data;
     }
 
-    public void setData(List<ServiceCouponEntity> data) {
+    public void setData(ServiceCouponData data) {
         this.data = data;
     }
+
+
 
 
 

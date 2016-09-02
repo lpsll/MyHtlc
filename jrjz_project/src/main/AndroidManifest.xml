@@ -160,6 +160,12 @@
             android:name="com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.autodesk.easyhome.shejijia.order.activity.IntegralActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.autodesk.easyhome.shejijia.common.base.SimpleActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity"
             android:screenOrientation="portrait" />
 

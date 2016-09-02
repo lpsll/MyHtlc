@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseListFragment;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
@@ -34,8 +35,18 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
         return fragment;
     }
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            type = bundle.getInt(TYPE, MineCouponActivity.TAB_A);
+
+        }
+    }
+
+    @Override
     public BaseRecyclerAdapter<MineCouponEntity> createAdapter() {
-        return new MineCouponAdapter();
+        return new MineCouponAdapter(type);
     }
 
     @Override
@@ -45,17 +56,11 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
 
     @Override
     public List<MineCouponEntity> readList(Serializable seri) {
-        return ((MineCouponResult)seri).getData();
+        return ((MineCouponResult)seri).getData().getData();
     }
 
     @Override
     protected void sendRequestData() {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            type = bundle.getInt(TYPE, MineCouponActivity.TAB_A);
-            LogUtils.e("type---",""+type);
-
-        }
         MineCouponDTO dto = new MineCouponDTO();
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
@@ -64,8 +69,8 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
         dto.setUid(AppContext.get("uid",""));
         dto.setTimestamp(time);
         dto.setSign(AppContext.get("uid","")+time+random);
-        dto.setPage("0");
-        dto.setSize("10");
+        dto.setPage(String.valueOf(mCurrentPage));
+        dto.setSize(String.valueOf(PAGE_SIZE));
         if(type ==1){
             dto.setUseStatus("1");
         }
@@ -81,6 +86,10 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
             public void onSuccess(MineCouponResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("我的优惠券成功");
+                    mErrorLayout.setErrorMessage("暂无优惠券记录",mErrorLayout.FLAG_NODATA);
+                    mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
+                    requestDataSuccess(result);
+                    setDataResult(result.getData().getData());
                 }
 
             }

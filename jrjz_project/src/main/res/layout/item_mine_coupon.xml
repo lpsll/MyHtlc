@@ -5,13 +5,13 @@
     android:background="@color/color_cc"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/mine_coupon_lin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_400"
         android:layout_marginTop="@dimen/ds_40"
         android:layout_marginLeft="@dimen/ds_40"
         android:layout_marginBottom="@dimen/ds_40"
         android:layout_marginRight="@dimen/ds_40"
-        android:background="@color/navi"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,18 +76,27 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/ds_20"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/ds_120">
+            <TextView
+                android:id="@+id/tv_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/ds_60"
+                android:text="1111"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/ds_40"
+                android:textSize="@dimen/fs_45"
+                android:textColor="@color/color_ff"/>
 
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="@dimen/ds_60"
                 android:textSize="@dimen/fs_45"
                 android:gravity="center"
                 android:textColor="@color/color_ff"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/ds_60"
-                android:text=""/>
+                android:text="11111"/>
         </RelativeLayout>
     </LinearLayout>
 

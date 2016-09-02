@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_60"
-                    android:text="@string/apt_project"
+                    android:text=""
                     android:textColor="@color/color_11"
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_150"
-                    android:text="@string/apt_project"
+                    android:text=""
                     android:textColor="@color/color_11"
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_150"
-                    android:text="@string/apt_project"
+                    android:text=""
                     android:textColor="@color/color_11"
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
@@ -121,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/ds_150"
-                    android:text="@string/apt_project"
+                    android:text=""
                     android:textColor="@color/color_11"
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
@@ -157,7 +157,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/ds_40"
                         android:gravity="center_vertical"
-                        android:text="111"
+                        android:text=""
                         android:textColor="@color/color_fce"
                         android:textSize="@dimen/fs_45" />
 
@@ -176,8 +176,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_40"
+                        android:layout_marginRight="@dimen/ds_40"
                         android:gravity="center_vertical"
-                        android:text="111111111111"
+                        android:text=""
                         android:textColor="@color/color_00"
                         android:textSize="@dimen/fs_45" />
 
@@ -186,9 +187,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_40"
+                        android:layout_marginRight="@dimen/ds_40"
                         android:layout_marginTop="@dimen/ds_20"
                         android:gravity="center_vertical"
-                        android:text="111111111111"
+                        android:text=""
                         android:textColor="@color/color_00"
                         android:textSize="@dimen/fs_45" />
                 </LinearLayout>
