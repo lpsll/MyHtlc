@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.autodesk.easyhome.shejijia">
 
 
@@ -174,6 +175,8 @@
             android:screenOrientation="portrait" />
 
 
+
+
         <activity android:name="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity" />
         <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity" />
@@ -191,7 +194,6 @@
         <activity
             android:name="com.lidong.photopicker.PhotoPreviewActivity"
             android:theme="@style/PhotoPickerTheme" />
-        <activity android:name=".common.base.SimpleActivity"/>
 
 
         <!--极光推送开始-->
