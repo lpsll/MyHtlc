@@ -111,7 +111,7 @@ public class MineFragment extends BaseFragment {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取用户信息成功=====" + result.getData().toString());
 
-                    int points = (int) result.getData().getPoints();
+                    double points =  result.getData().getPoints();
                     double balance = result.getData().getBalance();
 
                     tvMinePoint.setText(points + "分");

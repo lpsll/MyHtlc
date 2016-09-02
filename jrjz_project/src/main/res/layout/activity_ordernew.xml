@@ -315,8 +315,8 @@
 
                 <CheckBox
                     android:id="@+id/place_cb_qb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/ds_50"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/ds_40"
@@ -362,8 +362,8 @@
 
                 <CheckBox
                     android:id="@+id/place_cb_wx"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/ds_50"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/ds_40"
@@ -408,8 +408,8 @@
 
                 <CheckBox
                     android:id="@+id/place_cb_zfb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/ds_50"
+                    android:layout_height="@dimen/ds_50"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/ds_40"
