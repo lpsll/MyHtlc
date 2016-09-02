@@ -2,7 +2,6 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -17,10 +16,8 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
-import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
-import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
 
@@ -62,6 +59,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         lin06 = holder.getView(R.id.order_lin06);
         tv07 = holder.getView(R.id.order_tv07);
         btn = holder.getView(R.id.order_btn);
+        LogUtils.e("orderId----",orderEntity.getOrderId());
         btn.setOnClickListener(new View.OnClickListener() {
             TextView tv = tv07;
             Button bt = btn;
