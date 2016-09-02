@@ -15,6 +15,7 @@ import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.TimeResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
@@ -24,10 +25,15 @@ import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
 import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
+import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
+import com.autodesk.easyhome.shejijia.order.dto.OrderDetailDTO;
 import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
+import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
+import com.autodesk.easyhome.shejijia.order.entity.OrderDetailResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
+import com.autodesk.easyhome.shejijia.order.entity.ServiceCouponResult;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
@@ -162,6 +168,34 @@ public class CommonApiClient extends BaseApiClient{
         post(getAbsoluteUrl("/user/address/add"), dto,
                 asyncCallBack);
     }
+    /**
+     * 获取订单详情
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void orderDetail(Activity act, OrderDetailDTO
+            dto, CallBack<OrderDetailResult> callback) {
+        AsyncCallBack<OrderDetailResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, OrderDetailResult.class);
+        get(getAbsoluteUrl("/custServiceOrder/detail/"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 订单之钱包支付
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void newPayment(Activity act, NewPaymentDTO
+            dto, CallBack<IntegralResult> callback) {
+        AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, IntegralResult.class);
+        post(getAbsoluteUrl("/pay/inner/pay"), dto,
+                asyncCallBack);
+    }
+
 
     /**
      * 修改地址
@@ -240,10 +274,37 @@ public class CommonApiClient extends BaseApiClient{
      * @param callback
      */
     public static void serviceCoupon(Activity act, ServiceCouponDTO
-            dto, CallBack<AddAddressResult> callback) {
-        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
-                act, callback, AddAddressResult.class);
-        get(getAbsoluteUrl("/coupon/couponByPageForService?"), dto,
+            dto, CallBack<ServiceCouponResult> callback) {
+        AsyncCallBack<ServiceCouponResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, ServiceCouponResult.class);
+        post(getAbsoluteUrl("/coupon/couponByPageForService"), dto,
+                asyncCallBack);
+    }
+    /**
+     * 订单之积分
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void integral(Activity act, BaseDTO
+            dto, CallBack<IntegralResult> callback) {
+        AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, IntegralResult.class);
+        get(getAbsoluteUrl("/points/"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 订单之积分规则
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void rule(Activity act, BaseDTO
+            dto, CallBack<IntegralResult> callback) {
+        AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, IntegralResult.class);
+        get(getAbsoluteUrl("/points/pointsRule"), dto,
                 asyncCallBack);
     }
 
@@ -357,6 +418,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, AddAddressResult.class);
         post(getAbsoluteUrl("/service/service/book"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 服务时间
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void time(Activity act, BaseDTO
+            dto, CallBack<TimeResult> callback) {
+        AsyncCallBack<TimeResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, TimeResult.class);
+        get(getAbsoluteUrl("/service/serviceDates"), dto,
                 asyncCallBack);
     }
 

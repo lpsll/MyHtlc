@@ -75,6 +75,13 @@
     <string name="maintenance_cost">维修费</string>
     <string name="accessories_cost">配件费</string>
     <string name="select_address">请选择地址</string>
+    <string name="preservation">保存</string>
+    <string name="time1">08:00----10:00</string>
+    <string name="time2">10:00----12:00</string>
+    <string name="time3">12:00----14:00</string>
+    <string name="time4">14:00----16:00</string>
+    <string name="time5">16:00----18:00</string>
+    <string name="time6">18:00----20:00</string>
 
 
 

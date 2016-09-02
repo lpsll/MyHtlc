@@ -8,14 +8,16 @@ import java.util.List;
  * Created by John_Libo on 2016/8/31.
  */
 public class MineCouponResult extends BaseEntity{
-    List<MineCouponEntity> data;
-    public List<MineCouponEntity> getData() {
+    MineCouponData data;
+    public MineCouponData getData() {
         return data;
     }
 
-    public void setData(List<MineCouponEntity> data) {
+    public void setData(MineCouponData data) {
         this.data = data;
     }
+
+
 
 
 }

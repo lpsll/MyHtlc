@@ -14,9 +14,15 @@ import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
+import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
+import com.autodesk.easyhome.shejijia.order.entity.OrderDetailResult;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
@@ -54,7 +60,8 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     Button mTjBtn;
 
     private static final int RQF_PAY = 1;
-    private String mSelName,mSelPhone,mSelAddress,mPrice,mName;
+    private String mSelName,mSelPhone,mSelAddress,mPrice,mName,mOrderId;
+    private String type;
 
     @Override
     protected int getContentResId() {
@@ -66,13 +73,10 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         setTitleText("订单支付");
         mName = getIntent().getBundleExtra("bundle").getString("mName");
         mPrice = getIntent().getBundleExtra("bundle").getString("mPrice");
+        mOrderId = getIntent().getBundleExtra("bundle").getString("orderId");
         mSelName = AppContext.get("mSelName","");
         mSelPhone = AppContext.get("mSelPhone","");
         mSelAddress = AppContext.get("mSelAddress","");
-//        mSelName = getIntent().getBundleExtra("bundle").getString("mName");
-//        mSelPhone = getIntent().getBundleExtra("bundle").getString("mName");
-//        mSelAddress = getIntent().getBundleExtra("bundle").getString("mName");
-
         mTvProject.setText(mName);
         mTvName.setText(mSelName);
         mTvTel.setText(mSelPhone);
@@ -265,6 +269,32 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     }
 
+    private void reqPayment() {
+        NewPaymentDTO dto = new NewPaymentDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "") + time + random);
+        dto.setDealId(mOrderId);
+        dto.setDealType(type);
+        CommonApiClient.newPayment(this, dto, new CallBack<IntegralResult>() {
+            @Override
+            public void onSuccess(IntegralResult result) {
+                if (AppConfig.NOTHING.equals(result.getCode())) {
+                    DialogUtils.showPrompt(OrderPaymentActivity.this, "提示",result.getMsg(), "知道了");
+
+                }
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("钱包支付成功");
+
+                }
+
+            }
+        });
+    }
 
     @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn})
     public void onClick(View view) {
@@ -285,10 +315,24 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 mPlaceCbZfb.setChecked(true);
                 break;
             case R.id.tj_btn:
+                if(mPlaceCbQb.isChecked()){
+                    type = "SerivceBook";
+                    reqPayment();
+                }
+                else if(mPlaceCbWx.isChecked()){
+                    type = "";
+                    reqPayment();
+                }
+                else if(mPlaceCbZfb.isChecked()){
+                    type = "";
+                    reqPayment();
+                }
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
                 break;
         }
     }
+
+
 }

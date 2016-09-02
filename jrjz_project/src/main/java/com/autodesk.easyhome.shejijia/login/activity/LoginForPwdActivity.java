@@ -85,12 +85,12 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 }
 
                 //密码格式验证
-                boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
-                if (!isMatches) {
-                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
-                    etLoginPwd.setText("");
-                    break;
-                }
+//                boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
+//                if (!isMatches) {
+//                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+//                    etLoginPwd.setText("");
+//                    break;
+//                }
 
                 login();
 

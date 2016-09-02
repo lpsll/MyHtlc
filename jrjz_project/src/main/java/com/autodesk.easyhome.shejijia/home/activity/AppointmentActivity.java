@@ -103,7 +103,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
     private String mName,mId;
-    private String mSelName,mSelPhone,mSelAddress,mPrice;
+    private String mSelName,mSelPhone,mSelAddress,mPrice,mTm;
 
     private ArrayList<String> mPic = new ArrayList<>();
 
@@ -206,9 +206,9 @@ public class AppointmentActivity extends BaseTitleActivity {
                 if(mAddTv02.getText().toString().equals("")){
                     DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
                 }
-//                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
-//                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
-//                }
+                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
+                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+                }
                 else if(mEtDescribe.getText().toString().equals("")){
                     DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
                 }
@@ -275,7 +275,7 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setPhone(mAddTv02.getText().toString());
         dto.setAddress(mAddTv04.getText().toString());
         dto.setServiceItemId(mId);
-        dto.setServiceTime("12:00");
+        dto.setServiceTime(mTm);
         dto.setDescr(mEtDescribe.getText().toString());
         dto.setHomeVisitFee(mTvMoney.getText().toString());
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
@@ -285,10 +285,8 @@ public class AppointmentActivity extends BaseTitleActivity {
                     LogUtils.e("预约成功");
                     Bundle bundle = new Bundle();
                     bundle.putString("mName",mName);
-//                    bundle.putString("mSelName",mSelName);
-//                    bundle.putString("mSelPhone",mSelPhone);
-//                    bundle.putString("mSelAddress",mSelAddress);
                     bundle.putString("mPrice",mPrice);
+                    bundle.putString("orderId",result.getData());
                     HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
                 }
 
@@ -448,14 +446,13 @@ public class AppointmentActivity extends BaseTitleActivity {
                         mAddTv01.setText(mSelName);
                         mAddTv02.setText(mSelPhone);
                         mAddTv04.setText(mSelAddress);
-//                        AppContext.set("mSelName","");
-//                        AppContext.set("mSelPhone","");
-//                        AppContext.set("mSelAddress","");
 
                     }
                 }
-                else if(resultCode==00002){
-
+                //选择时间
+                else if(resultCode==12){
+                    mTm = AppContext.get("serviceTime","");
+                    mTime.setText(mTm);
                 }
 
                 break;
