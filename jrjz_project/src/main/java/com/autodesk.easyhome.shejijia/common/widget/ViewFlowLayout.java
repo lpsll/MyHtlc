@@ -122,6 +122,8 @@ public class ViewFlowLayout extends RelativeLayout {
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                     count++;
+                    LogUtils.e("count----",""+count);
+                    LogUtils.e("isfirst----",""+isfirst);
                     int screenWidth = AppContext.get("screenWidth", 0);
                     if (isfirst) {
                         isfirst = false;
@@ -149,7 +151,7 @@ public class ViewFlowLayout extends RelativeLayout {
                     dot.setImageResource(R.drawable.discount_dot_unsel);
                     linear.addView(dot);
 
-
+                    LogUtils.e("size---",""+size);
                     if (count == size) {
                         for (int i = 0; i < size; i++) {
                             ImageView imageView = new ImageView(context_);
@@ -161,12 +163,14 @@ public class ViewFlowLayout extends RelativeLayout {
 
                         if(size ==1){
                             linear.setVisibility(View.GONE);
+                            count =0;
                         }else {
                             linear.setVisibility(View.VISIBLE);
                             flipper.setDisplayedChild(0);
                             ((ImageView) linear.getChildAt(0)).setImageResource(R.drawable.discount_dot_sel);
                             //图片全部加载完毕
                             startListen();
+                            count =0;
                         }
 
 
