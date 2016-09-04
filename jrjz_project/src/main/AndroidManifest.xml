@@ -99,7 +99,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
 
-                <data android:scheme="wxfd04ee1c78a46319" />
+                <data android:scheme="wx508c34abf751bf9c" />
             </intent-filter>
         </activity>
         <!-- 微信支付 end-->
@@ -142,6 +142,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name="com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.autodesk.easyhome.shejijia.common.base.BrowserActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.autodesk.easyhome.shejijia.order.activity.EvaluateActivity"

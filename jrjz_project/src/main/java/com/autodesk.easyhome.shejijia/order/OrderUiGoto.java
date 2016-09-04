@@ -28,10 +28,12 @@ public class OrderUiGoto {
     /**
      * 跳转到评价页
      * @param context
+     * @param bundle
      */
 
-    public static void gotoEvaluate(Context context){
+    public static void gotoEvaluate(Context context, Bundle bundle){
         Intent intent = new Intent(context, EvaluateActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 

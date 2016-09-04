@@ -57,7 +57,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         status = orderEntity.getStatus();
         holder.setText(R.id.order_tv01,orderEntity.getServiceName());
         holder.setText(R.id.order_tv02,orderEntity.getOrderId());
-        holder.setText(R.id.order_tv03,orderEntity.getBookTime());
+        holder.setText(R.id.order_tv03,orderEntity.getServiceTime());
         holder.setText(R.id.order_tv04,orderEntity.getAddress());
         tv05 = holder.getView(R.id.order_tv05);
         lin05 = holder.getView(R.id.order_lin05);
@@ -73,7 +73,9 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
 
                 Button mBtn = (Button) v;
                 if(mBtn.getText().toString().equals("评价")){
-                    OrderUiGoto.gotoEvaluate(context);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mId",list.get(position).getOrderId());
+                    OrderUiGoto.gotoEvaluate(context,bundle);
                 }
                 if(mBtn.getText().toString().equals("付款")){
                     Bundle bundle = new Bundle();

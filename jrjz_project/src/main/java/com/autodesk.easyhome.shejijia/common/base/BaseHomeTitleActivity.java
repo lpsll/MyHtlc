@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia.common.base;
 
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,15 +8,16 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
 
 /**
- * 带有标题的基类
+ * Created by John_Libo on 2016/9/4.
  */
-public abstract class BaseTitleActivity extends BaseActivity {
+public abstract class BaseHomeTitleActivity extends BaseActivity {
     private TextView mBaseTitle, mBaseEnsure, mBaseBack;
     private View mTitleLayout;
+
 
 
     protected void onAfterSetContentLayout() {
@@ -48,22 +48,14 @@ public abstract class BaseTitleActivity extends BaseActivity {
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
         mBaseBack.setOnClickListener(this);
 
-        // 初始化返回按钮图片大小
-        TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.backleft,
-                R.dimen.common_titlebar_icon_width,
-                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.base_titlebar_back:
-                baseGoBack();
                 break;
             case R.id.base_titlebar_ensure:
-                baseGoEnsure();
                 break;
             default:
                 break;

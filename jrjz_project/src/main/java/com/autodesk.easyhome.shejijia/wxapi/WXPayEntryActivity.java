@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.R;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
@@ -28,7 +29,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
-        api = WXAPIFactory.createWXAPI(this, AppConfig.Wx_App_Id);
+        api = WXAPIFactory.createWXAPI(this, AppContext.get("wx_appId",""));
         api.handleIntent(getIntent(), this);
     }
 
@@ -57,7 +58,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                 String error = resp.errStr;
                 int errcode = resp.errCode;
                 message = "支付失败";
-                LogUtils.e("支付失败---","error----"+error+"errcode----"+errcode);
+                LogUtils.e("支付失败---","error----"+error+"errcode："+errcode);
             }
             WXPayEntryActivity.this.finish();
             Toast.makeText(WXPayEntryActivity.this, message, Toast.LENGTH_SHORT).show();

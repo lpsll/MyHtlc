@@ -70,9 +70,16 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     Button mTjBtn;
     private String mId;
     OrderDetailsEntity data;
-    private String total,type,mPoint,mCoupon;
+    private String total;
+    private String type;
+    private String mPoint;
+    private String mCoupon;
+    private String money;
     boolean integral = false;
     boolean coupon = false;
+    private String mT1;
+    private String mT2;
+    int tot,inte;
 
     @Override
     protected int getContentResId() {
@@ -82,6 +89,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("订单支付");
+        tot =0;
+        tot =0;
         mId = getIntent().getBundleExtra("bundle").getString("id");
     }
 
@@ -205,20 +214,34 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 return;
             }else {
                 integral = true;
-                String tol = AppContext.get("Integral","");
-                String rule = AppContext.get("rule","");
-                double t1 = Double.parseDouble(mTvMoney.getText().toString());
-                double t2 = Double.parseDouble(tol);
-                double t3 = Double.parseDouble(rule);
-                LogUtils.e("t2---",""+t2);
-                LogUtils.e("t3---",""+t3);
-                mPoint = String.valueOf(t2*t3);
-                LogUtils.e("mPoint--",""+mPoint);
-                if(t1>t2){
-                    mTvMoney.setText(String.valueOf(t1-t2));
+                if(inte==0){
+                    inte=1;
+                    money = AppContext.get("Integral","");
+                    String rule = AppContext.get("rule","");
+                    double t1 = Double.parseDouble(mTvMoney.getText().toString());
+                    double t2 = Double.parseDouble(money);
+                    double t3 = Double.parseDouble(rule);
+                    mPoint = String.valueOf(t2*t3);
+                    if(t1>t2){
+                        mTvMoney.setText(String.valueOf(t1-t2));
+                    }else {
+                        mTvMoney.setText("0");
+                    }
                 }else {
-                    mTvMoney.setText("0");
+                    double t1 = Double.parseDouble(mTvMoney.getText().toString())+Double.parseDouble(money);
+                    money = AppContext.get("Integral","");
+                    double t2 = Double.parseDouble(money);
+                    String rule = AppContext.get("rule","");
+                    double t3 = Double.parseDouble(rule);
+                    mPoint = String.valueOf(t2*t3);
+                    if(t1>t2){
+                        mTvMoney.setText(String.valueOf(t1-t2));
+                    }else {
+                        mTvMoney.setText("0");
+                    }
+
                 }
+
             }
 
         }
@@ -227,15 +250,30 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             if(TextUtils.isEmpty(AppContext.get("couponMenoy",""))){
                 return;
             }else {
-            coupon = true;
-            mCoupon = AppContext.get("couponMenoy","");
-            double t1 = Double.parseDouble(mTvMoney.getText().toString());
-            double t2 = Double.parseDouble(mCoupon);
-            if(t1>t2){
-                mTvMoney.setText(String.valueOf(t1-t2));
-            }else {
-                mTvMoney.setText("0");
-            }
+                coupon = true;
+                if(tot==0){
+                    tot =1;
+                    mCoupon = AppContext.get("couponMenoy","");
+                    double t1 = Double.parseDouble(mTvMoney.getText().toString());
+                    double t2 = Double.parseDouble(mCoupon);
+                    if(t1>t2){
+                        mT1 = String.valueOf(t1-t2);
+                        mTvMoney.setText(mT1);
+                    }else {
+                        mTvMoney.setText("0");
+                    }
+                }else {
+                    double d1 = Double.parseDouble(mTvMoney.getText().toString())+Double.parseDouble(mCoupon);
+                    mCoupon =AppContext.get("couponMenoy","");
+                    double d2 = Double.parseDouble(mCoupon);
+                    if(d1>d2){
+                        mT2 = String.valueOf(d1-d2);
+                        mTvMoney.setText(mT2);
+                    }else {
+                        mTvMoney.setText("0");
+                    }
+                }
+
             }
         }
 

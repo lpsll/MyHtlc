@@ -102,4 +102,13 @@
         <item name="android:gravity">center_horizontal</item>
         <!-- <item name="android:background">@drawable/nav_page</item> -->
     </style>
+
+    <!-- webview中的进度条 -->
+    <style name="CommonWebViewProgressBarStyle" parent="@android:style/Widget.SeekBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_horizontal</item>
+        <item name="android:minHeight">8dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
 </resources>

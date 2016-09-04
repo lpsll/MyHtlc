@@ -52,7 +52,9 @@ public class OrderFragment extends BaseFragment {
         fragmentList.add(OrderInsideFragment.newInstance(TAB_D));
         fragmentList.add(OrderInsideFragment.newInstance(TAB_E));
 
-        String titles[] = getResources().getStringArray(R.array.order_tab);
+
+        String titles[]= getResources().getStringArray(R.array.order_tab);
+
         mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
         mOrderContent.setAdapter(mAdapter);
         mOrderContent.setOffscreenPageLimit(fragmentList.size());

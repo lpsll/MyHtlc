@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
+import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
@@ -28,7 +29,7 @@ import butterknife.Bind;
 整个程序的MainActivity，入口
 */
 
-public class MainActivity extends BaseTitleActivity {
+public class MainActivity extends BaseHomeTitleActivity {
 
     @Bind(R.id.tv_tab_home)
     ImageView mTvTabHome;
@@ -38,6 +39,7 @@ public class MainActivity extends BaseTitleActivity {
     ImageView mTvTabCampaign;
     @Bind(R.id.tv_tab_mine)
     ImageView mTvTabMine;
+    int fg1,fg2,fg3,fg4,fg5;
 
 
     public static final int TAB_NUM = 4;
@@ -73,13 +75,14 @@ public class MainActivity extends BaseTitleActivity {
     public void initView() {
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
         mBaseEnsure = (TextView) findViewById(R.id.base_titlebar_ensure);
-        mBaseEnsure.setOnClickListener(this);
-        mBaseBack.setOnClickListener(this);
         mBaseBack.setText("北京");
-        // 初始化返回按钮图片大小
-        TextViewUtils.setTextViewIcon(this, mBaseBack, R.drawable.xiangxiaxdpi_03,
-                R.dimen.common_titlebar_left_icon_width,
-                R.dimen.common_titlebar_left_icon_height, TextViewUtils.DRAWABLE_RIGHT);
+
+        fg1 = 0;
+        fg2 = 0;
+        fg3 = 0;
+        fg4 = 0;
+        fg5 = 0;
+
 
         // 初始化右边图片大小
         TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
@@ -218,21 +221,42 @@ public class MainActivity extends BaseTitleActivity {
                 setTitleText("居然家政");
                 mBaseBack.setVisibility(View.VISIBLE);
                 mBaseEnsure.setVisibility(View.VISIBLE);
+                if(fg1==0){
+                    fg1=1;
+                }else {
+                    targetFragment.initData();
+                }
+
                 break;
             case 1:
                 setTitleText("订单");
                 mBaseBack.setVisibility(View.GONE);
                 mBaseEnsure.setVisibility(View.GONE);
+                if(fg2==0){
+                    fg2=1;
+                }else {
+                    targetFragment.initView(null);
+                }
                 break;
             case 2:
                 setTitleText("活动");
                 mBaseBack.setVisibility(View.GONE);
                 mBaseEnsure.setVisibility(View.GONE);
+                if(fg3==0){
+                    fg3=1;
+                }else {
+                    targetFragment.initData();
+                }
                 break;
             case 3:
                 setTitleText("个人中心");
                 mBaseBack.setVisibility(View.GONE);
                 mBaseEnsure.setVisibility(View.GONE);
+                if(fg4==0){
+                    fg4=1;
+                }else {
+                    targetFragment.initView(null);
+                }
                 break;
 
         }
@@ -247,7 +271,6 @@ public class MainActivity extends BaseTitleActivity {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
-
             default:
                 break;
         }

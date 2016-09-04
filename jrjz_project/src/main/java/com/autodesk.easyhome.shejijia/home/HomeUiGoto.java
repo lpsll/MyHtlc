@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.autodesk.easyhome.shejijia.MainActivity;
+import com.autodesk.easyhome.shejijia.common.base.BrowserActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
@@ -158,6 +159,18 @@ public class HomeUiGoto {
      */
     public static void gotoForgetPwd(Context context) {
         Intent intent = new Intent(context, ForgetPwdActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到首页
+     * @param context
+     * @param bundle
+     */
+
+    public static void gotoBrowser(Context context, Bundle bundle){
+        Intent intent = new Intent(context, BrowserActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 }

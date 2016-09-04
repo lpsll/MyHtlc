@@ -9,13 +9,17 @@ import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
+import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.TimeResult;
+import com.autodesk.easyhome.shejijia.home.entity.WxResult;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
@@ -25,6 +29,7 @@ import com.autodesk.easyhome.shejijia.mine.dto.MineCouponDTO;
 import com.autodesk.easyhome.shejijia.mine.entity.MineCouponResult;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
+import com.autodesk.easyhome.shejijia.order.dto.EvaluateDTO;
 import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDetailDTO;
@@ -196,6 +201,34 @@ public class CommonApiClient extends BaseApiClient{
                 asyncCallBack);
     }
 
+    /**
+     * 预约之支付宝预支付
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void zfb(Activity act, ZfbDTO
+            dto, CallBack<IntegralResult> callback) {
+        AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, IntegralResult.class);
+        post(getAbsoluteUrl("/pay/ali/prepay"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 预约之微信预支付
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void wx(Activity act, WxDTO
+            dto, CallBack<WxResult> callback) {
+        AsyncCallBack<WxResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, WxResult.class);
+        post(getAbsoluteUrl("/pay/wx/prepay"), dto,
+                asyncCallBack);
+    }
+
 
     /**
      * 修改地址
@@ -260,9 +293,9 @@ public class CommonApiClient extends BaseApiClient{
      * @param callback
      */
     public static void dfault(Activity act, BaseDTO
-            dto, CallBack<AddAddressResult> callback) {
-        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
-                act, callback, AddAddressResult.class);
+            dto, CallBack<DfaultResult> callback) {
+        AsyncCallBack<DfaultResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, DfaultResult.class);
         get(getAbsoluteUrl("/user/address/default/"), dto,
                 asyncCallBack);
     }
@@ -305,6 +338,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, IntegralResult.class);
         get(getAbsoluteUrl("/points/pointsRule"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 评价
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void evaluate(Activity act, EvaluateDTO
+            dto, CallBack<IntegralResult> callback) {
+        AsyncCallBack<IntegralResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, IntegralResult.class);
+        post(getAbsoluteUrl("/commentinfo/addComment"), dto,
                 asyncCallBack);
     }
 

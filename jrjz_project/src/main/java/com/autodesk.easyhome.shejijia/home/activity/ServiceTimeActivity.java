@@ -80,7 +80,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
     LinearLayout lin05;
 
     List<TimeEntity> data;
-    private String time;
+    private String time,mTd;
     @Override
     protected int getContentResId() {
         return R.layout.activity_servicetime;
@@ -123,6 +123,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
         week04.setText(data.get(3).getWeek());
         data05.setText(data.get(4).getShortDate());
         week05.setText(data.get(4).getWeek());
+        mTd = data.get(0).getDate();
     }
 
 
@@ -130,6 +131,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin01:
+                mTd = data.get(0).getDate();
                 data01.setTextColor(getResources().getColor(R.color.navi));
                 week01.setTextColor(getResources().getColor(R.color.navi));
                 tv01.setVisibility(View.VISIBLE);
@@ -148,6 +150,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
 
                 break;
             case R.id.lin02:
+                mTd = data.get(1).getDate();
                 data01.setTextColor(getResources().getColor(R.color.color_f9));
                 week01.setTextColor(getResources().getColor(R.color.color_33));
                 tv01.setVisibility(View.GONE);
@@ -165,6 +168,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 tv05.setVisibility(View.GONE);
                 break;
             case R.id.lin03:
+                mTd = data.get(2).getDate();
                 data01.setTextColor(getResources().getColor(R.color.color_f9));
                 week01.setTextColor(getResources().getColor(R.color.color_33));
                 tv01.setVisibility(View.GONE);
@@ -182,6 +186,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 tv05.setVisibility(View.GONE);
                 break;
             case R.id.lin04:
+                mTd = data.get(3).getDate();
                 data01.setTextColor(getResources().getColor(R.color.color_f9));
                 week01.setTextColor(getResources().getColor(R.color.color_33));
                 tv01.setVisibility(View.GONE);
@@ -199,6 +204,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 tv05.setVisibility(View.GONE);
                 break;
             case R.id.lin05:
+                mTd = data.get(4).getDate();
                 data01.setTextColor(getResources().getColor(R.color.color_f9));
                 week01.setTextColor(getResources().getColor(R.color.color_33));
                 tv01.setVisibility(View.GONE);
@@ -229,7 +235,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+time);
                 setResult(12);
                 finish();
                 break;
@@ -247,7 +253,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+"  "+time);
                 setResult(12);
                 finish();
                 break;
@@ -265,7 +271,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+"  "+time);
                 setResult(12);
                 finish();
                 break;
@@ -283,7 +289,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+"  "+time);
                 setResult(12);
                 finish();
                 break;
@@ -301,7 +307,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.navi));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+"  "+time);
                 setResult(12);
                 finish();
                 break;
@@ -319,7 +325,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_blue_border));
                 mStTv06.setTextColor(getResources().getColor(R.color.navi));
-                AppContext.set("serviceTime",time);
+                AppContext.set("serviceTime",mTd+"  "+time);
                 setResult(12);
                 finish();
                 break;

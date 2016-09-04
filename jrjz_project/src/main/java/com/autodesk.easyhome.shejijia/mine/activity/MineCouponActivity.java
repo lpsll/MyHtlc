@@ -41,9 +41,9 @@ public class MineCouponActivity extends BaseTitleActivity{
         fragmentList.add(CouponSubclassFragment.newInstance(TAB_A));
         fragmentList.add(CouponSubclassFragment.newInstance(TAB_B));
         fragmentList.add(CouponSubclassFragment.newInstance(TAB_C));
-        String str1 = "未使用"+"(4)";
-        String str2 = "已过期"+"(10)";
-        String str3 = "已使用"+"(15)";
+        String str1 = "未使用";
+        String str2 = "已过期";
+        String str3 = "已使用";
 
         String titles[] = {str1,str2,str3};
         mAdapter = new CouponTabListAdapter(getSupportFragmentManager(), this, titles, fragmentList);

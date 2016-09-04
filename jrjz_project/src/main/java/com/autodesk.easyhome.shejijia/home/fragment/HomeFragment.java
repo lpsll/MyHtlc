@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
@@ -173,7 +175,15 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        mVfLayout.setOnItemClickListener(new ViewFlowLayout.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("url",mCarouse.get(position).getBannerurl());
+                HomeUiGoto.gotoBrowser(getActivity(),bundle);
 
+            }
+        });
     }
 
 
@@ -286,9 +296,14 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15, R.id.lin_15, R.id.lin16, R.id.lin17, R.id.all_service})
+    @OnClick({R.id.lin01,R.id.image_ad, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.lin11, R.id.lin12, R.id.lin13, R.id.lin14, R.id.lin15, R.id.lin_15, R.id.lin16, R.id.lin17, R.id.all_service})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.image_ad:
+                Intent intent2 = new Intent(getActivity(), MainActivity.class);
+                intent2.putExtra("tag",2);
+                getActivity().startActivity(intent2);
+                break;
             case R.id.lin01:
                 HomeUiGoto.gotoCf(getActivity());
                 break;

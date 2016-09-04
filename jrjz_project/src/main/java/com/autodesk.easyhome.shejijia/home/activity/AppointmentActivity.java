@@ -41,6 +41,8 @@ import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
+import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
+import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.bumptech.glide.Glide;
 import com.autodesk.easyhome.shejijia.R;
 import com.lidong.photopicker.PhotoPickerActivity;
@@ -106,6 +108,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private String mSelName,mSelPhone,mSelAddress,mPrice,mTm;
 
     private ArrayList<String> mPic = new ArrayList<>();
+    DfaultEntity data;
 
 
     @Override
@@ -155,19 +158,27 @@ public class AppointmentActivity extends BaseTitleActivity {
     private void reqDfault() {
         BaseDTO dto = new BaseDTO();
         dto.setUid(AppContext.get("uid",""));
-        CommonApiClient.dfault(this, dto, new CallBack<AddAddressResult>() {
+        CommonApiClient.dfault(this, dto, new CallBack<DfaultResult>() {
             @Override
-            public void onSuccess(AddAddressResult result) {
+            public void onSuccess(DfaultResult result) {
                 if(AppConfig.NOTHING.equals(result.getCode())){
                     LogUtils.e("无默认地址");
 
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取默认地址成功");
+                    bindDfault(result);
                 }
 
             }
         });
+    }
+
+    private void bindDfault(DfaultResult result) {
+        data = result.getData();
+        mAddTv01.setText(data.getName());
+        mAddTv02.setText(data.getMobile());
+        mAddTv04.setText(data.getAddress());
     }
 
     private void reqService() {
@@ -209,12 +220,12 @@ public class AppointmentActivity extends BaseTitleActivity {
                 else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
                     DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
                 }
-                else if(mEtDescribe.getText().toString().equals("")){
-                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
-                }
-                else if(mPic.size()==0||mPic==null){
-                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
-                }
+//                else if(mEtDescribe.getText().toString().equals("")){
+//                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
+//                }
+//                else if(mPic.size()==0||mPic==null){
+//                    DialogUtils.showPrompt(this, "提示","请上传图片", "知道了");
+//                }
                 else {
                     reqPic();//上传图片
                     reqAppointment();//预约
