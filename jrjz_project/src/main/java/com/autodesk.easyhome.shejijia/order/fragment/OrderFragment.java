@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.widget.SlidingTabLayout;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.adapter.OrderTabListAdapter;
 
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class OrderFragment extends BaseFragment {
     ViewPager mOrderContent;
     private OrderTabListAdapter mAdapter;
     private List<Fragment> fragmentList;
+    boolean flag;
 
 
     @Override
@@ -44,24 +47,28 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        fragmentList = new ArrayList<Fragment>();
+        flag = AppContext.get("IS_LOGIN",false);
+        if(flag){
+            fragmentList = new ArrayList<Fragment>();
+            fragmentList.add(OrderInsideFragment.newInstance(TAB_A));
+            fragmentList.add(OrderInsideFragment.newInstance(TAB_B));
+            fragmentList.add(OrderInsideFragment.newInstance(TAB_C));
+            fragmentList.add(OrderInsideFragment.newInstance(TAB_D));
+            fragmentList.add(OrderInsideFragment.newInstance(TAB_E));
 
-        fragmentList.add(OrderInsideFragment.newInstance(TAB_A));
-        fragmentList.add(OrderInsideFragment.newInstance(TAB_B));
-        fragmentList.add(OrderInsideFragment.newInstance(TAB_C));
-        fragmentList.add(OrderInsideFragment.newInstance(TAB_D));
-        fragmentList.add(OrderInsideFragment.newInstance(TAB_E));
 
+            String titles[]= getResources().getStringArray(R.array.order_tab);
 
-        String titles[]= getResources().getStringArray(R.array.order_tab);
+            mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
+            mOrderContent.setAdapter(mAdapter);
+            mOrderContent.setOffscreenPageLimit(fragmentList.size());
+            mOrderTab.setSelectedIndicatorColors(getResources().getColor(R.color.colorPrimary));
+            mOrderTab.setDistributeEvenly(true);
+            mOrderTab.setViewPager(mOrderContent);
+        }else {
+            HomeUiGoto.gotoLgForPwd(getActivity());
+        }
 
-        mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
-        mOrderContent.setAdapter(mAdapter);
-        mOrderContent.setOffscreenPageLimit(fragmentList.size());
-        mOrderTab.setSelectedIndicatorColors(getResources().getColor(R.color.colorPrimary));
-        mOrderTab.setDistributeEvenly(true);
-//        mOrderTab.setCustomTabView(R.layout.item_tab,0);
-        mOrderTab.setViewPager(mOrderContent);
 
 
     }

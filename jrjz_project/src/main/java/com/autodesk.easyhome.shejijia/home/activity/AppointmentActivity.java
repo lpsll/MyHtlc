@@ -109,7 +109,7 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     private ArrayList<String> mPic = new ArrayList<>();
     DfaultEntity data;
-
+    boolean login;
 
     @Override
     protected int getContentResId() {
@@ -119,40 +119,49 @@ public class AppointmentActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("预约");
-        mName = getIntent().getBundleExtra("bundle").getString("mName");
-        mId = getIntent().getBundleExtra("bundle").getString("mId");
-        mTvProject.setText(mName);
 
-        int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
-        cols = cols < 3 ? 3 : cols;
-        mGv.setNumColumns(cols);
 
-        mGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String imgs = (String) parent.getItemAtPosition(position);
-                LogUtils.e("imgs----", "" + imgs);
-                if ("000000".equals(imgs)) {
-                    showPicPop();
-                } else {
-                    return;
+            mName = getIntent().getBundleExtra("bundle").getString("mName");
+            mId = getIntent().getBundleExtra("bundle").getString("mId");
+            mTvProject.setText(mName);
+
+            int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
+            cols = cols < 3 ? 3 : cols;
+            mGv.setNumColumns(cols);
+
+            mGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    String imgs = (String) parent.getItemAtPosition(position);
+                    LogUtils.e("imgs----", "" + imgs);
+                    if ("000000".equals(imgs)) {
+                        showPicPop();
+                    } else {
+                        return;
+                    }
+
+
                 }
+            });
+
+            LogUtils.e("mPic.size()----",""+mPic.size());
 
 
-            }
-        });
-
-        LogUtils.e("mPic.size()----",""+mPic.size());
     }
 
     @Override
     public void initData() {
+        login = AppContext.get("IS_LOGIN",false);
+        if(login){
         reqService();//服务费
         reqDfault();//获取默认地址
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
-
+        }
+        else {
+            HomeUiGoto.gotoLoginAppment(this);
+        }
     }
 
     private void reqDfault() {
@@ -298,6 +307,9 @@ public class AppointmentActivity extends BaseTitleActivity {
                     bundle.putString("mName",mName);
                     bundle.putString("mPrice",mPrice);
                     bundle.putString("orderId",result.getData());
+                    bundle.putString("mAddTv01",mAddTv01.getText().toString());
+                    bundle.putString("mAddTv02",mAddTv02.getText().toString());
+                    bundle.putString("mAddTv03",mAddTv03.getText().toString());
                     HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
                 }
 
@@ -465,6 +477,10 @@ public class AppointmentActivity extends BaseTitleActivity {
                     mTm = AppContext.get("serviceTime","");
                     mTime.setText(mTm);
                 }
+
+                break;
+            case HomeUiGoto.LA_REQUEST:
+                 initData();
 
                 break;
 

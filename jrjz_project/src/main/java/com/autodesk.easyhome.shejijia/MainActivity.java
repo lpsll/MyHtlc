@@ -181,9 +181,9 @@ public class MainActivity extends BaseHomeTitleActivity {
      * @param idx
      */
     private void showTab(int idx) {
-        if (currentTab == idx) {
-            return;
-        }
+//        if (currentTab == idx) {
+//            return;
+//        }
         BaseFragment targetFragment = (BaseFragment) fragmentManager
                 .findFragmentByTag("tag" + idx);
         LogUtils.e("showTab---idx----", "" + idx);
@@ -303,6 +303,15 @@ public class MainActivity extends BaseHomeTitleActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("ta3");
 //            meFragment.initView(null);
+        }
+
+        if (requestCode == HomeUiGoto.LF_REQUEST) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            OrderFragment orderFragment = (OrderFragment) fragmentManager.findFragmentByTag("tag1");
+            if (orderFragment != null) {
+
+                orderFragment.initView(null);
+            }
         }
 
 

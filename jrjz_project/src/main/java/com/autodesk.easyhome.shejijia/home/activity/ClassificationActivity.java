@@ -1,12 +1,15 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
@@ -20,6 +23,9 @@ import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
+import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
+import com.autodesk.easyhome.shejijia.order.fragment.OrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +45,7 @@ public class ClassificationActivity extends BaseTitleActivity {
 
     List<ClassificationEntity> data;
     List<ClassificationServicesEntity> entity;
+    boolean login;
 
     @Override
     protected int getContentResId() {
@@ -48,7 +55,8 @@ public class ClassificationActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("分类");
-        reqClassification();
+
+
 
     }
 
@@ -232,7 +240,22 @@ public class ClassificationActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-
-
+        login = AppContext.get("IS_LOGIN",false);
+        if(login){
+        reqClassification();
+        }
+        else {
+            HomeUiGoto.gotoLoginClass(this);
+        }
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == HomeUiGoto.LC_REQUEST) {
+            initData();
+        }
+    }
+
+
 }

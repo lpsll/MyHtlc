@@ -83,9 +83,10 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         mName = getIntent().getBundleExtra("bundle").getString("mName");
         mPrice = getIntent().getBundleExtra("bundle").getString("mPrice");
         mOrderId = getIntent().getBundleExtra("bundle").getString("orderId");
-        mSelName = AppContext.get("mSelName","");
-        mSelPhone = AppContext.get("mSelPhone","");
-        mSelAddress = AppContext.get("mSelAddress","");
+
+        mSelName = getIntent().getBundleExtra("bundle").getString("mAddTv01");
+        mSelPhone = getIntent().getBundleExtra("bundle").getString("mAddTv02");
+        mSelAddress = getIntent().getBundleExtra("bundle").getString("mAddTv04");
         mTvProject.setText(mName);
         mTvName.setText(mSelName);
         mTvTel.setText(mSelPhone);
