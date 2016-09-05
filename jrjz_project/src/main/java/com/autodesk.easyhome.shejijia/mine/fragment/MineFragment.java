@@ -118,7 +118,7 @@ public class MineFragment extends BaseFragment {
 
                     tvMinePoint.setText(points + "分");
                     tvMineBalance.setText(balance + "元");
-                    LogUtils.d("用户积分=========" + points);
+                    LogUtils.d("用户积分=======" + points);
                     LogUtils.d("用户余额=======" + balance);
 
                 }
