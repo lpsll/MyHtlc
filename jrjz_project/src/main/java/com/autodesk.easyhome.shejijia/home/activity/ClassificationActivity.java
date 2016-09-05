@@ -25,9 +25,6 @@ import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
-import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
-import com.autodesk.easyhome.shejijia.order.fragment.OrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -251,17 +248,6 @@ public class ClassificationActivity extends BaseTitleActivity {
     public void initData() {
         reqClassification();
 
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(data ==null){
-
-        }
-        if (requestCode == HomeUiGoto.LC_REQUEST) {
-            initData();
-        }
     }
 
 

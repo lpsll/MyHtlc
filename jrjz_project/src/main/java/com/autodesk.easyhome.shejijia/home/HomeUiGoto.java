@@ -146,29 +146,12 @@ public class HomeUiGoto {
      * 从预约跳转到登录页(密码登录)
      * @param
      */
-    public static final int LA_REQUEST = 0x2100;
-    public static void gotoLoginAppment(Activity act) {
-
-        Intent intent = new Intent(act, LoginForPwdActivity.class);
-        act.startActivityForResult(intent, LA_REQUEST);
-    }
-
-    /**
-     * 从分类跳转到登录页(密码登录)
-     * @param
-     */
-//    public static final int LC_REQUEST = 0x3100;
-//    public static void gotoLoginClass(Activity act) {
-//
-//        Intent intent = new Intent(act, LoginForPwdActivity.class);
-//        act.startActivityForResult(intent, LC_REQUEST);
-//    }
-    public static final int LC_REQUEST = 0x3100;
-    public static void gotoLoginClass(Activity act) {
+    public static void gotoLogin(Activity act) {
 
         Intent intent = new Intent(act, LoginForPwdActivity.class);
         act.startActivity(intent);
     }
+
 
     /**
      * 从订单跳转到登录页(密码登录)
