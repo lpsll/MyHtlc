@@ -162,6 +162,7 @@ public class ViewFlowLayout extends RelativeLayout {
                                 ImageView imageView = new ImageView(context_);
                                 imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                                 imageView.setImageBitmap((Bitmap) map.get(beans.get(i).getImgUrl()));
+                                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                                 flipper.addView(imageView);
                             }
                             LogUtils.e("getImgUrl---",""+beans.get(i).getImgUrl());
@@ -203,6 +204,7 @@ public class ViewFlowLayout extends RelativeLayout {
                                     ImageView imageView = new ImageView(context_);
                                     imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                                     imageView.setImageBitmap((Bitmap) map.get(beans.get(k).getImgUrl()));
+                                    imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                                     flipper.addView(imageView);
                                 }
                                 LogUtils.e("onLoadingFailed---getImgUrl---",""+beans.get(k).getImgUrl());

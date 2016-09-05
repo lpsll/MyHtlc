@@ -28,7 +28,7 @@ public class BrowserActivity extends BaseTitleActivity  {
         Intent mIntent = getIntent();
         if (mIntent != null) {
             strUrl = mIntent.getBundleExtra("bundle").getString("url");
-            LogUtils.e("strUrl------------",strUrl);
+
 
         }
         super.onCreate(savedInstanceState);
@@ -60,7 +60,11 @@ public class BrowserActivity extends BaseTitleActivity  {
     @Override
     public void initData() {
         LogUtils.e("initData---","initData");
-        mWebView.loadUrl(strUrl);
+        if(null!=strUrl){
+            LogUtils.e("strUrl------------",strUrl);
+            mWebView.loadUrl(strUrl);
+        }
+
 
     }
 

@@ -63,7 +63,7 @@
             android:id="@+id/lin_sc"
             android:layout_width="@dimen/ds_200"
             android:layout_height="@dimen/ds_150"
-            android:layout_marginLeft="@dimen/ds_220"
+            android:layout_marginLeft="@dimen/ds_160"
             android:gravity="center"
             android:orientation="horizontal">
         <ImageView

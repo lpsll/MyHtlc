@@ -36,6 +36,12 @@ public class OrderUiGoto {
         intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
+    public static final int EVALUATE_REQUEST = 01100;
+    public static void gotoEvaluateStrat(Activity context, Bundle bundle){
+        Intent intent = new Intent(context, EvaluateActivity.class);
+        intent.putExtra("bundle",bundle);
+        context.startActivityForResult(intent,EVALUATE_REQUEST);
+    }
 
     /**
      * 跳转到积分页

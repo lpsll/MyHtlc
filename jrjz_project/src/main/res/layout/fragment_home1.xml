@@ -15,7 +15,8 @@
             <com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout
                 android:id="@+id/vf_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
             <LinearLayout
                 android:id="@+id/layout_middle1"
                 android:layout_width="match_parent"

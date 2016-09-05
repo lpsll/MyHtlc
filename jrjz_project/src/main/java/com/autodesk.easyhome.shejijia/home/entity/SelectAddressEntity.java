@@ -17,6 +17,17 @@ public class SelectAddressEntity extends BaseEntity {
     private String city;
     private String district;
     private String area;
+    private String defaultAddress;
+
+    public String getDefaultAddress() {
+        return defaultAddress;
+    }
+
+    public void setDefaultAddress(String defaultAddress) {
+        this.defaultAddress = defaultAddress;
+    }
+
+
 
     public String getId() {
         return id;

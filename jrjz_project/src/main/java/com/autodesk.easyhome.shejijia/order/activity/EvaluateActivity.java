@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -191,6 +192,9 @@ public class EvaluateActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("评价成功");
                     finish();
+//                    Intent intent2 = new Intent(EvaluateActivity.this, MainActivity.class);
+//                    intent2.putExtra("tag",1);
+//                    EvaluateActivity.this.startActivity(intent2);
 
                 }
 

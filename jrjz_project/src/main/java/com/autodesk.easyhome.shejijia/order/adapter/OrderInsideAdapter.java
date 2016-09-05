@@ -75,7 +75,8 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                 if(mBtn.getText().toString().equals("评价")){
                     Bundle bundle = new Bundle();
                     bundle.putString("mId",list.get(position).getOrderId());
-                    OrderUiGoto.gotoEvaluate(context,bundle);
+//                    OrderUiGoto.gotoEvaluate(context,bundle);
+                    OrderUiGoto.gotoEvaluateStrat((Activity) context,bundle);
                 }
                 if(mBtn.getText().toString().equals("付款")){
                     Bundle bundle = new Bundle();

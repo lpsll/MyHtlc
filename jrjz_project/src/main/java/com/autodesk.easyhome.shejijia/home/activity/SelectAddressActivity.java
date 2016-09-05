@@ -196,6 +196,14 @@ public class SelectAddressActivity extends BaseTitleActivity {
             }
             holder.mTv.setText(list.get(position).getAddress());
 
+//            if(list.get(position).getDefaultAddress().equals("true")){
+//                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+//                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+//            }else {
+//                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
+//                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
+//            }
+
             mList.add(position, list.get(position));
             LogUtils.e("flag---",""+flag);
             if(flag){

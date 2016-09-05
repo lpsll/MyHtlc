@@ -20,6 +20,7 @@ import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
+import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.fragment.OrderFragment;
 
 import java.util.ArrayList;
@@ -317,8 +318,16 @@ public class MainActivity extends BaseHomeTitleActivity {
             }
         }
 
-        //订单成功后刷新订单页面
+        //订单页登录成功后刷新订单页面
         if (requestCode == HomeUiGoto.LG_REQUEST) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            OrderFragment orderFragment = (OrderFragment) fragmentManager.findFragmentByTag("tag1");
+            if (orderFragment != null) {
+                orderFragment.initView(null);
+            }
+        }
+
+        if (requestCode == OrderUiGoto.EVALUATE_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             OrderFragment orderFragment = (OrderFragment) fragmentManager.findFragmentByTag("tag1");
             if (orderFragment != null) {
