@@ -317,6 +317,15 @@ public class MainActivity extends BaseHomeTitleActivity {
             }
         }
 
+        //订单成功后刷新订单页面
+        if (requestCode == HomeUiGoto.LG_REQUEST) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            OrderFragment orderFragment = (OrderFragment) fragmentManager.findFragmentByTag("tag1");
+            if (orderFragment != null) {
+                orderFragment.initView(null);
+            }
+        }
+
         //我的中充值页面充值成功后刷新我的页面
         if (requestCode == MineFragment.TOPUP_REQUEST &&resultCode==1109) {
             FragmentManager fragmentManager = getSupportFragmentManager();

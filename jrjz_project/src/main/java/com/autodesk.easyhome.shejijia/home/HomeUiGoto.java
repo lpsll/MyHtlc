@@ -146,10 +146,11 @@ public class HomeUiGoto {
      * 从预约跳转到登录页(密码登录)
      * @param
      */
+    public static final int LG_REQUEST = 0x3100;
     public static void gotoLogin(Activity act) {
 
         Intent intent = new Intent(act, LoginForPwdActivity.class);
-        act.startActivity(intent);
+        act.startActivityForResult(intent,LG_REQUEST);
     }
 
 
