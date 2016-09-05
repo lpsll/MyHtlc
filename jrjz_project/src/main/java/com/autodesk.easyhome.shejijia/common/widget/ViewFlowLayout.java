@@ -120,7 +120,6 @@ public class ViewFlowLayout extends RelativeLayout {
             imageView.setTag(bean);
             imgUrl = bean.getImgUrl();
 
-
             ImageLoader.getInstance().loadImage(bean.getImgUrl(), ImageLoaderUtils.getDefaultOptions(), new SimpleImageLoadingListener() {
 
                 @Override
@@ -145,6 +144,7 @@ public class ViewFlowLayout extends RelativeLayout {
                     opintion++;
                     LogUtils.e("map----",""+map);
                     LogUtils.e("count----map--",""+count);
+                    LogUtils.e("imgUrl---",""+imgUrl);
 
                     ImageView dot = new ImageView(context_);
                     MarginLayoutParams lp = new LinearLayout.LayoutParams(18, 18);
@@ -154,11 +154,19 @@ public class ViewFlowLayout extends RelativeLayout {
                     linear.addView(dot);
 
                     if (count == size) {
-                        for (int i = 0; i < map.size(); i++) {
-                            ImageView imageView = new ImageView(context_);
-                            imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                            imageView.setImageBitmap((Bitmap) map.get(beans.get(i).getImgUrl()));
-                            flipper.addView(imageView);
+                        for (int i = 0; i < size; i++) {
+
+                            if(null==map.get(beans.get(i).getImgUrl())){
+
+                            }else {
+                                ImageView imageView = new ImageView(context_);
+                                imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                                imageView.setImageBitmap((Bitmap) map.get(beans.get(i).getImgUrl()));
+                                flipper.addView(imageView);
+                            }
+                            LogUtils.e("getImgUrl---",""+beans.get(i).getImgUrl());
+                            LogUtils.e("Bitmap---",""+map.get(beans.get(i).getImgUrl()));
+
                         }
 
 
@@ -187,11 +195,19 @@ public class ViewFlowLayout extends RelativeLayout {
                     count++;
                     flag = true;
                     if (count == size) {
-                            for (int k = 0; k < map.size(); k++) {
-                                ImageView imageView = new ImageView(context_);
-                                imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                                imageView.setImageBitmap((Bitmap) map.get(beans.get(k).getImgUrl()));
-                                flipper.addView(imageView);
+                            for (int k = 0; k < size; k++) {
+
+                                if(null==map.get(beans.get(k).getImgUrl())){
+
+                                }else {
+                                    ImageView imageView = new ImageView(context_);
+                                    imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                                    imageView.setImageBitmap((Bitmap) map.get(beans.get(k).getImgUrl()));
+                                    flipper.addView(imageView);
+                                }
+                                LogUtils.e("onLoadingFailed---getImgUrl---",""+beans.get(k).getImgUrl());
+                                LogUtils.e("onLoadingFailed---Bitmap---",""+map.get(beans.get(k).getImgUrl()));
+
                             }
 
 

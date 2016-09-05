@@ -46,6 +46,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
             type = bundle.getInt(TYPE, OrderFragment.TAB_A);
 
         }
+        login = AppContext.get("IS_LOGIN",false);
     }
 
     @Override
