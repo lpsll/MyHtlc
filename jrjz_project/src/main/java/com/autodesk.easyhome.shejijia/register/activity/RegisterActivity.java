@@ -52,11 +52,8 @@ public class RegisterActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("新用户注册");
-
         //对密码格式验证
         pwdVerify();
-
-
     }
 
     /**
@@ -67,7 +64,6 @@ public class RegisterActivity extends BaseTitleActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-
                 } else {
                     String pwd = etRegisterPassword.getText().toString();
                     String reg = "^[a-zA-Z0-9]{6,20}$";
@@ -80,13 +76,11 @@ public class RegisterActivity extends BaseTitleActivity {
                 }
             }
         });
-
     }
 
 
     @Override
     public void initData() {
-
     }
 
 
@@ -201,8 +195,6 @@ public class RegisterActivity extends BaseTitleActivity {
         dto.setTimestamp(time);
         dto.setUid(etRegisterPhone.getText().toString());
         dto.setSign(etRegisterPhone.getText().toString() + time + random);
-        LogUtils.e("time---", "" + time);
-        LogUtils.e("random---", "" + random);
         CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
             public void onSuccess(SmsVerifyEntity result) {
@@ -214,6 +206,4 @@ public class RegisterActivity extends BaseTitleActivity {
             }
         });
     }
-
-
 }

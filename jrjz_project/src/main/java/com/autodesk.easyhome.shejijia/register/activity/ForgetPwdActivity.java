@@ -48,15 +48,12 @@ public class ForgetPwdActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("忘记密码");
-
         //对密码格式验证
         pwdVerify();
-
     }
 
     @Override
     public void initData() {
-
     }
 
 
@@ -96,15 +93,12 @@ public class ForgetPwdActivity extends BaseTitleActivity {
         dto.setTimestamp(time);
         dto.setUid(etForgetpwdPhone.getText().toString());
         dto.setSign(etForgetpwdPhone.getText().toString() + time + random);
-        LogUtils.e("time---", "" + time);
-        LogUtils.e("random---", "" + random);
         CommonApiClient.verifyCode(this, dto, new CallBack<SmsVerifyEntity>() {
             @Override
             public void onSuccess(SmsVerifyEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取验证码成功");
                     LogUtils.e("获取验证码成功---------" + result.getData().toString());
-
                 }
             }
         });
@@ -130,7 +124,6 @@ public class ForgetPwdActivity extends BaseTitleActivity {
                 }
             }
         });
-
     }
 
     /**
@@ -166,17 +159,11 @@ public class ForgetPwdActivity extends BaseTitleActivity {
     /**
      * 设置新密码操作
      * 忘记密码接口
-     * <p/>
      * uid:用户ID，默认为手机号码
-     * <p/>
      * timestamp:当前时间戳
-     * <p/>
      * random:随机数
-     * <p/>
      * smsverifycode:短信验证码
-     * <p/>
      * password:新密码，MD5加密
-     * <p/>
      * sign:签名【生成规则 uid+password(MD5)+timestamp+random 后md5加密串】
      */
     private void setNewPwd() {

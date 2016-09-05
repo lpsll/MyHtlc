@@ -1,6 +1,10 @@
 package com.autodesk.easyhome.shejijia.campaign.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -12,11 +16,23 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
-import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
-import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.alipay.sdk.app.PayTask;
+import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.alipay.PayResult;
+import com.autodesk.easyhome.shejijia.campaign.entity.ZfbTopUpEntity;
+import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
+import com.autodesk.easyhome.shejijia.mine.dto.zfbTopUpDTO;
+import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -49,12 +65,6 @@ public class TopUpActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("充值");
-//        ensure = (TextView) findViewById(R.id.base_titlebar_ensure);
-//        // 初始化右边图片
-//        TextViewUtils.setTextViewIcon(this, ensure, R.drawable.back,
-//                R.dimen.common_titlebar_icon_width,
-//                R.dimen.common_titlebar_icon_height, TextViewUtils.DRAWABLE_LEFT);
-
         //设置默认的充值方式
         cbTopupWX.setChecked(true);
         cbTopupZFB.setChecked(false);
@@ -75,8 +85,6 @@ public class TopUpActivity extends BaseTitleActivity {
                 etTopUpChongzhi.setVisibility(View.VISIBLE);
             }
         }
-
-
         setEditTextFilter();
         etTopUpChongzhi.addTextChangedListener(new TextWatcher() {
             @Override
@@ -87,12 +95,12 @@ public class TopUpActivity extends BaseTitleActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 String str = etTopUpChongzhi.getText().toString().trim();
-                if (str.indexOf('0') == 0) {
-                    Toast.makeText(TopUpActivity.this, "首位不能为0", Toast.LENGTH_SHORT).show();
-                    etTopUpChongzhi.setText("");
-                }
+//                if (str.indexOf('0') == 0) {
+//                    Toast.makeText(TopUpActivity.this, "首位不能为0", Toast.LENGTH_SHORT).show();
+//                    etTopUpChongzhi.setText("");
+//                }
                 if (str.indexOf('.') == 0) {
-                    Toast.makeText(TopUpActivity.this, "首位不能为.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(TopUpActivity.this, "首位不能为.", Toast.LENGTH_SHORT).show();
                     etTopUpChongzhi.setText("");
                 }
             }
@@ -101,13 +109,10 @@ public class TopUpActivity extends BaseTitleActivity {
             public void afterTextChanged(Editable s) {
             }
         });
-
     }
 
     @Override
     public void initData() {
-
-
     }
 
 
@@ -130,60 +135,120 @@ public class TopUpActivity extends BaseTitleActivity {
                 break;
             case R.id.tv_top_up_ok: //确定按钮 确定支付方式
 
-                //当是用户输入时，先判定输入金额是否合法
-                if ("WriteForUser".equals(typeForTopUp)) {
-                    moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
-                    moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
-                    etTopUpChongzhi.setText(moneyForUserInput);
-
-                    if(TextUtils.isEmpty(moneyForUserInput)) {
-                        ToastUtils.showShort(TopUpActivity.this,"请输入充值金额！");
-                        return;
+                new AlertDialog.Builder(TopUpActivity.this).setTitle("温馨提示").setMessage("确定提交吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        topUpEnsure();
                     }
+                }).setNegativeButton("取消", null).show();
 
-                    if (cbTopupWX.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
-                    } else if (cbTopupZFB.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
-                    } else {
-                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
-                    }
-
-
-                }
-
-                if ("fixed".equals(typeForTopUp)) {
-                    moneyForUserInput = tvTopUpChongzhi.getText().toString();
-
-                    if (cbTopupWX.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
-                    } else if (cbTopupZFB.isChecked()) {
-                        ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
-                    } else {
-                        ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
-                    }
-
-                }
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
                 break;
-//            case R.id.base_titlebar_ensure:
-//                baseGoBack();
-//                break;
-
             case R.id.rl_weixin:
                 cbTopupWX.setChecked(true);
                 cbTopupZFB.setChecked(false);
-
                 break;
             case R.id.rl_zhifubao:
                 cbTopupWX.setChecked(false);
                 cbTopupZFB.setChecked(true);
-
                 break;
         }
     }
+
+
+    /**
+     * 确认充值
+     */
+    public void topUpEnsure() {
+        if ("WriteForUser".equals(typeForTopUp)) {
+            moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
+            moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
+            etTopUpChongzhi.setText(moneyForUserInput);
+
+            if (TextUtils.isEmpty(moneyForUserInput)) {
+                ToastUtils.showShort(TopUpActivity.this, "请输入充值金额！");
+                return;
+            }
+            if (Double.parseDouble(moneyForUserInput) <= 0) {
+                ToastUtils.showShort(TopUpActivity.this, "充值金额必须大于0！");
+                return;
+            }
+
+            if (cbTopupWX.isChecked()) {
+                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+            } else if (cbTopupZFB.isChecked()) {
+                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
+
+                //调用支付宝充值的接口
+                zfbTopUp();
+
+            } else {
+                ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+            }
+        }
+
+        if ("fixed".equals(typeForTopUp)) {
+            moneyForUserInput = tvTopUpChongzhi.getText().toString();
+
+            if (cbTopupWX.isChecked()) {
+                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+            } else if (cbTopupZFB.isChecked()) {
+                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
+
+                //调用支付宝充值的接口
+                zfbTopUp();
+
+            } else {
+                ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
+            }
+        }
+
+
+    }
+
+    private String idealId;  //钱包支付接口返回，支付宝预支付要传回，订单号
+
+    /**
+     * 支付宝充值钱包接口
+     * "accessToken": "",
+     * "uid": "",
+     * "timestamp": "",
+     * "random": "",
+     * "amount": 0,
+     * "sign": ""
+     */
+    private void zfbTopUp() {
+
+        zfbTopUpDTO dto = new zfbTopUpDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "") + time + random);
+        double amount = Double.parseDouble(moneyForUserInput);
+        dto.setAmount(amount);
+
+        CommonApiClient.zfbTopUp(this, dto, new CallBack<ZfbTopUpEntity>() {
+            @Override
+            public void onSuccess(ZfbTopUpEntity result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("钱包充值接口成功=========" + result.getMsg());
+                    idealId = result.getData();
+                    LogUtils.e("idealId---", "" + idealId);
+
+//                    调支付宝预支付接口
+                    reqZfbPayment();
+
+                }
+            }
+        });
+    }
+
 
     /**
      * 设置editText的过滤
@@ -191,5 +256,125 @@ public class TopUpActivity extends BaseTitleActivity {
     private void setEditTextFilter() {
         InputFilter[] filters = {new EditInputFilter(this)};
         etTopUpChongzhi.setFilters(filters);
+    }
+
+
+    /**
+     * 支付宝支付相关
+     */
+    Handler mHandler = new Handler() {
+
+        public void handleMessage(android.os.Message msg) {
+
+            PayResult payResult = new PayResult((String) msg.obj);
+            /**
+             * 同步返回的结果必须放置到服务端进行验证（验证的规则请看https://doc.open.alipay.com/doc2/
+             * detail.htm?spm=0.0.0.0.xdvAU6&treeId=59&articleId=103665&
+             * docType=1) 建议商户依赖异步通知
+             */
+            LogUtils.e("payResult---", "" + payResult);
+            String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+            LogUtils.e("resultInfo---", "" + resultInfo);
+            String resultStatus = payResult.getResultStatus();
+            LogUtils.e("resultStatus----", "" + resultStatus);
+            // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
+            switch (msg.what) {
+                case RQF_PAY:
+                    if (TextUtils.equals(resultStatus, "9000")) {
+                        LogUtils.e("RQF_PAY---", "9000" + "支付宝支付成功");
+                        setResult(1109);
+                        finish();
+                    } else {
+                        // 判断resultStatus 为非“9000”则代表可能支付失败
+                        // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
+                        if (TextUtils.equals(resultStatus, "8000")) {
+                            Toast.makeText(TopUpActivity.this, "支付结果确认中",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (TextUtils.equals(resultStatus, "6001")) {
+                            // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
+                            Toast.makeText(TopUpActivity.this, "用户取消订单",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (TextUtils.equals(resultStatus, "6002")) {
+                            // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
+                            Toast.makeText(TopUpActivity.this, "网络连接错误",
+                                    Toast.LENGTH_SHORT).show();
+                        } else if (TextUtils.equals(resultStatus, "4000")) {
+                            // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
+                            Toast.makeText(TopUpActivity.this, "订单支付失败",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        ;
+    };
+    private static final int RQF_PAY = 1;
+    private String infomation;  //调用支付宝所需信息
+
+    private void reqAlipayPay() {
+        Runnable payRunnable = new Runnable() {
+
+            @Override
+            public void run() {
+                // 构造PayTask 对象
+                PayTask alipay = new PayTask(TopUpActivity.this);//支付宝接口了，支付宝现在把很多功能都封装
+                String result = alipay.pay(infomation, true);//返回的结果
+                LogUtils.e("result-----------", "result = " + result);
+                Message msg = new Message();
+                msg.what = RQF_PAY;
+                msg.obj = result;
+                mHandler.sendMessage(msg);
+            }
+        };
+        // 必须异步调用
+        Thread payThread = new Thread(payRunnable);
+        payThread.start();
+
+    }
+
+
+    /**
+     * 支付宝预支付接口
+     * accessToken = "496e3cfe-ac43-4b40-a430-a23abb7343eb";
+     * dealId = 37;
+     * dealType = RECHARGE;
+     * random = 3044;
+     * sign = a28e761b5c1f008cbb64fa57c8010371;
+     * timestamp = 1472996446540;
+     * tradetype = APP;
+     * uid = 13020017428;
+     */
+    private void reqZfbPayment() {
+        ZfbDTO dto = new ZfbDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "") + time + random);
+
+        dto.setDealId(idealId);
+        dto.setDealType("RECHARGE");
+        dto.setTradetype("APP");
+
+
+        CommonApiClient.zfb(this, dto, new CallBack<IntegralResult>() {
+            @Override
+            public void onSuccess(IntegralResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("支付宝支付成功");
+                    infomation = result.getData();
+                    LogUtils.e("infomation---", "" + infomation);
+                    reqAlipayPay();//支付宝支付
+
+                }
+            }
+        });
     }
 }

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -20,7 +21,6 @@ import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -55,7 +55,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-
     }
 
 
@@ -76,12 +75,10 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                     getSmsVerifyCode();
                 }
 
-
                 break;
             case R.id.tv_ok:
                 //验证码登录
                 loginForCode();
-
 
                 break;
 
@@ -95,17 +92,11 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
     /**
      * 使用验证码登录
-     * <p/>
      * uid：用户ID，默认为手机号码
-     * <p/>
      * smsVerifyCode：短信验证码字符串
-     * <p/>
      * timestamp：当前时间戳
-     * <p/>
      * random：随机数
-     * <p/>
      * sign：签名【生成规则 uid+smsVerifyCode+timestamp+random 后md5加密串】
-     * <p/>
      * usertype:用户类型 1-普通用户 , 默认为1
      */
     private void loginForCode() {
@@ -118,7 +109,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
             return;
         }
 
-
         LoginForCodeDTO loginForCodeDTO = new LoginForCodeDTO();
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
@@ -130,8 +120,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         loginForCodeDTO.setSign(phone + code + time + random);
         loginForCodeDTO.setUsertype(AppConfig.COMMON_USER_TYPE); //默认为普通用户
 
-        LogUtils.e("time---", "" + time);
-        LogUtils.e("random---", "" + random);
         CommonApiClient.loginForCode(this, loginForCodeDTO, new CallBack<LoginEntity>() {
             @Override
             public void onSuccess(LoginEntity result) {
@@ -147,9 +135,8 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                         AppContext.set("accessToken", result.getData().getAccessToken());
                         AppContext.set("IS_LOGIN", true);
 
-                        //注册成功后设置极光推送的别名和tag
+                        //登录成功后设置极光推送的别名和tag
                         JPushInterface.setAlias(LoginForCodeActivity.this, etLoginPhone.getText().toString(), null);
-
 
                         setResult(1001);
                         finish();

@@ -55,7 +55,6 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-
     }
 
     @OnClick({R.id.et_login_forgetpwd, R.id.tv_ok, R.id.tv_login_register, R.id.tv_login_to_code_login})
@@ -85,12 +84,12 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 }
 
                 //密码格式验证
-//                boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
-//                if (!isMatches) {
-//                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
-//                    etLoginPwd.setText("");
-//                    break;
-//                }
+                boolean isMatches = etLoginPwd.getText().toString().trim().matches(AppConfig.PWD_REG);
+                if (!isMatches) {
+                    new AlertDialog.Builder(LoginForPwdActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+                    etLoginPwd.setText("");
+                    break;
+                }
 
                 login();
 
@@ -113,21 +112,14 @@ public class LoginForPwdActivity extends BaseTitleActivity {
 
     /**
      * 登录操作
+     * uid：用户ID，默认为手机号码
+     * password：用户密码 md5加密32位字符串
+     * timestamp：当前时间戳
+     * random：随机数
+     * sign：签名【生成规则 uid+password+timestamp+random 后md5加密串】
+     * usertype:用户类型
      */
     private void login() {
-        /**
-         * uid：用户ID，默认为手机号码
-
-         password：用户密码 md5加密32位字符串
-
-         timestamp：当前时间戳
-
-         random：随机数
-
-         sign：签名【生成规则 uid+password+timestamp+random 后md5加密串】
-
-         usertype:用户类型
-         */
         final String phone = etLoginPhone.getText().toString().trim();
         String pwd = etLoginPwd.getText().toString().trim();
 
@@ -160,12 +152,6 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                     //注册成功后设置极光推送的别名和tag
                     JPushInterface.setAlias(LoginForPwdActivity.this, etLoginPhone.getText().toString(), null);
 
-//                    HashSet<String> tag = new HashSet<>();
-//                    tag.add("");
-//                    JPushInterface.setTags(RegisterActivity.this,tag,null);
-
-                    //跳转到预约页面
-//                        HomeUiGoto.gotoApt(LoginForPwdActivity.this);
                     setResult(1001);
                     finish();
                 }

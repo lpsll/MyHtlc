@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
-import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
@@ -294,7 +293,6 @@ public class MainActivity extends BaseHomeTitleActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
             if (meFragment != null) {
-
                 meFragment.initView(null);
             }
         }
@@ -314,7 +312,14 @@ public class MainActivity extends BaseHomeTitleActivity {
             }
         }
 
-
+        //我的中充值页面充值成功后刷新我的页面
+        if (requestCode == MineFragment.TOPUP_REQUEST &&resultCode==1109) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
+            if (meFragment != null) {
+                meFragment.initView(null);
+            }
+        }
     }
 }
 

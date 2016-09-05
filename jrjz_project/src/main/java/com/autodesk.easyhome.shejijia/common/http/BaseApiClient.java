@@ -163,11 +163,10 @@ public class BaseApiClient {
 //				continue;
 //			}
 			builder.add(s, map.get(s).toString());
-			LogUtils.e(s + " = " + map.get(s).toString());
+			LogUtils.e("builder---",s + " = " + map.get(s).toString());
 		}
 		LogUtils.e("post-------------reqParams    end-------------");
 
-		LogUtils.e("builder.build()--",""+builder.build());
 		Request request = new Request.Builder()
 				.tag(asyncCallBack.getTag())
 				.url(url)

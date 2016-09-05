@@ -1,13 +1,13 @@
 package com.autodesk.easyhome.shejijia.mine.activity;
 
 import android.app.AlertDialog;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -16,10 +16,8 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.mine.dto.FeedBackDTO;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -36,12 +34,10 @@ public class FeedBackActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("意见反馈");
-
     }
 
     @Override
     public void initData() {
-
     }
 
     @Override
@@ -49,12 +45,7 @@ public class FeedBackActivity extends BaseTitleActivity {
         return R.layout.suggest_feedback;
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
+
 
     @OnClick(R.id.tv_feedback_commit)
     public void onClick() {

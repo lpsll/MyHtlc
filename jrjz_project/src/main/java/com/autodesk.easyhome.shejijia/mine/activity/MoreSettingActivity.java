@@ -52,20 +52,17 @@ public class MoreSettingActivity extends BaseTitleActivity {
         try {
             getCache();
         } catch (Exception e) {
-            LogUtils.d("获取缓存异常=========="+e.getMessage());
+            LogUtils.d("获取缓存异常==========" + e.getMessage());
             e.printStackTrace();
         }
-        
-
     }
 
     @Override
     public void initData() {
-
     }
 
     /**
-     *获取缓存大小
+     * 获取缓存大小
      */
     private void getCache() throws Exception {
         DiskCache diskCache = ImageLoader.getInstance().getDiskCache();
@@ -74,7 +71,6 @@ public class MoreSettingActivity extends BaseTitleActivity {
         String size = GetFileSizeUtil.getInstance().FormetFileSize(fileSizes);
         LogUtils.d("缓存大小==========" + size);
         tvMoresettingCache.setText(size);
-
     }
 
 
@@ -107,12 +103,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 DialogUtils.confirm(MoreSettingActivity.this, "确定要退出吗？", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //保存用户信息
-
                         exit();
-
-
-
                     }
                 });
 
@@ -130,11 +121,11 @@ public class MoreSettingActivity extends BaseTitleActivity {
         String random = TimeUtils.genNonceStr();
 
         BaseDTO baseDTO = new BaseDTO();
-        baseDTO.setUid(AppContext.get("uid",""));
-        baseDTO.setAccessToken(AppContext.get("accessToken",""));
+        baseDTO.setUid(AppContext.get("uid", ""));
+        baseDTO.setAccessToken(AppContext.get("accessToken", ""));
         baseDTO.setRandom(random);
         baseDTO.setTimestamp(time);
-        baseDTO.setSign(AppContext.get("uid","")+time+random);
+        baseDTO.setSign(AppContext.get("uid", "") + time + random);
 
         CommonApiClient.logout(this, baseDTO, new CallBack<BaseEntity>() {
             @Override
@@ -142,7 +133,6 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("退出成功");
                     ToastUtils.showShort(MoreSettingActivity.this, "退出成功");
-
                 }
             }
         });
@@ -164,6 +154,4 @@ public class MoreSettingActivity extends BaseTitleActivity {
         imageLoader.clearMemoryCache();
         imageLoader.clearDiskCache();
     }
-
-    
 }

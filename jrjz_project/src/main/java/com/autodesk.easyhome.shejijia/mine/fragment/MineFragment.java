@@ -143,6 +143,7 @@ public class MineFragment extends BaseFragment {
     }
 
 
+    public static final int TOPUP_REQUEST = 0x1108;
     @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting,R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
@@ -160,7 +161,7 @@ public class MineFragment extends BaseFragment {
                 if (AppContext.get("IS_LOGIN", false)) {
                     Intent intent = new Intent(new Intent(getContext(), TopUpActivity.class));
                     intent.putExtra("TypeForTopUp", "WriteForUser");
-                    getContext().startActivity(intent);
+                    getActivity().startActivityForResult(intent,TOPUP_REQUEST);
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
                 }

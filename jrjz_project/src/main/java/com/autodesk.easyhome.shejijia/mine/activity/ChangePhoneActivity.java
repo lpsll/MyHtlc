@@ -39,13 +39,10 @@ public class ChangePhoneActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("换绑手机");
-
-
     }
 
     @Override
     public void initData() {
-
     }
 
     @Override
@@ -80,22 +77,13 @@ public class ChangePhoneActivity extends BaseTitleActivity {
 
     /**
      * 换绑手机
-     *
-     * 修改用户信息接口
-
-     accessToken:访问授权码
-
-     uid:用户ID，默认为原手机号码
-
-     timestamp:当前时间戳
-
-     random:随机数
-
-     sign:签名【生成规则uid+timestamp+random 后md5加密串】
-
-     newmobile:新手机号
-
-     smsverifycode:短信验证码
+     * accessToken:访问授权码
+     * uid:用户ID，默认为原手机号码
+     * timestamp:当前时间戳
+     * random:随机数
+     * sign:签名【生成规则uid+timestamp+random 后md5加密串】
+     * newmobile:新手机号
+     * smsverifycode:短信验证码
      */
     private void changePhone() {
         final String phone = etChangePhonePhone.getText().toString().trim();
@@ -112,11 +100,11 @@ public class ChangePhoneActivity extends BaseTitleActivity {
         String time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
-        changePhoneDTO.setAccessToken(AppContext.get("accessToken",""));
-        changePhoneDTO.setUid(AppContext.get("uid",""));
+        changePhoneDTO.setAccessToken(AppContext.get("accessToken", ""));
+        changePhoneDTO.setUid(AppContext.get("uid", ""));
         changePhoneDTO.setTimestamp(time);
         changePhoneDTO.setRandom(random);
-        changePhoneDTO.setSign(AppContext.get("uid","") +time+ random);
+        changePhoneDTO.setSign(AppContext.get("uid", "") + time + random);
         changePhoneDTO.setNewmobile(phone);
         changePhoneDTO.setSmsverifycode(code);
 
