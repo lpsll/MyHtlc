@@ -58,7 +58,7 @@ public class LoginForCodeDTO  {
     }
 
     public void setSign(String sign) {
-        this.sign = SecurityUtils.md5(sign);
+        this.sign = SecurityUtils.MD5(sign);
     }
 
     public String getSmsVerifyCode() {

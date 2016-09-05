@@ -82,7 +82,7 @@
         <LinearLayout
             android:layout_marginLeft="@dimen/ds_20"
             android:id="@+id/lin_bj"
-            android:layout_width="@dimen/ds_200"
+            android:layout_width="@dimen/ds_250"
             android:layout_height="@dimen/ds_150"
             android:gravity="center"
             android:orientation="horizontal">

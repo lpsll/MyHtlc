@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
+import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
@@ -290,6 +292,7 @@ public class MainActivity extends BaseHomeTitleActivity {
 //            campaignFragment.initData();
         }
         if (requestCode == MineUiGoto.SETTING_REQUEST) {
+            LogUtils.e("SETTING_REQUEST----","SETTING_REQUEST");
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
             if (meFragment != null) {
@@ -298,6 +301,7 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
 
         if (requestCode == MineUiGoto.CHANGEPHONE_REQUEST) {
+            LogUtils.e("CHANGEPHONE_REQUEST----","CHANGEPHONE_REQUEST");
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("ta3");
 //            meFragment.initView(null);
@@ -305,10 +309,10 @@ public class MainActivity extends BaseHomeTitleActivity {
 
         if (requestCode == HomeUiGoto.LF_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            OrderFragment orderFragment = (OrderFragment) fragmentManager.findFragmentByTag("tag1");
-            if (orderFragment != null) {
-
-                orderFragment.initView(null);
+            HomeFragment homeFragment = (HomeFragment) fragmentManager.findFragmentByTag("tag0");
+            if (homeFragment != null) {
+                DialogUtils.showPrompt(this, "提示","请登录", "知道了");
+                homeFragment.initView(null);
             }
         }
 

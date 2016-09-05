@@ -157,11 +157,17 @@ public class HomeUiGoto {
      * 从分类跳转到登录页(密码登录)
      * @param
      */
+//    public static final int LC_REQUEST = 0x3100;
+//    public static void gotoLoginClass(Activity act) {
+//
+//        Intent intent = new Intent(act, LoginForPwdActivity.class);
+//        act.startActivityForResult(intent, LC_REQUEST);
+//    }
     public static final int LC_REQUEST = 0x3100;
     public static void gotoLoginClass(Activity act) {
 
         Intent intent = new Intent(act, LoginForPwdActivity.class);
-        act.startActivityForResult(intent, LC_REQUEST);
+        act.startActivity(intent);
     }
 
     /**

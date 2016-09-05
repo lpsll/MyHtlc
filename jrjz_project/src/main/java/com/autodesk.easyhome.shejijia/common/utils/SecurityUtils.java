@@ -11,7 +11,7 @@ public class SecurityUtils {
      *
      * @param str
      *            明文
-     * @return 32位密文,英文全部转大写
+     * @return 32位密文,英文小写
      */
 
     public static String MD5(String str) {
@@ -36,7 +36,7 @@ public class SecurityUtils {
             }
             hexValue.append(Integer.toHexString(val));
         }
-        return hexValue.toString().toUpperCase().trim();
+        return hexValue.toString().trim();
     }
 
 

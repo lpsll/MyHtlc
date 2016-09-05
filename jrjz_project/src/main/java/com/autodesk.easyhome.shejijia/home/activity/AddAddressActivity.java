@@ -182,7 +182,7 @@ public class AddAddressActivity extends BaseTitleActivity {
         dto.setDistrict(mAre);
         dto.setArea(mHuan);
         dto.setAddress(mEtAddress.getText().toString());
-        dto.setIsDefault("1");//默认为是，是/1,否/2
+        dto.setDefaultAddress("true");//默认为是，是/true ,否/false
         CommonApiClient.addAddress(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {

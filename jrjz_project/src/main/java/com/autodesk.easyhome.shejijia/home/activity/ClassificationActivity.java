@@ -6,7 +6,9 @@ import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
@@ -55,7 +57,10 @@ public class ClassificationActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("分类");
-
+        ImageView iv= new ImageView(ClassificationActivity.this);
+        iv.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 800));
+        LogUtils.e("iv----",""+iv);
+        pinnedListView.addFooterView(iv);
 
 
     }
@@ -110,14 +115,14 @@ public class ClassificationActivity extends BaseTitleActivity {
             bList = new ArrayList<>();
             for(int j= 0;j<entity.size();j++){
                 aList.add(entity.get(j).getName());
-                if(i==(data.size()-1)&&j==(entity.size()-1)){
-                    aList.add("");
-                    aList.add("");
-                    aList.add("");
-                    aList.add("");
-                    aList.add("");
-                    aList.add("");
-                }
+//                if(i==(data.size()-1)&&j==(entity.size()-1)){
+//                    aList.add("");
+//                    aList.add("");
+//                    aList.add("");
+//                    aList.add("");
+//                    aList.add("");
+//                    aList.add("");
+//                }
             }
             sList.add(aList);
 
@@ -135,10 +140,14 @@ public class ClassificationActivity extends BaseTitleActivity {
     }
 
     private void bindResult() {
+
+
         final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, mList, sList,iList,flagArray);
         pinnedListView.setAdapter(sectionedAdapter);
         adapter = new LeftListAdapter(this, mList, flagArray);
         leftListview.setAdapter(adapter);
+
+
 
         leftListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -240,18 +249,16 @@ public class ClassificationActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        login = AppContext.get("IS_LOGIN",false);
-        if(login){
         reqClassification();
-        }
-        else {
-            HomeUiGoto.gotoLoginClass(this);
-        }
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data ==null){
+
+        }
         if (requestCode == HomeUiGoto.LC_REQUEST) {
             initData();
         }

@@ -16,7 +16,6 @@
         android:id="@+id/pinnedListView"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:divider="@null"
         android:layout_weight="5"
         android:background="@android:color/white">
 

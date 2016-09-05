@@ -106,6 +106,9 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoLoginForCode(LoginForPwdActivity.this);
                 finish();
                 break;
+            case R.id.base_titlebar_back:
+                finish();
+                break;
         }
     }
 

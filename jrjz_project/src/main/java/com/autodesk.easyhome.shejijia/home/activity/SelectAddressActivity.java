@@ -100,18 +100,6 @@ public class SelectAddressActivity extends BaseTitleActivity {
     @Override
     public void initData() {
 
-
-//        mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                AppContext.set("name",data.get(position).getName());
-//                AppContext.set("mobile",data.get(position).getMobile());
-//                AppContext.set("address",data.get(position).getAddress());
-//                setResult(00001);
-//                finish();
-//
-//            }
-//        });
     }
 
 
@@ -239,7 +227,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
                         bList.set(def,false);
                         LogUtils.e("bList---click---",""+bList);
                         adapter.notifyDataSetChanged();
-//                        reqSetUp(def);//设置默认地址
+                        reqSetUp(def);//设置默认地址
                     }
 //                    else {
 //                        adapter.notifyDataSetChanged();
@@ -293,7 +281,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
             dto.setDistrict(list.get(def).getDistrict());
             dto.setArea(list.get(def).getArea());
             dto.setAddress(list.get(def).getAddress());
-            dto.setIsDefault("1");//默认为是，是/1,否/2
+            dto.setDefaultAddress("true");//默认为是，是/true ,否/false
             dto.setId(mList.get(def).getId());
             CommonApiClient.modifyAddress(SelectAddressActivity.this, dto, new CallBack<AddAddressResult>() {
                 @Override

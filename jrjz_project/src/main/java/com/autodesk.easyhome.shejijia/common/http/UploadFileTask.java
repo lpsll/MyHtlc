@@ -49,22 +49,19 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
  doInBackground方法和onPostExecute的参数必须对应，这两个参数在AsyncTask声明的泛型参数列表中指定，第一个为doInBackground接受的参数，第二个为显示进度的参数，第第三个为doInBackground返回和onPostExecute传入的参数。
 
  * @Title:
- * @Description: 实现TODO
- * @Copyright:Copyright (c) 2011
- * @Company:易程科技股份有限公司
- * @Date:2012-7-2
- * @author  longgangbai
- * @version 1.0
+
  */
 public class UploadFileTask extends AsyncTask<String, Void, String>{
     public static final String requestURL="http://101.200.167.130:8080/jrjz-api/api/service/service/book";
+    private final String url;
     /**
      *  可变长的输入参数，与AsyncTask.exucute()对应
      */
     private  ProgressDialog pdialog;
     private  Activity context=null;
-    public UploadFileTask(Activity ctx){
+    public UploadFileTask(Activity ctx, String url){
         this.context=ctx;
+        this.url =url;
 //        pdialog=ProgressDialog.show(context, "正在加载...", "系统正在处理您的请求");
     }
     @Override
@@ -92,7 +89,7 @@ public class UploadFileTask extends AsyncTask<String, Void, String>{
     @Override
     protected String doInBackground(String... params) {
         File file=new File(params[0]);
-        return UploadUtils.uploadFile( file, requestURL);
+        return UploadUtils.uploadFile( file, url);
     }
     @Override
     protected void onProgressUpdate(Void... values) {

@@ -23,6 +23,7 @@ import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
@@ -163,17 +164,31 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 mPlaceCbZfb.setChecked(true);
                 break;
             case R.id.tj_btn:
+
+
                 if(mPlaceCbQb.isChecked()){
+                    mTjBtn.setEnabled(false);
                     type = "HomeService";
                     reqPayment();//钱包支付
                 }
                 else if(mPlaceCbWx.isChecked()){
-                    type = "HomeService";
-                    reqWxPayment();//微信预支付
+                    if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
+                        DialogUtils.showPrompt(this, "提示","只能使用钱包支付！", "知道了");
+                    }else {
+                        mTjBtn.setEnabled(false);
+                        type = "HomeService";
+                        reqWxPayment();//微信预支付
+                    }
+
                 }
                 else if(mPlaceCbZfb.isChecked()){
+                    if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
+                        DialogUtils.showPrompt(this, "提示","只能使用钱包支付！", "知道了");
+                    }else {
+                    mTjBtn.setEnabled(false);
                     type = "HomeService";
                     reqZfbPayment();//支付宝预支付
+                    }
                 }
                 break;
             case R.id.rl_jf:
@@ -208,7 +223,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             dto.setPoints(mPoint);
         }
         if(coupon){
-            dto.setCouponids(mCoupon);
+            dto.setCouponids(mCoupon.replace(".00",""));
         }
         CommonApiClient.newPayment(this, dto, new CallBack<IntegralResult>() {
             @Override
@@ -295,6 +310,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 LogUtils.e("timeStamp--",mData.getTimeStamp());
                 LogUtils.e("sign--",mData.getSign());
                 msgApi.sendReq(req);
+                mTjBtn.setEnabled(true);
             }
         }
 
@@ -397,6 +413,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                             Toast.makeText(OrderNewPaymentActivity.this, "订单支付失败",
                                     Toast.LENGTH_SHORT).show();
                         }
+                        mTjBtn.setEnabled(true);
                     }
 
                     break;

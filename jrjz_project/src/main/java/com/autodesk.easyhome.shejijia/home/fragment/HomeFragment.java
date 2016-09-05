@@ -162,6 +162,7 @@ public class HomeFragment extends BaseFragment {
     TextView serviceTv0304;
     List<ServiceClasses> classes;
     private String mName;
+    boolean login;
 
     @Override
     protected void retry() {
@@ -184,6 +185,8 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
+
+        login = AppContext.get("IS_LOGIN",false);
     }
 
 
@@ -348,6 +351,8 @@ public class HomeFragment extends BaseFragment {
                 b4.putString("mName",classes.get(1).getServices().get(0).getName());
                 b4.putString("mId",classes.get(1).getServices().get(0).getId());
                 HomeUiGoto.gotoApt(getActivity(),b4);
+
+
                 break;
             case R.id.lin12:
                 Bundle b5 = new Bundle();

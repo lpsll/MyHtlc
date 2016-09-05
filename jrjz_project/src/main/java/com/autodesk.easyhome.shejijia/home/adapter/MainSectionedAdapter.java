@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.R;
@@ -71,6 +72,7 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
             if(sList.get(section).get(position).equals("")){
                 tv01.setText("");
                 imageItem.setVisibility(View.GONE);
+
 
             }else {
                 imageItem.setVisibility(View.VISIBLE);

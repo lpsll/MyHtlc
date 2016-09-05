@@ -12,7 +12,17 @@ public class AddAddressDTO extends BaseDTO {
     private String district;
     private String area;
     private String address;
-    private String isDefault;
+    private String defaultAddress;
+
+    public String getDefaultAddress() {
+        return defaultAddress;
+    }
+
+    public void setDefaultAddress(String defaultAddress) {
+        this.defaultAddress = defaultAddress;
+    }
+
+
 
     public String getName() {
         return name;
@@ -62,13 +72,7 @@ public class AddAddressDTO extends BaseDTO {
         this.address = address;
     }
 
-    public String getIsDefault() {
-        return isDefault;
-    }
 
-    public void setIsDefault(String isDefault) {
-        this.isDefault = isDefault;
-    }
 
 
 }

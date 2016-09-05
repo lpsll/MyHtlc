@@ -39,6 +39,7 @@ public class UploadUtils {
         String CONTENT_TYPE = "multipart/form-data";   //内容类型
 
         try {
+            LogUtils.e("RequestURL---",""+RequestURL);
             URL url = new URL(RequestURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setReadTimeout(TIME_OUT);

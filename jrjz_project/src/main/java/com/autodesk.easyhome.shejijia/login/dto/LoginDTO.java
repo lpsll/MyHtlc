@@ -63,7 +63,7 @@ public class LoginDTO  {
 
     public void setPassword(String password) {
         LogUtils.e("pwd--",""+SecurityUtils.md5(password));
-        this.password = SecurityUtils.md5(password);
+        this.password = SecurityUtils.MD5(password);
     }
 
     public int getUsertype() {

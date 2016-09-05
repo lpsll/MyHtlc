@@ -1,13 +1,17 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
@@ -33,7 +37,6 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.http.UploadFileTask;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
-import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
@@ -55,7 +58,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
@@ -118,7 +120,15 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        setTitleText("预约");
+        if (Build.VERSION.SDK_INT >= 23) {
+            int readSDPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+            if (readSDPermission != PackageManager.PERMISSION_GRANTED) {
+                LogUtils.e("readSDPermission",""+readSDPermission);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        123);
+            }
+        }
+            setTitleText("预约");
 
 
             mName = getIntent().getBundleExtra("bundle").getString("mName");
@@ -151,17 +161,17 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        login = AppContext.get("IS_LOGIN",false);
-        if(login){
+//        login = AppContext.get("IS_LOGIN",false);
+//        if(login){
         reqService();//服务费
         reqDfault();//获取默认地址
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
-        }
-        else {
-            HomeUiGoto.gotoLoginAppment(this);
-        }
+//        }
+//        else {
+//            HomeUiGoto.gotoLoginAppment(this);
+//        }
     }
 
     private void reqDfault() {
@@ -273,7 +283,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private void reqPic() {
         if(mPic.size()>0){
             for(int i =0;i<mPic.size();i++){
-                UploadFileTask uploadFileTask=new UploadFileTask(this);
+                UploadFileTask uploadFileTask=new UploadFileTask(this, AppConfig.BASE_URL+"/service/service/book");
                 LogUtils.e("list.get(i)---",""+mPic.get(i));
                 uploadFileTask.execute(mPic.get(i));
             }
@@ -309,7 +319,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                     bundle.putString("orderId",result.getData());
                     bundle.putString("mAddTv01",mAddTv01.getText().toString());
                     bundle.putString("mAddTv02",mAddTv02.getText().toString());
-                    bundle.putString("mAddTv03",mAddTv03.getText().toString());
+                    bundle.putString("mAddTv04",mAddTv04.getText().toString());
                     HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
                 }
 
@@ -340,6 +350,7 @@ public class AppointmentActivity extends BaseTitleActivity {
         mExit.setOnClickListener(this);
 
         View parent = getWindow().getDecorView();//高度为手机实际的像素高度
+        LogUtils.e("parent---",""+parent);
         popWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         //添加pop窗口关闭事件
         popWindow.setOnDismissListener(new poponDismissListener());
@@ -424,7 +435,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                         imagePaths.add("000000");
                         LogUtils.e("imagePaths----1", "" + imagePaths);
                     }
-                    if(imagePaths.size()>1){
+                    else if(imagePaths.size()>1){
                         imagePaths.set(imagePaths.size()-1, fileName);
                         imagePaths.add("000000");
                         LogUtils.e("imagePaths----set----", "   " + (imagePaths.size()-1) + "---"+imagePaths);

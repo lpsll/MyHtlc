@@ -215,7 +215,7 @@ public class ModifyAddressActivity extends BaseTitleActivity {
         dto.setDistrict(mAre);
         dto.setArea(mHuan);
         dto.setAddress(mEtAddress.getText().toString());
-        dto.setIsDefault("1");//默认为是，是/1,否/2
+        dto.setDefaultAddress("true");//默认为是，是/true ,否/false
         dto.setId(mId);
         CommonApiClient.modifyAddress(this, dto, new CallBack<AddAddressResult>() {
             @Override
