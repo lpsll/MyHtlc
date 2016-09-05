@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity {
         @Override
         public void run() {
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 Message msg = new Message();
                 msg.what = 1;
                 tHandler.sendMessage(msg);

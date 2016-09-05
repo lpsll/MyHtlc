@@ -20,6 +20,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TDevice;
 import com.autodesk.easyhome.shejijia.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
 import java.util.ArrayList;
@@ -100,10 +101,11 @@ public class ViewFlowLayout extends RelativeLayout {
     }
 
 
-    int count;
+    int count,opintion;
     boolean isfirst = true;
     HashMap map ;
     private  String imgUrl;
+    boolean flag = false;
 
 
     public void updateView(final ArrayList<ViewFlowBean> beans) {
@@ -111,19 +113,19 @@ public class ViewFlowLayout extends RelativeLayout {
         linear.removeAllViews();
         map = new HashMap();
         final int size = beans.size();
-        final ImageView imageView = new ImageView(context_);
-
+        ImageView imageView = new ImageView(context_);
+        LogUtils.e("size---",""+size);
         for (int i = 0; i < size; i++) {
             final ViewFlowBean bean = beans.get(i);
             imageView.setTag(bean);
             imgUrl = bean.getImgUrl();
+
+
             ImageLoader.getInstance().loadImage(bean.getImgUrl(), ImageLoaderUtils.getDefaultOptions(), new SimpleImageLoadingListener() {
 
                 @Override
                 public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    count++;
-                    LogUtils.e("count----",""+count);
-                    LogUtils.e("isfirst----",""+isfirst);
+
                     int screenWidth = AppContext.get("screenWidth", 0);
                     if (isfirst) {
                         isfirst = false;
@@ -137,12 +139,12 @@ public class ViewFlowLayout extends RelativeLayout {
                                 TDevice.px2dip(getContext(), loadedImage.getWidth()));
                     }
 
-//                    imageView.setImageBitmap(loadedImage);
-//                    flipper.addView(imageView);
-
                     imgUrl = imageUri;
                     map.put(imgUrl, loadedImage);
+                    count++;
+                    opintion++;
                     LogUtils.e("map----",""+map);
+                    LogUtils.e("count----map--",""+count);
 
                     ImageView dot = new ImageView(context_);
                     MarginLayoutParams lp = new LinearLayout.LayoutParams(18, 18);
@@ -151,9 +153,8 @@ public class ViewFlowLayout extends RelativeLayout {
                     dot.setImageResource(R.drawable.discount_dot_unsel);
                     linear.addView(dot);
 
-                    LogUtils.e("size---",""+size);
                     if (count == size) {
-                        for (int i = 0; i < size; i++) {
+                        for (int i = 0; i < map.size(); i++) {
                             ImageView imageView = new ImageView(context_);
                             imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                             imageView.setImageBitmap((Bitmap) map.get(beans.get(i).getImgUrl()));
@@ -161,7 +162,7 @@ public class ViewFlowLayout extends RelativeLayout {
                         }
 
 
-                        if(size ==1){
+                        if(size ==1||map.size()==1){
                             linear.setVisibility(View.GONE);
                             count =0;
                         }else {
@@ -174,14 +175,43 @@ public class ViewFlowLayout extends RelativeLayout {
                         }
 
 
-
                     }
+
+
                 }
 
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                    super.onLoadingFailed(imageUri, view, failReason);
+                    LogUtils.e("onLoadingFailed----", "onLoadingFailed");
+                    count++;
+                    flag = true;
+                    if (count == size) {
+                            for (int k = 0; k < map.size(); k++) {
+                                ImageView imageView = new ImageView(context_);
+                                imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                                imageView.setImageBitmap((Bitmap) map.get(beans.get(k).getImgUrl()));
+                                flipper.addView(imageView);
+                            }
+
+
+                            if (size == 1 || map.size() == 1) {
+                                linear.setVisibility(View.GONE);
+                                count = 0;
+                            } else {
+                                linear.setVisibility(View.VISIBLE);
+                                flipper.setDisplayedChild(0);
+                                ((ImageView) linear.getChildAt(0)).setImageResource(R.drawable.discount_dot_sel);
+                                //图片全部加载完毕
+                                startListen();
+                                count = 0;
+                            }
+                    }
+                }
             });
 
-        }
 
+            }
 
     }
 

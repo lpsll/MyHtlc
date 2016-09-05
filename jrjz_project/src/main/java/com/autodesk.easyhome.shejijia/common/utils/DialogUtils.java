@@ -109,6 +109,7 @@ public class DialogUtils {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                LogUtils.e("否---","否");
                 dialog.cancel();
             }
         });
@@ -121,7 +122,6 @@ public class DialogUtils {
      *
      * @param context
      * @param message
-     * @param listener
      */
     public static void confirm(final Context context, String message, String pStr, DialogInterface.OnClickListener pListener, String nStr,
                                DialogInterface.OnClickListener nListener) {

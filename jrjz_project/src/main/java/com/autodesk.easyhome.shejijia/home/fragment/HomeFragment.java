@@ -3,6 +3,7 @@ package com.autodesk.easyhome.shejijia.home.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -286,9 +287,16 @@ public class HomeFragment extends BaseFragment {
                         ArrayList<ViewFlowBean> list = new ArrayList<>();
                         for (int i = 0; i < mCarouse.size(); i++) {
                             ViewFlowBean bean = new ViewFlowBean();
-                            bean.setImgUrl(AppConfig.BASE_IMG_URL + mCarouse.get(i).getBannerimg());
-                            list.add(bean);
+                            if(TextUtils.isEmpty(mCarouse.get(i).getBannerimg())||null==mCarouse.get(i).getBannerimg()){
+
+                            }else {
+                                bean.setImgUrl(AppConfig.BASE_IMG_URL + mCarouse.get(i).getBannerimg());
+                                list.add(bean);
+                            }
+
+
                         }
+                        LogUtils.e("list---",""+list);
                         mVfLayout.updateView(list);
                     }
 

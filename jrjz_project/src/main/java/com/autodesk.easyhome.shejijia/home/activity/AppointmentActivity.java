@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia.home.activity;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -161,17 +162,15 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-//        login = AppContext.get("IS_LOGIN",false);
-//        if(login){
+        login = AppContext.get("IS_LOGIN",false);
+        if(login) {
+            reqDfault();//获取默认地址
+        }
         reqService();//服务费
-        reqDfault();//获取默认地址
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
-//        }
-//        else {
-//            HomeUiGoto.gotoLoginAppment(this);
-//        }
+
     }
 
     private void reqDfault() {
@@ -222,7 +221,13 @@ public class AppointmentActivity extends BaseTitleActivity {
         switch (view.getId()) {
             case R.id.lin_address:
 //                UIHelper.showFragment(this, SimplePage.SELECT_ADDRESS);//常用地址
-                HomeUiGoto.gotoSelect(this);
+                if(login){
+                    HomeUiGoto.gotoSelect(this);
+                }else {
+                    DialogUtils.confirm(this, "您尚未登录，是否去登录？", listener);
+
+                }
+
                 break;
             case R.id.lin_time:
                 HomeUiGoto.gotoSt(this);
@@ -278,6 +283,13 @@ public class AppointmentActivity extends BaseTitleActivity {
                 break;
         }
     }
+
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            HomeUiGoto.gotoLogin(AppointmentActivity.this);
+        }
+    };
 
 
     private void reqPic() {
@@ -488,10 +500,6 @@ public class AppointmentActivity extends BaseTitleActivity {
                     mTm = AppContext.get("serviceTime","");
                     mTime.setText(mTm);
                 }
-
-                break;
-            case HomeUiGoto.LA_REQUEST:
-                 initData();
 
                 break;
 
