@@ -1,6 +1,8 @@
 package com.autodesk.easyhome.shejijia.campaign.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,9 +58,9 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof MyViewHolder) {
 
-            CampaignEntity entity = list.get(position-1);
-             final String chongzhi = entity.getRechargeAmount();
-             String youhui = entity.getCouponAmount();
+            CampaignEntity entity = list.get(position - 1);
+            final String chongzhi = entity.getRechargeAmount();
+            String youhui = entity.getCouponAmount();
 
             final MyViewHolder myViewHolder = (MyViewHolder) holder;
             myViewHolder.tv_campaign_fragment_item_zengsong.setText("赠送价值" + youhui + "元的优惠券");
@@ -78,11 +80,17 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                         Intent intent = new Intent(context, TopUpActivity.class);
                         intent.putExtra("TypeForTopUp", "fixed");
                         //携带充值额
-                        intent.putExtra("amount",chongzhi);
+                        intent.putExtra("amount", chongzhi);
                         context.startActivity(intent);
 
                     } else {
-                        CampaignUIGoto.gotoLoginForPwd((MainActivity) context);
+                        new AlertDialog.Builder(context).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                CampaignUIGoto.gotoLoginForPwd((MainActivity) context);
+                            }
+                        }).setNegativeButton("取消", null).show();
+
                     }
                 }
             });
@@ -127,7 +135,6 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
             super(itemView);
         }
     }
-
 
 
 }

@@ -1,6 +1,8 @@
 package com.autodesk.easyhome.shejijia.mine.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -111,7 +113,7 @@ public class MineFragment extends BaseFragment {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取用户信息成功=====" + result.getData().toString());
 
-                    double points =  result.getData().getPoints();
+                    double points = result.getData().getPoints();
                     double balance = result.getData().getBalance();
 
                     tvMinePoint.setText(points + "分");
@@ -144,7 +146,8 @@ public class MineFragment extends BaseFragment {
 
 
     public static final int TOPUP_REQUEST = 0x1108;
-    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting,R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
+
+    @OnClick({R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
@@ -161,9 +164,14 @@ public class MineFragment extends BaseFragment {
                 if (AppContext.get("IS_LOGIN", false)) {
                     Intent intent = new Intent(new Intent(getContext(), TopUpActivity.class));
                     intent.putExtra("TypeForTopUp", "WriteForUser");
-                    getActivity().startActivityForResult(intent,TOPUP_REQUEST);
+                    getActivity().startActivityForResult(intent, TOPUP_REQUEST);
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
                 }
                 break;
             case R.id.ll_mine_more_setting:
@@ -171,21 +179,37 @@ public class MineFragment extends BaseFragment {
                 if (AppContext.get("IS_LOGIN", false)) {
                     MineUiGoto.gotoSetting(getActivity());
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
                 }
                 break;
             case R.id.ll_mine_address:
                 if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
+
                 }
                 break;
             case R.id.ll_mine_myorder:
                 if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), MineOrderActivity.class));
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
                 }
 
                 break;
@@ -194,7 +218,12 @@ public class MineFragment extends BaseFragment {
                 if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), MineCouponActivity.class));
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
                 }
 
                 break;
@@ -202,7 +231,12 @@ public class MineFragment extends BaseFragment {
                 if (AppContext.get("IS_LOGIN", false)) {
                     getContext().startActivity(new Intent(getContext(), FeedBackActivity.class));
                 } else {
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
+                    new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            HomeUiGoto.gotoLoginForPwd(getActivity());
+                        }
+                    }).setNegativeButton("取消",null).show();
                 }
                 break;
 

@@ -53,12 +53,6 @@ public class CampaignFragment extends BaseFragment {
         getDataFromService();
 
 
-//        adapter.setOnItemClickLitener(new CampaignFragmentAdapter.OnItemClickLitener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                Log.i("TAG","aaaaa");
-//            }
-//        });
 
     }
 
