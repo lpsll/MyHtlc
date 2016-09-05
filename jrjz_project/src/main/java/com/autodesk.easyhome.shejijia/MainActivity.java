@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,10 +12,10 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
-import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
@@ -324,6 +325,23 @@ public class MainActivity extends BaseHomeTitleActivity {
                 meFragment.initView(null);
             }
         }
+    }
+
+
+    /**
+     * 连按两次返回退出应用
+     */
+    private long fistTime = 0;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            if((System.currentTimeMillis() - fistTime)>2000){
+                ToastUtils.showShort(this,"连按两次返回键退出应用");
+                fistTime = System.currentTimeMillis();
+                return true;
+            }
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }
 
