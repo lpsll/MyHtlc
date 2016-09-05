@@ -53,8 +53,8 @@ public class BaseDTO implements Serializable {
     }
 
     public void setSign(String sign) {
-        LogUtils.e("setSign--",""+SecurityUtils.md5(sign));
-        this.sign = SecurityUtils.md5(sign);
+        LogUtils.e("setSign--",""+SecurityUtils.MD5(sign));
+        this.sign = SecurityUtils.MD5(sign);
     }
 
 

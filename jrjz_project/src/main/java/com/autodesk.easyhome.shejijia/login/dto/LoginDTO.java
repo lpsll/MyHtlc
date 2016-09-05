@@ -52,7 +52,7 @@ public class LoginDTO  {
     }
 
     public void setSign(String sign) {
-        this.sign = SecurityUtils.md5(sign);
+        this.sign = SecurityUtils.MD5(sign);
     }
 
 

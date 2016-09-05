@@ -57,7 +57,7 @@ public class ForgetPwdDTO {
     }
 
     public void setSign(String sign) {
-        this.sign = SecurityUtils.md5(sign);
+        this.sign = SecurityUtils.MD5(sign);
     }
 
 
@@ -74,6 +74,6 @@ public class ForgetPwdDTO {
     }
 
     public void setPassword(String password) {
-        this.password = SecurityUtils.md5(password);
+        this.password = SecurityUtils.MD5(password);
     }
 }
