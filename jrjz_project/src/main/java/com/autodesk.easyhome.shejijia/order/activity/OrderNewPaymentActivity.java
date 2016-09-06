@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -27,11 +26,8 @@ import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
-import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
-import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
-import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
@@ -173,7 +169,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 }
                 else if(mPlaceCbWx.isChecked()){
                     if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
-                        DialogUtils.showPrompt(this, "提示","只能使用钱包支付！", "知道了");
+                        DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
                     }else {
                         mTjBtn.setEnabled(false);
                         type = "HomeService";
@@ -183,7 +179,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 }
                 else if(mPlaceCbZfb.isChecked()){
                     if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
-                        DialogUtils.showPrompt(this, "提示","只能使用钱包支付！", "知道了");
+                        DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
                     }else {
                     mTjBtn.setEnabled(false);
                     type = "HomeService";
