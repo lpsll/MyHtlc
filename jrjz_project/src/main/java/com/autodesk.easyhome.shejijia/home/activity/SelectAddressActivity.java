@@ -195,32 +195,35 @@ public class SelectAddressActivity extends BaseTitleActivity {
                 holder = (ViewHolder) convertView.getTag();
             }
             holder.mTv.setText(list.get(position).getAddress());
-
-//            if(list.get(position).getDefaultAddress().equals("true")){
-//                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
-//                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
-//            }else {
-//                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
-//                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
-//            }
-
             mList.add(position, list.get(position));
             LogUtils.e("flag---",""+flag);
+
             if(flag){
-                bList.add(position, true);
+                if(list.get(position).getDefaultAddress().equals("true")){
+                    holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+                    holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+                    bList.add(position, false);
+                }else {
+                    holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
+                    holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
+                    bList.add(position, true);
+                }
+            }
+            else {
+                if(bList.get(position)==true){
+                    holder.mLinSz.setEnabled(true);
+                    holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
+                    holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
+                }else {
+                    holder.mLinSz.setEnabled(false);
+                    bList.set(def,false);
+                    holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
+                    holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
+                }
             }
             LogUtils.e("bList---",""+bList);
 
-            if(bList.get(position)==true){
-                holder.mLinSz.setEnabled(true);
-                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.color_01));
-                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenqxdpi_03));
-            }else {
-                holder.mLinSz.setEnabled(false);
-                bList.set(def,true);
-                holder.mTvCk.setTextColor(context.getResources().getColor(R.color.navi));
-                holder.mCb.setBackground(getResources().getDrawable(R.drawable.morenhxdpi_03));
-            }
+
             LogUtils.e("notifyDataSetChanged---","notifyDataSetChanged");
 
 
@@ -232,15 +235,18 @@ public class SelectAddressActivity extends BaseTitleActivity {
                     LinearLayout ll = (LinearLayout) v;
                     if (bList.get(def)) {
                         flag = false;
+                        for(int i =0;i<bList.size();i++){
+                            if(bList.get(i)){
+
+                            }else {
+                                bList.set(i,true);
+                            }
+                        }
                         bList.set(def,false);
                         LogUtils.e("bList---click---",""+bList);
                         adapter.notifyDataSetChanged();
                         reqSetUp(def);//设置默认地址
                     }
-//                    else {
-//                        adapter.notifyDataSetChanged();
-//                        flag = false;
-//                    }
                 }
             });
 
