@@ -18,8 +18,14 @@ package com.autodesk.easyhome.shejijia.common.widget;
 
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.util.TypedValue;
@@ -32,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 
 
 /**
@@ -178,7 +185,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 outValue, true);
         textView.setBackgroundResource(outValue.resourceId);
         textView.setAllCaps(true);
-        textView.setTextColor(getResources().getColorStateList(R.color.common_tab_text_color));
+//        textView.setTextColor(getResources().getColorStateList(R.color.common_tab_text_color));
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         textView.setPadding(padding, padding, padding, padding);
 
@@ -189,6 +196,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final OnClickListener tabClickListener = new TabClickListener();
 
+        LogUtils.e("populateTabStrip()----","populateTabStrip");
         for (int i = 0; i < adapter.getCount(); i++) {
             View tabView = null;
             TextView tabTitleView = null;
@@ -213,8 +221,31 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 lp.width = 0;
                 lp.weight = 1;
             }
+            tabTitleView.setTextColor(Color.YELLOW);
 
-            tabTitleView.setText(adapter.getPageTitle(i));
+            String string = (String) adapter.getPageTitle(i);
+
+            LogUtils.e("tit.length()----",""+string.length()+string);
+            SpannableStringBuilder style = new SpannableStringBuilder(string);
+            style.setSpan(new BackgroundColorSpan(Color.RED), 1, 2, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+            LogUtils.e("style----",""+style);
+            tabTitleView.setText(style);
+
+            String text_b = string.substring(0, 1);
+            String text_m = string.substring(2, 3);
+            tabTitleView.setText(Html.fromHtml(text_b + "<font color=red>" + text_m + "</font>" ));
+
+//            if(string.length()>3){
+//                SpannableStringBuilder style = new SpannableStringBuilder(string);
+//                style.setSpan(new BackgroundColorSpan(Color.YELLOW), 0, 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+//                LogUtils.e("style----",""+style);
+//                tabTitleView.setText(style);
+//            }else {
+//                LogUtils.e("string----",""+string);
+//                tabTitleView.setText(string);
+//            }
+
+
             tabView.setOnClickListener(tabClickListener);
             String desc = mContentDescriptions.get(i, null);
             if (desc != null) {

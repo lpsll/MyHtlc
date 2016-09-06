@@ -45,6 +45,8 @@ public class ClassificationActivity extends BaseTitleActivity {
     List<ClassificationEntity> data;
     List<ClassificationServicesEntity> entity;
     boolean login;
+    private int flag;
+    MainSectionedAdapter sectionedAdapter;
 
     @Override
     protected int getContentResId() {
@@ -54,6 +56,7 @@ public class ClassificationActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("分类");
+        flag = getIntent().getBundleExtra("bundle").getInt("flag");
         ImageView iv= new ImageView(ClassificationActivity.this);
         iv.setLayoutParams(new AbsListView.LayoutParams(AbsListView.LayoutParams.MATCH_PARENT, 800));
         LogUtils.e("iv----",""+iv);
@@ -90,14 +93,6 @@ public class ClassificationActivity extends BaseTitleActivity {
         mList = new ArrayList<>();
         sList = new ArrayList<>();
         iList = new ArrayList<>();
-
-
-        flagArray.add(true);
-        for(int i= 0;i<data.size()-1;i++){
-            flagArray.add(false);
-        }
-        LogUtils.e("flagArray----",""+flagArray);
-
 
         for(int i= 0;i<data.size();i++){
             mList.add(data.get(i).getName());
@@ -137,15 +132,42 @@ public class ClassificationActivity extends BaseTitleActivity {
     }
 
     private void bindResult() {
-
-
-        final MainSectionedAdapter sectionedAdapter = new MainSectionedAdapter(this, mList, sList,iList,flagArray);
+        sectionedAdapter = new MainSectionedAdapter(this, mList, sList,iList,flagArray);
         pinnedListView.setAdapter(sectionedAdapter);
+
+        for(int i= 0;i<data.size();i++){
+            flagArray.add(false);
+        }
+        if(flag==0){
+            flagArray.set(0,true);
+            selection(flag);
+        }
+        else if(flag==1) {
+            flagArray.set(0,true);
+            selection(flag);
+        }
+        else if(flag==2) {
+            flagArray.set(1,true);
+            selection(flag);
+        }
+        else if(flag==3) {
+            flagArray.set(2,true);
+            selection(flag);
+        }
+        else if(flag==4) {
+            flagArray.set(3,true);
+            selection(flag);
+        }
+        else if(flag==5) {
+            flagArray.set(4,true);
+            selection(flag);
+        }
+
+        LogUtils.e("flagArray----",""+flagArray);
+
+
         adapter = new LeftListAdapter(this, mList, flagArray);
         leftListview.setAdapter(adapter);
-
-
-
         leftListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -161,11 +183,8 @@ public class ClassificationActivity extends BaseTitleActivity {
                 }
                 adapter.notifyDataSetChanged();
                 sectionedAdapter.notifyDataSetChanged();
-                int rightSection = 0;
-                for (int i = 0; i < position; i++) {
-                    rightSection += sectionedAdapter.getCountForSection(i) + 1;
-                }
-                pinnedListView.setSelection(rightSection);
+                selection(position+1);
+
 
             }
 
@@ -242,6 +261,15 @@ public class ClassificationActivity extends BaseTitleActivity {
 
             }
         });
+    }
+
+    private void selection(int position) {
+        int rightSection = 0;
+        for (int i = 0; i < position-1; i++) {
+            rightSection += sectionedAdapter.getCountForSection(i) + 1;
+            LogUtils.e("rightSection---",""+rightSection);
+        }
+        pinnedListView.setSelection(rightSection);
     }
 
     @Override

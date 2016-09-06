@@ -115,10 +115,12 @@ public class HomeUiGoto {
     /**
      * 跳转到分类页
      * @param context
+     * @param bundle
      */
 
-    public static void gotoCf(Context context){
+    public static void gotoCf(Context context, Bundle bundle){
         Intent intent = new Intent(context, ClassificationActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 

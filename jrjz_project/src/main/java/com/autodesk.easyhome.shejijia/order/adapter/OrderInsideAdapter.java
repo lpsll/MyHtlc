@@ -2,8 +2,12 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -55,7 +59,12 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         LogUtils.e("bindData---type---",""+type);
         list.add(position,orderEntity);
         status = orderEntity.getStatus();
-        holder.setText(R.id.order_tv01,orderEntity.getServiceName());
+
+        TextView tv= holder.getView(R.id.order_tv01);
+        SpannableStringBuilder style = new SpannableStringBuilder(orderEntity.getServiceName());
+        style.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+        tv.setText(style);
+
         holder.setText(R.id.order_tv02,orderEntity.getOrderId());
         holder.setText(R.id.order_tv03,orderEntity.getServiceTime());
         holder.setText(R.id.order_tv04,orderEntity.getAddress());

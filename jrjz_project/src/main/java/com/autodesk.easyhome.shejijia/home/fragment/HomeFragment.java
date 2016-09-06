@@ -29,7 +29,6 @@ import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceClasses;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceData;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
-import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -316,22 +315,32 @@ public class HomeFragment extends BaseFragment {
                 getActivity().startActivity(intent2);
                 break;
             case R.id.lin01:
-                HomeUiGoto.gotoCf(getActivity());
+                Bundle bundle1 = new Bundle();
+                bundle1.putInt("flag",1);
+                HomeUiGoto.gotoCf(getActivity(),bundle1);
                 break;
             case R.id.lin02:
-                HomeUiGoto.gotoCf(getActivity());
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt("flag",2);
+                HomeUiGoto.gotoCf(getActivity(),bundle2);
                 break;
             case R.id.lin03:
-                HomeUiGoto.gotoCf(getActivity());
+                Bundle bundle3 = new Bundle();
+                bundle3.putInt("flag",3);
+                HomeUiGoto.gotoCf(getActivity(),bundle3);
                 break;
             case R.id.lin04:
-                HomeUiGoto.gotoCf(getActivity());
+                Bundle bundle4 = new Bundle();
+                bundle4.putInt("flag",4);
+                HomeUiGoto.gotoCf(getActivity(),bundle4);
                 break;
             case R.id.lin05:
-                HomeUiGoto.gotoCf(getActivity());
+                Bundle bundle5 = new Bundle();
+                bundle5.putInt("flag",5);
+                HomeUiGoto.gotoCf(getActivity(),bundle5);
                 break;
             case R.id.lin06:
-                HomeUiGoto.gotoCf(getActivity());
+                GotoCf();
                 break;
             case R.id.lin07:
                 Bundle b1 = new Bundle();
@@ -352,7 +361,7 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b3);
                 break;
             case R.id.lin10:
-                HomeUiGoto.gotoCf(getActivity());
+                GotoCf();
                 break;
             case R.id.lin11:
                 Bundle b4 = new Bundle();
@@ -375,7 +384,7 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b6);
                 break;
             case R.id.lin14:
-                HomeUiGoto.gotoCf(getActivity());
+                GotoCf();
                 break;
             case R.id.lin15:
                 Bundle b7 = new Bundle();
@@ -402,12 +411,16 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b10);
                 break;
             case R.id.all_service:
-                HomeUiGoto.gotoCf(getActivity());
+                GotoCf();
                 break;
         }
     }
 
-
+    private void GotoCf() {
+        Bundle bundle3 = new Bundle();
+        bundle3.putInt("flag",0);
+        HomeUiGoto.gotoCf(getActivity(),bundle3);
+    }
 
 
 }
