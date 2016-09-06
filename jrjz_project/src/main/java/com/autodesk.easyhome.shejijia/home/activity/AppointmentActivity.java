@@ -299,9 +299,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 LogUtils.e("list.get(i)---",""+mPic.get(i));
                 uploadFileTask.execute(mPic.get(i));
             }
-
         }
-
     }
 
     private void reqAppointment() {
@@ -464,8 +462,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 popWindow.dismiss();
                 if(data == null){
                     return;
-                }else
-                {
+                }else{
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
                     LogUtils.e("list: ", "list = " + list + "--size = " + list.size());
                     if(null==list){

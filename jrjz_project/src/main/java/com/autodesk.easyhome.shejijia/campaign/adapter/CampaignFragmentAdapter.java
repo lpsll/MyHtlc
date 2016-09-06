@@ -84,7 +84,7 @@ public class CampaignFragmentAdapter extends RecyclerView.Adapter<RecyclerView.V
                         context.startActivity(intent);
 
                     } else {
-                        new AlertDialog.Builder(context).setTitle("温馨提示").setMessage("您尚未登录，要进行登录吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        new AlertDialog.Builder(context).setTitle("温馨提示").setMessage("您尚未登录，是否去登录？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 CampaignUIGoto.gotoLoginForPwd((MainActivity) context);

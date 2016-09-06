@@ -1,7 +1,5 @@
 package com.autodesk.easyhome.shejijia.campaign.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -135,12 +133,7 @@ public class TopUpActivity extends BaseTitleActivity {
                 break;
             case R.id.tv_top_up_ok: //确定按钮 确定支付方式
 
-                new AlertDialog.Builder(TopUpActivity.this).setTitle("温馨提示").setMessage("确定提交吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        topUpEnsure();
-                    }
-                }).setNegativeButton("取消", null).show();
+                topUpEnsure();
 
                 break;
             case R.id.base_titlebar_back:
@@ -282,7 +275,10 @@ public class TopUpActivity extends BaseTitleActivity {
                 case RQF_PAY:
                     if (TextUtils.equals(resultStatus, "9000")) {
                         LogUtils.e("RQF_PAY---", "9000" + "支付宝支付成功");
-                        setResult(1109);
+                        setResult(1009);
+                        //发送广播给我的页面更新数据
+                        sendBroadcast(new Intent(AppConfig.TOPUP_RECIVER_ACTION));
+
                         finish();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败

@@ -40,6 +40,9 @@ public class AppConfig {
 //    public static final String  UID = "uid";
 //    public static final String IS_LOGIN = "isLogin";
 
+    //充值页面广播action
+    public static final String TOPUP_RECIVER_ACTION = "com.jrjz_project.topup.sendbroadcast";
+
 
 
 

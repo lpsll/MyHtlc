@@ -1,6 +1,9 @@
 package com.autodesk.easyhome.shejijia;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -111,6 +114,12 @@ public class MainActivity extends BaseHomeTitleActivity {
             });
         }
         showTab(0); // 显示目标tab
+
+        //注册充值页面广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(AppConfig.TOPUP_RECIVER_ACTION);
+        registerReceiver(topupReceiver, filter);
+
     }
 
     /**
@@ -336,7 +345,7 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
 
         //我的中充值页面充值成功后刷新我的页面
-        if (requestCode == MineFragment.TOPUP_REQUEST &&resultCode==1109) {
+        if (requestCode == MineFragment.TOPUP_REQUEST && resultCode==1009) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
             if (meFragment != null) {
@@ -345,6 +354,18 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
     }
 
+
+    private BroadcastReceiver topupReceiver = new BroadcastReceiver(){
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("tag3");
+            if (meFragment != null) {
+                meFragment.initView(null);
+            }
+        }
+    };
 
     /**
      * 连按两次返回退出应用
@@ -360,6 +381,18 @@ public class MainActivity extends BaseHomeTitleActivity {
             }
         }
         return super.onKeyUp(keyCode, event);
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //解注册充值页面广播
+        if(topupReceiver != null){
+            unregisterReceiver(topupReceiver);
+            topupReceiver = null;//不要忘了
+        }
+
     }
 }
 
