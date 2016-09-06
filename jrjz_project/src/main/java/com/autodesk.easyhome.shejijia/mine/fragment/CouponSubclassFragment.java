@@ -72,13 +72,13 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
         dto.setPage(String.valueOf(mCurrentPage));
         dto.setSize(String.valueOf(PAGE_SIZE));
         if(type ==1){
-            dto.setUseStatus("1");
-        }
-        else if(type ==2){
             dto.setUseStatus("2");
         }
-        else if(type ==3){
+        else if(type ==2){
             dto.setUseStatus("3");
+        }
+        else if(type ==3){
+            dto.setUseStatus("1");
         }
 
         CommonApiClient.mineCoupon(getActivity(), dto, new CallBack<MineCouponResult>() {

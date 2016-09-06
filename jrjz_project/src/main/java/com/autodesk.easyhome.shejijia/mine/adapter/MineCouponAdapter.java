@@ -32,7 +32,7 @@ public class MineCouponAdapter extends BaseSimpleRecyclerAdapter<MineCouponEntit
         linearLayout = holder.getView(R.id.mine_coupon_lin);
         tv = holder.getView(R.id.tv_tv);
         if(type==1){
-            linearLayout.setBackgroundColor(Color.parseColor("#008ce7"));
+            linearLayout.setBackgroundColor(Color.parseColor("#FFC78E"));
             tv.setVisibility(View.GONE);
             holder.setText(R.id.tv_time,mineCouponEntity.getEffective_date().replace(" 00:00:00","")+"至"+mineCouponEntity.getExpire_date().replace(" 00:00:00",""));
         }
