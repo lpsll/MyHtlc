@@ -93,7 +93,7 @@ public class RegisterActivity extends BaseTitleActivity {
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etRegisterPhone.getText().toString());
                 if (!isValid) {
                     TimeButtonRegister.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
                     TimeButtonRegister.setLenght(60 * 1000);
                     //获取验证码
