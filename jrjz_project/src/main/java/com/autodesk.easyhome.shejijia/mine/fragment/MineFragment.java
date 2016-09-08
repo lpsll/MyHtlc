@@ -2,15 +2,23 @@ package com.autodesk.easyhome.shejijia.mine.fragment;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
@@ -29,8 +37,10 @@ import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.tencent.qzone.QZone;
 
 /**
  * 我的页
@@ -59,6 +69,10 @@ public class MineFragment extends BaseFragment {
     TextView tvMineBalance;
     @Bind(R.id.ll_mine_share)
     LinearLayout llMineShare;
+    PopupWindow popWindow;
+    private LinearLayout weixin,friend,weibo,qq,qqZon;
+    private TextView text;
+    private String type;
 
     @Override
     public void initView(View view) {
@@ -243,11 +257,98 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.ll_mine_share:
-
                 showShare();
-
+//                showPopShare();
+                break;
+            case R.id.share_weixin:
+                type ="1";
+                showShare();
+                break;
+            case R.id.share_friend:
+                type ="2";
+                showShare();
+                break;
+            case R.id.share_weibo:
+                type ="3";
+                showShare();
+                break;
+            case R.id.share_qq:
+                type ="4";
+                showShare();
+                break;
+            case R.id.share_qzone:
+                type ="5";
+                showShare();
+                break;
+            case R.id.pop_share_text:
+                backgroundAlpha(1f);
+                popWindow.dismiss();
                 break;
         }
+    }
+
+    private void showPopShare() {
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View view = inflater.from(getActivity()).inflate(R.layout.pop_share, null);
+        popWindow = new PopupWindow(view, WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
+
+        // 需要设置一下此参数，点击外边可消失
+        popWindow.setBackgroundDrawable(new BitmapDrawable());
+        //设置点击窗口外边窗口消失
+        popWindow.setOutsideTouchable(true);
+        // 设置此参数获得焦点，否则无法点击
+        popWindow.setFocusable(true);
+        //防止虚拟软键盘被弹出菜单遮住
+        popWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        backgroundAlpha(0.7f);
+
+        weixin = (LinearLayout) view
+                .findViewById(R.id.share_weixin);
+        friend = (LinearLayout) view
+                .findViewById(R.id.share_friend);
+        weibo = (LinearLayout) view
+                .findViewById(R.id.share_weibo);
+        qq = (LinearLayout) view
+                .findViewById(R.id.share_qq);
+        qqZon = (LinearLayout) view
+                .findViewById(R.id.share_qzone);
+
+        text = (TextView) view
+                .findViewById(R.id.pop_share_text);
+        weixin.setOnClickListener(this);
+        friend.setOnClickListener(this);
+        weibo.setOnClickListener(this);
+        qq.setOnClickListener(this);
+        qqZon.setOnClickListener(this);
+        text.setOnClickListener(this);
+
+        View parent = getActivity().getWindow().getDecorView();//高度为手机实际的像素高度
+        popWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+        //添加pop窗口关闭事件
+        popWindow.setOnDismissListener(new poponDismissListener());
+
+    }
+
+    public class poponDismissListener implements PopupWindow.OnDismissListener{
+
+        @Override
+        public void onDismiss() {
+            LogUtils.e("List_noteTypeActivity:", "我是关闭事件");
+            backgroundAlpha(1f);
+            popWindow.dismiss();
+            LogUtils.e("List_noteTypeActivity:", "dismiss");
+        }
+
+    }
+    /**
+     * 设置添加屏幕的背景透明度
+     * @param bgAlpha
+     */
+    public void backgroundAlpha(float bgAlpha)
+    {
+        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
+        lp.alpha = bgAlpha; //0.0-1.0
+        getActivity().getWindow().setAttributes(lp);
     }
 
 
@@ -276,6 +377,12 @@ public class MineFragment extends BaseFragment {
 
         // 启动分享GUI
         oks.show(getContext());
+
+
+//        QZone.ShareParams sp = new QZone.ShareParams();
+//        Platform qzone = ShareSDK.getPlatform (QZone.NAME);
+////        qzone.setPlatformActionListener(MainActivity.this); // 设置分享事件回调
+//        qzone.share(sp);
     }
 
 

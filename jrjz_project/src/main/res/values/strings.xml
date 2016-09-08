@@ -82,6 +82,12 @@
     <string name="time4">14:00--16:00</string>
     <string name="time5">16:00--18:00</string>
     <string name="time6">18:00--20:00</string>
+    <string name="fx">分享到</string>
+    <string name="wx_friend">微信好友</string>
+    <string name="friend">朋友圈</string>
+    <string name="xl">新浪微博</string>
+    <string name="qqk">QQ空间</string>
+    <string name="qq">QQ</string>
 
 
 
