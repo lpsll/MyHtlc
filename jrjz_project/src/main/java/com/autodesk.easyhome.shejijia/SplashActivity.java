@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia;
 
 import android.os.Handler;
 import android.os.Message;
+import android.view.WindowManager;
 
 import com.autodesk.easyhome.shejijia.common.base.BaseActivity;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
@@ -19,6 +20,9 @@ public class SplashActivity extends BaseActivity {
     }
     @Override
     public void initView() {
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
         LogUtils.e("initView---","initView");
         // 获取屏幕宽高（方法1）
         int screenWidth = getWindowManager().getDefaultDisplay().getWidth(); // 屏幕宽（像素，如：480px）
