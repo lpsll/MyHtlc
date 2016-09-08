@@ -183,9 +183,9 @@ public class SlidingTabLayout extends HorizontalScrollView {
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
                 outValue, true);
-        textView.setBackgroundResource(outValue.resourceId);
-        textView.setAllCaps(true);
-//        textView.setTextColor(getResources().getColorStateList(R.color.common_tab_text_color));
+//        textView.setBackgroundResource(outValue.resourceId);
+//        textView.setAllCaps(true);
+        textView.setTextColor(getResources().getColorStateList(R.color.common_tab_text_color));
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
         textView.setPadding(padding, padding, padding, padding);
 
@@ -221,29 +221,22 @@ public class SlidingTabLayout extends HorizontalScrollView {
                 lp.width = 0;
                 lp.weight = 1;
             }
-            tabTitleView.setTextColor(Color.YELLOW);
 
             String string = (String) adapter.getPageTitle(i);
 
-            LogUtils.e("tit.length()----",""+string.length()+string);
-            SpannableStringBuilder style = new SpannableStringBuilder(string);
-            style.setSpan(new BackgroundColorSpan(Color.RED), 1, 2, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
-            LogUtils.e("style----",""+style);
-            tabTitleView.setText(style);
+//            String text_b = string.substring(0, 1);
+//            String text_m = string.substring(2, 3);
+//            tabTitleView.setText(Html.fromHtml(text_b + "<font color=red>" + text_m + "</font>" ));
 
-            String text_b = string.substring(0, 1);
-            String text_m = string.substring(2, 3);
-            tabTitleView.setText(Html.fromHtml(text_b + "<font color=red>" + text_m + "</font>" ));
-
-//            if(string.length()>3){
-//                SpannableStringBuilder style = new SpannableStringBuilder(string);
-//                style.setSpan(new BackgroundColorSpan(Color.YELLOW), 0, 1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
-//                LogUtils.e("style----",""+style);
-//                tabTitleView.setText(style);
-//            }else {
-//                LogUtils.e("string----",""+string);
-//                tabTitleView.setText(string);
-//            }
+            if(string.contains(".")){
+                SpannableStringBuilder style = new SpannableStringBuilder(string);
+                style.setSpan(new ForegroundColorSpan(Color.RED), 3, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+                LogUtils.e("style----",""+style);
+                tabTitleView.setText(style);
+            }else {
+                LogUtils.e("string----",""+string);
+                tabTitleView.setText(string);
+            }
 
 
             tabView.setOnClickListener(tabClickListener);

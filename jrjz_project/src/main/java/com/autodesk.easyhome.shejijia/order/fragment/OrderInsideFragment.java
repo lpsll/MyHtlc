@@ -2,11 +2,13 @@ package com.autodesk.easyhome.shejijia.order.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseListFragment;
+import com.autodesk.easyhome.shejijia.common.eventbus.ErrorEvent;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
@@ -22,6 +24,8 @@ import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 import java.io.Serializable;
 import java.util.List;
 
+import de.greenrobot.event.EventBus;
+
 /**
  * Created by John_Libo on 2016/8/15.
  */
@@ -29,6 +33,20 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
     private static final String TYPE = "type";
     private int type;
     boolean login;
+    OrderFragment.OnOKClickListener onOKClickListener;
+    boolean flag;
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        LogUtils.e("onStart---inside---","onStart");
+    }
+
+    public void setInterface(OrderFragment.OnOKClickListener onOKClickListener) {
+        this.onOKClickListener = onOKClickListener;
+    }
+
 
     public static OrderInsideFragment newInstance(int type) {
         OrderInsideFragment fragment = new OrderInsideFragment();
@@ -51,28 +69,26 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
     @Override
     public BaseRecyclerAdapter<OrderEntity> createAdapter() {
-        LogUtils.e("createAdapter------","createAdapter");
         return new OrderInsideAdapter(getActivity(),type);
     }
 
     @Override
     protected String getCacheKeyPrefix() {
-        LogUtils.e("getCacheKeyPrefix------","getCacheKeyPrefix");
         return "OrderInsideFragment"+type+"_";
     }
 
     @Override
     public List<OrderEntity> readList(Serializable seri) {
-        LogUtils.e("readList------","readList");
         return ((OrderResult)seri).getData().getData();
     }
 
     @Override
     protected void sendRequestData() {
         LogUtils.e("sendRequestData------","sendRequestData");
+        flag = AppContext.get("inFlag",false);
         if(login){
             OrderDTO dto = new OrderDTO();
-            String time = TimeUtils.getSignTime();
+            final String time = TimeUtils.getSignTime();
             String random = TimeUtils.genNonceStr();
             dto.setAccessToken(AppContext.get("accessToken",""));
             dto.setRandom(random);
@@ -103,6 +119,22 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                     public void onSuccess(OrderResult result) {
                         if (AppConfig.SUCCESS.equals(result.getCode())) {
                             LogUtils.e("待支付订单成功");
+                            LogUtils.e("result.getData()----",""+result.getData());
+                            if(null==result.getData().getData()){
+                                AppContext.set("getData","1");
+//                                onOKClickListener.onOKClick();
+
+                            }else {
+                                AppContext.set("getData","2");
+                                if(flag){
+                                    EventBus.getDefault().post(
+                                            new ErrorEvent("", AppContext.get("getData",""), ""));
+
+//                                    onOKClickListener.onOKClick();
+                                }
+
+                            }
+
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                             requestDataSuccess(result);
@@ -167,6 +199,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
 
     }
+
 
     @Override
     public void initData() {

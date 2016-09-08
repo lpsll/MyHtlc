@@ -59,12 +59,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         LogUtils.e("bindData---type---",""+type);
         list.add(position,orderEntity);
         status = orderEntity.getStatus();
-
-        TextView tv= holder.getView(R.id.order_tv01);
-        SpannableStringBuilder style = new SpannableStringBuilder(orderEntity.getServiceName());
-        style.setSpan(new ForegroundColorSpan(Color.RED), 0, 2, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
-        tv.setText(style);
-
+        holder.setText(R.id.order_tv01,orderEntity.getServiceName());
         holder.setText(R.id.order_tv02,orderEntity.getOrderId());
         holder.setText(R.id.order_tv03,orderEntity.getServiceTime());
         holder.setText(R.id.order_tv04,orderEntity.getAddress());
@@ -132,9 +127,9 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             lin06.setVisibility(View.VISIBLE);
             btn.setVisibility(View.VISIBLE);
             tv05.setText(orderEntity.getEmpName());
-            tv06.setText(orderEntity.getServiceFee());
+            tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("待支付");
-            btn.setText("付款");
+            btn.setText("去支付");
         }
         else if(status.equals("4")){
             //待评价订单
@@ -143,14 +138,14 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             btn.setVisibility(View.VISIBLE);
             tv05.setText(orderEntity.getEmpName());
             tv07.setText("已支付");
-            btn.setText("评价");
+            btn.setText("去评价");
         }
         else if(status.equals("5")){
             //已完成订单
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.VISIBLE);
             tv05.setText(orderEntity.getEmpName());
-            tv06.setText(orderEntity.getServiceFee());
+            tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("已完成");
             btn.setVisibility(View.GONE);
         }

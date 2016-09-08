@@ -161,8 +161,10 @@ public class HomeFragment extends BaseFragment {
     @Bind(R.id.service_tv03_04)
     TextView serviceTv0304;
     List<ServiceClasses> classes;
-    private String mName;
+    private String mName,mId;
     boolean login;
+    List<FullServiceEntity> fsEntity;
+
 
     @Override
     protected void retry() {
@@ -262,16 +264,17 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setResult(List<FullServiceEntity> data) {
+        fsEntity = data;
         mTv01.setText(data.get(0).getName());
         mTv02.setText(data.get(1).getName());
         mTv03.setText(data.get(2).getName());
         mTv04.setText(data.get(3).getName());
         mTv05.setText(data.get(4).getName());
         ImageLoaderUtils.displayImage(data.get(0).getLogo(), mMiddleImage1);
-        ImageLoaderUtils.displayImage(data.get(0).getLogo(), mMiddleImage2);
-        ImageLoaderUtils.displayImage(data.get(0).getLogo(), mMiddleImage3);
-        ImageLoaderUtils.displayImage(data.get(0).getLogo(), mMiddleImage4);
-        ImageLoaderUtils.displayImage(data.get(0).getLogo(), mMiddleImage5);
+        ImageLoaderUtils.displayImage(data.get(1).getLogo(), mMiddleImage2);
+        ImageLoaderUtils.displayImage(data.get(2).getLogo(), mMiddleImage3);
+        ImageLoaderUtils.displayImage(data.get(3).getLogo(), mMiddleImage4);
+        ImageLoaderUtils.displayImage(data.get(4).getLogo(), mMiddleImage5);
     }
 
     private void reqCarousel() {
@@ -340,7 +343,8 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity(),bundle5);
                 break;
             case R.id.lin06:
-                GotoCf();
+                mId = classes.get(0).getId();
+                GotoCf(mId);
                 break;
             case R.id.lin07:
                 Bundle b1 = new Bundle();
@@ -361,7 +365,8 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b3);
                 break;
             case R.id.lin10:
-                GotoCf();
+                mId = classes.get(1).getId();
+                GotoCf(mId);
                 break;
             case R.id.lin11:
                 Bundle b4 = new Bundle();
@@ -384,7 +389,8 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b6);
                 break;
             case R.id.lin14:
-                GotoCf();
+                mId = classes.get(2).getId();
+                GotoCf(mId);
                 break;
             case R.id.lin15:
                 Bundle b7 = new Bundle();
@@ -411,14 +417,21 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b10);
                 break;
             case R.id.all_service:
-                GotoCf();
+                mId = fsEntity.get(0).getId();
+                GotoCf(mId);
                 break;
         }
     }
 
-    private void GotoCf() {
+    private void GotoCf(String mId) {
         Bundle bundle3 = new Bundle();
-        bundle3.putInt("flag",0);
+        LogUtils.e("mId----",""+mId);
+        LogUtils.e("fsEntity----",""+fsEntity);
+        for(int i =0;i<fsEntity.size();i++){
+            if(mId.equals(fsEntity.get(i).getId())){
+                bundle3.putInt("flag",i+1);
+            }
+        }
         HomeUiGoto.gotoCf(getActivity(),bundle3);
     }
 

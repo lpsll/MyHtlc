@@ -61,10 +61,10 @@ public class AsyncCallBack<T> implements Callback {
 		if (response.isSuccessful()) {
 			String reader = response.body().string();
 			LogUtils.e("response success json-->" + reader);
-//			if(reader.contains("[]")){
-//				reader=reader.replace("[]","null");
-//			}
-//			LogUtils.e("response success json 转换后-->" + reader);
+			if(reader.contains("[]")){
+				reader=reader.replace("[]","null");
+			}
+			LogUtils.e("response success json 转换后-->" + reader);
 			try {
 				T t = gson.fromJson(reader.trim(), clazz);
 

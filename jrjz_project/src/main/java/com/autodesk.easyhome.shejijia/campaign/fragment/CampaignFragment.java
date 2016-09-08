@@ -66,19 +66,25 @@ public class CampaignFragment extends BaseFragment {
             public void onSuccess(CampaignResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取活动页面成功");
-                    if (result.getData() != null) {
-                        if (result.getData().size() == 0) {
-                            mErrorLayout.setVisibility(View.VISIBLE);
-                            mErrorLayout.setErrorType(EmptyLayout.FLAG_NODATA);
-                        } else {
-                            mErrorLayout.setVisibility(View.GONE);
+                    if (result.getData() == null) {
+                        mErrorLayout.setErrorMessage("暂无活动记录",mErrorLayout.FLAG_NODATA);
+                        mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
+//                        if (result.getData().size() == 0) {
+//                            mErrorLayout.setVisibility(View.VISIBLE);
+//                            mErrorLayout.setErrorType(EmptyLayout.FLAG_NODATA);
+//                        } else {
+//                            mErrorLayout.setVisibility(View.GONE);
+//
+//                            campData = result.getData();
+//
+//                            setAdapter();
+//                        }
 
-                            campData = result.getData();
 
-                            setAdapter();
-                        }
+                    }else {
+                        campData = result.getData();
 
-
+                        setAdapter();
                     }
 
                 }

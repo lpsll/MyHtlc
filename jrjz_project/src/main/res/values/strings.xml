@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">居然家政</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -16,7 +16,7 @@
     <string name="order_time">预约时间:</string>
     <string name="order_address">预约地址:</string>
     <string name="order_people">服务人员:</string>
-    <string name="order_money">金额:</string>
+    <string name="order_money">金           额:</string>
     <string name="home_bottom">查看全部服务</string>
     <string name="home_more">更多</string>
     <string name="apt_project">服务项目</string>

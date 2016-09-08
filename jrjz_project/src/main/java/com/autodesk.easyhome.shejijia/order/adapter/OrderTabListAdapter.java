@@ -39,17 +39,6 @@ public class OrderTabListAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return titles[position];
-
-//        String tit = titles[position];
-//        LogUtils.e("tit.length()----",""+tit.length());
-//        if(tit.length()>3){
-//            SpannableStringBuilder style = new SpannableStringBuilder(tit);
-//            style.setSpan(new ForegroundColorSpan(Color.RED), 0, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
-//            return style;
-//        }else {
-//            return tit;
-//        }
-
     }
 
     @Override

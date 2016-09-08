@@ -27,7 +27,7 @@
                     android:layout_height="@dimen/ds_200"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/ds_90"
-                    android:background="@drawable/mine_headimg_test" />
+                    android:background="@drawable/touxiangxdpi_03" />
 
                 <TextView
                     android:id="@+id/tv_mine_phone"
