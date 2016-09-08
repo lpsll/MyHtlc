@@ -199,7 +199,7 @@ public class AppointmentActivity extends BaseTitleActivity {
         mAre = data.getArea();
         mAddTv01.setText(data.getName());
         mAddTv02.setText(data.getMobile());
-        mAddTv04.setText(data.getAddress());
+        mAddTv04.setText(data.getCity()+data.getDistrict()+data.getArea()+data.getAddress());
         reqService();//服务费
     }
 

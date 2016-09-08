@@ -194,7 +194,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
                 holder = (ViewHolder) convertView.getTag();
             }
-            holder.mTv.setText(list.get(position).getAddress());
+            holder.mTv.setText(list.get(position).getCity()+list.get(position).getDistrict()+list.get(position).getArea()+list.get(position).getAddress());
             mList.add(position, list.get(position));
             LogUtils.e("flag---",""+flag);
 

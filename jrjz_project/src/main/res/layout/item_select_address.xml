@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"
             android:layout_marginLeft="@dimen/ds_60"
-            android:text="ddddddddddssssssssssssssssssssssdddd"
+            android:text=""
             android:textColor="@color/color_01"
             android:textSize="@dimen/fs_50"/>
 
