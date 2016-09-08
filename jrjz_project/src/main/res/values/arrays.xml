@@ -42,9 +42,8 @@
 
     <string-array name="range">
         <item>三环内</item>
-        <item>三环到四环</item>
-        <item>四环到五环</item>
-        <item>五环到六环</item>
+        <item>三环到五环</item>
+        <item>五环外</item>
     </string-array>
 
 </resources>

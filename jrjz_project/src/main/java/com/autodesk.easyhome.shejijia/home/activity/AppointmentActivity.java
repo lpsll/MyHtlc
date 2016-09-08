@@ -44,6 +44,7 @@ import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ServieceFreeDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
@@ -65,6 +66,7 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import okhttp3.internal.Internal;
 
 
 /**
@@ -108,7 +110,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
     private String mName,mId;
-    private String mSelName,mSelPhone,mSelAddress,mPrice,mTm;
+    private String mSelName,mSelPhone,mSelAddress,mPrice,mTm,mAre;
 
     private ArrayList<String> mPic = new ArrayList<>();
     DfaultEntity data;
@@ -166,7 +168,7 @@ public class AppointmentActivity extends BaseTitleActivity {
         if(login) {
             reqDfault();//获取默认地址
         }
-        reqService();//服务费
+
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
@@ -194,14 +196,25 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     private void bindDfault(DfaultResult result) {
         data = result.getData();
+        mAre = data.getArea();
         mAddTv01.setText(data.getName());
         mAddTv02.setText(data.getMobile());
         mAddTv04.setText(data.getAddress());
+        reqService();//服务费
     }
 
     private void reqService() {
-        DeleteAddressDTO dto = new DeleteAddressDTO();
-        dto.setId(mId);
+        ServieceFreeDTO dto = new ServieceFreeDTO();
+        dto.setId(Integer.parseInt(mId));
+        if(mAre.equals("三环内")){
+            dto.setArea("InThirdRing");
+        }
+        if(mAre.equals("三环到五环")){
+            dto.setArea("ThirdToFiveRing");
+        }
+        if(mAre.equals("五环外")){
+            dto.setArea("OutFiveRing");
+        }
         CommonApiClient.serviceCharge(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {

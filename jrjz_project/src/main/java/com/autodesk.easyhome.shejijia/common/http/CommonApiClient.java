@@ -10,6 +10,7 @@ import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.ServieceFreeDTO;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
@@ -280,11 +281,11 @@ public class CommonApiClient extends BaseApiClient{
      * @param dto
      * @param callback
      */
-    public static void serviceCharge(Activity act, DeleteAddressDTO
+    public static void serviceCharge(Activity act, ServieceFreeDTO
             dto, CallBack<AddAddressResult> callback) {
         AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, AddAddressResult.class);
-        get(getAbsoluteUrl("/service/homeVisitFee/"), dto,
+        getNew(getAbsoluteUrl("/service/homeVisitFee?"), dto,
                 asyncCallBack);
     }
 

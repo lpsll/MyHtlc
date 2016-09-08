@@ -241,7 +241,7 @@
             android:textSize="@dimen/fs_45"
             android:layout_marginLeft="@dimen/ds_60"
             android:textColor="@color/color_bottom"
-            android:text="@string/apt_project" />
+            android:text="" />
 
         <Button
             android:id="@+id/apt_btn"
