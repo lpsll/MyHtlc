@@ -206,13 +206,13 @@ public class AppointmentActivity extends BaseTitleActivity {
     private void reqService() {
         ServieceFreeDTO dto = new ServieceFreeDTO();
         dto.setId(Integer.parseInt(mId));
-        if(mAre.equals("三环内")){
+        if(mAre.equals("三环以内")){
             dto.setArea("InThirdRing");
         }
         if(mAre.equals("三环到五环")){
             dto.setArea("ThirdToFiveRing");
         }
-        if(mAre.equals("五环外")){
+        if(mAre.equals("五环以外")){
             dto.setArea("OutFiveRing");
         }
         CommonApiClient.serviceCharge(this, dto, new CallBack<AddAddressResult>() {

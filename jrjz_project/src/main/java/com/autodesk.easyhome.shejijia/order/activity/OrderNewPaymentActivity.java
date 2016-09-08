@@ -20,6 +20,7 @@ import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.SimplePage;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
@@ -30,6 +31,7 @@ import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDetailDTO;
@@ -93,6 +95,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     int tot,inte;
     private static final int RQF_PAY = 1;
     private String infomation,mWxKey,mOrderId;
+    double balance;
 
     @Override
     protected int getContentResId() {
@@ -109,7 +112,33 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        reqOrderDetail();
+        reqOrderDetail();//订单详情
+        getUserDetail();//获取余额
+    }
+
+    private void getUserDetail() {
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+
+        BaseDTO baseDTO = new BaseDTO();
+        baseDTO.setAccessToken(AppContext.get("accessToken", ""));
+        baseDTO.setUid(AppContext.get("uid", ""));
+        baseDTO.setTimestamp(time);
+        baseDTO.setRandom(random);
+        baseDTO.setSign(AppContext.get("uid", "") + time + random);
+
+        CommonApiClient.getUserDetail(this, baseDTO, new CallBack<UserDetailResult>() {
+            @Override
+            public void onSuccess(UserDetailResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取用户信息成功=====" + result.getData().toString());
+
+                    balance = result.getData().getBalance();
+
+
+                }
+            }
+        });
     }
 
     private void reqOrderDetail() {
@@ -170,7 +199,11 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 else if(mPlaceCbWx.isChecked()){
                     if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
                         DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
-                    }else {
+                    }
+                    else if(balance<Double.parseDouble(mTvMoney.getText().toString())){
+                        DialogUtils.showPrompt(this, "提示","您的余额不足，无法支付！", "知道了");
+                    }
+                    else {
                         mTjBtn.setEnabled(false);
                         type = "HomeService";
                         reqWxPayment();//微信预支付
@@ -180,7 +213,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 else if(mPlaceCbZfb.isChecked()){
                     if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
                         DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
-                    }else {
+                    }
+                    else {
                     mTjBtn.setEnabled(false);
                     type = "HomeService";
                     reqZfbPayment();//支付宝预支付

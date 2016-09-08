@@ -1,8 +1,10 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.renderscript.Double2;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -18,17 +20,23 @@ import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
+import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
+import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
+import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 import com.tencent.mm.sdk.modelpay.PayReq;
@@ -37,6 +45,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 /**
  * 订单支付页
@@ -66,6 +75,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     RelativeLayout mRlZfb;
     @Bind(R.id.tj_btn)
     Button mTjBtn;
+    double balance;
 
     private static final int RQF_PAY = 1;
     private String mSelName,mSelPhone,mSelAddress,mPrice,mName,mOrderId;
@@ -97,6 +107,33 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        getUserDetail();//获取余额
+    }
+
+    private void getUserDetail() {
+
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+
+        BaseDTO baseDTO = new BaseDTO();
+        baseDTO.setAccessToken(AppContext.get("accessToken", ""));
+        baseDTO.setUid(AppContext.get("uid", ""));
+        baseDTO.setTimestamp(time);
+        baseDTO.setRandom(random);
+        baseDTO.setSign(AppContext.get("uid", "") + time + random);
+
+        CommonApiClient.getUserDetail(this, baseDTO, new CallBack<UserDetailResult>() {
+            @Override
+            public void onSuccess(UserDetailResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取用户信息成功=====" + result.getData().toString());
+
+                    balance = result.getData().getBalance();
+
+
+                }
+            }
+        });
     }
 
     private void reqAlipayPay() {
@@ -239,7 +276,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
             case R.id.tj_btn:
                 if(mPlaceCbQb.isChecked()){
                     type = "SerivceBook";
-                    reqQbPayment();//钱包支付
+//                    mPrice ="300";
+                    if(balance<Double.parseDouble(mPrice)){
+                        DialogUtils.showPrompt(this, "提示","您的余额不足，无法支付！", "知道了");
+                    }else {
+                        reqQbPayment();//钱包支付
+                    }
+
                 }
                 else if(mPlaceCbWx.isChecked()){
                     type = "SerivceBook";

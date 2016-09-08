@@ -101,7 +101,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
      */
     private void loginForCode() {
         final String phone = etLoginPhone.getText().toString().trim();
-        String code = etLoginCode.getText().toString().trim();
+        final String code = etLoginCode.getText().toString().trim();
         //验证电话号码
         boolean isValid = PhoneUtils.isPhoneNumberValid(phone);
         if (!isValid) {
@@ -132,6 +132,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
                         //保存用户信息
                         AppContext.set("uid", phone);
+                        AppContext.set("code", code);
                         AppContext.set("accessToken", result.getData().getAccessToken());
                         AppContext.set("IS_LOGIN", true);
 
