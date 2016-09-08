@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/ds_300"
+    android:layout_height="@dimen/ds_320"
     android:orientation="vertical">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_260">
+        android:layout_height="@dimen/ds_280">
 
 
         <ImageView
             android:id="@+id/img_campaign_fragment_item_rmb"
-            android:layout_width="@dimen/ds_45"
-            android:layout_height="@dimen/ds_60"
+            android:layout_width="@dimen/ds_42"
+            android:layout_height="@dimen/ds_55"
             android:layout_marginLeft="@dimen/ds_70"
             android:layout_marginTop="@dimen/ds_80"
             android:background="@drawable/hongse_03" />
@@ -36,10 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ds_180"
-            android:layout_marginTop="@dimen/ds_145"
+            android:layout_marginTop="@dimen/ds_160"
             android:text="赠送价值30元的优惠券"
-            android:textColor="#d20000"
-            android:textSize="@dimen/fs_50"
+            android:textColor="#b6b6b6"
+            android:textSize="@dimen/fs_42"
             android:textStyle="bold" />
 
         <TextView
@@ -51,8 +51,8 @@
             android:layout_marginRight="@dimen/ds_60"
             android:background="@drawable/top_up_selector"
             android:paddingBottom="@dimen/ds_15"
-            android:paddingLeft="@dimen/ds_20"
-            android:paddingRight="@dimen/ds_20"
+            android:paddingLeft="@dimen/ds_25"
+            android:paddingRight="@dimen/ds_25"
             android:paddingTop="@dimen/ds_15"
             android:text="立即充值"
             android:textColor="@drawable/top_up_text_selector"
