@@ -42,14 +42,15 @@
                         android:layout_height="wrap_content"
                         />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tv01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/ds_20"
                         android:gravity="center"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:textColor="@color/color_33"
-                        android:text=""/>
+                        android:text="11"/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin02"
@@ -65,13 +66,14 @@
                         android:layout_height="wrap_content"
                        />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tv02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
                         android:textColor="@color/color_33"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:text=""/>
                 </LinearLayout>
                 <LinearLayout
@@ -88,12 +90,13 @@
                         android:layout_height="wrap_content"
                         />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tv03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:textColor="@color/color_33"
                         android:text=""/>
                 </LinearLayout>
@@ -111,12 +114,13 @@
                         android:layout_height="wrap_content"
                         />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tv04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:textColor="@color/color_33"
                         android:text=""/>
                 </LinearLayout>
@@ -134,13 +138,14 @@
                         android:layout_height="wrap_content"
                       />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/tv05"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/ds_20"
                         android:textColor="@color/color_33"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:text=""/>
                 </LinearLayout>
             </LinearLayout>
@@ -170,6 +175,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_fce"/>
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/service_tv01"
                     android:layout_toRightOf="@+id/rl_tv01"
                     android:layout_marginLeft="@dimen/ds_50"
@@ -191,12 +197,12 @@
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
                         android:textColor="@color/color_bottom"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:gravity="center"/>
                     <ImageView
-                        android:layout_width="@dimen/ds_40"
-                        android:layout_height="@dimen/ds_60"
-                        android:layout_marginRight="@dimen/ds_30"
+                        android:layout_width="@dimen/ds_25"
+                        android:layout_height="@dimen/ds_40"
+                        android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
                         android:background="@drawable/gengduo_03"/>
                 </LinearLayout>
@@ -223,6 +229,7 @@
                         android:layout_height="@dimen/ds_140"
                         />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/service_tv01_01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -258,6 +265,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                          />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv01_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -287,6 +295,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv01_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -316,6 +325,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_ff0"/>
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/service_tv02"
                     android:layout_toRightOf="@+id/rl_tv02"
                     android:layout_marginLeft="@dimen/ds_50"
@@ -337,12 +347,12 @@
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
                         android:textColor="@color/color_bottom"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:gravity="center"/>
                     <ImageView
-                        android:layout_width="@dimen/ds_40"
-                        android:layout_height="@dimen/ds_60"
-                        android:layout_marginRight="@dimen/ds_30"
+                        android:layout_width="@dimen/ds_25"
+                        android:layout_height="@dimen/ds_40"
+                        android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
                         android:background="@drawable/gengduo_03"/>
                 </LinearLayout>
@@ -364,11 +374,13 @@
                     android:orientation="vertical"
                     android:gravity="center">
                     <ImageView
+                        android:textStyle="bold"
                         android:id="@+id/service_img02_01"
                         android:layout_width="@dimen/ds_140"
                         android:layout_height="@dimen/ds_140"
                        />
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/service_tv02_01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -403,6 +415,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv02_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -431,6 +444,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                            />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv02_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -459,6 +473,7 @@
                     android:layout_marginBottom="@dimen/ds_15"
                     android:background="@color/color_62"/>
                 <TextView
+                    android:textStyle="bold"
                     android:id="@+id/service_tv03"
                     android:layout_toRightOf="@+id/rl_tv03"
                     android:layout_marginLeft="@dimen/ds_50"
@@ -480,12 +495,12 @@
                         android:text="@string/home_more"
                         android:layout_marginRight="@dimen/ds_20"
                         android:textColor="@color/color_bottom"
-                        android:textSize="@dimen/fs_35"
+                        android:textSize="@dimen/fs_38"
                         android:gravity="center"/>
                     <ImageView
-                        android:layout_width="@dimen/ds_40"
-                        android:layout_height="@dimen/ds_60"
-                        android:layout_marginRight="@dimen/ds_30"
+                        android:layout_width="@dimen/ds_25"
+                        android:layout_height="@dimen/ds_40"
+                        android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
                         android:background="@drawable/gengduo_03"/>
                 </LinearLayout>
@@ -520,6 +535,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                           />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv03_01"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -549,6 +565,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv03_02"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -586,6 +603,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                           />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv03_03"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -615,6 +633,7 @@
                             android:layout_marginLeft="@dimen/ds_60"
                             />
                         <TextView
+                            android:textStyle="bold"
                             android:id="@+id/service_tv03_04"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"

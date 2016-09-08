@@ -2,12 +2,7 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -19,13 +14,12 @@ import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
-import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
-import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
 
@@ -59,10 +53,16 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         LogUtils.e("bindData---type---",""+type);
         list.add(position,orderEntity);
         status = orderEntity.getStatus();
+
+        String serviceTime= orderEntity.getServiceTime();
+        List<String> dateAndTime = StringUtils.getDateAndTime(serviceTime);
+
         holder.setText(R.id.order_tv01,orderEntity.getServiceName());
         holder.setText(R.id.order_tv02,orderEntity.getOrderId());
-        holder.setText(R.id.order_tv03,orderEntity.getServiceTime());
+        holder.setText(R.id.order_tv03,dateAndTime.get(0));
         holder.setText(R.id.order_tv04,orderEntity.getAddress());
+        holder.setText(R.id.order_tv03_time,dateAndTime.get(1));
+
         tv05 = holder.getView(R.id.order_tv05);
         lin05 = holder.getView(R.id.order_lin05);
         tv06 = holder.getView(R.id.order_tv06);

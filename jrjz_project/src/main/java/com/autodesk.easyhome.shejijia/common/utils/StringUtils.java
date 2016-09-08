@@ -1,8 +1,10 @@
 package com.autodesk.easyhome.shejijia.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -91,6 +93,22 @@ public class StringUtils {
         Random ne = new Random();//实例化一个random的对象ne
         x = ne.nextInt(9999 - 1000 + 1) + 1000;//为变量赋随机值1000-9999
         return x;
+    }
+
+
+    /**
+     * 把2016-01-01 08:00—09:00 截成日期和时间
+     * @param str
+     */
+    public static List<String> getDateAndTime(String str) {
+        int spaceIndex = str.indexOf(" ");
+        String str1 = str.substring(0, spaceIndex);
+        String str2 = str.substring(spaceIndex+1);
+        ArrayList<String> arr = new ArrayList<>();
+        arr.add(str1);
+        arr.add(str2);
+        LogUtils.d("服务日期====="+arr.get(0)+"===="+arr.get(1));
+        return arr;
     }
 
 }
