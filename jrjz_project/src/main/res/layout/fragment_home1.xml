@@ -201,10 +201,10 @@
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_25"
-                        android:layout_height="@dimen/ds_40"
+                        android:layout_height="@dimen/ds_30"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/gengduo_03"/>
+                        android:background="@drawable/youxdpi_03"/>
                 </LinearLayout>
             </RelativeLayout>
             <View
@@ -351,10 +351,10 @@
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_25"
-                        android:layout_height="@dimen/ds_40"
+                        android:layout_height="@dimen/ds_30"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/gengduo_03"/>
+                        android:background="@drawable/youxdpi_03"/>
                 </LinearLayout>
             </RelativeLayout>
             <View
@@ -499,10 +499,10 @@
                         android:gravity="center"/>
                     <ImageView
                         android:layout_width="@dimen/ds_25"
-                        android:layout_height="@dimen/ds_40"
+                        android:layout_height="@dimen/ds_30"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/gengduo_03"/>
+                        android:background="@drawable/youxdpi_03"/>
                 </LinearLayout>
             </RelativeLayout>
             <View

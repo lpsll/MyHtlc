@@ -105,8 +105,11 @@ public class ClassificationActivity extends BaseTitleActivity {
             entity = data.get(i).getServices();
             aList = new ArrayList<>();
             bList = new ArrayList<>();
-            for(int j= 0;j<entity.size();j++){
-                aList.add(entity.get(j).getName());
+//            if(null==entity){
+//
+//            }else {
+                for(int j= 0;j<entity.size();j++){
+                    aList.add(entity.get(j).getName());
 //                if(i==(data.size()-1)&&j==(entity.size()-1)){
 //                    aList.add("");
 //                    aList.add("");
@@ -115,7 +118,9 @@ public class ClassificationActivity extends BaseTitleActivity {
 //                    aList.add("");
 //                    aList.add("");
 //                }
-            }
+                }
+//            }
+
             sList.add(aList);
 
             for(int k= 0;k<entity.size();k++){
