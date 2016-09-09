@@ -111,4 +111,16 @@
         <item name="android:minHeight">8dip</item>
         <item name="android:maxHeight">20dip</item>
     </style>
+
+    <!-- button send style -->
+    <style name="UserBtSendStyle">
+        <item name="android:layout_width">@dimen/ds_240</item>
+        <item name="android:layout_height">@dimen/ds_90</item>
+        <item name="android:layout_marginLeft">@dimen/ds_30</item>
+        <item name="android:textColor">@color/color_00</item>
+        <item name="android:background">@drawable/getcode</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:textSize">@dimen/fs_42</item>
+    </style>
 </resources>

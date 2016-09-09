@@ -15,10 +15,12 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
+import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
@@ -30,6 +32,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.sharesdk.framework.ShareSDK;
 
 /*
 整个程序的MainActivity，入口
@@ -79,6 +82,7 @@ public class MainActivity extends BaseHomeTitleActivity {
 
     @Override
     public void initView() {
+        ShareSDK.initSDK(this);
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
         mBaseEnsure = (TextView) findViewById(R.id.base_titlebar_ensure);
         mBaseBack.setText("北京");
@@ -283,6 +287,9 @@ public class MainActivity extends BaseHomeTitleActivity {
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {
+            case R.id.base_titlebar_ensure:
+                UIHelper.showFragment(this, SimplePage.NEWS);
+                break;
             default:
                 break;
         }

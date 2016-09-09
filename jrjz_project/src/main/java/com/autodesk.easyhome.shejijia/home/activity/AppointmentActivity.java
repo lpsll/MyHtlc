@@ -246,6 +246,9 @@ public class AppointmentActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoSt(this);
                 break;
             case R.id.img_ljd:
+                Bundle bundle = new Bundle();
+                bundle.putString("url","http://101.200.167.130:8080/jrjz-api/c/service/detail?id="+mId);
+                HomeUiGoto.gotoBrowser(this,bundle);
                 break;
             case R.id.tv_project:
                 HomeUiGoto.gotoProjectDetails(this);

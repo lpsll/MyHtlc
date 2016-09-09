@@ -187,7 +187,7 @@ public class HomeUiGoto {
     }
 
     /**
-     * 跳转到首页
+     * 跳转到h5
      * @param context
      * @param bundle
      */

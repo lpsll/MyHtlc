@@ -265,6 +265,7 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.ll_mine_share:
+//                showShare();
                 showPopShare();
                 break;
             case R.id.share_weixin:
@@ -361,60 +362,81 @@ public class MineFragment extends BaseFragment {
 
 
     private void showShare() {
-        ShareSDK.initSDK(getContext());
+
 //        OnekeyShare oks = new OnekeyShare();
 //        //关闭sso授权
 //        oks.disableSSOWhenAuthorize();
+//        oks.setTitle("居然之家");
+//            // text是分享文本，所有平台都需要这个字段
+//        oks.setText("我是分享文本");
+//            // url仅在微信（包括好友和朋友圈）中使用
+//        oks.setUrl("http://baidu.com");
+//        // titleUrl是标题的网络链接，QQ和QQ空间等使用
+//        oks.setTitleUrl("http://baidu.com");
+//        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
+//        oks.setComment("我是测试评论文本");
+//            // site是分享此内容的网站名称，仅在QQ空间使用
+//        oks.setSite(getString(R.string.app_name));
+//            // siteUrl是分享此内容的网站地址，仅在QQ空间使用
+//        oks.setSiteUrl("http://baidu.com");
+//        oks.show(getContext());
 
         if(type.equals("1")){
+            LogUtils.e("type---",""+type);
             WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
-            Platform wm = ShareSDK.getPlatform(WechatMoments.NAME);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("我是分享文本");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
-
+            LogUtils.e("sp---",""+sp);
+            Platform wm = ShareSDK.getPlatform(WechatMoments.NAME);
             wm.setPlatformActionListener(paListener);
+            LogUtils.e("wm---",""+wm);
+
             wm.share(sp);
         }
         else if(type.equals("2")){
+            LogUtils.e("type---",""+type);
             Wechat.ShareParams sp = new Wechat.ShareParams();
-            Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("我是分享文本");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
 
+            Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
             wechat.setPlatformActionListener(paListener);
             wechat.share(sp);
         }
         else if(type.equals("3")){
+            LogUtils.e("type---",""+type);
             SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-            Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("我是分享文本");
 
+            Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
             sn.share(sp);
         }
         else if(type.equals("4")){
+            LogUtils.e("type---",""+type);
             QQ.ShareParams sp = new QQ.ShareParams();
-            Platform qq = ShareSDK.getPlatform(QQ.NAME);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("我是分享文本");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl("http://baidu.com");
-
+            LogUtils.e("sp---",""+sp);
+            Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);
+            LogUtils.e("qq---",""+qq);
             qq.share(sp);
         }
         else if(type.equals("5")){
+            LogUtils.e("type---",""+type);
             QZone.ShareParams sp = new QZone.ShareParams();
-            Platform qzone = ShareSDK.getPlatform(QZone.NAME);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("我是分享文本");
@@ -427,6 +449,7 @@ public class MineFragment extends BaseFragment {
             // siteUrl是分享此内容的网站地址，仅在QQ空间使用
             sp.setSiteUrl("http://baidu.com");
 
+            Platform qzone = ShareSDK.getPlatform(QZone.NAME);
             qzone.setPlatformActionListener(paListener);
             qzone.share(sp);
         }
@@ -440,12 +463,13 @@ public class MineFragment extends BaseFragment {
             //操作成功，在这里可以做后续的步骤
             //这里需要说明的一个参数就是HashMap<String, Object> arg2
             //这个参数在你进行登录操作的时候里面会保存有用户的数据，例如用户名之类的。
+            LogUtils.e("platform---",""+platform);
         }
 
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
             //操作失败啦，打印提供的错误，方便调试
-
+            LogUtils.e("throwable---",""+throwable);
         }
 
         @Override

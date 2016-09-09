@@ -18,6 +18,7 @@ import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.NewsResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.TimeResult;
@@ -412,6 +413,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<OrderResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, OrderResult.class);
         post(getAbsoluteUrl("/custServiceOrder/unFinished"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 消息
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void news (Activity act, OrderDTO
+            dto, CallBack<NewsResult> callback) {
+        AsyncCallBack<NewsResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, NewsResult.class);
+        post(getAbsoluteUrl("/systemmessage/messageByPage"), dto,
                 asyncCallBack);
     }
 

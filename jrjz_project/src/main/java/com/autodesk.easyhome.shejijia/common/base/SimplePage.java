@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.common.base;
 
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.home.fragment.NewsFragment;
 import com.autodesk.easyhome.shejijia.home.fragment.SelectAddressFragment;
 import com.autodesk.easyhome.shejijia.order.fragment.ServiceCouponFragment;
 
@@ -10,6 +11,7 @@ import com.autodesk.easyhome.shejijia.order.fragment.ServiceCouponFragment;
 public enum SimplePage {
 
     SERVICE_COUPON(1, R.string.cp, ServiceCouponFragment.class),
+    NEWS(2, R.string.news, NewsFragment.class),
     ;
 
     private int title;
