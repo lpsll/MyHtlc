@@ -214,7 +214,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
     };
 
     public boolean autoRefreshIn(){
-        LogUtils.e("autoRefreshIn------","autoRefreshIn");
+        LogUtils.e("login------",""+login);
         if(login){
             return true;
         }else {

@@ -39,7 +39,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
     protected int mCatalog = 1;
     public static final String BUNDLE_KEY_CATALOG = "BUNDLE_KEY_CATALOG";
     private int action;
-
+    boolean login;
 
     public RecyclerView.LayoutManager setupLayoutManager() {
         return new LinearLayoutManager(getActivity());
@@ -69,6 +69,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
 
     @Override
     public void initView(View view) {
+        login = AppContext.get("IS_LOGIN",false);
         Bundle args = getArguments();
         if (args != null) {
             mCatalog = args.getInt(BUNDLE_KEY_CATALOG, 0);
@@ -85,6 +86,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
             mPtrRecyclerView.setOnPullRefreshListener(new PtrRecyclerView.OnPullRefreshListener() {
                 @Override
                 public void onPullRefresh() {
+                    LogUtils.e("setOnPullRefreshListener----","setOnPullRefreshListener");
                     action = ACTION_PULL_REFRESH;
                     mCurrentPage = 0;
                     requestData();

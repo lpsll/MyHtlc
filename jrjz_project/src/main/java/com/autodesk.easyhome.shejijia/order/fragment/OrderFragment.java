@@ -52,11 +52,6 @@ public class OrderFragment extends BaseFragment {
         return R.layout.fragment_order;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        LogUtils.e("onStart---order---","onStart");
-    }
 
     //定义一个接口
     public interface OnOKClickListener  {

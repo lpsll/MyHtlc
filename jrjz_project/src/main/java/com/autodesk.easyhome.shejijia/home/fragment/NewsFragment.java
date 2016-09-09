@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
 import android.content.DialogInterface;
+import android.os.Bundle;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
@@ -19,6 +20,7 @@ import com.autodesk.easyhome.shejijia.home.entity.NewsResult;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
 import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
+import com.autodesk.easyhome.shejijia.order.fragment.OrderFragment;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 
 import java.io.Serializable;
@@ -37,6 +39,13 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        LogUtils.e("onCreate---","onCreate");
+        login = AppContext.get("IS_LOGIN",false);
+    }
+
+    @Override
     protected String getCacheKeyPrefix() {
         return "NewsFragment";
     }
@@ -48,7 +57,7 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
 
     @Override
     protected void sendRequestData() {
-        login = AppContext.get("IS_LOGIN",false);
+        LogUtils.e("login---",""+login);
         if(login){
             OrderDTO dto = new OrderDTO();
             final String time = TimeUtils.getSignTime();
@@ -89,11 +98,17 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
 
     @Override
     public void initData() {
-
+        LogUtils.e("initData---","initData");
     }
 
     public boolean autoRefreshIn(){
-        return true;
+        if(login){
+            return true;
+        }else {
+            DialogUtils.confirm(getActivity(), "您尚未登录，是否去登录？", listener);
+            return false;
+
+        }
 
     }
 }
