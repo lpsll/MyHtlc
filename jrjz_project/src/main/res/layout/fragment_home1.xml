@@ -204,7 +204,7 @@
                         android:layout_height="@dimen/ds_34"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/youxdpi_03"/>
+                        android:background="@drawable/more"/>
                 </LinearLayout>
             </RelativeLayout>
             <View
@@ -354,7 +354,7 @@
                         android:layout_height="@dimen/ds_34"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/youxdpi_03"/>
+                        android:background="@drawable/more"/>
                 </LinearLayout>
             </RelativeLayout>
             <View
@@ -502,7 +502,7 @@
                         android:layout_height="@dimen/ds_34"
                         android:layout_marginRight="@dimen/ds_40"
                         android:layout_gravity="center"
-                        android:background="@drawable/youxdpi_03"/>
+                        android:background="@drawable/more"/>
                 </LinearLayout>
             </RelativeLayout>
             <View

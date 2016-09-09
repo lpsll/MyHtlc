@@ -76,13 +76,13 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             public void onClick(View v) {
 
                 Button mBtn = (Button) v;
-                if(mBtn.getText().toString().equals("评价")){
+                if(mBtn.getText().toString().equals("去评价")){
                     Bundle bundle = new Bundle();
                     bundle.putString("mId",list.get(position).getOrderId());
 //                    OrderUiGoto.gotoEvaluate(context,bundle);
                     OrderUiGoto.gotoEvaluateStrat((Activity) context,bundle);
                 }
-                if(mBtn.getText().toString().equals("付款")){
+                if(mBtn.getText().toString().equals("去支付")){
                     Bundle bundle = new Bundle();
                     LogUtils.e("id----",list.get(position).getOrderId());
                     bundle.putString("id",list.get(position).getOrderId());
