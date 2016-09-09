@@ -43,8 +43,32 @@
                 android:textSize="@dimen/fs_40"
                 android:textColor="@color/color_00"/>
         </LinearLayout>
+
         <LinearLayout
+
             android:id="@+id/share_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+
+                android:layout_width="@dimen/ds_180"
+                android:layout_height="@dimen/ds_180"
+                android:background="@drawable/ssdk_oks_classic_wechat"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds_20"
+                android:text="@string/wx_friend"
+                android:gravity="center"
+                android:textSize="@dimen/fs_40"
+                android:textColor="@color/color_00"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/share_weixin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -60,29 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_20"
                 android:gravity="center"
-                android:text="@string/wx_friend"
-                android:textSize="@dimen/fs_40"
-                android:textColor="@color/color_00"/>
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/share_weixin"
-
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <ImageView
-
-                android:layout_width="@dimen/ds_180"
-                android:layout_height="@dimen/ds_180"
-                android:background="@drawable/ssdk_oks_classic_wechat"/>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds_20"
                 android:text="@string/friend"
-                android:gravity="center"
                 android:textSize="@dimen/fs_40"
                 android:textColor="@color/color_00"/>
         </LinearLayout>
