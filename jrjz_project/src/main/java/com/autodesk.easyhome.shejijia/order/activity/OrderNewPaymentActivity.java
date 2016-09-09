@@ -194,14 +194,16 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 if(mPlaceCbQb.isChecked()){
                     mTjBtn.setEnabled(false);
                     type = "HomeService";
-                    reqPayment();//钱包支付
+                    if(balance<Double.parseDouble(mTvMoney.getText().toString())){
+                        DialogUtils.showPrompt(this, "提示","您的余额不足，钱包无法支付！", "知道了");
+                    }else {
+                        reqPayment();//钱包支付
+                    }
+
                 }
                 else if(mPlaceCbWx.isChecked()){
                     if(mTvMoney.getText().toString().equals("0")||mTvMoney.getText().toString().equals("0.00")){
                         DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
-                    }
-                    else if(balance<Double.parseDouble(mTvMoney.getText().toString())){
-                        DialogUtils.showPrompt(this, "提示","您的余额不足，无法支付！", "知道了");
                     }
                     else {
                         mTjBtn.setEnabled(false);

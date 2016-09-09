@@ -278,7 +278,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     type = "SerivceBook";
 //                    mPrice ="300";
                     if(balance<Double.parseDouble(mPrice)){
-                        DialogUtils.showPrompt(this, "提示","您的余额不足，无法支付！", "知道了");
+                        DialogUtils.showPrompt(this, "提示","您的余额不足，钱包无法支付！", "知道了");
                     }else {
                         reqQbPayment();//钱包支付
                     }
