@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_marginTop="@dimen/ds_35"
+        android:layout_marginTop="@dimen/ds_38"
         android:layout_marginLeft="@dimen/ds_40"
         android:orientation="vertical">
         <LinearLayout
@@ -125,6 +125,7 @@
                 android:textColor="@color/color_33"/>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="@dimen/ds_10"
             android:id="@+id/order_lin05"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,7 +154,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="金         额:"
+                android:text="金        额:"
                 android:textSize="@dimen/fs_45"
                 android:textColor="@color/color_33"/>
             <TextView

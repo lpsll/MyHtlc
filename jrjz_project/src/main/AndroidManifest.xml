@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.autodesk.easyhome.shejijia">
 
-
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -23,12 +22,12 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
-    <!--极光推送开始-->
+    <!-- 极光推送开始 -->
     <permission
         android:name="com.autodesk.easyhome.shejijia.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
-    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.autodesk.easyhome.shejijia.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -42,8 +41,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-
-
     <!-- Optional for location -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -52,11 +49,10 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
 
+    <!-- 极光推送结束 -->
 
-    <!--极光推送结束-->
 
-
-    <!--分享所需-->
+    <!-- 分享所需 -->
 
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -65,21 +61,19 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
-    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
-    <!--分享结束-->
-
-
+    <!-- 分享结束 -->
     <application
-        android:name="com.autodesk.easyhome.shejijia.AppContext"
+        android:name=".AppContext"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.autodesk.easyhome.shejijia.SplashActivity"
+            android:name=".SplashActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
@@ -89,10 +83,9 @@
             </intent-filter>
         </activity>
 
-
-        <!--微信支付 start-->
+        <!-- 微信支付 start -->
         <activity
-            android:name="com.autodesk.easyhome.shejijia.wxapi.WXPayEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:label="微信支付">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -102,7 +95,7 @@
                 <data android:scheme="wx508c34abf751bf9c" />
             </intent-filter>
         </activity>
-        <!-- 微信支付 end-->
+        <!-- 微信支付 end -->
 
 
         <!-- 支付宝支付开始 start -->
@@ -111,81 +104,77 @@
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
+            android:screenOrientation="behind" />
         <activity
             android:name="com.alipay.sdk.auth.AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
-            android:screenOrientation="behind"></activity>
-        <!-- 支付宝支付开始结束 end-->
-
+            android:screenOrientation="behind" />
+        <!-- 支付宝支付开始结束 end -->
 
         <activity
-            android:name="com.autodesk.easyhome.shejijia.MainActivity"
+            android:name=".MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity"
+            android:name=".home.activity.AppointmentActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity"
+            android:name=".home.activity.SelectAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity"
+            android:name=".home.activity.OrderPaymentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity"
+            android:name=".home.activity.ServiceTimeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity"
+            android:name=".home.activity.AddAddressActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity"
+            android:name=".home.activity.ClassificationActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.common.base.BrowserActivity"
+            android:name=".common.base.BrowserActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.order.activity.EvaluateActivity"
+            android:name=".order.activity.EvaluateActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.order.activity.OrderNewPaymentActivity"
+            android:name=".order.activity.OrderNewPaymentActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity"
+            android:name=".campaign.activity.TopUpActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.ChangePhoneActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.MoreSettingActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity" />
+        <activity android:name=".mine.activity.ChangePhoneActivity" />
+        <activity android:name=".mine.activity.FeedBackActivity" />
+        <activity android:name=".mine.activity.MoreSettingActivity" />
+        <activity android:name=".mine.activity.MineOrderActivity" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity"
+            android:name=".home.activity.ProjectDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.order.activity.IntegralActivity"
+            android:name=".order.activity.IntegralActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.common.base.SimpleActivity"
+            android:name=".common.base.SimpleActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity"
+            android:name=".mine.activity.MineCouponActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name="com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity"
+            android:name=".home.activity.ModifyAddressActivity"
             android:screenOrientation="portrait" />
-
-
-
-
-        <activity android:name="com.autodesk.easyhome.shejijia.register.activity.RegisterActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity" />
-        <activity android:name="com.autodesk.easyhome.shejijia.register.activity.ForgetPwdActivity"></activity>
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity android:name=".register.activity.RegisterActivity" />
+        <activity android:name=".login.activity.LoginForPwdActivity" />
+        <activity android:name=".login.activity.LoginForCodeActivity" />
+        <activity android:name=".register.activity.ForgetPwdActivity" />
+        <!--
+     ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -198,40 +187,35 @@
             android:name="com.lidong.photopicker.PhotoPreviewActivity"
             android:theme="@style/PhotoPickerTheme" />
 
-
-        <!--极光推送开始-->
-
+        <!-- 极光推送开始 -->
 
 
-
-        <!-- Rich push 核心功能 since 2.0.6-->
+        <!-- Rich push 核心功能 since 2.0.6 -->
         <activity
             android:name="cn.jpush.android.ui.PopWinActivity"
-            android:theme="@style/MyDialogStyle"
-            android:exported="false">
-        </activity>
+            android:exported="false"
+            android:theme="@style/MyDialogStyle"></activity>
 
-        <!-- Required SDK核心功能-->
+        <!-- Required SDK核心功能 -->
         <activity
             android:name="cn.jpush.android.ui.PushActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:theme="@android:style/Theme.NoTitleBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.ui.PushActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.autodesk.easyhome.shejijia" />
             </intent-filter>
         </activity>
-        <!-- Required  SDK核心功能-->
+        <!-- Required  SDK核心功能 -->
         <service
             android:name="cn.jpush.android.service.DownloadService"
             android:enabled="true"
-            android:exported="false" >
-        </service>
+            android:exported="false"></service>
 
-
-        <!-- Required SDK 核心功能-->
+        <!-- Required SDK 核心功能 -->
         <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
@@ -253,18 +237,19 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
+
                 <category android:name="com.autodesk.easyhome.shejijia" />
             </intent-filter>
-
         </service>
 
-        <!-- Required SDK核心功能-->
+        <!-- Required SDK核心功能 -->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+                <!-- Required  显示通知栏 -->
                 <category android:name="com.autodesk.easyhome.shejijia" />
             </intent-filter>
             <intent-filter>
@@ -275,50 +260,64 @@
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
                 <data android:scheme="package" />
             </intent-filter>
-
         </receiver>
 
-        <!-- Required SDK核心功能-->
-        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
-
-        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <!-- Required SDK核心功能 -->
         <receiver
-            android:name="com.autodesk.easyhome.shejijia.JPush.MyReceiver"
-            android:exported="false"
-            android:enabled="true">
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <!-- User defined.  For test only  用户自定义的广播接收器 -->
+        <receiver
+            android:name=".JPush.MyReceiver"
+            android:enabled="true"
+            android:exported="false">
             <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
-                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
-                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" /> <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
-                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required  用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required  用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required  用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- Required  用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.ACTION_RICHPUSH_CALLBACK" />
+                <!-- Optional 用户接受Rich Push Javascript 回调函数的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
                 <category android:name="com.autodesk.easyhome.shejijia" />
             </intent-filter>
         </receiver>
 
-
         <!-- Required  . Enable it you can get statistics data with channel -->
-        <meta-data android:name="JPUSH_CHANNEL" android:value="developer-default"/>
-        <meta-data android:name="JPUSH_APPKEY" android:value="dedf43229e69ed908c8e7bc0" />
+        <meta-data
+            android:name="JPUSH_CHANNEL"
+            android:value="developer-default" />
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="dedf43229e69ed908c8e7bc0" />
 
-        <!--极光推送结束-->
+        <!-- 极光推送结束 -->
 
 
-        <!--分享开始-->
+        <!-- 分享开始 -->
 
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
             <!-- QQ和QQ空间分享 QQ登录的回调必须要配置的 -->
             <intent-filter>
                 <data android:scheme="tencent100371282" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -326,25 +325,20 @@
             <!-- 新浪微博客户端分享回调必须配置 -->
             <intent-filter>
                 <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
+        <!-- 分享结束 -->
 
-
-        <!--分享结束-->
-
-
-
-
-
+        <activity android:name=".mine.activity.H5Activity"></activity>
     </application>
 
 </manifest>

@@ -50,7 +50,7 @@
                         android:gravity="center"
                         android:textSize="@dimen/fs_38"
                         android:textColor="@color/color_33"
-                        android:text="11"/>
+                        android:text=""/>
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lin02"

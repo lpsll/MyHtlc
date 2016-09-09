@@ -1,6 +1,8 @@
 package com.autodesk.easyhome.shejijia.register.activity;
 
 import android.app.AlertDialog;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -18,11 +20,13 @@ import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.mine.activity.H5Activity;
 import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseTitleActivity {
@@ -42,6 +46,8 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @Bind(R.id.TimeButton_register)
     TimeButton TimeButtonRegister;
+    @Bind(R.id.tv_register_protocol)
+    TextView tvRegisterProtocol;
 
 
     @Override
@@ -84,7 +90,7 @@ public class RegisterActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.TimeButton_register, R.id.tv_ok, R.id.tv_register_login})
+    @OnClick({R.id.tv_register_protocol,R.id.TimeButton_register, R.id.tv_ok, R.id.tv_register_login})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -109,6 +115,13 @@ public class RegisterActivity extends BaseTitleActivity {
                 //跳转到用户名密码登录页面
                 HomeUiGoto.gotoLoginForPwd(RegisterActivity.this);
                 finish();
+                break;
+
+            case R.id.tv_register_protocol:
+                Intent intent = new Intent(this,H5Activity.class);
+                intent.putExtra("url",AppConfig.PROTOCOL);
+                intent.putExtra("title","居然家政使用协议");
+                startActivity(intent);
                 break;
         }
 
@@ -205,5 +218,12 @@ public class RegisterActivity extends BaseTitleActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
     }
 }

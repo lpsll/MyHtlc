@@ -32,6 +32,7 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -43,13 +44,11 @@ import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
-import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ServieceFreeDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.bumptech.glide.Glide;
-import com.autodesk.easyhome.shejijia.R;
 import com.lidong.photopicker.PhotoPickerActivity;
 import com.lidong.photopicker.SelectModel;
 import com.lidong.photopicker.intent.PhotoPickerIntent;
@@ -66,7 +65,6 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import okhttp3.internal.Internal;
 
 
 /**

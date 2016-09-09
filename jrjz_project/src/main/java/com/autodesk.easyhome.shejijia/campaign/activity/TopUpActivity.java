@@ -28,9 +28,15 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
+import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
+import com.autodesk.easyhome.shejijia.home.entity.WxResult;
 import com.autodesk.easyhome.shejijia.mine.dto.zfbTopUpDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
+import com.tencent.mm.sdk.modelpay.PayReq;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -170,9 +176,11 @@ public class TopUpActivity extends BaseTitleActivity {
             }
 
             if (cbTopupWX.isChecked()) {
-                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+//                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+                wxTopUp();
+
             } else if (cbTopupZFB.isChecked()) {
-                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
+//                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
 
                 //调用支付宝充值的接口
                 zfbTopUp();
@@ -186,9 +194,12 @@ public class TopUpActivity extends BaseTitleActivity {
             moneyForUserInput = tvTopUpChongzhi.getText().toString();
 
             if (cbTopupWX.isChecked()) {
-                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+//                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
+
+                wxTopUp();
+
             } else if (cbTopupZFB.isChecked()) {
-                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
+//                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
 
                 //调用支付宝充值的接口
                 zfbTopUp();
@@ -200,6 +211,7 @@ public class TopUpActivity extends BaseTitleActivity {
 
 
     }
+
 
     private String idealId;  //钱包支付接口返回，支付宝预支付要传回，订单号
 
@@ -242,6 +254,113 @@ public class TopUpActivity extends BaseTitleActivity {
         });
     }
 
+
+    private void wxTopUp() {
+
+        zfbTopUpDTO dto = new zfbTopUpDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "") + time + random);
+        double amount = Double.parseDouble(moneyForUserInput);
+        dto.setAmount(amount);
+
+        CommonApiClient.zfbTopUp(this, dto, new CallBack<ZfbTopUpEntity>() {
+            @Override
+            public void onSuccess(ZfbTopUpEntity result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("钱包充值接口成功=========" + result.getMsg());
+                    idealId = result.getData();
+                    LogUtils.e("idealId---", "" + idealId);
+
+                    reqWxPayment();
+
+
+                }
+            }
+        });
+    }
+
+    private void reqWxPayment() {
+        WxDTO dto = new WxDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setTimestamp(time);
+        dto.setRandom(random);
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "") + time + random);
+
+        dto.setDealId(idealId);
+        dto.setDealType("RECHARGE");
+        dto.setTradetype("APP");
+        dto.setCode("");
+
+        CommonApiClient.wx(this, dto, new CallBack<WxResult>() {
+            @Override
+            public void onSuccess(WxResult result) {
+//                if (AppConfig.NOTHING.equals(result.getCode())) {
+//                    DialogUtils.showPrompt(OrderPaymentActivity.this, "提示",result.getMsg(), "知道了");
+//
+//                }
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("微信预支付成功");
+                    reqWx(result);
+
+                }
+
+            }
+        });
+    }
+
+    IWXAPI msgApi;
+    WxEntity data;
+
+    private void reqWx(WxResult result) {
+        data = result.getData();
+        AppContext.set("wx_appId", data.getAppId());
+        msgApi = WXAPIFactory.createWXAPI(this, data.getAppId());
+        msgApi.registerApp(data.getAppId());
+
+        if (msgApi != null) {
+            if (msgApi.isWXAppInstalled()) {
+//                String characterEncoding = "UTF-8";
+//                mWxKey = data.getNonceStr();
+                PayReq req = new PayReq();
+                req.appId = data.getAppId();
+                req.partnerId = data.getPartnerId();
+                req.prepayId = data.getPrepayId();
+                req.packageValue = "Sign=WXPay";
+//                String time =  TimeUtils.genTimeStamp();
+//                String nonceStr = RandomUtils.generateString(10);
+                req.nonceStr = data.getNonceStr();
+                ;
+                req.timeStamp = data.getTimeStamp();
+//                String str = "appid="+AppConfig.Wx_App_Id
+//                        +"&noncestr="+nonceStr
+//                        +"&package="+"Sign=WXPay"
+//                        +"&partnerid="+data.getPartnerId()
+//                        +"&prepayid="+data.getPrepayId()
+//                        +"&timestamp="+time;
+//                String sing = str.trim().toString()+"&key="+mWxKey;
+//                LogUtils.e("sing---------",sing);
+                req.sign = data.getSign();
+                LogUtils.e("appId--", data.getAppId());
+                LogUtils.e("partnerId--", data.getPartnerId());
+                LogUtils.e("prepayId--", data.getPrepayId());
+                LogUtils.e("packageValue--", "Sign=WXPay");
+                LogUtils.e("nonceStr--", data.getNonceStr());
+                LogUtils.e("timeStamp--", data.getTimeStamp());
+                LogUtils.e("sign--", data.getSign());
+                msgApi.sendReq(req);
+            }
+        }
+
+    }
 
     /**
      * 设置editText的过滤

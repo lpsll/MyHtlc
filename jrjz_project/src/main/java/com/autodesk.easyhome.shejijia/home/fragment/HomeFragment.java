@@ -353,6 +353,7 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoApt(getActivity(),b1);
                 break;
             case R.id.lin08:
+
                 Bundle b2 = new Bundle();
                 b2.putString("mName",classes.get(0).getServices().get(1).getName());
                 b2.putString("mId",classes.get(0).getServices().get(1).getId());

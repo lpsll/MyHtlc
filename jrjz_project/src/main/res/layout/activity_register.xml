@@ -221,6 +221,7 @@
             android:textSize="@dimen/fs_40" />
 
         <TextView
+            android:id="@+id/tv_register_protocol"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="《居然家政使用协议》"
