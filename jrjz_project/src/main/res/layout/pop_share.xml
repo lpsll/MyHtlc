@@ -24,22 +24,21 @@
         android:layout_marginTop="@dimen/ds_30"
         android:orientation="horizontal">
         <LinearLayout
-            android:id="@+id/share_weixin"
+            android:id="@+id/share_qq"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
             <ImageView
-
                 android:layout_width="@dimen/ds_180"
                 android:layout_height="@dimen/ds_180"
-                android:background="@drawable/ssdk_oks_classic_wechatmoments"/>
+                android:background="@drawable/ssdk_oks_classic_qq"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_20"
-                android:text="@string/wx_friend"
+                android:text="@string/qq"
                 android:gravity="center"
                 android:textSize="@dimen/fs_40"
                 android:textColor="@color/color_00"/>
@@ -55,63 +54,46 @@
 
                 android:layout_width="@dimen/ds_180"
                 android:layout_height="@dimen/ds_180"
-                android:background="@drawable/ssdk_oks_classic_wechat"/>
+                android:background="@drawable/ssdk_oks_classic_wechatmoments"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_20"
                 android:gravity="center"
-                android:text="@string/friend"
+                android:text="@string/wx_friend"
                 android:textSize="@dimen/fs_40"
                 android:textColor="@color/color_00"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/share_weibo"
+            android:id="@+id/share_weixin"
+
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
             <ImageView
+
                 android:layout_width="@dimen/ds_180"
                 android:layout_height="@dimen/ds_180"
-                android:background="@drawable/ssdk_oks_classic_sinaweibo"/>
+                android:background="@drawable/ssdk_oks_classic_wechat"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_20"
+                android:text="@string/friend"
                 android:gravity="center"
-                android:text="@string/xl"
                 android:textSize="@dimen/fs_40"
                 android:textColor="@color/color_00"/>
         </LinearLayout>
     </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/ds_30"
             android:orientation="horizontal">
-            <LinearLayout
-                android:id="@+id/share_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-                <ImageView
-                    android:layout_width="@dimen/ds_180"
-                    android:layout_height="@dimen/ds_180"
-                    android:background="@drawable/ssdk_oks_classic_qq"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/ds_20"
-                    android:text="@string/qq"
-                    android:gravity="center"
-                    android:textSize="@dimen/fs_40"
-                    android:textColor="@color/color_00"/>
-            </LinearLayout>
             <LinearLayout
                 android:id="@+id/share_qzone"
                 android:layout_width="wrap_content"
@@ -131,6 +113,30 @@
                     android:text="@string/qqk"
                     android:textSize="@dimen/fs_40"
                     android:textColor="@color/color_00"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/share_weibo"
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="@dimen/ds_180"
+                    android:layout_height="@dimen/ds_180"
+                    android:background="@drawable/ssdk_oks_classic_sinaweibo"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/ds_20"
+                    android:gravity="center"
+                    android:text="@string/xl"
+                    android:textSize="@dimen/fs_40"
+                    android:textColor="@color/color_00"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -157,11 +163,11 @@
         android:id="@+id/pop_share_text"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_120"
-        android:textColor="@color/color_00"
+        android:textColor="@color/color_ff"
         android:layout_marginTop="@dimen/ds_60"
-        android:layout_marginLeft="@dimen/ds_30"
-        android:layout_marginRight="@dimen/ds_30"
-        android:background="@color/color_cc"
+        android:layout_marginLeft="@dimen/ds_40"
+        android:layout_marginRight="@dimen/ds_40"
+        android:background="@drawable/pop_share_cancle"
         android:layout_marginBottom="@dimen/ds_30"
         android:gravity="center"
         android:textSize="@dimen/fs_45"

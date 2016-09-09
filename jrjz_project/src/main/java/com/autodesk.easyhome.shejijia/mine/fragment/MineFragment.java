@@ -10,7 +10,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
-import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
@@ -43,7 +41,6 @@ import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 import cn.sharesdk.sina.weibo.SinaWeibo;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.qzone.QZone;
@@ -377,7 +374,7 @@ public class MineFragment extends BaseFragment {
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("我是分享文本");
+            sp.setText("居然之家,一切只为提高您的生活品质");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
             LogUtils.e("sp---",""+sp);
@@ -393,7 +390,7 @@ public class MineFragment extends BaseFragment {
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("我是分享文本");
+            sp.setText("居然之家,一切只为提高您的生活品质");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
 
@@ -406,7 +403,7 @@ public class MineFragment extends BaseFragment {
             SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("我是分享文本");
+            sp.setText("居然之家,一切只为提高您的生活品质");
 
             Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
@@ -417,7 +414,7 @@ public class MineFragment extends BaseFragment {
             QQ.ShareParams sp = new QQ.ShareParams();
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("我是分享文本");
+            sp.setText("居然之家,一切只为提高您的生活品质");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl("http://baidu.com");
             LogUtils.e("sp---",""+sp);
@@ -431,11 +428,11 @@ public class MineFragment extends BaseFragment {
             QZone.ShareParams sp = new QZone.ShareParams();
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("我是分享文本");
+            sp.setText("居然之家,一切只为提高您的生活品质");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl("http://baidu.com");
             // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-            sp.setComment("我是测试评论文本");
+            sp.setComment("居然之家,一切只为提高您的生活品质");
             // site是分享此内容的网站名称，仅在QQ空间使用
             sp.setSite(getString(R.string.app_name));
             // siteUrl是分享此内容的网站地址，仅在QQ空间使用
