@@ -54,8 +54,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
     }
 
     @Override
-    public void initData() {
-    }
+    public void initData() {}
 
     @OnClick({R.id.et_login_forgetpwd, R.id.tv_ok, R.id.tv_login_register, R.id.tv_login_to_code_login})
     public void onClick(View view) {
