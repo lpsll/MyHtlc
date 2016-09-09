@@ -7,7 +7,7 @@
         android:id="@+id/splash_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/appone"/>
+        android:background="@drawable/apptwo"/>
     <Button
         android:visibility="gone"
         android:id="@+id/ad_tv"

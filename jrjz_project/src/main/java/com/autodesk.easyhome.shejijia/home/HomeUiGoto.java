@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.autodesk.easyhome.shejijia.MainActivity;
+import com.autodesk.easyhome.shejijia.SplashActivity;
 import com.autodesk.easyhome.shejijia.common.base.BrowserActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
@@ -32,6 +33,16 @@ public class HomeUiGoto {
 
     public static void gotoMain(Context context){
         Intent intent = new Intent(context, MainActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到广告页
+     * @param context
+     */
+
+    public static void gotoSplash(Context context){
+        Intent intent = new Intent(context, SplashActivity.class);
         context.startActivity(intent);
     }
 

@@ -73,7 +73,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".GuideActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
@@ -99,6 +99,9 @@
 
 
         <!-- 支付宝支付开始 start -->
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
@@ -138,6 +141,7 @@
         <activity
             android:name=".common.base.BrowserActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".order.activity.EvaluateActivity"
             android:screenOrientation="portrait"

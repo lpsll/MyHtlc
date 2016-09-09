@@ -17,7 +17,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by John_Libo on 2016/8/23.
+ * 广告页
  */
 public class SplashActivity extends BaseActivity {
 
