@@ -2,11 +2,13 @@ package com.autodesk.easyhome.shejijia.mine.activity;
 
 import android.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
@@ -17,9 +19,8 @@ import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
-import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -29,12 +30,14 @@ public class ChangePhoneActivity extends BaseTitleActivity {
 
     @Bind(R.id.et_change_phone_phone)
     EditText etChangePhonePhone;
-    @Bind(R.id.TimeButton_mine_changePhone)
-    TimeButton TimeButtonMineChangePhone;
     @Bind(R.id.et_change_phone_code)
     EditText etChangePhoneCode;
     @Bind(R.id.tv_change_phone_ok)
     TextView tvChangePhoneOk;
+    @Bind(R.id.TimeButton_mine_changePhone)
+    Button TimeButtonMineChangePhone;
+
+    private TimeCountUtil timeCountUtil;
 
     @Override
     public void initView() {
@@ -43,6 +46,7 @@ public class ChangePhoneActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+         timeCountUtil = new TimeCountUtil(this, 60000, 1000, TimeButtonMineChangePhone);
     }
 
     @Override
@@ -55,23 +59,26 @@ public class ChangePhoneActivity extends BaseTitleActivity {
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
-            case R.id.TimeButton_mine_changePhone:
-                //验证电话号码
-                boolean isValid = PhoneUtils.isPhoneNumberValid(etChangePhonePhone.getText().toString());
-                if (!isValid) {
-                    TimeButtonMineChangePhone.setLenght(0);
-                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
-                } else {
-                    TimeButtonMineChangePhone.setLenght(60 * 1000);
-                    //获取验证码
-                    getSmsVerifyCode();
-                }
-                break;
             case R.id.tv_change_phone_ok:
                 //换绑手机
                 changePhone();
 
                 break;
+
+            case R.id.TimeButton_mine_changePhone:
+                boolean isValid = PhoneUtils.isPhoneNumberValid(etChangePhonePhone.getText().toString());
+                if (!isValid) {
+
+                    new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
+                } else {
+                    //获取验证码
+                    timeCountUtil.start();
+                    getSmsVerifyCode();
+                }
+
+                break;
+
+
         }
     }
 
@@ -152,4 +159,5 @@ public class ChangePhoneActivity extends BaseTitleActivity {
             }
         });
     }
+
 }

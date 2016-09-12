@@ -3,10 +3,12 @@ package com.autodesk.easyhome.shejijia.register.activity;
 import android.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
+import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
@@ -17,20 +19,22 @@ import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
-import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.dto.ForgetPwdDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
-import com.autodesk.easyhome.shejijia.R;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 
+/**
+ * 获取验证码倒计时
+ */
 public class ForgetPwdActivity extends BaseTitleActivity {
 
     @Bind(R.id.et_forgetpwd_phone)
     EditText etForgetpwdPhone;
     @Bind(R.id.TimeButton_forgetpwd)
-    TimeButton TimeButtonForgetpwd;
+    Button TimeButtonForgetpwd;
     @Bind(R.id.et_forgetpwd_code)
     EditText etForgetpwdCode;
     @Bind(R.id.et_forgetpwd_pwd)
@@ -40,6 +44,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
     @Bind(R.id.tv_ok)
     TextView tvOk;
 
+    TimeCountUtil timeCountUtil;
     @Override
     protected int getContentResId() {
         return R.layout.activity_forget_pwd;
@@ -54,6 +59,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        timeCountUtil = new TimeCountUtil(this, 60000, 1000, TimeButtonForgetpwd);
     }
 
 
@@ -65,11 +71,10 @@ public class ForgetPwdActivity extends BaseTitleActivity {
                 //验证电话号码
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etForgetpwdPhone.getText().toString());
                 if (!isValid) {
-                    TimeButtonForgetpwd.setLenght(0);
                     new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
-                    TimeButtonForgetpwd.setLenght(60 * 1000);
                     //获取验证码
+                    timeCountUtil.start();
                     getSmsVerifyCode();
                 }
 
@@ -77,7 +82,6 @@ public class ForgetPwdActivity extends BaseTitleActivity {
             case R.id.tv_ok:
                 //验证
                 dataVerify();
-
                 break;
         }
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.mine.activity.H5Activity;
-import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
@@ -45,10 +46,11 @@ public class RegisterActivity extends BaseTitleActivity {
     TextView tvRegisterLogin;
 
     @Bind(R.id.TimeButton_register)
-    TimeButton TimeButtonRegister;
+    Button TimeButtonRegister;
     @Bind(R.id.tv_register_protocol)
     TextView tvRegisterProtocol;
 
+    private TimeCountUtil timeCountUtil;
 
     @Override
     protected int getContentResId() {
@@ -87,10 +89,11 @@ public class RegisterActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        timeCountUtil = new TimeCountUtil(this, 60000, 1000, TimeButtonRegister);
     }
 
 
-    @OnClick({R.id.tv_register_protocol,R.id.TimeButton_register, R.id.tv_ok, R.id.tv_register_login})
+    @OnClick({R.id.tv_register_protocol, R.id.TimeButton_register, R.id.tv_ok, R.id.tv_register_login})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -98,11 +101,10 @@ public class RegisterActivity extends BaseTitleActivity {
                 //验证电话号码
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etRegisterPhone.getText().toString());
                 if (!isValid) {
-                    TimeButtonRegister.setLenght(0);
                     new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
-                    TimeButtonRegister.setLenght(60 * 1000);
                     //获取验证码
+                    timeCountUtil.start();
                     getSmsVerifyCode();
                 }
                 break;
@@ -118,9 +120,9 @@ public class RegisterActivity extends BaseTitleActivity {
                 break;
 
             case R.id.tv_register_protocol:
-                Intent intent = new Intent(this,H5Activity.class);
-                intent.putExtra("url",AppConfig.PROTOCOL);
-                intent.putExtra("title","居然家政使用协议");
+                Intent intent = new Intent(this, H5Activity.class);
+                intent.putExtra("url", AppConfig.PROTOCOL);
+                intent.putExtra("title", "居然家政使用协议");
                 startActivity(intent);
                 break;
         }

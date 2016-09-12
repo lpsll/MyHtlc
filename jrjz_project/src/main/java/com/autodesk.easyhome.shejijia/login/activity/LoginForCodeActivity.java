@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia.login.activity;
 
 import android.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,7 +20,7 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
-import com.autodesk.easyhome.shejijia.mine.view.TimeButton;
+import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
 import butterknife.Bind;
@@ -34,13 +35,15 @@ public class LoginForCodeActivity extends BaseTitleActivity {
     @Bind(R.id.et_login_phone)
     EditText etLoginPhone;
     @Bind(R.id.TimeButton_login)
-    TimeButton TimeButtonLogin;
+    Button TimeButtonLogin;
     @Bind(R.id.et_login_code)
     EditText etLoginCode;
     @Bind(R.id.tv_ok)
     TextView tvOk;
     @Bind(R.id.et_login_register)
     TextView etLoginRegister;
+
+    private TimeCountUtil timeCountUtil;
 
     @Override
     protected int getContentResId() {
@@ -55,6 +58,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
+        timeCountUtil = new TimeCountUtil(this, 60000, 1000, TimeButtonLogin);
     }
 
 
@@ -67,11 +71,10 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                 //验证电话号码
                 boolean isValid = PhoneUtils.isPhoneNumberValid(etLoginPhone.getText().toString());
                 if (!isValid) {
-                    TimeButtonLogin.setLenght(0);
                     new AlertDialog.Builder(this).setTitle("温馨提示").setMessage("请输入正确的电话号码!").setPositiveButton("确定", null).show();
                 } else {
-                    TimeButtonLogin.setLenght(60 * 1000);
                     //获取验证码
+                    timeCountUtil.start();
                     getSmsVerifyCode();
                 }
 
@@ -79,7 +82,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
             case R.id.tv_ok:
                 //验证码登录
                 loginForCode();
-
                 break;
 
             case R.id.et_login_register:
@@ -87,6 +89,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                 HomeUiGoto.gotoRegister(LoginForCodeActivity.this);
                 finish();
                 break;
+
         }
     }
 
@@ -142,12 +145,9 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                         setResult(1001);
                         finish();
                     }
-
                 }
             }
         });
-
-
     }
 
     /**
@@ -173,4 +173,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
             }
         });
     }
+
+
 }

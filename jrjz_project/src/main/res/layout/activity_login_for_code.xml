@@ -34,9 +34,12 @@
             android:textCursorDrawable="@drawable/color_cursor"
             android:textSize="@dimen/fs_50" />
 
-        <com.autodesk.easyhome.shejijia.mine.view.TimeButton
+
+        <Button
             android:id="@+id/TimeButton_login"
-            android:layout_width="@dimen/ds_260"
+            android:paddingLeft="@dimen/ds_5"
+            android:paddingRight="@dimen/ds_5"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/ds_80"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/ds_60"
