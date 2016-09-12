@@ -11,6 +11,7 @@ import com.autodesk.easyhome.shejijia.common.base.BrowserActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AddAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
+import com.autodesk.easyhome.shejijia.home.activity.CommunityServiceActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
@@ -115,10 +116,12 @@ public class HomeUiGoto {
     /**
      * 跳转到服务详情页
      * @param context
+     * @param bundle
      */
 
-    public static void gotoServiceDetials(Context context){
+    public static void gotoServiceDetials(Context context, Bundle bundle){
         Intent intent = new Intent(context, ServiceDetailsActivity.class);
+        intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
 
@@ -153,6 +156,16 @@ public class HomeUiGoto {
     public static void gotoCf(Context context, Bundle bundle){
         Intent intent = new Intent(context, ClassificationActivity.class);
         intent.putExtra("bundle",bundle);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到社区服务页
+     * @param context
+     */
+
+    public static void gotoCommunity(Context context){
+        Intent intent = new Intent(context, CommunityServiceActivity.class);
         context.startActivity(intent);
     }
 

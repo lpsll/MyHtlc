@@ -46,12 +46,8 @@ public class IntegralActivity extends BaseTitleActivity {
     @Override
     public void initView() {
         setTitleText("积分");
-//        total = getIntent().getBundleExtra("bundle").getString("total");
-
-
-        total = "50.00";
+        total = getIntent().getBundleExtra("bundle").getString("total");
         tal = Double.parseDouble(total);
-        LogUtils.e("tal---",""+tal);
     }
 
     @Override
@@ -84,26 +80,11 @@ public class IntegralActivity extends BaseTitleActivity {
             public void onSuccess(IntegralResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("积分成功");
-
-//                    mTvIntegral.setText("用户积分： "+result.getData());
-//                    yuan = Double.parseDouble(result.getData());
-//                    LogUtils.e("yuan---",""+yuan);
-//                    if((yuan/men)<tal){
-//                        mTvTotal.setText("当前用户有"+result.getData()+"积分可转换为"+yuan/men+"元");
-//                        AppContext.set("Integral",String.valueOf(yuan/men));
-//                        AppContext.set("rule",menoy);
-//                    }else {
-//                        mTvTotal.setText("当前用户有"+tal*men+"可转换为"+tal+"元");
-//                        AppContext.set("Integral",total);
-//                        AppContext.set("rule",menoy);
-//                    }
-
-                    String str = "3000.00";
-                    mTvIntegral.setText("用户积分： "+str);
-                    yuan = Double.parseDouble(str);
+                    mTvIntegral.setText("用户积分： "+result.getData());
+                    yuan = Double.parseDouble(result.getData());
                     LogUtils.e("yuan---",""+yuan);
                     if((yuan/men)<tal){
-                        mTvTotal.setText("当前用户有"+str+"积分可转换为"+yuan/men+"元");
+                        mTvTotal.setText("当前用户有"+result.getData()+"积分可转换为"+yuan/men+"元");
                         AppContext.set("Integral",String.valueOf(yuan/men));
                         AppContext.set("rule",menoy);
                     }else {

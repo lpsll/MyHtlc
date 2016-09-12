@@ -154,6 +154,9 @@
             android:name=".order.activity.OrderNewPaymentActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".home.activity.CommunityServiceActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".campaign.activity.TopUpActivity"
             android:launchMode="singleTask" />
         <activity android:name=".mine.activity.ChangePhoneActivity" />

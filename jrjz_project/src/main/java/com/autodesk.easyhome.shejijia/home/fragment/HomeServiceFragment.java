@@ -6,28 +6,27 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
-import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.common.base.BasePullFragment;
 import com.autodesk.easyhome.shejijia.common.base.BasePullScrollViewFragment;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.widget.EmptyLayout;
 import com.autodesk.easyhome.shejijia.common.widget.FullyLinearLayoutManager;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.adapter.HomeServiceItemAdapter;
 import com.autodesk.easyhome.shejijia.home.dto.HomeServiceDTO;
-import com.autodesk.easyhome.shejijia.home.entity.CarouselEntity;
+import com.autodesk.easyhome.shejijia.home.entity.HomeServiceData;
 import com.autodesk.easyhome.shejijia.home.entity.HomeServiceEntity;
 import com.autodesk.easyhome.shejijia.home.entity.HomeServiceResult;
-import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
-import com.autodesk.easyhome.shejijia.order.entity.ServiceCouponResult;
+import com.autodesk.easyhome.shejijia.home.entity.ServicesEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -42,6 +41,10 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
     private String mId;
     ImageView imageItem,imageHousekeeping;
     RecyclerView mItemList;
+    List<ServicesEntity> services;
+    ArrayList<List<ServicesEntity>> list;
+    ServicesEntity data;
+    HomeServiceData hsdata;
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_homeservice;
@@ -53,7 +56,6 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
         Bundle b  = getArguments();
         mId = b.getString("mId");
         mList.setLayoutManager(new FullyLinearLayoutManager(getActivity()));
-        mItemAdapter = new HomeServiceItemAdapter();
         mListAdapter = new BaseSimpleRecyclerAdapter<HomeServiceEntity>() {
             @Override
             public int getItemViewLayoutId() {
@@ -61,25 +63,38 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
             }
 
             @Override
-            public void bindData(BaseRecyclerViewHolder holder, HomeServiceEntity homeServiceEntity, int position) {
+            public void bindData(BaseRecyclerViewHolder holder, final HomeServiceEntity homeServiceEntity, int position) {
+                LogUtils.e("mListAdapter---position---",""+position);
                 holder.setText(R.id.tv_housekeeping_item_shop_name,homeServiceEntity.getName());
                 imageItem = holder.getView(R.id.img_housekeeping_item_big_img);
                 ImageLoaderUtils.displayImage(homeServiceEntity.getSiteImg(), imageItem);
 
                 mItemList = holder.getView(R.id.homeservice_item_list);
                 mItemList.setLayoutManager(new FullyLinearLayoutManager(getActivity()));
+                mItemAdapter = new HomeServiceItemAdapter(hsdata.getClasses().get(position).getServices());
+                mItemAdapter.removeAll();
+                mItemAdapter.append(hsdata.getClasses().get(position).getServices());
                 mItemList.setAdapter(mItemAdapter);
+                mItemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnRecyclerViewItemClickListener() {
+                    @Override
+                    public void onItemClick(View itemView, Object itemBean, int position) {
+                        data = (ServicesEntity) itemBean;
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name",homeServiceEntity.getName());
+                        bundle.putString("img",data.getLogo());
+                        bundle.putString("descr",data.getDescr());
+                        bundle.putString("price",data.getPrice());
+                        bundle.putString("id",data.getId());
+                        bundle.putString("preject",data.getName());
+                        HomeUiGoto.gotoServiceDetials(getActivity(),bundle);
+                    }
+                });
             }
 
 
         };
         mList.setAdapter(mListAdapter);
-        mItemAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnRecyclerViewItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, Object itemBean, int position) {
-                HomeUiGoto.gotoServiceDetials(getActivity());
-            }
-        });
+
         mListAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(View itemView, Object itemBean, int position) {
@@ -112,13 +127,22 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
                     LogUtils.e("家政服务成功");
                     mErrorLayout.setErrorMessage("暂无家政服务记录",mErrorLayout.FLAG_NODATA);
                     mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                    if(null==result.getData()){
+                    list = new ArrayList<List<ServicesEntity>>();
+                    hsdata = result.getData();
+                    if(null==hsdata){
                         mErrorLayout.setErrorType(EmptyLayout.NODATA);
                     }else {
                         mListAdapter.removeAll();
-                        mListAdapter.append(result.getData().getClasses());
-                        mItemAdapter.removeAll();
-                        mItemAdapter.append(result.getData().getClasses());
+                        mListAdapter.append(hsdata.getClasses());
+
+                        for(int i =0;i<result.getData().getClasses().size();i++){
+                            list.add(( result.getData().getClasses().get(i).getServices()));
+//                            for(int j =0;j<result.getData().getClasses().get(i).getServices().size();j++){
+//                                list.add(( result.getData().getClasses().get(i).getServices().get(j)));
+//                            }
+
+                        }
+
                         refreshComplete();
                     }
 

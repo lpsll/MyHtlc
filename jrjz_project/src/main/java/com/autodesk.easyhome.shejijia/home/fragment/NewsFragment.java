@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia.home.fragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.View;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
@@ -15,6 +16,9 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.adapter.NewsAdapter;
+import com.autodesk.easyhome.shejijia.home.dto.LookNewsDTO;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
+import com.autodesk.easyhome.shejijia.home.entity.NewsData;
 import com.autodesk.easyhome.shejijia.home.entity.NewsEntity;
 import com.autodesk.easyhome.shejijia.home.entity.NewsResult;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
@@ -33,6 +37,7 @@ import de.greenrobot.event.EventBus;
  */
 public class NewsFragment extends BaseListFragment<NewsEntity> {
     boolean login;
+    NewsData data;
     @Override
     public BaseRecyclerAdapter<NewsEntity> createAdapter() {
         return new NewsAdapter();
@@ -61,7 +66,7 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
         if(login){
             OrderDTO dto = new OrderDTO();
             final String time = TimeUtils.getSignTime();
-            String random = TimeUtils.genNonceStr();
+            final String random = TimeUtils.genNonceStr();
             dto.setAccessToken(AppContext.get("accessToken",""));
             dto.setRandom(random);
             dto.setUid(AppContext.get("uid",""));
@@ -74,6 +79,7 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
                     public void onSuccess(NewsResult result) {
                         if (AppConfig.SUCCESS.equals(result.getCode())) {
                             LogUtils.e("消息成功");
+                            data = result.getData();
                             mErrorLayout.setErrorMessage("暂无消息记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                             requestDataSuccess(result);
@@ -110,5 +116,34 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
 
         }
 
+    }
+
+    @Override
+    public void onItemClick(View itemView, Object itemBean, int position) {
+        super.onItemClick(itemView, itemBean, position);
+        NewsEntity entity= (NewsEntity) itemBean;
+        reqRead(entity.getId());
+    }
+
+    private void reqRead(String id) {
+        LookNewsDTO dto = new LookNewsDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken",""));
+        dto.setRandom(random);
+        dto.setUid(AppContext.get("uid",""));
+        dto.setTimestamp(time);
+        dto.setSign(AppContext.get("uid","")+time+random);
+        dto.setMessageId(id);
+        CommonApiClient.lookNews(getActivity(), dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("查看消息成功");
+
+                }
+
+            }
+        });
     }
 }

@@ -3,7 +3,6 @@ package com.autodesk.easyhome.shejijia.common.base;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeServiceFragment;
 import com.autodesk.easyhome.shejijia.home.fragment.NewsFragment;
-import com.autodesk.easyhome.shejijia.home.fragment.SelectAddressFragment;
 import com.autodesk.easyhome.shejijia.order.fragment.ServiceCouponFragment;
 
 /**

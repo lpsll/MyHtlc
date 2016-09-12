@@ -10,6 +10,7 @@ import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.HomeServiceDTO;
+import com.autodesk.easyhome.shejijia.home.dto.LookNewsDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ServieceFreeDTO;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
@@ -445,6 +446,19 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<NewsResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, NewsResult.class);
         post(getAbsoluteUrl("/systemmessage/messageByPage"), dto,
+                asyncCallBack);
+    }
+    /**
+     * 查看消息
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void lookNews (Activity act, LookNewsDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/systemmessage/readMessage"), dto,
                 asyncCallBack);
     }
 

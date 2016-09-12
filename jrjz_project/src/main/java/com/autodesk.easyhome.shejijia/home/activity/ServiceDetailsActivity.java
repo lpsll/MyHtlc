@@ -22,6 +22,7 @@ import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
@@ -30,6 +31,7 @@ import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
+import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.lidong.photopicker.PhotoPickerActivity;
 
 import java.io.File;
@@ -87,6 +89,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
     private String mSelName,mSelPhone,mSelAddress,mTm;
     boolean login;
     DfaultEntity data;
+    private String img,descr,price,id,name,prejectName;
 
     @Override
     protected int getContentResId() {
@@ -97,6 +100,17 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("服务详情");
         login = AppContext.get("IS_LOGIN",false);
+        name= getIntent().getBundleExtra("bundle").getString("name");
+        img = getIntent().getBundleExtra("bundle").getString("img");
+        descr = getIntent().getBundleExtra("bundle").getString("descr");
+        price = getIntent().getBundleExtra("bundle").getString("price");
+        id= getIntent().getBundleExtra("bundle").getString("id");
+        prejectName= getIntent().getBundleExtra("bundle").getString("preject");
+        tvHousekeepingDetailTitle.setText(descr);
+        tvHousekeepingDetailPrice.setText("¥"+price);
+        tvHousekeepingDetailShopName.setText(name);
+        tvHousekeepingDetailSeviceType.setText(prejectName);
+        ImageLoaderUtils.displayImage(img, imgHousekeepingDetail);
         if(login) {
             reqDfault();//获取默认地址
         }
@@ -150,7 +164,16 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
             case R.id.rl_housekeeping_detail_special_request:
                 break;
             case R.id.tv_housekeeping_detail_ok:
-                reqAppointment();//预约
+                if(addTv02.getText().toString().equals("")){
+                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
+                }
+                else if(tvHousekeepingDetailSeviceTime.getText().toString().equals("")||tvHousekeepingDetailSeviceTime.getText().toString().equals("请选择服务时间")){
+                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+                }
+                else {
+                    reqAppointment();//预约
+                }
+
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
@@ -167,26 +190,22 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         dto.setUid(AppContext.get("uid",""));
         dto.setTimestamp(time);
         dto.setSign(AppContext.get("uid","")+time+random);
-//        dto.setCustName(mAddTv01.getText().toString());
-//        dto.setPhone(mAddTv02.getText().toString());
-//        dto.setAddress(mAddTv04.getText().toString());
-//        dto.setServiceItemId(mId);
-//        dto.setServiceTime(mTm);
-//        dto.setDescr(mEtDescribe.getText().toString());
-//        dto.setHomeVisitFee(mTvMoney.getText().toString());
+        dto.setCustName(addTv01.getText().toString());
+        dto.setPhone(addTv02.getText().toString());
+        dto.setAddress(addTv04.getText().toString());
+        dto.setServiceItemId(id);
+        dto.setServiceTime(mTm);
+        dto.setDescr(tvHousekeepingDetailSpecialRequest.getText().toString());
+        dto.setHomeVisitFee(price);
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("预约成功");
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("mName",mName);
-//                    bundle.putString("mPrice",mPrice);
-//                    bundle.putString("orderId",result.getData());
-//                    bundle.putString("mAddTv01",mAddTv01.getText().toString());
-//                    bundle.putString("mAddTv02",mAddTv02.getText().toString());
-//                    bundle.putString("mAddTv04",mAddTv04.getText().toString());
-//                    HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("id",result.getData());
+                    AppContext.set("statu",true);
+                    OrderUiGoto.gotoOrderNew(ServiceDetailsActivity.this,bundle);
                 }
 
             }

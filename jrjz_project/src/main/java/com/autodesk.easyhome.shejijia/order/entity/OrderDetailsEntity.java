@@ -21,6 +21,17 @@ public class OrderDetailsEntity extends BaseEntity {
     private String materialFee;
     private String otherFee;
     private String totalFee;
+    private String totalAmount;
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+
 
     public String getOrderId() {
         return orderId;

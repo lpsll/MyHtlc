@@ -2,6 +2,8 @@ package com.autodesk.easyhome.shejijia.home.entity;
 
 import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 
+import java.util.List;
+
 /**
  * Created by John_Libo on 2016/9/12.
  */
@@ -15,7 +17,17 @@ public class HomeServiceEntity extends BaseEntity {
     private String phone;
     private String latitude;
     private String longitude;
-    private String services;
+    List<ServicesEntity> services;
+
+    public List<ServicesEntity> getServices() {
+        return services;
+    }
+
+    public void setServices(List<ServicesEntity> services) {
+        this.services = services;
+    }
+
+
     public String getId() {
         return id;
     }
@@ -88,13 +100,7 @@ public class HomeServiceEntity extends BaseEntity {
         this.longitude = longitude;
     }
 
-    public String getServices() {
-        return services;
-    }
 
-    public void setServices(String services) {
-        this.services = services;
-    }
 
 
 }

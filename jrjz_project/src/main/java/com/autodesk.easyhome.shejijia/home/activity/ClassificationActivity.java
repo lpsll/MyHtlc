@@ -264,7 +264,11 @@ public class ClassificationActivity extends BaseTitleActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("mId",data.get(section).getServices().get(position).getId());
                     UIHelper.showBundleFragment(ClassificationActivity.this, SimplePage.HOMESERVICE,bundle);
-                }else {
+                }
+                else if(data.get(section).getName().equals("社区服务")){
+                    HomeUiGoto.gotoCommunity(ClassificationActivity.this);
+                }
+                else {
                     Bundle bundle = new Bundle();
                     bundle.putString("mName",data.get(section).getServices().get(position).getName());
                     bundle.putString("mId",data.get(section).getServices().get(position).getId());

@@ -380,13 +380,14 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity(),bundle4);
                 break;
             case R.id.lin05:
-                Bundle bundle5 = new Bundle();
-                bundle5.putInt("flag",5);
-                HomeUiGoto.gotoCf(getActivity(),bundle5);
+//                Bundle bundle5 = new Bundle();
+//                bundle5.putInt("flag",5);
+//                HomeUiGoto.gotoCf(getActivity(),bundle5);
+                HomeUiGoto.gotoCommunity(getActivity());
                 break;
             case R.id.lin06:
                 mId = classes.get(0).getId();
-                if(serviceTv0101.getText().toString().equals("家政服务")){
+                if(serviceTv01.getText().toString().equals("家政服务")){
                     GotoHs(mId);
                 }else {
                     GotoCf(mId);
@@ -395,7 +396,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin07:
-                if(serviceTv0101.getText().toString().equals("家政服务")){
+                if(serviceTv01.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(0).getServices().get(0).getId());
                 }else {
                     GotoApt(classes.get(0).getServices().get(0).getName(),classes.get(0).getServices().get(0).getId());
@@ -403,7 +404,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin08:
-                if(serviceTv0101.getText().toString().equals("家政服务")){
+                if(serviceTv01.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(0).getServices().get(1).getId());
                 }else {
                     GotoApt(classes.get(0).getServices().get(1).getName(),classes.get(0).getServices().get(1).getId());
@@ -421,7 +422,7 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.lin10:
                 mId = classes.get(1).getId();
-                if(serviceTv0201.getText().toString().equals("家政服务")){
+                if(serviceTv02.getText().toString().equals("家政服务")){
                     GotoHs(mId);
                 }else {
                     GotoCf(mId);
@@ -429,7 +430,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin11:
-                if(serviceTv0201.getText().toString().equals("家政服务")){
+                if(serviceTv02.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(1).getServices().get(0).getId());
                 }else {
                     GotoApt(classes.get(1).getServices().get(0).getName(),classes.get(1).getServices().get(0).getId());
@@ -439,7 +440,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin12:
-                if(serviceTv0201.getText().toString().equals("家政服务")){
+                if(serviceTv02.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(1).getServices().get(1).getId());
                 }else {
                     GotoApt(classes.get(1).getServices().get(1).getName(),classes.get(1).getServices().get(1).getId());
@@ -448,7 +449,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin13:
-                if(serviceTv0201.getText().toString().equals("家政服务")){
+                if(serviceTv02.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(1).getServices().get(2).getId());
                 }else {
                     GotoApt(classes.get(1).getServices().get(2).getName(),classes.get(1).getServices().get(2).getId());
@@ -457,7 +458,7 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.lin14:
                 mId = classes.get(2).getId();
-                if(serviceTv0301.getText().toString().equals("家政服务")){
+                if(serviceTv03.getText().toString().equals("家政服务")){
                     GotoHs(mId);
                 }else {
                     GotoCf(mId);
@@ -465,7 +466,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin15:
-                if(serviceTv0301.getText().toString().equals("家政服务")){
+                if(serviceTv03.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(2).getServices().get(0).getId());
                 }else {
                     GotoApt(classes.get(2).getServices().get(0).getName(),classes.get(2).getServices().get(0).getId());
@@ -473,7 +474,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin_15:
-                if(serviceTv0301.getText().toString().equals("家政服务")){
+                if(serviceTv03.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(2).getServices().get(1).getId());
                 }else {
                     GotoApt(classes.get(2).getServices().get(1).getName(),classes.get(2).getServices().get(1).getId());
@@ -481,7 +482,7 @@ public class HomeFragment extends BaseFragment {
 
                 break;
             case R.id.lin16:
-                if(serviceTv0301.getText().toString().equals("家政服务")){
+                if(serviceTv03.getText().toString().equals("家政服务")){
                     GotoHs(classes.get(2).getServices().get(2).getId());
                 }else {
                     GotoApt(classes.get(2).getServices().get(2).getName(),classes.get(2).getServices().get(2).getId());

@@ -165,9 +165,18 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
         mTvName.setText(data.getCustName());
         mTvTel.setText(data.getPhone());
         mTvAddress.setText(data.getAddress());
-        mTvMoney.setText(total);
-        mTvOne.setText("服务费： "+data.getHomeVisitFee());
-        mTvTwo.setText("材料费： "+data.getMaterialFee());
+        if(AppContext.get("statu",false)){
+            mTvMoney.setText(data.getTotalAmount());
+            mTvOne.setVisibility(View.GONE);
+            mTvTwo.setVisibility(View.GONE);
+        }else {
+            mTvMoney.setText(total);
+            mTvOne.setVisibility(View.VISIBLE);
+            mTvTwo.setVisibility(View.VISIBLE);
+            mTvOne.setText("服务费： "+data.getHomeVisitFee());
+            mTvTwo.setText("材料费： "+data.getMaterialFee());
+        }
+
     }
 
     @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn, R.id.rl_jf, R.id.rl_yhj})
@@ -193,7 +202,12 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
                 if(mPlaceCbQb.isChecked()){
                     mTjBtn.setEnabled(false);
-                    type = "HomeService";
+                    if(AppContext.get("statu",false)){
+                        type = "SerivceBook";
+                    }else {
+                        type = "HomeService";
+                    }
+
                     if(balance<Double.parseDouble(mTvMoney.getText().toString())){
                         DialogUtils.showPrompt(this, "提示","您的余额不足，钱包无法支付！", "知道了");
                     }else {
@@ -207,7 +221,11 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     }
                     else {
                         mTjBtn.setEnabled(false);
-                        type = "HomeService";
+                        if(AppContext.get("statu",false)){
+                            type = "SerivceBook";
+                        }else {
+                            type = "HomeService";
+                        }
                         reqWxPayment();//微信预支付
                     }
 
@@ -217,8 +235,13 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                         DialogUtils.showPrompt(this, "提示","您的付款金额为0，只能使用钱包支付！", "知道了");
                     }
                     else {
-                    mTjBtn.setEnabled(false);
-                    type = "HomeService";
+
+                        mTjBtn.setEnabled(false);
+                        if(AppContext.get("statu",false)){
+                            type = "SerivceBook";
+                        }else {
+                            type = "HomeService";
+                        }
                     reqZfbPayment();//支付宝预支付
                     }
                 }
@@ -422,7 +445,9 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 case RQF_PAY:
                     if (TextUtils.equals(resultStatus, "9000")) {
                         LogUtils.e("RQF_PAY---","9000"+"支付宝支付成功");
-                        finish();
+                        Intent intent2 = new Intent(OrderNewPaymentActivity.this, MainActivity.class);
+                        intent2.putExtra("tag",1);
+                        OrderNewPaymentActivity.this.startActivity(intent2);
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
