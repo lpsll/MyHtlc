@@ -9,6 +9,7 @@ import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BasePullFragment;
+import com.autodesk.easyhome.shejijia.common.base.BasePullScrollViewFragment;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
@@ -33,7 +34,7 @@ import butterknife.Bind;
 /**
  * 家政服务
  */
-public class HomeServiceFragment extends BasePullFragment {
+public class HomeServiceFragment extends BasePullScrollViewFragment {
     @Bind(R.id.homeservice_list)
     RecyclerView mList;
     BaseSimpleRecyclerAdapter mListAdapter;

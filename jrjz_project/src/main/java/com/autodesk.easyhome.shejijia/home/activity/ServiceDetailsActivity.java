@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,7 +24,10 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.lidong.photopicker.PhotoPickerActivity;
@@ -75,7 +79,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
     @Bind(R.id.rl_housekeeping_detail_sevice_time)
     RelativeLayout rlHousekeepingDetailSeviceTime;
     @Bind(R.id.tv_housekeeping_detail_special_request)
-    TextView tvHousekeepingDetailSpecialRequest;
+    EditText tvHousekeepingDetailSpecialRequest;
     @Bind(R.id.rl_housekeeping_detail_special_request)
     RelativeLayout rlHousekeepingDetailSpecialRequest;
     @Bind(R.id.tv_housekeeping_detail_ok)
@@ -146,11 +150,47 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
             case R.id.rl_housekeeping_detail_special_request:
                 break;
             case R.id.tv_housekeeping_detail_ok:
+                reqAppointment();//预约
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
                 break;
         }
+    }
+
+    private void reqAppointment() {
+        AppointmentDTO dto = new AppointmentDTO();
+        String time = TimeUtils.getSignTime();
+        String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken",""));
+        dto.setRandom(random);
+        dto.setUid(AppContext.get("uid",""));
+        dto.setTimestamp(time);
+        dto.setSign(AppContext.get("uid","")+time+random);
+//        dto.setCustName(mAddTv01.getText().toString());
+//        dto.setPhone(mAddTv02.getText().toString());
+//        dto.setAddress(mAddTv04.getText().toString());
+//        dto.setServiceItemId(mId);
+//        dto.setServiceTime(mTm);
+//        dto.setDescr(mEtDescribe.getText().toString());
+//        dto.setHomeVisitFee(mTvMoney.getText().toString());
+        CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("预约成功");
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("mName",mName);
+//                    bundle.putString("mPrice",mPrice);
+//                    bundle.putString("orderId",result.getData());
+//                    bundle.putString("mAddTv01",mAddTv01.getText().toString());
+//                    bundle.putString("mAddTv02",mAddTv02.getText().toString());
+//                    bundle.putString("mAddTv04",mAddTv04.getText().toString());
+//                    HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
+                }
+
+            }
+        });
     }
 
     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {

@@ -16,6 +16,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.widget.SlidingTabLayout;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.adapter.OrderTabListAdapter;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -195,9 +196,7 @@ public class OrderFragment extends BaseFragment {
     }
 
 
-    @Override
-    public void onEventMainThread(ErrorEvent event) {
-        super.onEventMainThread(event);
+    public void onEventMainThread(OrderEvent event) {
         String msg = event.getMsg();
         LogUtils.e("msg---", "" + msg);
         if (TextUtils.isEmpty(msg)) {

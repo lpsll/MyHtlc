@@ -14,10 +14,12 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.common.widget.EmptyLayout;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.adapter.OrderInsideAdapter;
 import com.autodesk.easyhome.shejijia.order.dto.OrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.autodesk.easyhome.shejijia.order.entity.OrderResult;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 
@@ -106,8 +108,12 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             LogUtils.e("未完成订单成功");
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            requestDataSuccess(result);
-                            setDataResult(result.getData().getData());
+                            if(null==result.getData()){
+                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
+                            }else {
+                                requestDataSuccess(result);
+                                setDataResult(result.getData().getData());
+                            }
                         }
 
                     }
@@ -128,7 +134,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                                 AppContext.set("getData","2");
                                 if(flag){
                                     EventBus.getDefault().post(
-                                            new ErrorEvent("", AppContext.get("getData",""), ""));
+                                            new OrderEvent(AppContext.get("getData","")));
 
 //                                    onOKClickListener.onOKClick();
                                 }
@@ -137,8 +143,12 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            requestDataSuccess(result);
-                            setDataResult(result.getData().getData());
+                            if(null==result.getData()){
+                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
+                            }else {
+                                requestDataSuccess(result);
+                                setDataResult(result.getData().getData());
+                            }
                         }
 
                     }
@@ -152,8 +162,12 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             LogUtils.e("待评价订单成功");
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            requestDataSuccess(result);
-                            setDataResult(result.getData().getData());
+                            if(null==result.getData()){
+                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
+                            }else {
+                                requestDataSuccess(result);
+                                setDataResult(result.getData().getData());
+                            }
                         }
 
                     }
@@ -167,8 +181,12 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             LogUtils.e("已完成订单成功");
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            requestDataSuccess(result);
-                            setDataResult(result.getData().getData());
+                            if(null==result.getData()){
+                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
+                            }else {
+                                requestDataSuccess(result);
+                                setDataResult(result.getData().getData());
+                            }
                         }
 
                     }
@@ -182,8 +200,12 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             LogUtils.e("全部订单成功");
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            requestDataSuccess(result);
-                            setDataResult(result.getData().getData());
+                            if(null==result.getData()){
+                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
+                            }else {
+                                requestDataSuccess(result);
+                                setDataResult(result.getData().getData());
+                            }
                         }
 
                     }
