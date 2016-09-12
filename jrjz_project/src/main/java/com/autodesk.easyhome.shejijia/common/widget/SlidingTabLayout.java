@@ -24,6 +24,7 @@ import android.support.v4.view.ViewPager;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.style.AbsoluteSizeSpan;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.AttributeSet;
@@ -231,6 +232,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if(string.contains(".")){
                 SpannableStringBuilder style = new SpannableStringBuilder(string);
                 style.setSpan(new ForegroundColorSpan(Color.RED), 3, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+                style.setSpan(new AbsoluteSizeSpan(50), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//设置指定位置文字的大小
                 LogUtils.e("style----",""+style);
                 tabTitleView.setText(style);
             }else {
