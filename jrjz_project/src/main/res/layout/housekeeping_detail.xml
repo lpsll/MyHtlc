@@ -258,7 +258,7 @@
             android:text="服务时间" />
 
         <TextView
-            android:id="@+id/tv_housekeeping_detail_sevice_type"
+            android:id="@+id/tv_housekeeping_detail_sevice_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/ds_230"
