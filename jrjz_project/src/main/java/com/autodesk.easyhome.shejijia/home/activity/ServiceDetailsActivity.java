@@ -110,6 +110,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         tvHousekeepingDetailPrice.setText("¥"+price);
         tvHousekeepingDetailShopName.setText(name);
         tvHousekeepingDetailSeviceType.setText(prejectName);
+        tvHousekeepingDetailProvider.setText("本服务由["+name+""+"]提供  ["+name+"]提供售后服务");
         ImageLoaderUtils.displayImage(img, imgHousekeepingDetail);
         if(login) {
             reqDfault();//获取默认地址

@@ -54,7 +54,7 @@
                 android:paddingLeft="@dimen/ds_40"
                 android:paddingRight="@dimen/ds_50"
                 android:paddingTop="@dimen/ds_15"
-                android:text="本服务由[来人到家]提供[来人到家]提供售后服务"
+                android:text=""
                 android:textColor="@color/housekeeping_detail_red"
                 android:textSize="@dimen/fs_40" />
 
@@ -232,13 +232,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_20"
-                android:text="服务项目" />
+                android:text="服务项目"
+                android:textSize="@dimen/fs_45"/>
 
             <TextView
                 android:id="@+id/tv_housekeeping_detail_sevice_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_50"
+                android:layout_marginLeft="@dimen/ds_45"
                 android:text=""
                 android:textColor="@color/navi" />
         </LinearLayout>
@@ -261,7 +262,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_20"
-                android:text="服务时间" />
+                android:text="服务时间"
+                android:textSize="@dimen/fs_45"/>
 
             <TextView
                 android:id="@+id/tv_housekeeping_detail_sevice_time"
@@ -298,7 +300,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_20"
-                android:text="特殊需求" />
+                android:text="特殊需求"
+                android:textSize="@dimen/fs_45"/>
 
             <EditText
                 android:id="@+id/tv_housekeeping_detail_special_request"
