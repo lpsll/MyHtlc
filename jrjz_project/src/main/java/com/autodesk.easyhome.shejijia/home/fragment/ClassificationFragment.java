@@ -56,7 +56,6 @@ public class ClassificationFragment extends BaseFragment {
             map.put("title", "先生" + i);
             list.add(map);
         }
-//        mList.setAdapter(new ClassificationAdapter(getActivity(), list));
 
     }
 }
