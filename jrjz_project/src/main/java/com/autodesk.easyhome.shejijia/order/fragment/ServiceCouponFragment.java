@@ -97,6 +97,7 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
         double t2 = Double.parseDouble(entity.getFace_amount());
         if(t1>t2||t1==t2){
             AppContext.set("couponMenoy",entity.getValue_amount());
+            AppContext.set("couponMenoy_id",entity.getId());
             getActivity().finish();
         }else {
             DialogUtils.showPrompt(getActivity(), "提示","不可使用", "知道了");

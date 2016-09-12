@@ -48,6 +48,7 @@ public class IntegralActivity extends BaseTitleActivity {
         setTitleText("积分");
         total = getIntent().getBundleExtra("bundle").getString("total");
         tal = Double.parseDouble(total);
+        LogUtils.e("tal---",""+tal);
     }
 
     @Override

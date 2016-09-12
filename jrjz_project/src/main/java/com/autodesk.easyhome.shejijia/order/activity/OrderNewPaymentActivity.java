@@ -94,7 +94,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     private String mT2;
     int tot,inte;
     private static final int RQF_PAY = 1;
-    private String infomation,mWxKey,mOrderId;
+    private String infomation,mWxKey,mOrderId,mCouponId;
     double balance;
 
     @Override
@@ -106,7 +106,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("订单支付");
         tot =0;
-        tot =0;
+        inte =0;
         mId = getIntent().getBundleExtra("bundle").getString("id");
     }
 
@@ -278,7 +278,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             dto.setPoints(mPoint);
         }
         if(coupon){
-            dto.setCouponids(mCoupon.replace(".00",""));
+            dto.setCouponids(mCouponId);
         }
         CommonApiClient.newPayment(this, dto, new CallBack<IntegralResult>() {
             @Override
@@ -496,6 +496,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     double t1 = Double.parseDouble(mTvMoney.getText().toString());
                     double t2 = Double.parseDouble(money);
                     double t3 = Double.parseDouble(rule);
+                    LogUtils.e("if---t1---",""+t1);
+                    LogUtils.e("if---t2---",""+t2);
                     mPoint = String.valueOf(t2*t3);
                     if(t1>t2){
                         mTvMoney.setText(String.valueOf(t1-t2));
@@ -508,6 +510,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     double t2 = Double.parseDouble(money);
                     String rule = AppContext.get("rule","");
                     double t3 = Double.parseDouble(rule);
+                    LogUtils.e("t1---",""+t1);
+                    LogUtils.e("t2---",""+t2);
                     mPoint = String.valueOf(t2*t3);
                     if(t1>t2){
                         mTvMoney.setText(String.valueOf(t1-t2));
@@ -526,6 +530,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 return;
             }else {
                 coupon = true;
+                mCouponId=AppContext.get("couponMenoy_id","");
                 if(tot==0){
                     tot =1;
                     mCoupon = AppContext.get("couponMenoy","");
