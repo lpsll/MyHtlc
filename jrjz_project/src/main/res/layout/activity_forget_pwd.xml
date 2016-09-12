@@ -31,8 +31,8 @@
             android:textSize="@dimen/fs_50" />
 
         <Button
-            android:paddingLeft="@dimen/ds_5"
-            android:paddingRight="@dimen/ds_5"
+            android:paddingLeft="@dimen/ds_20"
+            android:paddingRight="@dimen/ds_20"
             android:id="@+id/TimeButton_forgetpwd"
             android:layout_width="@dimen/ds_260"
             android:layout_height="@dimen/ds_80"

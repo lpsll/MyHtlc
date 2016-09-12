@@ -37,8 +37,8 @@
             android:layout_marginRight="@dimen/ds_60"
             android:background="@drawable/ok_selector_dark"
             android:text="发送验证码"
-            android:paddingLeft="@dimen/ds_5"
-            android:paddingRight="@dimen/ds_5"
+            android:paddingLeft="@dimen/ds_20"
+            android:paddingRight="@dimen/ds_20"
             android:textColor="#ffffff"
             android:textSize="@dimen/fs_40" />
     </RelativeLayout>

@@ -37,8 +37,8 @@
 
         <Button
             android:id="@+id/TimeButton_login"
-            android:paddingLeft="@dimen/ds_5"
-            android:paddingRight="@dimen/ds_5"
+            android:paddingLeft="@dimen/ds_20"
+            android:paddingRight="@dimen/ds_20"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/ds_80"
             android:layout_alignParentRight="true"

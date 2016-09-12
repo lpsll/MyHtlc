@@ -43,20 +43,17 @@
             android:textStyle="bold" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/img_lijichongzhi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/ds_220"
+            android:layout_height="@dimen/ds_90"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/ds_60"
             android:background="@drawable/top_up_selector"
-            android:paddingBottom="@dimen/ds_15"
-            android:paddingLeft="@dimen/ds_25"
-            android:paddingRight="@dimen/ds_25"
-            android:paddingTop="@dimen/ds_15"
             android:text="立即充值"
             android:textColor="@drawable/top_up_text_selector"
-            android:textSize="@dimen/ds_45" />
+            android:textSize="@dimen/ds_40" />
 
     </RelativeLayout>
 
