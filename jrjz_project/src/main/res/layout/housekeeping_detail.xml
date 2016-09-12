@@ -149,14 +149,15 @@
         <LinearLayout
             android:id="@+id/lin_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/ds_250"
             android:background="@color/color_ff"
             android:orientation="horizontal"
-            android:paddingTop="@dimen/ds_50">
+            >
 
             <LinearLayout
                 android:layout_width="0dip"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/ds_30"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -169,7 +170,7 @@
                         android:id="@+id/add_tv01"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/ds_40"
+                        android:layout_marginLeft="@dimen/ds_60"
                         android:text="@string/select_address"
                         android:textColor="@color/color_8E"
                         android:textSize="@dimen/fs_45" />
@@ -197,7 +198,7 @@
                     android:id="@+id/add_tv04"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/ds_40"
+                    android:layout_marginLeft="@dimen/ds_60"
                     android:layout_marginTop="@dimen/ds_30"
                     android:text=""
                     android:textColor="@color/color_8E"
@@ -265,7 +266,7 @@
                 android:id="@+id/tv_housekeeping_detail_sevice_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_230"
+                android:layout_marginLeft="@dimen/ds_270"
                 android:text="请选择服务时间"
                 android:textColor="@color/tv_hint" />
 
@@ -298,29 +299,20 @@
                 android:layout_marginLeft="@dimen/ds_20"
                 android:text="特殊需求" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tv_housekeeping_detail_special_request"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_230"
-                android:text="请输入特殊需求"
+                android:layout_marginLeft="@dimen/ds_270"
+                android:hint="请输入特殊需求"
+                android:background="@null"
+                android:textSize="@dimen/fs_45"
                 android:textColor="@color/tv_hint" />
 
-            <ImageView
-                android:layout_width="@dimen/ds_30"
-                android:layout_height="@dimen/ds_50"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center"
-                android:background="@drawable/right" />
+
         </RelativeLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/ds_1"
-            android:layout_marginLeft="@dimen/ds_30"
-            android:layout_marginRight="@dimen/ds_30"
-            android:background="@color/tv_grey" />
+
 
         <TextView
             android:id="@+id/tv_housekeeping_detail_ok"

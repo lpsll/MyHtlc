@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/ds_130"
+    android:id="@+id/item_rel"
+    android:background="@color/color_ff"
+  >
+
+        <ImageView
+            android:id="@+id/img_housekeeping_item_img1"
+            android:layout_width="@dimen/ds_120"
+            android:layout_height="@dimen/ds_120"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/ds_70"
+            android:background="@drawable/dingdangdaojiatupianxdpi_03" />
+
+        <TextView
+            android:id="@+id/tv_housekeeping_item_service_name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/ds_60"
+            android:layout_toRightOf="@id/img_housekeeping_item_img1"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxWidth="@dimen/ds_600"
+            android:text="【来人到家】 家庭保洁服务四小时"
+            android:textColor="@color/tv_black"
+            android:textSize="@dimen/fs_45" />
+
+        <TextView
+            android:id="@+id/tv_housekeeping_item_price1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/ds_30"
+            android:text="￥119.00"
+            android:textColor="@color/price_red"
+            android:textSize="@dimen/fs_45" />
+
+
+
+</RelativeLayout>

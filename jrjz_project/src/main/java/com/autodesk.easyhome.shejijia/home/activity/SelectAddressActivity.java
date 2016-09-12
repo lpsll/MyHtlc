@@ -73,7 +73,12 @@ public class SelectAddressActivity extends BaseTitleActivity {
             public void onSuccess(SelectAddressResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("常用地址成功");
-                    setResult(result);
+                    if(null == result.getData()){
+                        return;
+                    }else {
+                        setResult(result);
+                    }
+
 
                 }
 

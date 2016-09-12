@@ -14,14 +14,18 @@ import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
+import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.common.widget.ViewFlowLayout;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselEntity;
 import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceEntity;
@@ -29,12 +33,14 @@ import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceClasses;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceData;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.WhetherEvent;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 
 /**
@@ -173,7 +179,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected int getLayoutResId() {
-        return R.layout.fragment_home1;
+        return R.layout.fragment_home;
     }
 
     @Override
@@ -194,9 +200,45 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        LogUtils.e("login----",""+login);
         reqCarousel();//轮播图
         reqFullService();//全部服务类别类别
         reqService();//制定服务类
+        if(login){
+            reqWhether();//是否有未读消息
+        }
+
+    }
+
+    private void reqWhether() {
+        BaseDTO dto = new BaseDTO();
+        String time = TimeUtils.getSignTime();
+        final String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "")+time+random);
+        dto.setRandom(random);
+        dto.setTimestamp(time);
+        CommonApiClient.whether(getActivity(), dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("是否有未读成功");
+                    if(result.getData().equals("0")){
+                        AppContext.set("whether","0");
+                        EventBus.getDefault().post(
+                                new WhetherEvent("0"));
+                    }else{
+                        AppContext.set("whether","1");
+                        EventBus.getDefault().post(
+                                new WhetherEvent("1"));
+                    }
+
+
+                }
+
+            }
+        });
     }
 
     private void reqService() {
@@ -344,84 +386,134 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.lin06:
                 mId = classes.get(0).getId();
-                GotoCf(mId);
+                if(serviceTv0101.getText().toString().equals("家政服务")){
+                    GotoHs(mId);
+                }else {
+                    GotoCf(mId);
+                }
+
+
                 break;
             case R.id.lin07:
-                Bundle b1 = new Bundle();
-                b1.putString("mName",classes.get(0).getServices().get(0).getName());
-                b1.putString("mId",classes.get(0).getServices().get(0).getId());
-                HomeUiGoto.gotoApt(getActivity(),b1);
+                if(serviceTv0101.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(0).getServices().get(0).getId());
+                }else {
+                    GotoApt(classes.get(0).getServices().get(0).getName(),classes.get(0).getServices().get(0).getId());
+                }
+
                 break;
             case R.id.lin08:
+                if(serviceTv0101.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(0).getServices().get(1).getId());
+                }else {
+                    GotoApt(classes.get(0).getServices().get(1).getName(),classes.get(0).getServices().get(1).getId());
 
-                Bundle b2 = new Bundle();
-                b2.putString("mName",classes.get(0).getServices().get(1).getName());
-                b2.putString("mId",classes.get(0).getServices().get(1).getId());
-                HomeUiGoto.gotoApt(getActivity(),b2);
+                }
+
                 break;
             case R.id.lin09:
-                Bundle b3 = new Bundle();
-                b3.putString("mName",classes.get(0).getServices().get(2).getName());
-                b3.putString("mId",classes.get(0).getServices().get(2).getId());
-                HomeUiGoto.gotoApt(getActivity(),b3);
+                if(serviceTv0101.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(0).getServices().get(2).getId());
+                }else {
+                    GotoApt(classes.get(0).getServices().get(2).getName(),classes.get(0).getServices().get(2).getId());
+                }
+
                 break;
             case R.id.lin10:
                 mId = classes.get(1).getId();
-                GotoCf(mId);
+                if(serviceTv0201.getText().toString().equals("家政服务")){
+                    GotoHs(mId);
+                }else {
+                    GotoCf(mId);
+                }
+
                 break;
             case R.id.lin11:
-                Bundle b4 = new Bundle();
-                b4.putString("mName",classes.get(1).getServices().get(0).getName());
-                b4.putString("mId",classes.get(1).getServices().get(0).getId());
-                HomeUiGoto.gotoApt(getActivity(),b4);
+                if(serviceTv0201.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(1).getServices().get(0).getId());
+                }else {
+                    GotoApt(classes.get(1).getServices().get(0).getName(),classes.get(1).getServices().get(0).getId());
+                }
+
 
 
                 break;
             case R.id.lin12:
-                Bundle b5 = new Bundle();
-                b5.putString("mName",classes.get(1).getServices().get(1).getName());
-                b5.putString("mId",classes.get(1).getServices().get(1).getId());
-                HomeUiGoto.gotoApt(getActivity(),b5);
+                if(serviceTv0201.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(1).getServices().get(1).getId());
+                }else {
+                    GotoApt(classes.get(1).getServices().get(1).getName(),classes.get(1).getServices().get(1).getId());
+
+                }
+
                 break;
             case R.id.lin13:
-                Bundle b6 = new Bundle();
-                b6.putString("uid",classes.get(1).getServices().get(2).getName());
-                b6.putString("mId",classes.get(1).getServices().get(2).getId());
-                HomeUiGoto.gotoApt(getActivity(),b6);
+                if(serviceTv0201.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(1).getServices().get(2).getId());
+                }else {
+                    GotoApt(classes.get(1).getServices().get(2).getName(),classes.get(1).getServices().get(2).getId());
+                }
+
                 break;
             case R.id.lin14:
                 mId = classes.get(2).getId();
-                GotoCf(mId);
+                if(serviceTv0301.getText().toString().equals("家政服务")){
+                    GotoHs(mId);
+                }else {
+                    GotoCf(mId);
+                }
+
                 break;
             case R.id.lin15:
-                Bundle b7 = new Bundle();
-                b7.putString("mName",classes.get(2).getServices().get(0).getName());
-                b7.putString("mId",classes.get(2).getServices().get(0).getId());
-                HomeUiGoto.gotoApt(getActivity(),b7);
+                if(serviceTv0301.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(2).getServices().get(0).getId());
+                }else {
+                    GotoApt(classes.get(2).getServices().get(0).getName(),classes.get(2).getServices().get(0).getId());
+                }
+
                 break;
             case R.id.lin_15:
-                Bundle b8 = new Bundle();
-                b8.putString("uid",classes.get(2).getServices().get(1).getName());
-                b8.putString("mId",classes.get(2).getServices().get(1).getId());
-                HomeUiGoto.gotoApt(getActivity(),b8);
+                if(serviceTv0301.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(2).getServices().get(1).getId());
+                }else {
+                    GotoApt(classes.get(2).getServices().get(1).getName(),classes.get(2).getServices().get(1).getId());
+                }
+
                 break;
             case R.id.lin16:
-                Bundle b9 = new Bundle();
-                b9.putString("mName",classes.get(2).getServices().get(2).getName());
-                b9.putString("mId",classes.get(2).getServices().get(2).getId());
-                HomeUiGoto.gotoApt(getActivity(),b9);
+                if(serviceTv0301.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(2).getServices().get(2).getId());
+                }else {
+                    GotoApt(classes.get(2).getServices().get(2).getName(),classes.get(2).getServices().get(2).getId());
+                }
+
                 break;
             case R.id.lin17:
-                Bundle b10 = new Bundle();
-                b10.putString("mName",classes.get(2).getServices().get(3).getName());
-                b10.putString("mId",classes.get(2).getServices().get(3).getId());
-                HomeUiGoto.gotoApt(getActivity(),b10);
+                if(serviceTv0301.getText().toString().equals("家政服务")){
+                    GotoHs(classes.get(2).getServices().get(3).getId());
+                }else {
+                    GotoApt(classes.get(2).getServices().get(3).getName(),classes.get(2).getServices().get(3).getId());
+                }
+
                 break;
             case R.id.all_service:
                 mId = fsEntity.get(0).getId();
                 GotoCf(mId);
                 break;
         }
+    }
+
+    private void GotoApt(String name, String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("mName",name);
+        bundle.putString("mId",id);
+        HomeUiGoto.gotoApt(getActivity(),bundle);
+    }
+
+    private void GotoHs(String mId) {
+        Bundle bundle = new Bundle();
+        bundle.putString("mId",mId);
+        UIHelper.showBundleFragment(getActivity(), SimplePage.HOMESERVICE,bundle);
     }
 
     private void GotoCf(String mId) {

@@ -15,6 +15,7 @@ import com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
+import com.autodesk.easyhome.shejijia.home.activity.ServiceDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity;
@@ -76,9 +77,15 @@ public class HomeUiGoto {
      * @param context
      */
     public static final int SELECT_REQUEST = 010;
+    public static final int SD_REQUEST = 010000;
     public static void gotoSelect(Activity act){
         Intent intent = new Intent(act, SelectAddressActivity.class);
         act.startActivityForResult(intent,SELECT_REQUEST);
+    }
+
+    public static void gotoSdSelect(Activity act){
+        Intent intent = new Intent(act, SelectAddressActivity.class);
+        act.startActivityForResult(intent,SD_REQUEST);
     }
 
     /**
@@ -90,6 +97,10 @@ public class HomeUiGoto {
         Intent intent = new Intent(act, ServiceTimeActivity.class);
         act.startActivityForResult(intent,SELECT_REQUEST);
     }
+    public static void gotoSdSt(Activity act){
+        Intent intent = new Intent(act, ServiceTimeActivity.class);
+        act.startActivityForResult(intent,SD_REQUEST);
+    }
 
     /**
      * 跳转到项目详情
@@ -98,6 +109,16 @@ public class HomeUiGoto {
 
     public static void gotoProjectDetails(Context context){
         Intent intent = new Intent(context, ProjectDetailsActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 跳转到服务详情页
+     * @param context
+     */
+
+    public static void gotoServiceDetials(Context context){
+        Intent intent = new Intent(context, ServiceDetailsActivity.class);
         context.startActivity(intent);
     }
 

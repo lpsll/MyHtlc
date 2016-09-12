@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/lin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_400"
         android:layout_marginTop="@dimen/ds_40"

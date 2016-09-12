@@ -77,10 +77,13 @@ public class MainSectionedAdapter extends SectionedBaseAdapter {
             }else {
                 imageItem.setVisibility(View.VISIBLE);
                 tv01.setText(sList.get(section).get(position));
-                ImageLoaderUtils.displayImage(iList.get(section).get(position), imageItem);
+                LogUtils.e("iList---",""+iList.get(section).get(position));
+                if(null!=iList.get(section).get(position)){
+                    ImageLoaderUtils.displayImage(iList.get(section).get(position), imageItem);
+                }
+
             }
 
-//            tv02.setText(str[section][position]);
             if (flagArray.get(section)) {
                 right_item.setBackgroundColor(Color.parseColor("#F0FAFF"));
             } else {

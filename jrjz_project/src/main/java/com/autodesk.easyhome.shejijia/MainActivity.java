@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,12 +17,19 @@ import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.SimplePage;
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
+import com.autodesk.easyhome.shejijia.common.eventbus.ErrorEvent;
+import com.autodesk.easyhome.shejijia.common.http.CallBack;
+import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
+import com.autodesk.easyhome.shejijia.home.entity.WhetherEvent;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
 import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
@@ -33,6 +41,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import cn.sharesdk.framework.ShareSDK;
+import de.greenrobot.event.EventBus;
 
 /*
 整个程序的MainActivity，入口
@@ -93,11 +102,20 @@ public class MainActivity extends BaseHomeTitleActivity {
         fg4 = 0;
         fg5 = 0;
 
+        LogUtils.e("AppContext.get(\"whether\",\"\")----",""+AppContext.get("whether",""));
 
-        // 初始化右边图片大小
-        TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
-                R.dimen.common_titlebar_right_icon_width,
-                R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+        if(AppContext.get("whether","").equals("0")){
+            // 初始化右边图片大小
+            TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.whether,
+                    R.dimen.common_titlebar_right_icon_width,
+                    R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+        }else {
+            // 初始化右边图片大小
+            TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
+                    R.dimen.common_titlebar_right_icon_width,
+                    R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+        }
+
 
         fragmentManager = getSupportFragmentManager();
         mTabViews[0] = mTvTabHome;
@@ -288,7 +306,7 @@ public class MainActivity extends BaseHomeTitleActivity {
         super.onClick(v);
         switch (v.getId()) {
             case R.id.base_titlebar_ensure:
-                UIHelper.showFragment(this, SimplePage.NEWS);
+                UIHelper.showFragmentFor(this, SimplePage.NEWS);
                 break;
             default:
                 break;
@@ -359,6 +377,43 @@ public class MainActivity extends BaseHomeTitleActivity {
                 meFragment.initView(null);
             }
         }
+        //从消息列表返回后刷新
+        if (requestCode == UIHelper.WHETHER_REQUEST) {
+            reqWhether();//是否有未读消息
+        }
+    }
+
+    private void reqWhether() {
+        BaseDTO dto = new BaseDTO();
+        String time = TimeUtils.getSignTime();
+        final String random = TimeUtils.genNonceStr();
+        dto.setAccessToken(AppContext.get("accessToken", ""));
+        dto.setUid(AppContext.get("uid", ""));
+        dto.setSign(AppContext.get("uid", "")+time+random);
+        dto.setRandom(random);
+        dto.setTimestamp(time);
+        CommonApiClient.whether(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("是否有未读成功");
+                    if(result.getData().equals("0")){
+                        // 初始化右边图片大小
+                        TextViewUtils.setTextViewIcon(getApplication(), mBaseEnsure, R.drawable.whether,
+                                R.dimen.common_titlebar_right_icon_width,
+                                R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+                    }else{
+                        // 初始化右边图片大小
+                        TextViewUtils.setTextViewIcon(getApplication(), mBaseEnsure, R.drawable.xiaoxixdpi_03,
+                                R.dimen.common_titlebar_right_icon_width,
+                                R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+                    }
+
+
+                }
+
+            }
+        });
     }
 
 
@@ -401,6 +456,31 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
 
     }
+
+
+
+    public void onEventMainThread(WhetherEvent event) {
+        String msg = event.getMsg();
+        LogUtils.e("mainActivity---msg---", "" + msg);
+        if(null==msg){
+
+        }else {
+            if(msg.equals("0")){
+                // 初始化右边图片大小
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.whether,
+                        R.dimen.common_titlebar_right_icon_width,
+                        R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+            }else {
+                // 初始化右边图片大小
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
+                        R.dimen.common_titlebar_right_icon_width,
+                        R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+            }
+
+        }
+
+        }
+
 }
 
 

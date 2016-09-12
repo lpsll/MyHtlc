@@ -85,6 +85,7 @@ public class BaseApiClient {
 			String params="";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
+				LogUtils.e("s-------"+s);
 				if(TextUtils.isEmpty(map.get(s).toString())){
 					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
 				}

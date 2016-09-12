@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.order.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.Map;
  * Created by John_Libo on 2016/8/18.
  */
 public class CouponAdapter extends BaseSimpleRecyclerAdapter<ServiceCouponEntity> {
-
+    LinearLayout linearLayout;
 
     @Override
     public int getItemViewLayoutId() {
@@ -30,6 +31,22 @@ public class CouponAdapter extends BaseSimpleRecyclerAdapter<ServiceCouponEntity
 
     @Override
     public void bindData(BaseRecyclerViewHolder holder, ServiceCouponEntity serviceCouponEntity, int position) {
+        linearLayout = holder.getView(R.id.lin);
+        if(serviceCouponEntity.getAmount_level().equals("1")){
+            linearLayout.setBackgroundColor(Color.parseColor("#A4E0D6"));
+        }
+        else if(serviceCouponEntity.getAmount_level().equals("2")){
+            linearLayout.setBackgroundColor(Color.parseColor("#9EE1A4"));
+        }
+        else if(serviceCouponEntity.getAmount_level().equals("3")){
+            linearLayout.setBackgroundColor(Color.parseColor("#FEEDA4"));
+        }
+        else if(serviceCouponEntity.getAmount_level().equals("4")){
+            linearLayout.setBackgroundColor(Color.parseColor("#FAC18C"));
+        }
+        else if(serviceCouponEntity.getAmount_level().equals("5")){
+            linearLayout.setBackgroundColor(Color.parseColor("#EF4E7F"));
+        }
 
         holder.setText(R.id.tv_money,serviceCouponEntity.getValue_amount().replace(".00",""));
         holder.setText(R.id.tv_sy,"满"+serviceCouponEntity.getFace_amount().replace(".00","")+"元使用");

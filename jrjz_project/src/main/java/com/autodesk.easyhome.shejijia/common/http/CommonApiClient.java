@@ -9,6 +9,7 @@ import com.autodesk.easyhome.shejijia.common.entity.BaseEntity;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
 import com.autodesk.easyhome.shejijia.home.dto.DeleteAddressDTO;
+import com.autodesk.easyhome.shejijia.home.dto.HomeServiceDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ServieceFreeDTO;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
@@ -18,6 +19,7 @@ import com.autodesk.easyhome.shejijia.home.entity.CarouselResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.autodesk.easyhome.shejijia.home.entity.FullServiceResult;
+import com.autodesk.easyhome.shejijia.home.entity.HomeServiceResult;
 import com.autodesk.easyhome.shejijia.home.entity.NewsResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.ServiceResult;
@@ -317,6 +319,22 @@ public class CommonApiClient extends BaseApiClient{
         post(getAbsoluteUrl("/coupon/couponByPageForService"), dto,
                 asyncCallBack);
     }
+
+    /**
+     * 家政服务
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void homeService(Activity act, HomeServiceDTO
+            dto, CallBack<HomeServiceResult> callback) {
+        AsyncCallBack<HomeServiceResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, HomeServiceResult.class);
+        getNew(getAbsoluteUrl("/service/companySerivces?"), dto,
+                asyncCallBack);
+    }
+
+
     /**
      * 订单之积分
      * @param act
@@ -526,6 +544,20 @@ public class CommonApiClient extends BaseApiClient{
         AsyncCallBack<ServiceResult> asyncCallBack = new AsyncCallBack<>(
                 act, callback, ServiceResult.class);
         get(getAbsoluteUrl("/service/indexServices"), dto,
+                asyncCallBack);
+    }
+
+    /**
+     * 是否有未读消息
+     * @param act
+     * @param dto
+     * @param callback
+     */
+    public static void whether(Activity act, BaseDTO
+            dto, CallBack<AddAddressResult> callback) {
+        AsyncCallBack<AddAddressResult> asyncCallBack = new AsyncCallBack<>(
+                act, callback, AddAddressResult.class);
+        post(getAbsoluteUrl("/systemmessage/flagByUid"), dto,
                 asyncCallBack);
     }
 

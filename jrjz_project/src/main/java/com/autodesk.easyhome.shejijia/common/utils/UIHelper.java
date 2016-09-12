@@ -18,6 +18,12 @@ public class UIHelper {
         intent.putExtra(SimpleActivity.BUNDLE_KEY_PAGE, page.getValue());
         context.startActivity(intent);
     }
+    public static final int WHETHER_REQUEST = 010;
+    public static void showFragmentFor(Activity act, SimplePage page) {
+        Intent intent = new Intent(act, SimpleActivity.class);
+        intent.putExtra(SimpleActivity.BUNDLE_KEY_PAGE, page.getValue());
+        act.startActivityForResult(intent,WHETHER_REQUEST);
+    }
 
     public static void showBundleFragment(Context context, SimplePage page,
                                     Bundle args) {

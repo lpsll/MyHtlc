@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
@@ -14,6 +15,7 @@ import com.autodesk.easyhome.shejijia.common.interf.IBaseActivity;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.entity.WhetherEvent;
 
 import butterknife.ButterKnife;
 import cn.jpush.android.api.JPushInterface;
@@ -142,6 +144,8 @@ public abstract class BaseActivity  extends FragmentActivity implements
         super.onDestroy();
     }
 
+
+
     public void onEventMainThread(ErrorEvent event) {
         hideDialogLoading();
         String status = event.getCode();
@@ -155,6 +159,20 @@ public abstract class BaseActivity  extends FragmentActivity implements
 
         }
     }
+
+//    public void onEventMainThread(WhetherEvent event) {
+//        hideDialogLoading();
+//        String status = event.getCode();
+//        String message = event.getMsg();
+//        if (event.getTag().equals(this)) {
+//            if(!AppConfig.SUCCESS.equals(status)) {
+//                LogUtils.e("event.getTag()---","event.getTag()");
+//                LogUtils.e("message---",""+message);
+//                ToastUtils.showShort(this,message);
+//            }
+//
+//        }
+//    }
 
 
     protected void showMsg(int resId){

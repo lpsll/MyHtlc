@@ -12,9 +12,11 @@ import android.widget.RelativeLayout;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.adapter.LeftListAdapter;
@@ -105,9 +107,10 @@ public class ClassificationActivity extends BaseTitleActivity {
             entity = data.get(i).getServices();
             aList = new ArrayList<>();
             bList = new ArrayList<>();
-//            if(null==entity){
-//
-//            }else {
+            if(null==entity){
+                aList.add("");
+                bList.add("");
+            }else {
                 for(int j= 0;j<entity.size();j++){
                     aList.add(entity.get(j).getName());
 //                if(i==(data.size()-1)&&j==(entity.size()-1)){
@@ -119,13 +122,15 @@ public class ClassificationActivity extends BaseTitleActivity {
 //                    aList.add("");
 //                }
                 }
-//            }
+
+                for(int k= 0;k<entity.size();k++){
+                    bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
+                }
+            }
 
             sList.add(aList);
 
-            for(int k= 0;k<entity.size();k++){
-                bList.add(AppConfig.BASE_IMG_URL+entity.get(k).getLogo());
-            }
+
             iList.add(bList);
         }
         LogUtils.e("sList---",""+sList);
@@ -255,10 +260,17 @@ public class ClassificationActivity extends BaseTitleActivity {
         pinnedListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putString("mName",data.get(section).getServices().get(position).getName());
-                bundle.putString("mId",data.get(section).getServices().get(position).getId());
-                HomeUiGoto.gotoApt(ClassificationActivity.this, bundle);
+                if(data.get(section).getName().equals("家政服务")){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mId",data.get(section).getServices().get(position).getId());
+                    UIHelper.showBundleFragment(ClassificationActivity.this, SimplePage.HOMESERVICE,bundle);
+                }else {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mName",data.get(section).getServices().get(position).getName());
+                    bundle.putString("mId",data.get(section).getServices().get(position).getId());
+                    HomeUiGoto.gotoApt(ClassificationActivity.this, bundle);
+                }
+
             }
 
             @Override
