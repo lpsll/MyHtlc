@@ -173,7 +173,7 @@ public class OrderFragment extends BaseFragment {
         mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
         mOrderContent.setAdapter(mAdapter);
         mOrderContent.setOffscreenPageLimit(fragmentList.size());
-        mOrderTab.setSelectedIndicatorColors(getResources().getColor(R.color.colorPrimary));
+        mOrderTab.setSelectedIndicatorColors(getResources().getColor(R.color.navi));
         mOrderTab.setDistributeEvenly(true);
         mOrderTab.setViewPager(mOrderContent);
         login = AppContext.get("IS_LOGIN",false);

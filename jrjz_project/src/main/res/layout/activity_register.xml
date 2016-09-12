@@ -39,8 +39,8 @@
                 android:textSize="@dimen/fs_50" />
 
             <Button
-                android:paddingLeft="@dimen/ds_5"
-                android:paddingRight="@dimen/ds_5"
+                android:paddingLeft="@dimen/ds_20"
+                android:paddingRight="@dimen/ds_20"
                 android:id="@+id/TimeButton_register"
                 android:layout_width="@dimen/ds_280"
                 android:layout_height="@dimen/ds_85"

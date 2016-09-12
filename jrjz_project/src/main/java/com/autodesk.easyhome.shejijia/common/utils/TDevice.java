@@ -20,6 +20,7 @@ public class TDevice {
     public static final int NETTYPE_WIFI = 0x01;
     public static final int NETTYPE_CMWAP = 0x02;
     public static final int NETTYPE_CMNET = 0x03;
+
     public static int getVersionCode(Context context) {
         int versionCode = 0;
         try {
@@ -35,6 +36,11 @@ public class TDevice {
 
     public static boolean hasInternet(Context context) {
         boolean flag;
+
+        if (context == null) {
+            return false;
+        }
+
         if (((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE
         )).getActiveNetworkInfo() != null)
             flag = true;
@@ -51,7 +57,7 @@ public class TDevice {
      */
     public static int getNetworkType(Context context) {
         int netType = 0;
-        ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if (networkInfo == null) {
             return netType;
