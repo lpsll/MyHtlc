@@ -34,7 +34,7 @@ public class PtrRecyclerView extends PtrFrameLayout {
 
     private RecyclerView mRecyclerView;
 
-    private View loadMoreFooterView;
+    private View loadMoreFooterView,loadCompleteFooterView;
 
     private BaseRecyclerAdapter mAdapter;
 
@@ -201,8 +201,17 @@ public class PtrRecyclerView extends PtrFrameLayout {
     public void noMoreData() {
         Toast.makeText(mContext, "没有更多数据了", Toast.LENGTH_SHORT).show();
         noMoreData = true;
-        mAdapter.showloadMoreFooterView(false);
+        addLoadCompleteFooterView();
+//        mAdapter.showloadMoreFooterView(false);
 
+    }
+
+    public void addLoadCompleteFooterView() {
+        loadCompleteFooterView = inflater.inflate(R.layout.view_push_load_complete_footer, mRecyclerView, false);
+        loadCompleteFooterView.setTag("loadCompleteFooterView");
+        addFooterView(loadCompleteFooterView);
+//        mAdapter.showloadMoreFooterView(false);
+        mAdapter.notifyItemChanged(mAdapter.getItemCount() - 1);
     }
 
     public void reset() {

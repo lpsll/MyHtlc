@@ -171,6 +171,7 @@ public class OrderFragment extends BaseFragment {
     private void bindAdapter(String[] titles) {
 
         mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
+
         mOrderContent.setAdapter(mAdapter);
         mOrderContent.setOffscreenPageLimit(fragmentList.size());
         mOrderTab.setSelectedIndicatorColors(getResources().getColor(R.color.navi));

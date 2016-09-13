@@ -59,7 +59,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
 
     public PtrUIHandler setupPullRefreshHeaderView() {
          return new PtrClassicDefaultHeader(getActivity()); //经典下拉刷新头部
-       // return new YncPullRefreshHeader(getActivity());
+//        return new YncPullRefreshHeader(getActivity());
     }
 
     @Override
