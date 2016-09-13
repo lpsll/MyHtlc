@@ -29,6 +29,7 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
+import com.autodesk.easyhome.shejijia.home.entity.NewsEvent;
 import com.autodesk.easyhome.shejijia.home.entity.WhetherEvent;
 import com.autodesk.easyhome.shejijia.home.fragment.HomeFragment;
 import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
@@ -480,6 +481,28 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
 
         }
+
+    public void onEventMainThread(NewsEvent event) {
+        String msg = event.getMsg();
+        LogUtils.e("mainActivity---msg---", "" + msg);
+        if(null==msg){
+
+        }else {
+            if(msg.equals("ok")){
+                // 初始化右边图片大小
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
+                        R.dimen.common_titlebar_right_icon_width,
+                        R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+            }else {
+                // 初始化右边图片大小
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.whether,
+                        R.dimen.common_titlebar_right_icon_width,
+                        R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
+            }
+
+        }
+
+    }
 
 }
 
