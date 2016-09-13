@@ -11,7 +11,7 @@
         android:gravity="center_vertical"
         android:textSize="@dimen/fs_45"
         android:paddingLeft="@dimen/ds_40"
-        android:text="1111"/>
+        android:text=""/>
     <TextView
         android:id="@+id/tv02"
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:textColor="@color/color_00"
         android:paddingLeft="@dimen/ds_100"
         android:textSize="@dimen/fs_45"
-        android:text="1111"/>
+        android:text=""/>
     <TextView
         android:id="@+id/tv03"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:textSize="@dimen/fs_45"
         android:paddingLeft="200dip"
         android:gravity=""
-        android:text="1111"/>
+        android:text=""/>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_3"

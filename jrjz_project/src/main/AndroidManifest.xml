@@ -129,6 +129,10 @@
         <activity
             android:name=".home.activity.SelectAddressActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".home.activity.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".home.activity.OrderPaymentActivity"
             android:screenOrientation="portrait" />

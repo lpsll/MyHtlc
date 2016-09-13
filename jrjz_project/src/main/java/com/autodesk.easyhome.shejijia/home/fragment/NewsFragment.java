@@ -122,28 +122,10 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
     public void onItemClick(View itemView, Object itemBean, int position) {
         super.onItemClick(itemView, itemBean, position);
         NewsEntity entity= (NewsEntity) itemBean;
-        reqRead(entity.getId());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("entity",entity);
+        HomeUiGoto.gotoNewsDetails(getActivity(),bundle);
     }
 
-    private void reqRead(String id) {
-        LookNewsDTO dto = new LookNewsDTO();
-        String time = TimeUtils.getSignTime();
-        String random = TimeUtils.genNonceStr();
-        dto.setAccessToken(AppContext.get("accessToken",""));
-        dto.setRandom(random);
-        dto.setUid(AppContext.get("uid",""));
-        dto.setTimestamp(time);
-        dto.setSign(AppContext.get("uid","")+time+random);
-        dto.setMessageId(id);
-        CommonApiClient.lookNews(getActivity(), dto, new CallBack<AddAddressResult>() {
-            @Override
-            public void onSuccess(AddAddressResult result) {
-                if (AppConfig.SUCCESS.equals(result.getCode())) {
-                    LogUtils.e("查看消息成功");
 
-                }
-
-            }
-        });
-    }
 }

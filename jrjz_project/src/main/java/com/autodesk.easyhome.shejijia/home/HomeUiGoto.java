@@ -13,11 +13,13 @@ import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ClassificationActivity;
 import com.autodesk.easyhome.shejijia.home.activity.CommunityServiceActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ModifyAddressActivity;
+import com.autodesk.easyhome.shejijia.home.activity.NewsDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.OrderPaymentActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
+import com.autodesk.easyhome.shejijia.home.fragment.NewsFragment;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity;
 import com.autodesk.easyhome.shejijia.register.activity.ForgetPwdActivity;
@@ -136,6 +138,16 @@ public class HomeUiGoto {
     }
 
     /**
+     * 跳转到消息详情页
+     * @param context
+     */
+    public static void gotoNewsDetails(Context context,Bundle bundle){
+        Intent intent = new Intent(context, NewsDetailsActivity.class);
+        intent.putExtra("bundle",bundle);
+        context.startActivity(intent);
+    }
+
+    /**
      * 跳转到修改地址页
      * @param context
      * @param b
@@ -242,4 +254,6 @@ public class HomeUiGoto {
         intent.putExtra("bundle",bundle);
         context.startActivity(intent);
     }
+
+
 }
