@@ -54,7 +54,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("忘记密码");
         //对密码格式验证
-        pwdVerify();
+//        pwdVerify();
     }
 
     @Override

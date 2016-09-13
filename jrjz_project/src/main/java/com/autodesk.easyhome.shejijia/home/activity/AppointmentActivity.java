@@ -65,8 +65,6 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-
-
 /**
  * 预约页
  */
@@ -219,7 +217,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取服务费成功");
                     mPrice = result.getData();
-                    mTvMoney.setText("￥"+mPrice+"元");
+                    mTvMoney.setText(mPrice);
                 }
 
             }

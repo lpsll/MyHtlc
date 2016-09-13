@@ -168,7 +168,7 @@
             android:textColor="@color/color_88"
             android:gravity="center"
             android:textSize="@dimen/fs_50"
-            android:text="@string/op_address"/>
+            android:text="详细地址"/>
         <EditText
             android:id="@+id/et_address"
             android:layout_width="wrap_content"

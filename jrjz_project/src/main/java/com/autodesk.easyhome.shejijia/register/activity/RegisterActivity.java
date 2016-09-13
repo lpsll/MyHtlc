@@ -2,7 +2,6 @@ package com.autodesk.easyhome.shejijia.register.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,6 @@ import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseTitleActivity {
@@ -61,7 +59,7 @@ public class RegisterActivity extends BaseTitleActivity {
     public void initView() {
         setTitleText("新用户注册");
         //对密码格式验证
-        pwdVerify();
+//        pwdVerify();
     }
 
     /**
@@ -151,12 +149,12 @@ public class RegisterActivity extends BaseTitleActivity {
         }
 
         //密码格式验证
-        boolean isMatches = pwd.matches(AppConfig.PWD_REG);
-        if (!isMatches) {
-            new AlertDialog.Builder(RegisterActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
-            etRegisterPassword.setText("");
-            return;
-        }
+//        boolean isMatches = pwd.matches(AppConfig.PWD_REG);
+//        if (!isMatches) {
+//            new AlertDialog.Builder(RegisterActivity.this).setTitle("温馨提示").setMessage("密码格式为6位以上字母或数字!").setPositiveButton("确定", null).show();
+//            etRegisterPassword.setText("");
+//            return;
+//        }
 
         //两次密码一致验证
         if (!pwd.equals(pwdAgain)) {
@@ -222,10 +220,4 @@ public class RegisterActivity extends BaseTitleActivity {
         });
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
-        ButterKnife.bind(this);
-    }
 }

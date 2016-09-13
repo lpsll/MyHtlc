@@ -275,16 +275,36 @@
             android:text="@string/app_money"
             android:textColor="@color/color_8E"
             android:textSize="@dimen/fs_45" />
-
         <TextView
+            android:id="@+id/tv_shangmenfei1"
             android:textStyle="bold"
             android:layout_toRightOf="@id/tv_shangmenfei"
-            android:id="@+id/tv_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/ds_20"
-            android:text=""
+            android:text="￥"
+            android:textColor="@color/color_bottom"
+            android:textSize="@dimen/fs_45" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_shangmenfei1"
+            android:id="@+id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="11"
+            android:textColor="@color/color_bottom"
+            android:textSize="@dimen/fs_45" />
+
+        <TextView
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="元"
             android:textColor="@color/color_bottom"
             android:textSize="@dimen/fs_45" />
 

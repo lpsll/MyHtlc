@@ -1,10 +1,8 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.renderscript.Double2;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,17 +23,11 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
-import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
-import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
-import com.autodesk.easyhome.shejijia.login.dto.LoginForCodeDTO;
-import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
@@ -45,7 +37,6 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import butterknife.Bind;
 import butterknife.OnClick;
-import cn.jpush.android.api.JPushInterface;
 
 /**
  * 订单支付页
@@ -129,8 +120,6 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     LogUtils.e("获取用户信息成功=====" + result.getData().toString());
 
                     balance = result.getData().getBalance();
-
-
                 }
             }
         });

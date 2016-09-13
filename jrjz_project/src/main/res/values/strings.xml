@@ -33,7 +33,7 @@
     <string name="edit_adresss">编辑</string>
     <string name="op_name">姓名</string>
     <string name="op_tel">电话</string>
-    <string name="op_address">详细地址</string>
+    <string name="op_address">地址</string>
     <string name="op_money">钱包支付</string>
     <string name="op_wx">微信支付</string>
     <string name="op_zfb">支付宝支付</string>

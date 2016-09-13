@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/ds_30"
                 android:background="@null"
-                android:hint="6位以上字母或数字密码"
+                android:hint="请输入密码"
                 android:inputType="textPassword"
                 android:textColorHint="@color/btn_gray"
                 android:textCursorDrawable="@drawable/color_cursor"
