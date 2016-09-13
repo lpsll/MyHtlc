@@ -7,9 +7,9 @@
         android:id="@+id/lin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_400"
-        android:layout_marginTop="@dimen/ds_40"
+        android:layout_marginTop="@dimen/ds_50"
         android:layout_marginLeft="@dimen/ds_40"
-        android:layout_marginBottom="@dimen/ds_40"
+        android:layout_marginBottom="@dimen/ds_50"
         android:layout_marginRight="@dimen/ds_40"
         android:background="@color/color_ffc"
         android:orientation="vertical">
