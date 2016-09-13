@@ -57,5 +57,6 @@
     <color name="price_red">#ff3434</color>
     <color name="housekeeping_detail_red">#c50000</color>
     <color name="housekeeping_detail_grey">#e6e6e6</color>
+    <color name="housekeeping_grey">#f4f4f4</color>
 
 </resources>

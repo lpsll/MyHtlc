@@ -12,7 +12,7 @@
             android:id="@+id/left_view"
             android:layout_width="@dimen/ds_20"
             android:layout_height="match_parent"
-            android:background="@color/navi"/>
+            android:background="@color/color_bottom"/>
     <TextView
         android:id="@+id/left_list_item"
         android:layout_width="0dip"

@@ -219,7 +219,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取服务费成功");
                     mPrice = result.getData();
-                    mTvMoney.setText(mPrice);
+                    mTvMoney.setText("￥"+mPrice+"元");
                 }
 
             }

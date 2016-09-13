@@ -173,7 +173,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_60"
                         android:text="@string/select_address"
-                        android:textColor="@color/color_8E"
+                        android:textColor="@color/tv_black"
                         android:textSize="@dimen/fs_45" />
 
                     <TextView
@@ -182,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_40"
                         android:text=""
-                        android:textColor="@color/color_8E"
+                        android:textColor="@color/tv_black"
                         android:textSize="@dimen/fs_45" />
 
                     <TextView
@@ -191,7 +191,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/ds_40"
                         android:text=""
-                        android:textColor="@color/color_8E"
+                        android:textColor="@color/tv_black"
                         android:textSize="@dimen/fs_45" />
                 </LinearLayout>
 
@@ -202,7 +202,7 @@
                     android:layout_marginLeft="@dimen/ds_60"
                     android:layout_marginTop="@dimen/ds_30"
                     android:text=""
-                    android:textColor="@color/color_8E"
+                    android:textColor="@color/tv_black"
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
 
@@ -247,9 +247,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/ds_1"
-            android:layout_marginLeft="@dimen/ds_30"
-            android:layout_marginRight="@dimen/ds_30"
-            android:background="@color/tv_grey" />
+            android:layout_marginLeft="@dimen/ds_40"
+            android:layout_marginRight="@dimen/ds_40"
+            android:background="#d4d4d4" />
 
         <RelativeLayout
             android:id="@+id/rl_housekeeping_detail_sevice_time"
@@ -311,7 +311,7 @@
                 android:hint="请输入特殊需求"
                 android:background="@null"
                 android:textSize="@dimen/fs_45"
-                android:textColor="@color/tv_hint" />
+                android:textColorHint="@color/tv_hint" />
 
 
         </RelativeLayout>

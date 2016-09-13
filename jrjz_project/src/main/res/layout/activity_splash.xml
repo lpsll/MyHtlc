@@ -7,17 +7,17 @@
         android:id="@+id/splash_img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/apptwo"/>
+        android:background="@drawable/appone"/>
     <Button
         android:visibility="gone"
         android:id="@+id/ad_tv"
         style="@style/UserBtSendStyle"
-        android:layout_width="@dimen/ds_290"
-        android:layout_height="@dimen/ds_110"
-        android:layout_marginTop="@dimen/ds_50"
-        android:layout_marginRight="@dimen/ds_230"
+        android:layout_width="@dimen/ds_180"
+        android:layout_height="@dimen/ds_70"
+        android:layout_marginTop="@dimen/ds_80"
+        android:layout_marginRight="@dimen/ds_180"
         android:gravity="center"
         android:layout_gravity="right"
         android:textColor="@color/color_00"
-        android:textSize="@dimen/fs_45" />
+        android:textSize="@dimen/fs_40" />
 </FrameLayout>

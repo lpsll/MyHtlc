@@ -13,7 +13,6 @@ import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
@@ -21,9 +20,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.AddAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
-import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -94,7 +91,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
-                tv.setTextSize(12.0f);    //设置大小
+                tv.setTextSize(15.0f);    //设置大小
                 mCity =tv.getText().toString();
                 LogUtils.e("mTvCity----",""+mCity);
             }
@@ -108,7 +105,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
-                tv.setTextSize(12.0f);    //设置大小
+                tv.setTextSize(15.0f);    //设置大小
                 mAre =tv.getText().toString();
             }
 
@@ -121,7 +118,7 @@ public class AddAddressActivity extends BaseTitleActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView)view;
-                tv.setTextSize(12.0f);    //设置大小
+                tv.setTextSize(15.0f);    //设置大小
                 mHuan =tv.getText().toString();
             }
 

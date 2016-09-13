@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia;
 
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -56,7 +54,7 @@ public class SplashActivity extends BaseActivity {
      */
     private void preparation() {
         mAdTv.setVisibility(View.VISIBLE);
-        handler = new ReadyHandler(5, new ReadyListener() {
+        handler = new ReadyHandler(4, new ReadyListener() {
 
             @Override
             public void onGoMain(int time) {

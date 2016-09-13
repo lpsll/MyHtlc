@@ -76,11 +76,7 @@
             android:name=".GuideActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <!-- 微信支付 start -->
@@ -101,7 +97,14 @@
         <!-- 支付宝支付开始 start -->
         <activity
             android:name=".SplashActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+
+        </activity>
 
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"

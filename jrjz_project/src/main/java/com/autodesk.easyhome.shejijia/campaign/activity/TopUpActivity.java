@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.alipay.sdk.app.PayTask;
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.campaign.entity.ZfbTopUpEntity;
@@ -237,7 +238,7 @@ public class TopUpActivity extends BaseTitleActivity {
         dto.setSign(AppContext.get("uid", "") + time + random);
         double amount = Double.parseDouble(moneyForUserInput);
         dto.setAmount(amount);
-
+//      dto.setAmount(0.01);
         CommonApiClient.zfbTopUp(this, dto, new CallBack<ZfbTopUpEntity>() {
             @Override
             public void onSuccess(ZfbTopUpEntity result) {
@@ -268,6 +269,8 @@ public class TopUpActivity extends BaseTitleActivity {
         dto.setSign(AppContext.get("uid", "") + time + random);
         double amount = Double.parseDouble(moneyForUserInput);
         dto.setAmount(amount);
+
+
 
         CommonApiClient.zfbTopUp(this, dto, new CallBack<ZfbTopUpEntity>() {
             @Override
@@ -397,6 +400,11 @@ public class TopUpActivity extends BaseTitleActivity {
                         setResult(1009);
                         //发送广播给我的页面更新数据
                         sendBroadcast(new Intent(AppConfig.TOPUP_RECIVER_ACTION));
+
+                        //跳转到个人中心
+                        Intent intent2 = new Intent(TopUpActivity.this, MainActivity.class);
+                        intent2.putExtra("tag",3);
+                        TopUpActivity.this.startActivity(intent2);
 
                         finish();
                     } else {

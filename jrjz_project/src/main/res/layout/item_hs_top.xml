@@ -30,11 +30,13 @@
 
     </LinearLayout>
 
-    <View
+    <ImageView
+        android:layout_marginLeft="@dimen/ds_40"
+        android:layout_marginRight="@dimen/ds_40"
+        android:src="@drawable/xuxianxdpi_03"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/ds_3"
-        android:layout_marginTop="@dimen/ds_20"
-        android:background="@color/color_cc"/>
+        android:layout_height="wrap_content" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/homeservice_item_list"
         android:layout_width="match_parent"
@@ -45,11 +47,11 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_3"
-        android:layout_marginTop="@dimen/ds_20"
+        android:layout_marginTop="@dimen/ds_30"
         android:background="@color/color_cc"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_40"
-        android:layout_marginTop="@dimen/ds_60"
-        android:background="@color/color_cc"/>
+        android:layout_marginTop="@dimen/ds_100"
+        android:background="@color/housekeeping_grey"/>
 </LinearLayout>
