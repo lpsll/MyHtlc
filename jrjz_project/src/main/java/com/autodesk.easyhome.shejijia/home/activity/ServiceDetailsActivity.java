@@ -3,6 +3,7 @@ package com.autodesk.easyhome.shejijia.home.activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -89,7 +90,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
     private String mSelName,mSelPhone,mSelAddress,mTm;
     boolean login;
     DfaultEntity data;
-    private String img,descr,price,id,name,prejectName;
+    private String img,descr,price,id,name,prejectName,phone;
 
     @Override
     protected int getContentResId() {
@@ -105,6 +106,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         descr = getIntent().getBundleExtra("bundle").getString("descr");
         price = getIntent().getBundleExtra("bundle").getString("price");
         id= getIntent().getBundleExtra("bundle").getString("id");
+        phone= getIntent().getBundleExtra("bundle").getString("phone");
         prejectName= getIntent().getBundleExtra("bundle").getString("preject");
         tvHousekeepingDetailTitle.setText(descr);
         tvHousekeepingDetailPrice.setText("¥"+price);
@@ -147,7 +149,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         addTv04.setText(data.getCity()+data.getDistrict()+data.getArea()+data.getAddress());
     }
 
-    @OnClick({R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok})
+    @OnClick({R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok, R.id.ll_housekeeping_detail_contact})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
@@ -178,6 +180,12 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
+                break;
+            case R.id.ll_housekeeping_detail_contact:
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+                        + phone));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
         }
     }

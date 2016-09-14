@@ -18,6 +18,7 @@ public class MineCouponAdapter extends BaseSimpleRecyclerAdapter<MineCouponEntit
     private final int type;
     LinearLayout linearLayout;
     TextView tv;
+    private String effective,expire;
 
     public MineCouponAdapter(int type) {
         this.type = type;
@@ -32,6 +33,8 @@ public class MineCouponAdapter extends BaseSimpleRecyclerAdapter<MineCouponEntit
     public void bindData(BaseRecyclerViewHolder holder, MineCouponEntity mineCouponEntity, int position) {
         linearLayout = holder.getView(R.id.mine_coupon_lin);
         tv = holder.getView(R.id.tv_tv);
+        effective = mineCouponEntity.getEffective_date().substring(0,10);
+        expire = mineCouponEntity.getExpire_date().substring(0,10);
         if (type == 1) {
             if (mineCouponEntity.getAmount_level().equals("1")) {
                 linearLayout.setBackgroundColor(Color.parseColor("#A4E0D6"));
@@ -46,17 +49,17 @@ public class MineCouponAdapter extends BaseSimpleRecyclerAdapter<MineCouponEntit
             }
 
             tv.setVisibility(View.GONE);
-            holder.setText(R.id.tv_time, mineCouponEntity.getEffective_date().replace(" 00:00:00", "") + "至" + mineCouponEntity.getExpire_date().replace(" 00:00:00", ""));
+            holder.setText(R.id.tv_time, effective + "至" + expire);
         } else if (type == 2) {
             linearLayout.setBackgroundColor(Color.parseColor("#008ce7"));
             tv.setVisibility(View.VISIBLE);
             tv.setText("已过期");
-            holder.setText(R.id.tv_time, mineCouponEntity.getExpire_date().replace(" 00:00:00", "") + "已过期");
+            holder.setText(R.id.tv_time, expire + "已过期");
         } else if (type == 3) {
             linearLayout.setBackgroundColor(Color.parseColor("#999999"));
             tv.setVisibility(View.VISIBLE);
             tv.setText("已使用");
-            holder.setText(R.id.tv_time, mineCouponEntity.getExpire_date().replace(" 00:00:00", "") + "已使用");
+            holder.setText(R.id.tv_time, expire + "已使用");
         }
         holder.setText(R.id.tv_money, mineCouponEntity.getValue_amount().replace(".00", ""));
         holder.setText(R.id.tv_sy, "满" + mineCouponEntity.getFace_amount().replace(".00", "") + "元使用");

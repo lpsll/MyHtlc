@@ -95,7 +95,7 @@
                 android:textColor="@color/color_ff"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/ds_60"
-                android:text="11111"/>
+                android:text=""/>
         </RelativeLayout>
     </LinearLayout>
 

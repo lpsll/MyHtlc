@@ -86,6 +86,7 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
                         bundle.putString("price",data.getPrice());
                         bundle.putString("id",data.getId());
                         bundle.putString("preject",data.getName());
+                        bundle.putString("phone",homeServiceEntity.getPhone());
                         HomeUiGoto.gotoServiceDetials(getActivity(),bundle);
                     }
                 });
