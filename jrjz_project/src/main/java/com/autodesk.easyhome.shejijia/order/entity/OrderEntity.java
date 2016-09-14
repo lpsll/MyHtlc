@@ -14,6 +14,16 @@ public class OrderEntity extends BaseEntity {
     private String address;
     private String empName;
     private String serviceFee;
+    private String orderNo;
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
+    }
+
+
 
     public String getOrderId() {
         return orderId;

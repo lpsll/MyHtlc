@@ -58,7 +58,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         List<String> dateAndTime = StringUtils.getDateAndTime(serviceTime);
 
         holder.setText(R.id.order_tv01,orderEntity.getServiceName());
-        holder.setText(R.id.order_tv02,orderEntity.getOrderId());
+        holder.setText(R.id.order_tv02,orderEntity.getOrderNo());
         holder.setText(R.id.order_tv03,dateAndTime.get(0));
         holder.setText(R.id.order_tv04,orderEntity.getAddress());
         holder.setText(R.id.order_tv03_time,dateAndTime.get(1));
