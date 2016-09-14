@@ -372,9 +372,9 @@ public class MineFragment extends BaseFragment {
             LogUtils.e("type---",""+type);
             WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
-            sp.setTitle("居然之家");
+            sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然之家,一切只为提高您的生活品质");
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
             LogUtils.e("sp---",""+sp);
@@ -388,9 +388,9 @@ public class MineFragment extends BaseFragment {
             LogUtils.e("type---",""+type);
             Wechat.ShareParams sp = new Wechat.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
-            sp.setTitle("居然之家");
+            sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然之家,一切只为提高您的生活品质");
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl("http://baidu.com");
 
@@ -401,10 +401,9 @@ public class MineFragment extends BaseFragment {
         else if(type.equals("3")){
             LogUtils.e("type---",""+type);
             SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-            sp.setTitle("居然之家");
+            sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然之家,一切只为提高您的生活品质");
-
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
             sn.share(sp);
@@ -414,9 +413,10 @@ public class MineFragment extends BaseFragment {
             QQ.ShareParams sp = new QQ.ShareParams();
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然之家,一切只为提高您的生活品质");
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl("http://baidu.com");
+//            sp.setImagePath("/src/main/assets/share_photo.png");
             LogUtils.e("sp---",""+sp);
             Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);
@@ -426,13 +426,13 @@ public class MineFragment extends BaseFragment {
         else if(type.equals("5")){
             LogUtils.e("type---",""+type);
             QZone.ShareParams sp = new QZone.ShareParams();
-            sp.setTitle("居然之家");
+            sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然之家,一切只为提高您的生活品质");
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl("http://baidu.com");
             // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-            sp.setComment("居然之家,一切只为提高您的生活品质");
+            sp.setComment("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // site是分享此内容的网站名称，仅在QQ空间使用
             sp.setSite(getString(R.string.app_name));
             // siteUrl是分享此内容的网站地址，仅在QQ空间使用
@@ -466,9 +466,5 @@ public class MineFragment extends BaseFragment {
             //用户取消操作会调用这里
         }
     };
-
-
-
-
 
 }

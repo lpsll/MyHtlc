@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.autodesk.easyhome.shejijia.common.base.BaseApplication;
 
 import cn.jpush.android.api.JPushInterface;
+import cn.sharesdk.framework.ShareSDK;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -30,6 +31,7 @@ public class AppContext extends BaseApplication {
         JPushInterface.setDebugMode(true);
         JPushInterface.init(this);
 
+        ShareSDK.initSDK(this,"16ab104736290");
 
 
     }

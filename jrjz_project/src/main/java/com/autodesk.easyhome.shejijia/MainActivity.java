@@ -7,7 +7,6 @@ import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +17,6 @@ import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseHomeTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
-import com.autodesk.easyhome.shejijia.common.eventbus.ErrorEvent;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
@@ -41,8 +39,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import cn.sharesdk.framework.ShareSDK;
-import de.greenrobot.event.EventBus;
 
 /*
 整个程序的MainActivity，入口
@@ -92,7 +88,7 @@ public class MainActivity extends BaseHomeTitleActivity {
 
     @Override
     public void initView() {
-        ShareSDK.initSDK(this);
+//        ShareSDK.initSDK(this);
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
         mBaseEnsure = (TextView) findViewById(R.id.base_titlebar_ensure);
         mBaseBack.setText("北京");

@@ -77,7 +77,6 @@ public class LoginForCodeActivity extends BaseTitleActivity {
                     timeCountUtil.start();
                     getSmsVerifyCode();
                 }
-
                 break;
             case R.id.tv_ok:
                 //验证码登录
@@ -173,6 +172,4 @@ public class LoginForCodeActivity extends BaseTitleActivity {
             }
         });
     }
-
-
 }
