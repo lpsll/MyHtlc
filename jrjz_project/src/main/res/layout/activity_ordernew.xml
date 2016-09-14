@@ -229,14 +229,26 @@
                         android:textSize="@dimen/fs_45" />
                 </LinearLayout>
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/fs_45"
+                        android:text=""
+                        android:textColor="@color/color_00"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
+
                     android:layout_marginLeft="@dimen/ds_40"
                     android:layout_marginRight="@dimen/ds_90"
                     android:background="@drawable/right" />
+                </LinearLayout>
             </RelativeLayout>
 
             <View

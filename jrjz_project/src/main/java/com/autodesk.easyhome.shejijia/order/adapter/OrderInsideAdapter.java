@@ -51,9 +51,6 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
     @Override
     public void bindData(BaseRecyclerViewHolder holder, OrderEntity orderEntity, final int position) {
         LogUtils.e("bindData---type---",""+type);
-        LogUtils.e("bindData---type---",""+type);
-        LogUtils.e("bindData---type---",""+type);
-        LogUtils.e("bindData---type---",""+type);
         list.add(position,orderEntity);
         status = orderEntity.getStatus();
 
