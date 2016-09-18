@@ -38,7 +38,7 @@ public class AppConfig {
     public static final String Wx_App_Id = "wxfd04ee1c78a46319";
 
 //    /**
-//     * 用户信息全局常量
+//     * 用户信息全局常量11
 //     */
 //
 //    public static final String ACCESSTOKEN = "accessToken";
