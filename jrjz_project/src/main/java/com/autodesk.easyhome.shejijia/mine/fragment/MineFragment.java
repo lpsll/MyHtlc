@@ -377,7 +377,7 @@ public class MineFragment extends BaseFragment {
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
-            // url仅在微信（包括好友和朋友圈）中使用
+            // url仅在微信（包括好友和朋友圈）中使用11111
             sp.setUrl(AppConfig.DOWNLOAD);
 
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_photo);
