@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
 import de.greenrobot.event.EventBus;
 
 /**
- * Created by John_Libo on 2016/9/13.
+ * 消息中心之消息详情
  */
 public class NewsDetailsActivity extends BaseTitleActivity {
     NewsEntity entity;
@@ -34,12 +34,13 @@ public class NewsDetailsActivity extends BaseTitleActivity {
 
     @Override
     protected int getContentResId() {
-        return R.layout.item_news;
+        return R.layout.activity_news;
     }
 
     @Override
     public void initView() {
-        entity = (NewsEntity) getIntent().getSerializableExtra("entity");
+        entity = (NewsEntity) getIntent().getBundleExtra("bundle").getSerializable("entity");
+        LogUtils.e("entity---",""+entity);
         tv01.setText(entity.getSmtitle());
         tv02.setText(entity.getSmcontent());
         tv03.setText(entity.getCreatedate());

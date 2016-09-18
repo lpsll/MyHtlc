@@ -1,7 +1,10 @@
 package com.autodesk.easyhome.shejijia.order.fragment;
 
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
@@ -20,9 +23,11 @@ import com.autodesk.easyhome.shejijia.order.adapter.CouponAdapter;
 import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
 import com.autodesk.easyhome.shejijia.order.entity.ServiceCouponEntity;
 import com.autodesk.easyhome.shejijia.order.entity.ServiceCouponResult;
+import com.lidong.photopicker.Image;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerAdapter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.OnItemClick;
@@ -32,6 +37,9 @@ import butterknife.OnItemClick;
  */
 public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity> {
     private String serviceId,menoy;
+    List<String> aList = new ArrayList<>();
+    List<String> bList = new ArrayList<>();
+    List<Boolean> cList = new ArrayList<>();
     @Override
     public BaseRecyclerAdapter<ServiceCouponEntity> createAdapter() {
         return new CouponAdapter();
@@ -49,6 +57,8 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
 
     @Override
     protected void sendRequestData() {
+        AppContext.set("couponMenoy","");
+        AppContext.set("couponMenoy_id","");
         Bundle b  = getArguments();
         if(b!=null){
             serviceId = b.getString("ServiceId");
@@ -74,6 +84,22 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
                     mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                     requestDataSuccess(result);
                     setDataResult(result.getData().getData());
+                    if(null==result.getData().getData()){
+                        return;
+
+                    }else {
+                        for(int i =0;i<result.getData().getData().size();i++){
+                            aList.add(i,result.getData().getData().get(i).getId());
+                        }
+                        for(int i =0;i<result.getData().getData().size();i++){
+                            bList.add(i,result.getData().getData().get(i).getValue_amount());
+                        }
+                        for(int i =0;i<result.getData().getData().size();i++){
+                            cList.add(i,true);
+                        }
+                    }
+
+
                 }
 
             }
@@ -82,26 +108,69 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
 
     @Override
     public void initData() {
-
+        LogUtils.e("ServiceCouponFragment--initData---","ServiceCouponFragment--initData");
     }
 
     public boolean autoRefreshIn(){
         return true;
     }
 
+
+
+    private String mId,mAmount;
+    Double mMoney;
+    List<String> mList = new ArrayList<>();
+    List<String> tList = new ArrayList<>();
     @Override
     public void onItemClick(View itemView, Object itemBean, int position) {
         super.onItemClick(itemView, itemBean, position);
-        ServiceCouponEntity entity = (ServiceCouponEntity) itemBean;
-        double t1 = Double.parseDouble(menoy);
-        double t2 = Double.parseDouble(entity.getFace_amount());
-        if(t1>t2||t1==t2){
-            AppContext.set("couponMenoy",entity.getValue_amount());
-            AppContext.set("couponMenoy_id",entity.getId());
-            getActivity().finish();
+        LinearLayout linearLayout = (LinearLayout) itemView;
+        ImageView img =(ImageView)linearLayout.findViewById(R.id.coupon_img);
+        if(cList.get(position)){
+            img.setVisibility(View.VISIBLE);
+            linearLayout.setEnabled(false);
+            cList.set(position,false);
+            ServiceCouponEntity entity = (ServiceCouponEntity) itemBean;
+            mList.add(aList.get(position));
+            tList.add(bList.get(position));
+            LogUtils.e("mList---",""+mList+"--size"+mList.size());
+            LogUtils.e("tList---",""+tList+"--size"+tList.size());
+            double t1 = Double.parseDouble(menoy);
+            double t2 = Double.parseDouble(entity.getFace_amount());
+            if(t1>t2||t1==t2){
+                if(null==mAmount){
+                    mAmount = tList.get(0);
+                    mMoney = Double.parseDouble(mAmount);
+                }else {
+                    mMoney = Double.parseDouble(mAmount);
+                    for(int i=1;i<tList.size();i++){
+                        mMoney+=Double.parseDouble(tList.get(i));
+
+                    }
+                }
+
+                LogUtils.e("mMoney---",""+mMoney);
+                AppContext.set("couponMenoy",String.valueOf(mMoney));
+                if(null==mId){
+                    mId=mList.get(0);
+                }else {
+                    mId=mList.get(0);
+                    for(int i=1;i<mList.size();i++){
+                        mId+=","+mList.get(i);
+                    }
+                }
+
+                LogUtils.e("mId---",""+mId);
+                AppContext.set("couponMenoy_id",mId);
+
+            }else {
+                DialogUtils.showPrompt(getActivity(), "提示","不可使用", "知道了");
+            }
         }else {
-            DialogUtils.showPrompt(getActivity(), "提示","不可使用", "知道了");
+            img.setVisibility(View.GONE);
         }
+
+
 
     }
 }

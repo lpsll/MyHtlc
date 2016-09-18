@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.autodesk.easyhome.shejijia.order.activity.EvaluateActivity;
 import com.autodesk.easyhome.shejijia.order.activity.IntegralActivity;
 import com.autodesk.easyhome.shejijia.order.activity.OrderNewPaymentActivity;
+import com.autodesk.easyhome.shejijia.order.activity.ServiceCouponActivity;
 
 /**
  * Created by John_Libo on 2016/8/17.
@@ -52,6 +53,17 @@ public class OrderUiGoto {
         Intent intent = new Intent(act, IntegralActivity.class);
         intent.putExtra("bundle",bundle);
         act.startActivityForResult(intent,INTEGAL_REQUEST);
+    }
+
+    /**
+     * 跳转到订单之优惠券页
+     * @param context
+     */
+    public static final int SC_REQUEST = 0112;
+    public static void gotoServiceCoupon(Activity act, Bundle bundle){
+        Intent intent = new Intent(act, ServiceCouponActivity.class);
+        intent.putExtra("bundle",bundle);
+        act.startActivityForResult(intent,SC_REQUEST);
     }
 
 

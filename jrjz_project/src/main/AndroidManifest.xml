@@ -150,6 +150,9 @@
         <activity
             android:name=".campaign.activity.TopUpActivity"
             android:launchMode="singleTask" />
+        <activity
+            android:name=".order.activity.ServiceCouponActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".mine.activity.ChangePhoneActivity" />
         <activity android:name=".mine.activity.FeedBackActivity" />
         <activity android:name=".mine.activity.MoreSettingActivity" />

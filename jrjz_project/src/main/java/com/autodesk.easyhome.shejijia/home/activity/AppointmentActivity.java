@@ -339,6 +339,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                     bundle.putString("mName",mName);
                     bundle.putString("mPrice",mPrice);
                     bundle.putString("orderId",result.getData());
+                    bundle.putString("serviceId",mId);
                     bundle.putString("mAddTv01",mAddTv01.getText().toString());
                     bundle.putString("mAddTv02",mAddTv02.getText().toString());
                     bundle.putString("mAddTv04",mAddTv04.getText().toString());

@@ -3,11 +3,15 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 import android.graphics.Color;
 import android.widget.LinearLayout;
 
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.order.entity.ServiceCouponEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by John_Libo on 2016/8/18.
@@ -22,6 +26,7 @@ public class CouponAdapter extends BaseSimpleRecyclerAdapter<ServiceCouponEntity
 
     @Override
     public void bindData(BaseRecyclerViewHolder holder, ServiceCouponEntity serviceCouponEntity, int position) {
+
         linearLayout = holder.getView(R.id.lin);
         if(serviceCouponEntity.getAmount_level().equals("1")){
             linearLayout.setBackgroundColor(Color.parseColor("#A4E0D6"));

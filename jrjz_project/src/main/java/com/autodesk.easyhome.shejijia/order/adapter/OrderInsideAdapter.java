@@ -2,6 +2,7 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +14,11 @@ import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
@@ -83,32 +86,41 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                     OrderUiGoto.gotoEvaluateStrat((Activity) context,bundle);
                 }
                 if(mBtn.getText().toString().equals("去支付")){
+                    AppContext.set("statu", false);
                     Bundle bundle = new Bundle();
                     LogUtils.e("id----",list.get(position).getOrderId());
                     bundle.putString("id",list.get(position).getOrderId());
                     OrderUiGoto.gotoOrderNew(context,bundle);
                 }
                 if(mBtn.getText().toString().equals("取消订单")){
-                    CancelOrderDTO dto = new CancelOrderDTO();
-                    String time = TimeUtils.getSignTime();
-                    String random = TimeUtils.genNonceStr();
-                    dto.setAccessToken(AppContext.get("accessToken",""));
-                    dto.setRandom(random);
-                    dto.setUid(AppContext.get("uid",""));
-                    dto.setTimestamp(time);
-                    dto.setSign(AppContext.get("uid","")+time+random);
-                    dto.setOrderId(list.get(position).getOrderId());
-                    CommonApiClient.cancel((Activity) context, dto, new CallBack<OrderCancelResult>() {
+                    DialogUtils.confirm(context, "如果取消订单，优惠券和积分不予退回！", new DialogInterface.OnClickListener() {
                         @Override
-                        public void onSuccess(OrderCancelResult result) {
-                            if (AppConfig.SUCCESS.equals(result.getCode())) {
-                                LogUtils.e("取消订单成功");
-                                tv.setText("已取消");
-                                bt.setText("已取消");
-                            }
+                        public void onClick(DialogInterface dialog, int which) {
+                            CancelOrderDTO dto = new CancelOrderDTO();
+                            String time = TimeUtils.getSignTime();
+                            String random = TimeUtils.genNonceStr();
+                            dto.setAccessToken(AppContext.get("accessToken",""));
+                            dto.setRandom(random);
+                            dto.setUid(AppContext.get("uid",""));
+                            dto.setTimestamp(time);
+                            dto.setSign(AppContext.get("uid","")+time+random);
+                            dto.setOrderId(list.get(position).getOrderId());
+                            CommonApiClient.cancel((Activity) context, dto, new CallBack<OrderCancelResult>() {
+                                @Override
+                                public void onSuccess(OrderCancelResult result) {
+                                    if (AppConfig.SUCCESS.equals(result.getCode())) {
+                                        LogUtils.e("取消订单成功");
+                                        tv.setText("已取消");
+                                        bt.setText("已取消");
+                                        DialogUtils.showPrompt(context, "提示","订单已取消！", "知道了");
+                                    }
+
+                                }
+                            });
 
                         }
                     });
+
 
                 }
             }
@@ -149,9 +161,6 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             tv07.setText("已完成");
             btn.setVisibility(View.GONE);
         }
-
-
-
 
     }
 

@@ -191,7 +191,8 @@ public class EvaluateActivity extends BaseTitleActivity {
             public void onSuccess(IntegralResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("评价成功");
-                    finish();
+                    DialogUtils.showPromptListen(EvaluateActivity.this, "提示","感谢您的评价，我们将继续努力！", "知道了",listener);
+
 //                    Intent intent2 = new Intent(EvaluateActivity.this, MainActivity.class);
 //                    intent2.putExtra("tag",1);
 //                    EvaluateActivity.this.startActivity(intent2);
@@ -202,6 +203,12 @@ public class EvaluateActivity extends BaseTitleActivity {
         });
     }
 
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    };
 
 
     @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.evaluate_btn})

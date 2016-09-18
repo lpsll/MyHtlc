@@ -24,6 +24,7 @@ import com.autodesk.easyhome.shejijia.campaign.entity.ZfbTopUpEntity;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
@@ -402,9 +403,8 @@ public class TopUpActivity extends BaseTitleActivity {
                         sendBroadcast(new Intent(AppConfig.TOPUP_RECIVER_ACTION));
 
                         //跳转到个人中心
-                        Intent intent2 = new Intent(TopUpActivity.this, MainActivity.class);
-                        intent2.putExtra("tag",3);
-                        TopUpActivity.this.startActivity(intent2);
+                        DialogUtils.showPromptListen(TopUpActivity.this, "提示","充值成功！", "知道了",listener);
+
 
                         finish();
                     } else {
@@ -436,6 +436,17 @@ public class TopUpActivity extends BaseTitleActivity {
 
         ;
     };
+
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent2 = new Intent(TopUpActivity.this, MainActivity.class);
+            intent2.putExtra("tag",3);
+            TopUpActivity.this.startActivity(intent2);
+        }
+    };
+
     private static final int RQF_PAY = 1;
     private String infomation;  //调用支付宝所需信息
 

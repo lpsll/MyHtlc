@@ -71,9 +71,12 @@ public class AsyncCallBack<T> implements Callback {
 					callback.sendMsg(CallBack.SUCCESS, t);
 
 					BaseEntity entity = (BaseEntity) t;
-					EventBus.getDefault().post(
-							new ErrorEvent(entity.getCode(),
-									entity.getMsg(), tag));
+//				if(AppConfig.SUCCESS.equals(entity.getCode())){
+//
+//				}
+//					EventBus.getDefault().post(
+//							new ErrorEvent(entity.getCode(),
+//									entity.getMsg(), tag));
 			}catch (Exception e){
 				callback.sendMsg(CallBack.FAIL, (T) AppConfig.ERROR_PARSER_MSG);
 				EventBus.getDefault().post(
