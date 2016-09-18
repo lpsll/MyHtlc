@@ -416,7 +416,7 @@ public class MineFragment extends BaseFragment {
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
 
-            sp.setImageUrl("");
+            sp.setImageUrl("http://101.200.167.130.8080/jrjz-api/static/img/share.png");
 
             Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
@@ -432,7 +432,7 @@ public class MineFragment extends BaseFragment {
             sp.setTitleUrl(AppConfig.DOWNLOAD);
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
 
-            sp.setImageUrl("");
+            sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
 
 
             LogUtils.e("sp---",""+sp);
@@ -457,7 +457,7 @@ public class MineFragment extends BaseFragment {
             sp.setSiteUrl(AppConfig.DOWNLOAD);
 
 
-            sp.setImageUrl("");
+            sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
 
             Platform qzone = ShareSDK.getPlatform(QZone.NAME);
             qzone.setPlatformActionListener(paListener);
