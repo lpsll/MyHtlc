@@ -38,7 +38,6 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -333,7 +332,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("钱包支付成功");
-                    DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "支付成功，等待师傅上面！", "知道了", listener);
+                    DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "支付成功，等待师傅上门！", "知道了", listener);
 
 
                 }
