@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -376,7 +378,11 @@ public class MineFragment extends BaseFragment {
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // url仅在微信（包括好友和朋友圈）中使用
-            sp.setUrl("http://baidu.com");
+            sp.setUrl(AppConfig.DOWNLOAD);
+
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_photo);
+            sp.setImageData(bitmap);
+
             LogUtils.e("sp---",""+sp);
             Platform wm = ShareSDK.getPlatform(WechatMoments.NAME);
             wm.setPlatformActionListener(paListener);
@@ -392,7 +398,12 @@ public class MineFragment extends BaseFragment {
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // url仅在微信（包括好友和朋友圈）中使用
-            sp.setUrl("http://baidu.com");
+            sp.setUrl(AppConfig.DOWNLOAD);
+
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_photo);
+            sp.setImageData(bitmap);
+
+//            sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jp");
 
             Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
             wechat.setPlatformActionListener(paListener);
@@ -404,19 +415,26 @@ public class MineFragment extends BaseFragment {
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+
+            sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jpg");
+
             Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
             sn.share(sp);
         }
         else if(type.equals("4")){
             LogUtils.e("type---",""+type);
+
             QQ.ShareParams sp = new QQ.ShareParams();
             sp.setTitle("居然之家");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
-            sp.setTitleUrl("http://baidu.com");
-//            sp.setImagePath("/src/main/assets/share_photo.png");
+            sp.setTitleUrl(AppConfig.DOWNLOAD);
+            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+
+            sp.setImageUrl("");
+
+
             LogUtils.e("sp---",""+sp);
             Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);
@@ -430,13 +448,16 @@ public class MineFragment extends BaseFragment {
             // text是分享文本，所有平台都需要这个字段
             sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
-            sp.setTitleUrl("http://baidu.com");
+            sp.setTitleUrl(AppConfig.DOWNLOAD);
             // comment是我对这条分享的评论，仅在人人网和QQ空间使用
             sp.setComment("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
             // site是分享此内容的网站名称，仅在QQ空间使用
             sp.setSite(getString(R.string.app_name));
             // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-            sp.setSiteUrl("http://baidu.com");
+            sp.setSiteUrl(AppConfig.DOWNLOAD);
+
+
+            sp.setImageUrl("");
 
             Platform qzone = ShareSDK.getPlatform(QZone.NAME);
             qzone.setPlatformActionListener(paListener);

@@ -31,6 +31,8 @@ public class AppConfig {
 //    public static final String ABOUT_JURAN = "http://mp.weixin.qq.com/s?__biz=MzIxNDM4OTY3Mw==&mid=100000015&idx=1&sn=8f967c4b219ab2dc69400489b5d1b6b0&scene=18#wechat_redirect";
     public static final String ABOUT_JURAN = "http://101.200.167.130:8080/jrjz-api/static/html/AboutUs.html";
     public static final String PROTOCOL = "file:///android_asset/Protocol.html";
+    //下载链接
+    public static final String DOWNLOAD = "http://a.app.qq.com/o/simple.jsp?pkgname=com.autodesk.easyhome.shejijia";
 
 
     public static final String Wx_App_Id = "wxfd04ee1c78a46319";

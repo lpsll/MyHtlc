@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.sharesdk.framework.ShareSDK;
 
 /*
 整个程序的MainActivity，入口
@@ -88,7 +89,7 @@ public class MainActivity extends BaseHomeTitleActivity {
 
     @Override
     public void initView() {
-//        ShareSDK.initSDK(this);
+        ShareSDK.initSDK(this);
         mBaseBack = (TextView) findViewById(R.id.base_titlebar_back);
         mBaseEnsure = (TextView) findViewById(R.id.base_titlebar_ensure);
         mBaseBack.setText("北京");
