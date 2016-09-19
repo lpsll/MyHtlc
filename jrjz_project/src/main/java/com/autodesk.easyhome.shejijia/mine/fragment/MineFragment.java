@@ -380,7 +380,7 @@ public class MineFragment extends BaseFragment {
             // url仅在微信（包括好友和朋友圈）中使用11111
             sp.setUrl(AppConfig.DOWNLOAD);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_photo);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fenxiang);
             sp.setImageData(bitmap);
 
             LogUtils.e("sp---",""+sp);
@@ -400,7 +400,7 @@ public class MineFragment extends BaseFragment {
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl(AppConfig.DOWNLOAD);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.share_photo);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fenxiang);
             sp.setImageData(bitmap);
 
 //            sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jp");
