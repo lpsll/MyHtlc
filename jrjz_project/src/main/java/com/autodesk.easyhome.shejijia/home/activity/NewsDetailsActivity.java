@@ -39,6 +39,7 @@ public class NewsDetailsActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
+        setTitleText("消息详情");
         entity = (NewsEntity) getIntent().getBundleExtra("bundle").getSerializable("entity");
         LogUtils.e("entity---",""+entity);
         tv01.setText(entity.getSmtitle());

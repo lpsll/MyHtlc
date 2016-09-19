@@ -29,7 +29,7 @@ public class NewsAdapter extends BaseSimpleRecyclerAdapter<NewsEntity> {
         holder.setText(R.id.tv01,newsEntity.getSmtitle());
         holder.setText(R.id.tv02,newsEntity.getSmcontent());
         holder.setText(R.id.tv03,newsEntity.getCreatedate());
-        if(newsEntity.getReadflag().equals("未读")){
+        if(newsEntity.getReadflag().equals("0")){
             tv.setVisibility(View.VISIBLE);
         }else {
             tv.setVisibility(View.GONE);

@@ -130,7 +130,7 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
                     mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                     list = new ArrayList<List<ServicesEntity>>();
                     hsdata = result.getData();
-                    if(null==hsdata){
+                    if(null==hsdata.getClasses().get(0).getServices()){
                         mErrorLayout.setErrorType(EmptyLayout.NODATA);
                     }else {
                         mListAdapter.removeAll();
