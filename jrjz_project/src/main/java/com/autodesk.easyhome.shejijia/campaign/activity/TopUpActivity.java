@@ -403,19 +403,11 @@ public class TopUpActivity extends BaseTitleActivity {
                         sendBroadcast(new Intent(AppConfig.TOPUP_RECIVER_ACTION));
 
                         //跳转到个人中心
-                        ToastUtils.showShort(TopUpActivity.this,"充值成功");
+//                        ToastUtils.showShort(TopUpActivity.this,"充值成功");
                         DialogUtils.showPromptListen(TopUpActivity.this, "提示","充值成功！", "知道了",listener);
 
-//                       new AlertDialog.Builder(TopUpActivity.this).setTitle("提示").setMessage("充值成功！").setPositiveButton("知道了", new DialogInterface.OnClickListener() {
-//                           @Override
-//                           public void onClick(DialogInterface dialog, int which) {
-//
-//                           }
-//                       }).show();
 
 
-
-                        finish();
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
