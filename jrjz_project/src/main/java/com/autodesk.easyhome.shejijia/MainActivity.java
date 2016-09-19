@@ -485,14 +485,14 @@ public class MainActivity extends BaseHomeTitleActivity {
         if(null==msg){
 
         }else {
-            if(msg.equals("ok")){
+            if(msg.equals("0")){
                 // 初始化右边图片大小
-                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.whether,
                         R.dimen.common_titlebar_right_icon_width,
                         R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
             }else {
                 // 初始化右边图片大小
-                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.whether,
+                TextViewUtils.setTextViewIcon(this, mBaseEnsure, R.drawable.xiaoxixdpi_03,
                         R.dimen.common_titlebar_right_icon_width,
                         R.dimen.common_titlebar_right_icon_height, TextViewUtils.DRAWABLE_LEFT);
             }
