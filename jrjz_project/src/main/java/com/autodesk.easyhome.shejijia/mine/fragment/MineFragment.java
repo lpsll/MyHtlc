@@ -447,7 +447,7 @@ public class MineFragment extends BaseFragment {
             LogUtils.e("type---", "" + type);
 
             QQ.ShareParams sp = new QQ.ShareParams();
-            sp.setTitle("居然之家");
+            sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl(AppConfig.DOWNLOAD);
