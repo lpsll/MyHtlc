@@ -127,12 +127,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     }
 
     public void append(List<T> itemBeans) {
-        if (itemBeans.size() > 0) {
-            for (T itemBean : itemBeans) {
-                mDatas.add(itemBean);
+        //此处报空指针异常 ,加判空
+        if(itemBeans !=null) {
+            if (itemBeans.size() > 0) {
+                for (T itemBean : itemBeans) {
+                    mDatas.add(itemBean);
+                }
+                notifyDataSetChanged();
             }
-
-            notifyDataSetChanged();
         }
     }
 

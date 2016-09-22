@@ -106,6 +106,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         mTvAddress.setText(mSelAddress);
         mHomeFee.setText(mPrice);
 
+
     }
 
     @Override
@@ -217,6 +218,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void reqWx(WxResult result) {
         data = result.getData();
+        LogUtils.d("prepayId======"+data.getPrepayId());
         AppContext.set("wx_appId", data.getAppId());
         msgApi = WXAPIFactory.createWXAPI(this, data.getAppId());
         msgApi.registerApp(data.getAppId());
@@ -260,6 +262,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn,R.id.rl_jf, R.id.rl_yhj})
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.rl_qb:
                 mPlaceCbQb.setChecked(true);

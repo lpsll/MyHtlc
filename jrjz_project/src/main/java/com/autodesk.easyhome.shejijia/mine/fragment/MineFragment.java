@@ -8,9 +8,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -39,6 +41,7 @@ import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import java.util.HashMap;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
@@ -77,6 +80,8 @@ public class MineFragment extends BaseFragment {
     @Bind(R.id.ll_mine_share)
     LinearLayout llMineShare;
     PopupWindow popWindow;
+    @Bind(R.id.rl_my_score)
+    RelativeLayout rlMyScore;
     private LinearLayout weixin, friend, weibo, qq, qqZon;
     private TextView text;
     private String type;
@@ -169,7 +174,7 @@ public class MineFragment extends BaseFragment {
 
     public static final int TOPUP_REQUEST = 0x1108;
 
-    @OnClick({R.id.ll_about_juran, R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
+    @OnClick({R.id.rl_my_score, R.id.ll_about_juran, R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
@@ -299,6 +304,11 @@ public class MineFragment extends BaseFragment {
                 backgroundAlpha(1f);
                 popWindow.dismiss();
                 break;
+
+            case R.id.rl_my_score:
+                new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币，积分支付后不可退还。").setPositiveButton("知道了", null).show();
+
+                break;
         }
     }
 
@@ -344,6 +354,20 @@ public class MineFragment extends BaseFragment {
 
     }
 
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
     public class poponDismissListener implements PopupWindow.OnDismissListener {
 
         @Override
@@ -370,8 +394,8 @@ public class MineFragment extends BaseFragment {
 
     private void showShare() {
 
-        if(type.equals("1")){
-            LogUtils.e("type---",""+type);
+        if (type.equals("1")) {
+            LogUtils.e("type---", "" + type);
             WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
@@ -383,15 +407,14 @@ public class MineFragment extends BaseFragment {
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fenxiang);
             sp.setImageData(bitmap);
 
-            LogUtils.e("sp---",""+sp);
+            LogUtils.e("sp---", "" + sp);
             Platform wm = ShareSDK.getPlatform(WechatMoments.NAME);
             wm.setPlatformActionListener(paListener);
-            LogUtils.e("wm---",""+wm);
+            LogUtils.e("wm---", "" + wm);
 
             wm.share(sp);
-        }
-        else if(type.equals("2")){
-            LogUtils.e("type---",""+type);
+        } else if (type.equals("2")) {
+            LogUtils.e("type---", "" + type);
             Wechat.ShareParams sp = new Wechat.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
@@ -408,9 +431,8 @@ public class MineFragment extends BaseFragment {
             Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
             wechat.setPlatformActionListener(paListener);
             wechat.share(sp);
-        }
-        else if(type.equals("3")){
-            LogUtils.e("type---",""+type);
+        } else if (type.equals("3")) {
+            LogUtils.e("type---", "" + type);
             SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
@@ -421,9 +443,8 @@ public class MineFragment extends BaseFragment {
             Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
             sn.setPlatformActionListener(paListener);
             sn.share(sp);
-        }
-        else if(type.equals("4")){
-            LogUtils.e("type---",""+type);
+        } else if (type.equals("4")) {
+            LogUtils.e("type---", "" + type);
 
             QQ.ShareParams sp = new QQ.ShareParams();
             sp.setTitle("居然之家");
@@ -435,14 +456,13 @@ public class MineFragment extends BaseFragment {
             sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
 
 
-            LogUtils.e("sp---",""+sp);
+            LogUtils.e("sp---", "" + sp);
             Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);
-            LogUtils.e("qq---",""+qq);
+            LogUtils.e("qq---", "" + qq);
             qq.share(sp);
-        }
-        else if(type.equals("5")){
-            LogUtils.e("type---",""+type);
+        } else if (type.equals("5")) {
+            LogUtils.e("type---", "" + type);
             QZone.ShareParams sp = new QZone.ShareParams();
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
@@ -473,13 +493,13 @@ public class MineFragment extends BaseFragment {
             //操作成功，在这里可以做后续的步骤
             //这里需要说明的一个参数就是HashMap<String, Object> arg2
             //这个参数在你进行登录操作的时候里面会保存有用户的数据，例如用户名之类的。
-            LogUtils.e("platform---",""+platform);
+            LogUtils.e("platform---", "" + platform);
         }
 
         @Override
         public void onError(Platform platform, int i, Throwable throwable) {
             //操作失败啦，打印提供的错误，方便调试
-            LogUtils.e("throwable---",""+throwable);
+            LogUtils.e("throwable---", "" + throwable);
         }
 
         @Override

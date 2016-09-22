@@ -3,6 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <TextView
+        android:lineSpacingExtra="@dimen/ds_15"
+        android:textSize="@dimen/fs_45"
+        android:layout_marginTop="@dimen/ds_70"
+        android:layout_marginLeft="@dimen/ds_40"
+        android:layout_marginRight="@dimen/ds_40"
+        android:textColor="@color/color_00"
+        android:text="    积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币，积分支付后不可退还。"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/tv_integral"
         android:layout_width="match_parent"
@@ -32,7 +43,7 @@
         android:background="@drawable/ok_selector_shap_unpressed"
         android:text="@string/preservation"
         android:textSize="@dimen/ds_50"
-        android:textColor="@color/color_00"
+        android:textColor="@color/color_ff"
         />
 
 </LinearLayout>

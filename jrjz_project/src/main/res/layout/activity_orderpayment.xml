@@ -187,10 +187,10 @@
                 android:id="@+id/integral_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/fs_45"
+                android:textSize="@dimen/fs_40"
                 android:text=""
                 android:gravity="center"
-                android:textColor="@color/color_00"/>
+                android:textColor="@color/navi"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -243,10 +243,10 @@
                 android:id="@+id/coupon_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:textSize="@dimen/fs_45"
+                android:textSize="@dimen/fs_40"
                 android:text=""
                 android:gravity="center"
-                android:textColor="@color/color_00"/>
+                android:textColor="@color/navi"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
