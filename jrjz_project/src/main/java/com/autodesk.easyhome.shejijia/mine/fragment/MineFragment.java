@@ -400,11 +400,11 @@ public class MineFragment extends BaseFragment {
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setText("家里有事，就找居然家政！");
             // url仅在微信（包括好友和朋友圈）中使用11111
             sp.setUrl(AppConfig.DOWNLOAD);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fenxiang);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
             sp.setImageData(bitmap);
 
             LogUtils.e("sp---", "" + sp);
@@ -419,11 +419,11 @@ public class MineFragment extends BaseFragment {
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setText("家里有事，就找居然家政！");
             // url仅在微信（包括好友和朋友圈）中使用
             sp.setUrl(AppConfig.DOWNLOAD);
 
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.fenxiang);
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
             sp.setImageData(bitmap);
 
 //            sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jp");
@@ -436,7 +436,7 @@ public class MineFragment extends BaseFragment {
             SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setText("家里有事，就找居然家政！");
 
             sp.setImageUrl("http://101.200.167.130.8080/jrjz-api/static/img/share.png");
 
@@ -451,7 +451,7 @@ public class MineFragment extends BaseFragment {
             // text是分享文本，所有平台都需要这个字段
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl(AppConfig.DOWNLOAD);
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setText("家里有事，就找居然家政！");
 
             sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
 
@@ -466,11 +466,11 @@ public class MineFragment extends BaseFragment {
             QZone.ShareParams sp = new QZone.ShareParams();
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
-            sp.setText("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setText("家里有事，就找居然家政！");
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl(AppConfig.DOWNLOAD);
             // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-            sp.setComment("居然家政创建“居然云”服务平台，通过线下线下相结合的方式，让客户享受到更加便捷、更加周到的“家服务”，全力打造中国家庭服务第一品牌。");
+            sp.setComment("家里有事，就找居然家政！");
             // site是分享此内容的网站名称，仅在QQ空间使用
             sp.setSite(getString(R.string.app_name));
             // siteUrl是分享此内容的网站地址，仅在QQ空间使用
