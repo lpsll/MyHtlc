@@ -6,6 +6,7 @@
     android:id="@+id/item_lin"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/ll_housekeeping_detail"
         android:layout_width="match_parent"
         android:layout_height="@dimen/ds_200"
         android:orientation="horizontal">

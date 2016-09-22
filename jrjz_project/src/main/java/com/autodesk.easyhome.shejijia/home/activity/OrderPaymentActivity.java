@@ -249,7 +249,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 LogUtils.e("appId--", data.getAppId());
                 LogUtils.e("partnerId--", data.getPartnerId());
                 LogUtils.e("prepayId--", data.getPrepayId());
-                LogUtils.e("packageValue--", "Sign=WXPay");
+                LogUtils.e("package--", "Sign=WXPay");
                 LogUtils.e("nonceStr--", data.getNonceStr());
                 LogUtils.e("timeStamp--", data.getTimeStamp());
                 LogUtils.e("sign--", data.getSign());
@@ -464,17 +464,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     } else {
                         mHomeFee.setText("0");
                     }
-
                 }
                 if(money.equals("0.0")||money.equals("0")||money.equals("0.00")){
                     integralTv.setText("");
                 }else {
-                    integralTv.setText("使用积分"+money);
+                    integralTv.setText("积分："+money+"元");
                 }
-
-
             }
-
         }
 
         if (requestCode == OrderUiGoto.SC_REQUEST) {

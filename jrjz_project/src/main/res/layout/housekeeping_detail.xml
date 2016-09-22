@@ -99,7 +99,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:maxWidth="@dimen/ds_550"
-                android:text=""
+                android:text="服务详情"
                 android:textColor="@color/tv_black"
                 android:textSize="@dimen/fs_40" />
 

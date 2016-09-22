@@ -12,12 +12,22 @@ public class HomeServiceEntity extends BaseEntity {
     private String name;
     private String descr;
     private String siteImg;
+    private String descImg;
     private String address;
     private String contact;
     private String phone;
     private String latitude;
     private String longitude;
     List<ServicesEntity> services;
+
+
+    public String getDescImg() {
+        return descImg;
+    }
+
+    public void setDescImg(String descImg) {
+        this.descImg = descImg;
+    }
 
     public List<ServicesEntity> getServices() {
         return services;

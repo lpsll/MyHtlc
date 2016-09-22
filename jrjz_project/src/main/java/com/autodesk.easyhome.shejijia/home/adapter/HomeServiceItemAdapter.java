@@ -1,11 +1,11 @@
 package com.autodesk.easyhome.shejijia.home.adapter;
 
+import android.app.Activity;
 import android.widget.ImageView;
 
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.home.entity.HomeServiceEntity;
 import com.autodesk.easyhome.shejijia.home.entity.ServicesEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
@@ -19,7 +19,10 @@ public class HomeServiceItemAdapter extends BaseSimpleRecyclerAdapter<ServicesEn
     private final List<ServicesEntity> entity;
     ImageView imageHousekeeping;
 
-    public HomeServiceItemAdapter(List<ServicesEntity> servicesEntity) {
+    private Activity act;
+
+    public HomeServiceItemAdapter(Activity act,List<ServicesEntity> servicesEntity) {
+        this.act = act;
         this.entity = servicesEntity;
     }
 
@@ -41,5 +44,6 @@ public class HomeServiceItemAdapter extends BaseSimpleRecyclerAdapter<ServicesEn
         holder.setText(R.id.tv_housekeeping_item_price1,"¥"+servicesEntity.getPrice());
         imageHousekeeping = holder.getView(R.id.img_housekeeping_item_img1);
         ImageLoaderUtils.displayImage(servicesEntity.getLogo(), imageHousekeeping);
+
     }
 }

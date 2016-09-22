@@ -2,12 +2,9 @@ package com.autodesk.easyhome.shejijia.home.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,7 +22,6 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.utils.PhotoSystemUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.dto.AppointmentDTO;
@@ -33,18 +29,8 @@ import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultEntity;
 import com.autodesk.easyhome.shejijia.home.entity.DfaultResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
-import com.lidong.photopicker.PhotoPickerActivity;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -110,7 +96,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         prejectName= getIntent().getBundleExtra("bundle").getString("preject");
         tvHousekeepingDetailTitle.setText(descr);
         tvHousekeepingDetailPrice.setText("¥"+price);
-        tvHousekeepingDetailShopName.setText(name);
+//        tvHousekeepingDetailShopName.setText(name);
         tvHousekeepingDetailSeviceType.setText(prejectName);
         tvHousekeepingDetailProvider.setText("本服务由["+name+""+"]提供  ["+name+"]提供售后服务");
         ImageLoaderUtils.displayImage(img, imgHousekeepingDetail);
@@ -149,7 +135,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         addTv04.setText(data.getCity()+data.getDistrict()+data.getArea()+data.getAddress());
     }
 
-    @OnClick({R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok, R.id.ll_housekeeping_detail_contact})
+    @OnClick({R.id.tv_housekeeping_detail_shop_name,R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok, R.id.ll_housekeeping_detail_contact})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
@@ -186,6 +172,14 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
                         + phone));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                break;
+
+            case R.id.tv_housekeeping_detail_shop_name:
+
+                Bundle bundle = new Bundle();
+                bundle.putString("url","http://101.200.167.130:8080/jrjz-api/c/service/detail?id="+id);
+                HomeUiGoto.gotoBrowser(this,bundle);
+
                 break;
         }
     }

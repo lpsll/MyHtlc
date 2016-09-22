@@ -1,9 +1,11 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.R;
@@ -15,6 +17,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.widget.EmptyLayout;
 import com.autodesk.easyhome.shejijia.common.widget.FullyLinearLayoutManager;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
+import com.autodesk.easyhome.shejijia.home.activity.HomeServiceImgActivtiy;
 import com.autodesk.easyhome.shejijia.home.adapter.HomeServiceItemAdapter;
 import com.autodesk.easyhome.shejijia.home.dto.HomeServiceDTO;
 import com.autodesk.easyhome.shejijia.home.entity.HomeServiceData;
@@ -45,6 +48,9 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
     ArrayList<List<ServicesEntity>> list;
     ServicesEntity data;
     HomeServiceData hsdata;
+
+    LinearLayout ll_housekeeping_detail;
+    ArrayList<Object> tempList;
     @Override
     protected int getLayoutResId() {
         return R.layout.fragment_homeservice;
@@ -63,15 +69,35 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
             }
 
             @Override
-            public void bindData(BaseRecyclerViewHolder holder, final HomeServiceEntity homeServiceEntity, int position) {
+            public void bindData(BaseRecyclerViewHolder holder, final HomeServiceEntity homeServiceEntity, final int position) {
                 LogUtils.e("mListAdapter---position---",""+position);
                 holder.setText(R.id.tv_housekeeping_item_shop_name,homeServiceEntity.getName());
                 imageItem = holder.getView(R.id.img_housekeeping_item_big_img);
+                ll_housekeeping_detail = holder.getView(R.id.ll_housekeeping_detail);
                 ImageLoaderUtils.displayImage(homeServiceEntity.getSiteImg(), imageItem);
+
+//                tempList = new ArrayList<>();
+//                tempList.add(position,homeServiceEntity);
+
+                ll_housekeeping_detail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        HomeServiceEntity home = (HomeServiceEntity)tempList.get(position);
+                        String descImg = homeServiceEntity.getDescImg();
+                        String name = homeServiceEntity.getName();
+
+                        Intent intent = new Intent(getActivity(),HomeServiceImgActivtiy.class);
+                        intent.putExtra("name",name);
+                        intent.putExtra("descImg",descImg);
+                        getActivity().startActivity(intent);
+
+                    }
+                });
+
 
                 mItemList = holder.getView(R.id.homeservice_item_list);
                 mItemList.setLayoutManager(new FullyLinearLayoutManager(getActivity()));
-                mItemAdapter = new HomeServiceItemAdapter(hsdata.getClasses().get(position).getServices());
+                mItemAdapter = new HomeServiceItemAdapter(getActivity(),hsdata.getClasses().get(position).getServices());
                 mItemAdapter.removeAll();
                 mItemAdapter.append(hsdata.getClasses().get(position).getServices());
                 mItemList.setAdapter(mItemAdapter);
