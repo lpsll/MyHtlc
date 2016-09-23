@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia.order.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,20 +8,13 @@ import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
-import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
-import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
-import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
-import com.autodesk.easyhome.shejijia.order.dto.ServiceCouponDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -93,9 +85,7 @@ public class IntegralActivity extends BaseTitleActivity {
                         AppContext.set("Integral",total);
                         AppContext.set("rule",menoy);
                     }
-
                 }
-
             }
         });
     }

@@ -477,9 +477,9 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     }
                 }
                 if (money.equals("0.0") || money.equals("0") || money.equals("0.00")) {
-                    integralTv.setText("");
+                    integralTv.setText(0 + "元");
                 } else {
-                    integralTv.setText("积分：" + money + "元");
+                    integralTv.setText(money + "元");
                 }
             }
         }
