@@ -3,12 +3,14 @@ package com.autodesk.easyhome.shejijia.wxapi;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
-import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
-import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -52,6 +54,16 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
             if (resp.errCode == 0) {
                 LogUtils.e("支付成功---",""+resp.errCode);
                 message = "支付成功";
+                if(AppContext.get("WXFlag","").equals("1")){
+                    //跳转到个人中心
+//                        ToastUtils.showShort(TopUpActivity.this,"充值成功");
+                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示","充值成功！", "知道了",listener);
+
+                }else {
+                    Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
+                    intent2.putExtra("tag", 1);
+                    WXPayEntryActivity.this.startActivity(intent2);
+                }
 
 
             } else {
@@ -66,4 +78,12 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         }
     }
 
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
+            intent2.putExtra("tag",3);
+            WXPayEntryActivity.this.startActivity(intent2);
+        }
+    };
 }

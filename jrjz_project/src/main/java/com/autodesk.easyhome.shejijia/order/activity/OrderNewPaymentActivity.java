@@ -19,14 +19,13 @@ import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.alipay.PayResult;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
-import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
@@ -43,7 +42,6 @@ import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -358,11 +356,26 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 req.partnerId = mData.getPartnerId();
                 req.prepayId = mData.getPrepayId();
                 req.packageValue = "Sign=WXPay";
-//                String time =  TimeUtils.genTimeStamp();
-//                String nonceStr = RandomUtils.generateString(10);
+                //----------------
+                String time = TimeUtils.genTimeStamp();
+                String nonceStr = RandomUtils.generateString(10);
+                //----------------
                 req.nonceStr = mData.getNonceStr();
-                ;
+
                 req.timeStamp = mData.getTimeStamp();
+
+                //---------------------------
+//                String str = "appid=" + mData.getAppId()
+//                        + "&noncestr=" + mData.getNonceStr()
+//                        + "&package=" + "Sign=WXPay"
+//                        + "&partnerid=" + mData.getPartnerId()
+//                        + "&prepayid=" + mData.getPrepayId()
+//                        + "&timestamp=" + mData.getTimeStamp();
+//                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
+//                LogUtils.e("sing---------", sing);
+//                //------------------
+//                req.sign = SecurityUtils.md5(sing);
+
 //                String str = "appid="+AppConfig.Wx_App_Id
 //                        +"&noncestr="+nonceStr
 //                        +"&package="+"Sign=WXPay"
@@ -381,6 +394,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 LogUtils.e("sign--", mData.getSign());
                 msgApi.sendReq(req);
                 mTjBtn.setEnabled(true);
+
+                finish();
             }
         }
 

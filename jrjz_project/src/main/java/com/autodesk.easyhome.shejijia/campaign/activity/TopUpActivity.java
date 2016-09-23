@@ -27,6 +27,7 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.EditInputFilter;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.StringUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
@@ -325,6 +326,7 @@ public class TopUpActivity extends BaseTitleActivity {
     WxEntity data;
 
     private void reqWx(WxResult result) {
+        AppContext.set("WXFlag","1");
         data = result.getData();
         AppContext.set("wx_appId", data.getAppId());
         msgApi = WXAPIFactory.createWXAPI(this, data.getAppId());
@@ -339,11 +341,26 @@ public class TopUpActivity extends BaseTitleActivity {
                 req.partnerId = data.getPartnerId();
                 req.prepayId = data.getPrepayId();
                 req.packageValue = "Sign=WXPay";
-//                String time =  TimeUtils.genTimeStamp();
-//                String nonceStr = RandomUtils.generateString(10);
+                //----------------
+                String time = TimeUtils.genTimeStamp();
+                String nonceStr = RandomUtils.generateString(10);
+                //----------------
                 req.nonceStr = data.getNonceStr();
-                ;
+
                 req.timeStamp = data.getTimeStamp();
+
+                //---------------------------
+//                String str = "appid=" + data.getAppId()
+//                        + "&noncestr=" + data.getNonceStr()
+//                        + "&package=" + "Sign=WXPay"
+//                        + "&partnerid=" + data.getPartnerId()
+//                        + "&prepayid=" + data.getPrepayId()
+//                        + "&timestamp=" + data.getTimeStamp();
+//                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
+//                LogUtils.e("sing---------", sing);
+//                //------------------
+//                req.sign = SecurityUtils.md5(sing);
+
 //                String str = "appid="+AppConfig.Wx_App_Id
 //                        +"&noncestr="+nonceStr
 //                        +"&package="+"Sign=WXPay"
@@ -361,6 +378,8 @@ public class TopUpActivity extends BaseTitleActivity {
                 LogUtils.e("timeStamp--", data.getTimeStamp());
                 LogUtils.e("sign--", data.getSign());
                 msgApi.sendReq(req);
+
+                finish();
             }
         }
 

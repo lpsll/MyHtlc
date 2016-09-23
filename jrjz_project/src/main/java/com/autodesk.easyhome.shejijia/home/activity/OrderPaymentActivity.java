@@ -25,7 +25,6 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
-import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
@@ -244,26 +243,42 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 req.timeStamp = data.getTimeStamp();
 
                 //---------------------------
-                String str = "appId=" + data.getAppId()
-                        + "&nonceStr=" + data.getNonceStr()
-                        + "&package=" + "Sign=WXPay"
-                        + "&partnerId=" + data.getPartnerId()
-                        + "&prepayId=" + data.getPrepayId()
-                        + "&timeStamp=" + data.getTimeStamp();
-                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
-                LogUtils.e("sing---------", sing);
-                //------------------
-                req.sign = SecurityUtils.MD5(sing);
+//                String str = "appid=" + data.getAppId()
+//                        + "&noncestr=" + data.getNonceStr()
+//                        + "&package=" + "Sign=WXPay"
+//                        + "&partnerid=" + data.getPartnerId()
+//                        + "&prepayid=" + data.getPrepayId()
+//                        + "&timestamp=" + data.getTimeStamp();
+//                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
+//                LogUtils.e("sing---------", sing);
+//                //------------------
+//                req.sign = SecurityUtils.md5(sing);
 
-//                req.sign = data.getSign();
+
+//                String str = "appid=wx508c34abf751bf9c"
+//                        + "&noncestr=cd61a580392a70389e27b0bc2b439f49"
+//                        + "&package=" + "Sign=WXPay"
+//                        + "&partnerid=1387326402"
+//                        + "&prepayid=wx20160923101455a9dcc670cc0682506130"
+//                        + "&timestamp=1474596895" ;
+//                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
+//                LogUtils.e("sing---------", sing);
+                //------------------
+//                req.sign = SecurityUtils.md5(sing);
+
+                req.sign = data.getSign();
+
                 LogUtils.e("appId--", data.getAppId());
                 LogUtils.e("partnerId--", data.getPartnerId());
                 LogUtils.e("prepayId--", data.getPrepayId());
-                LogUtils.e("package--", "Sign=WXPay");
+                LogUtils.e("packageValue--", "Sign=WXPay");
                 LogUtils.e("nonceStr--", data.getNonceStr());
                 LogUtils.e("timeStamp--", data.getTimeStamp());
-                LogUtils.e("sign--2", SecurityUtils.MD5(sing));
+//                LogUtils.e("sign--2", SecurityUtils.md5(sing));
+                LogUtils.e("sign--", data.getSign());
                 msgApi.sendReq(req);
+
+                finish();
             }
         }
 
