@@ -15,7 +15,7 @@
         android:layout_width="@dimen/ds_180"
         android:layout_height="@dimen/ds_70"
         android:layout_marginTop="@dimen/ds_80"
-        android:layout_marginRight="@dimen/ds_180"
+        android:layout_marginRight="@dimen/ds_230"
         android:gravity="center"
         android:layout_gravity="right"
         android:textColor="@color/color_00"
