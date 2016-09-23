@@ -7,13 +7,12 @@ import java.security.NoSuchAlgorithmException;
  * Created by John_Libo on 2016/8/23.
  */
 public class SecurityUtils {
-    /**
-     *
-     * @param str
-     *            明文
-     * @return 32位密文,英文小写
-     */
 
+    /**
+     * 32位密文,英文全部转小写
+     * @param str
+     * @return
+     */
     public static String MD5(String str) {
         MessageDigest md5 = null;
         try {

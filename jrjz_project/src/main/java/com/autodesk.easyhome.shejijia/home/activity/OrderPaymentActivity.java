@@ -24,6 +24,8 @@ import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
+import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
@@ -79,7 +81,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     TextView couponTv;
     @Bind(R.id.rl_yhj)
     RelativeLayout rlYhj;
-    private String mSelName, mSelPhone, mSelAddress, mPrice, mName, mOrderId,mServiceId;
+    private String mSelName, mSelPhone, mSelAddress, mPrice, mName, mOrderId, mServiceId;
     private String type;
     private String infomation, mWxKey;
 
@@ -218,7 +220,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void reqWx(WxResult result) {
         data = result.getData();
-        LogUtils.d("prepayId======"+data.getPrepayId());
+        LogUtils.d("prepayId======" + data.getPrepayId());
         AppContext.set("wx_appId", data.getAppId());
         msgApi = WXAPIFactory.createWXAPI(this, data.getAppId());
         msgApi.registerApp(data.getAppId());
@@ -227,32 +229,40 @@ public class OrderPaymentActivity extends BaseTitleActivity {
             if (msgApi.isWXAppInstalled()) {
 //                String characterEncoding = "UTF-8";
 //                mWxKey = data.getNonceStr();
+
                 PayReq req = new PayReq();
                 req.appId = data.getAppId();
                 req.partnerId = data.getPartnerId();
                 req.prepayId = data.getPrepayId();
                 req.packageValue = "Sign=WXPay";
-//                String time =  TimeUtils.genTimeStamp();
-//                String nonceStr = RandomUtils.generateString(10);
+                //----------------
+                String time = TimeUtils.genTimeStamp();
+                String nonceStr = RandomUtils.generateString(10);
+                //----------------
                 req.nonceStr = data.getNonceStr();
-                ;
+
                 req.timeStamp = data.getTimeStamp();
-//                String str = "appid="+AppConfig.Wx_App_Id
-//                        +"&noncestr="+nonceStr
-//                        +"&package="+"Sign=WXPay"
-//                        +"&partnerid="+data.getPartnerId()
-//                        +"&prepayid="+data.getPrepayId()
-//                        +"&timestamp="+time;
-//                String sing = str.trim().toString()+"&key="+mWxKey;
-//                LogUtils.e("sing---------",sing);
-                req.sign = data.getSign();
+
+                //---------------------------
+                String str = "appId=" + data.getAppId()
+                        + "&nonceStr=" + data.getNonceStr()
+                        + "&package=" + "Sign=WXPay"
+                        + "&partnerId=" + data.getPartnerId()
+                        + "&prepayId=" + data.getPrepayId()
+                        + "&timeStamp=" + data.getTimeStamp();
+                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
+                LogUtils.e("sing---------", sing);
+                //------------------
+                req.sign = SecurityUtils.MD5(sing);
+
+//                req.sign = data.getSign();
                 LogUtils.e("appId--", data.getAppId());
                 LogUtils.e("partnerId--", data.getPartnerId());
                 LogUtils.e("prepayId--", data.getPrepayId());
                 LogUtils.e("package--", "Sign=WXPay");
                 LogUtils.e("nonceStr--", data.getNonceStr());
                 LogUtils.e("timeStamp--", data.getTimeStamp());
-                LogUtils.e("sign--", data.getSign());
+                LogUtils.e("sign--2", SecurityUtils.MD5(sing));
                 msgApi.sendReq(req);
             }
         }
@@ -260,7 +270,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn,R.id.rl_jf, R.id.rl_yhj})
+    @OnClick({R.id.rl_qb, R.id.rl_wx, R.id.rl_zfb, R.id.tj_btn, R.id.rl_jf, R.id.rl_yhj})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -310,7 +320,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 Bundle b = new Bundle();
                 b.putString("ServiceId", mServiceId);
                 b.putString("total", mHomeFee.getText().toString());
-                OrderUiGoto.gotoServiceCoupon(this,b);
+                OrderUiGoto.gotoServiceCoupon(this, b);
                 break;
         }
     }
@@ -425,7 +435,8 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     private String mCoupon;
     private String mT1;
     private String mT2;
-    private String mPoint,mCouponId;
+    private String mPoint, mCouponId;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -465,10 +476,10 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                         mHomeFee.setText("0");
                     }
                 }
-                if(money.equals("0.0")||money.equals("0")||money.equals("0.00")){
+                if (money.equals("0.0") || money.equals("0") || money.equals("0.00")) {
                     integralTv.setText("");
-                }else {
-                    integralTv.setText("积分："+money+"元");
+                } else {
+                    integralTv.setText("积分：" + money + "元");
                 }
             }
         }
@@ -501,14 +512,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                         mHomeFee.setText("0");
                     }
                 }
-                couponTv.setText("使用优惠券"+mCoupon+"元");
+                couponTv.setText("使用优惠券" + mCoupon + "元");
 
             }
         }
 
 
     }
-
 
 
 }
