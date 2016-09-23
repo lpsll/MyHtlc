@@ -102,8 +102,8 @@ public class StringUtils {
      */
     public static List<String> getDateAndTime(String str) {
         int spaceIndex = str.indexOf(" ");
-        String str1 = str.substring(0, spaceIndex);
-        String str2 = str.substring(spaceIndex+1);
+        String str1 = str.substring(0, 10);
+        String str2 = str.substring(11);
         ArrayList<String> arr = new ArrayList<>();
         arr.add(str1);
         arr.add(str2);
