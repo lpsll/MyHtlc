@@ -13,7 +13,6 @@ import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -46,7 +45,7 @@ public class ImageLoaderUtils {
                 .resetViewBeforeLoading(true)
                 .cacheInMemory(true)
                 .cacheOnDisk(true).considerExifParams(true)
-                .bitmapConfig(Bitmap.Config.RGB_565).build();
+                .bitmapConfig(Bitmap.Config.ARGB_8888).build();
         return options;
     }
 

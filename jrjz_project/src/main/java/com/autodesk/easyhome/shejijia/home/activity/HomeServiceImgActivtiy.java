@@ -28,6 +28,7 @@ public class HomeServiceImgActivtiy extends BaseTitleActivity {
         name = intent.getStringExtra("name");
         imgurl = intent.getStringExtra("descImg");
 
+
         setTitleText(name);
         showDialogLoading();
 
@@ -36,6 +37,7 @@ public class HomeServiceImgActivtiy extends BaseTitleActivity {
     @Override
     public void initData() {
         ImageLoaderUtils.displayImage(imgurl,img);
+
         hideDialogLoading();
 
     }
