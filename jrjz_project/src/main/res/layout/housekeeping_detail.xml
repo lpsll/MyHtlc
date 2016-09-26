@@ -220,29 +220,6 @@
             android:layout_height="@dimen/ds_20"
             android:background="@color/linear_gray" />
 
-        <LinearLayout
-            android:id="@+id/ll_housekeeping_detail_sevice_type"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_ff"
-            android:orientation="horizontal"
-            android:padding="@dimen/ds_40">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_20"
-                android:text="服务项目"
-                android:textSize="@dimen/fs_45"/>
-
-            <TextView
-                android:id="@+id/tv_housekeeping_detail_sevice_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/ds_45"
-                android:text=""
-                android:textColor="@color/navi" />
-        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -300,7 +277,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_20"
-                android:text="特殊需求"
+                android:text="特殊要求"
                 android:textSize="@dimen/fs_45"/>
 
             <EditText
@@ -308,7 +285,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/ds_270"
-                android:hint="请输入特殊需求"
+                android:hint="请输入特殊要求"
                 android:background="@null"
                 android:textSize="@dimen/fs_45"
                 android:textColorHint="@color/tv_hint" />

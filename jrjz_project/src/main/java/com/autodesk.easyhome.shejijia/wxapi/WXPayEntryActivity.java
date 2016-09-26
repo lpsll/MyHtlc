@@ -6,17 +6,21 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.home.entity.OrderNewEvent;
+import com.autodesk.easyhome.shejijia.home.entity.OrderPayEvent;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+
+import de.greenrobot.event.EventBus;
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
@@ -31,7 +35,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pay_result);
-        api = WXAPIFactory.createWXAPI(this, AppContext.get("wx_appId",""));
+        api = WXAPIFactory.createWXAPI(this, AppContext.get("wx_appId", ""));
         api.handleIntent(getIntent(), this);
     }
 
@@ -49,28 +53,67 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
     @Override
     public void onResp(BaseResp resp) {
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
-            LogUtils.e("支付---","errCode----"+resp.errCode+"getType---"+resp.getType() );
+            LogUtils.e("支付---", "errCode----" + resp.errCode + "getType---" + resp.getType());
             String message = "";
             if (resp.errCode == 0) {
-                LogUtils.e("支付成功---",""+resp.errCode);
+                LogUtils.e("支付成功---", "" + resp.errCode);
                 message = "支付成功";
-                if(AppContext.get("WXFlag","").equals("1")){
+
+                AppConfig.WXSuccess = true;
+
+                LogUtils.d("支付结果=================" + AppContext.get("WXsuccess", false));
+
+                if (AppContext.get("WXFlag", "").equals("1")) {
+                    AppContext.set("WXFlag", "0");
+
+                    LogUtils.i("跳转到个人中心");
                     //跳转到个人中心
 //                        ToastUtils.showShort(TopUpActivity.this,"充值成功");
-                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示","充值成功！", "知道了",listener);
-
-                }else {
                     Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
-                    intent2.putExtra("tag", 1);
+                    intent2.putExtra("tag", 3);
                     WXPayEntryActivity.this.startActivity(intent2);
-                }
 
+                } else {
+
+                    LogUtils.i("跳转到订单页");
+
+
+
+//                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", null);
+//
+                    String flag =AppContext.get("OrderFlag", "");
+                    if(flag.equals("0")){
+                        //预约订单支付
+                        EventBus.getDefault().post(
+                                new OrderPayEvent("支付成功"));
+
+                    }else {
+                        //订单支付
+                        EventBus.getDefault().post(
+                                new OrderNewEvent("支付成功"));
+
+                    }
+
+
+
+
+//                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
+//                            intent2.putExtra("tag", 1);
+//                            WXPayEntryActivity.this.startActivity(intent2);
+//                        }
+//                    });
+
+
+                }
 
             } else {
                 String error = resp.errStr;
                 int errcode = resp.errCode;
                 message = "支付失败";
-                LogUtils.e("支付失败---","error----"+error+"errcode："+errcode);
+                LogUtils.e("支付失败---", "error----" + error + "errcode：" + errcode);
             }
             WXPayEntryActivity.this.finish();
             Toast.makeText(WXPayEntryActivity.this, message, Toast.LENGTH_SHORT).show();
@@ -82,8 +125,9 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         @Override
         public void onClick(View v) {
             Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
-            intent2.putExtra("tag",3);
+            intent2.putExtra("tag", 3);
             WXPayEntryActivity.this.startActivity(intent2);
         }
     };
+
 }

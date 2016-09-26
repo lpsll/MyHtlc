@@ -28,7 +28,7 @@ public class AppConfig {
     public static final String NOTHING = "0";
     public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api";
     public static final String BASE_IMG_URL = "http://101.200.167.130:8080/jrjz-api";
-//    public static final String ABOUT_JURAN = "http://mp.weixin.qq.com/s?__biz=MzIxNDM4OTY3Mw==&mid=100000015&idx=1&sn=8f967c4b219ab2dc69400489b5d1b6b0&scene=18#wechat_redirect";
+    //    public static final String ABOUT_JURAN = "http://mp.weixin.qq.com/s?__biz=MzIxNDM4OTY3Mw==&mid=100000015&idx=1&sn=8f967c4b219ab2dc69400489b5d1b6b0&scene=18#wechat_redirect";
     public static final String ABOUT_JURAN = "http://101.200.167.130:8080/jrjz-api/static/html/AboutUs.html";
     public static final String PROTOCOL = "file:///android_asset/Protocol.html";
     //下载链接
@@ -48,6 +48,6 @@ public class AppConfig {
     //充值页面广播action
     public static final String TOPUP_RECIVER_ACTION = "com.jrjz_project.topup.sendbroadcast";
 
-
+    public static  boolean WXSuccess = false;
 
 }

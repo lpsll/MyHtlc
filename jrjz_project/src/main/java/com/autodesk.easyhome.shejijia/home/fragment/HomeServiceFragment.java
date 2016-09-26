@@ -59,6 +59,8 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
     @Override
     public void initView(View view) {
         super.initView(view);
+
+
         Bundle b  = getArguments();
         mId = b.getString("mId");
         mList.setLayoutManager(new FullyLinearLayoutManager(getActivity()));
@@ -106,6 +108,7 @@ public class HomeServiceFragment extends BasePullScrollViewFragment {
                     public void onItemClick(View itemView, Object itemBean, int position) {
                         data = (ServicesEntity) itemBean;
                         Bundle bundle = new Bundle();
+                        bundle.putString("title",data.getName());
                         bundle.putString("name",homeServiceEntity.getName());
                         bundle.putString("img",data.getLogo());
                         bundle.putString("descr",data.getDescr());

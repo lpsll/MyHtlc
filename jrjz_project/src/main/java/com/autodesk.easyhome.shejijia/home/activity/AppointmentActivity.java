@@ -330,6 +330,9 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setServiceTime(mTm);
         dto.setDescr(mEtDescribe.getText().toString());
         dto.setHomeVisitFee(mTvMoney.getText().toString());
+//        dto.setHomeVisitFee(0.01+"");
+
+
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {
             @Override
             public void onSuccess(AddAddressResult result) {
@@ -338,6 +341,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                     Bundle bundle = new Bundle();
                     bundle.putString("mName",mName);
                     bundle.putString("mPrice",mPrice);
+//                    bundle.putString("mPrice",0.01+"");
                     bundle.putString("orderId",result.getData());
                     bundle.putString("serviceId",mId);
                     bundle.putString("mAddTv01",mAddTv01.getText().toString());
@@ -510,6 +514,12 @@ public class AppointmentActivity extends BaseTitleActivity {
                     mTm = AppContext.get("serviceTime","");
                     mTime.setText(mTm);
                 }
+
+                break;
+
+            case 1008:
+
+
 
                 break;
 

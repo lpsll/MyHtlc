@@ -59,9 +59,6 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
     TextView addTv04;
     @Bind(R.id.lin_address)
     LinearLayout linAddress;
-    @Bind(R.id.tv_housekeeping_detail_sevice_type)
-    TextView tvHousekeepingDetailSeviceType;
-    @Bind(R.id.ll_housekeeping_detail_sevice_type)
     LinearLayout llHousekeepingDetailSeviceType;
     @Bind(R.id.tv_housekeeping_detail_sevice_time)
     TextView tvHousekeepingDetailSeviceTime;
@@ -85,7 +82,9 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
 
     @Override
     public void initView() {
-        setTitleText("服务详情");
+        String title= getIntent().getBundleExtra("bundle").getString("title");
+
+        setTitleText(title);
         login = AppContext.get("IS_LOGIN",false);
         name= getIntent().getBundleExtra("bundle").getString("name");
         img = getIntent().getBundleExtra("bundle").getString("img");
@@ -97,8 +96,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         tvHousekeepingDetailTitle.setText(descr);
         tvHousekeepingDetailPrice.setText("¥"+price);
 //        tvHousekeepingDetailShopName.setText(name);
-        tvHousekeepingDetailSeviceType.setText(prejectName);
-        tvHousekeepingDetailProvider.setText("本服务由["+name+""+"]提供  ["+name+"]提供售后服务");
+        tvHousekeepingDetailProvider.setText("本服务由["+name+""+"]提供");
         ImageLoaderUtils.displayImage(img, imgHousekeepingDetail);
         if(login) {
             reqDfault();//获取默认地址

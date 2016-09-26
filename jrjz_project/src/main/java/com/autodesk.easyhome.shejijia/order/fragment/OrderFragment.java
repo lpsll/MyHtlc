@@ -10,7 +10,6 @@ import android.view.View;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
-import com.autodesk.easyhome.shejijia.common.eventbus.ErrorEvent;
 import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.widget.SlidingTabLayout;
@@ -208,6 +207,9 @@ public class OrderFragment extends BaseFragment {
 //                titles = getResources().getStringArray(R.array.order_tab_false);
 //                bindAdapter(titles);
 
+            }
+            else if(msg.equals("支付成功")){
+                DialogUtils.showPrompt(getActivity(), "提示","支付成功！", "知道了");
             }
             else {
                 AppContext.set("inFlag",false);

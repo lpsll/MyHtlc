@@ -28,6 +28,7 @@ import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
+import com.autodesk.easyhome.shejijia.home.entity.OrderNewEvent;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
@@ -257,7 +258,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 Bundle b = new Bundle();
                 b.putString("ServiceId", data.getServiceId());
                 b.putString("total", mTvMoney.getText().toString());
-                OrderUiGoto.gotoServiceCoupon(this,b);
+                OrderUiGoto.gotoServiceCoupon(this, b);
                 break;
 
 //            case R.id.base_titlebar_back:
@@ -288,7 +289,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             public void onSuccess(IntegralResult result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("订单之钱包支付成功");
-                    DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示","恭喜您，支付成功，请您为我们的服务去评价吧！", "知道了",listener);
+                    DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示", "恭喜您，支付成功，请您为我们的服务去评价吧！", "知道了", listener);
 
 
                 }
@@ -342,6 +343,10 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     WxEntity mData;
 
     private void reqWx(WxResult result) {
+        //标记
+        AppContext.set("WXFlag", "0");  //跳转到订单页
+        AppContext.set("OrderFlag", "1");  //提示语句标记
+
         mData = result.getData();
         AppContext.set("wx_appId", mData.getAppId());
         msgApi = WXAPIFactory.createWXAPI(this, mData.getAppId());
@@ -395,7 +400,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 msgApi.sendReq(req);
                 mTjBtn.setEnabled(true);
 
-                finish();
+//                finish();
             }
         }
 
@@ -475,7 +480,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 case RQF_PAY:
                     if (TextUtils.equals(resultStatus, "9000")) {
                         LogUtils.e("RQF_PAY---", "9000" + "支付宝支付成功");
-                        DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示","恭喜您，支付成功！", "知道了",listener);
+                        DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示", "恭喜您，支付成功，请您为我们的服务去评价吧！", "知道了", listener);
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
@@ -509,7 +514,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        LogUtils.e("OrderNewPaymentActivity--requestCode---",""+requestCode);
+        LogUtils.e("OrderNewPaymentActivity--requestCode---", "" + requestCode);
 
         if (requestCode == OrderUiGoto.INTEGAL_REQUEST) {
 
@@ -548,10 +553,10 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     }
 
                 }
-                if(money.equals("0.0")||money.equals("0.00")){
+                if (money.equals("0.0") || money.equals("0.00")) {
                     integralTv.setText("");
-                }else {
-                    integralTv.setText("使用积分"+money);
+                } else {
+                    integralTv.setText("使用积分" + money);
                 }
 
 
@@ -576,7 +581,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     } else {
                         mTvMoney.setText("0");
                     }
-                    couponTv.setText("使用优惠券"+mCoupon+"元");
+                    couponTv.setText("使用优惠券" + mCoupon + "元");
                 } else {
                     double d1 = Double.parseDouble(mTvMoney.getText().toString()) + Double.parseDouble(mCoupon);
                     mCoupon = AppContext.get("couponMenoy", "");
@@ -587,14 +592,27 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     } else {
                         mTvMoney.setText("0");
                     }
-                    couponTv.setText("使用优惠券"+mCoupon+"元");
+                    couponTv.setText("使用优惠券" + mCoupon + "元");
                 }
-
-
             }
         }
-
-
     }
 
+    public void onEventMainThread(OrderNewEvent event) {
+        String msg = event.getMsg();
+        LogUtils.e("msg---", "" + msg);
+        if (TextUtils.isEmpty(msg)) {
+        } else {
+            if (msg.equals("支付成功")) {
+                DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示", "恭喜您，支付成功，请您为我们的服务去评价吧！", "知道了", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent2 = new Intent(OrderNewPaymentActivity.this, MainActivity.class);
+                        intent2.putExtra("tag", 1);
+                        OrderNewPaymentActivity.this.startActivity(intent2);
+                    }
+                });
+            }
+        }
+    }
 }

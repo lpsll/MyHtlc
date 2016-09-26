@@ -28,6 +28,7 @@ import com.autodesk.easyhome.shejijia.common.utils.RandomUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.dto.WxDTO;
 import com.autodesk.easyhome.shejijia.home.dto.ZfbDTO;
+import com.autodesk.easyhome.shejijia.home.entity.OrderPayEvent;
 import com.autodesk.easyhome.shejijia.home.entity.WxEntity;
 import com.autodesk.easyhome.shejijia.home.entity.WxResult;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
@@ -180,9 +181,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 case RQF_PAY:
                     if (TextUtils.equals(resultStatus, "9000")) {
                         LogUtils.e("RQF_PAY---", "9000" + "支付宝支付成功");
-                        Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
-                        intent2.putExtra("tag", 1);
-                        OrderPaymentActivity.this.startActivity(intent2);
+
+
+                        DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", listener);
+
+//                        Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
+//                        intent2.putExtra("tag", 1);
+//                        OrderPaymentActivity.this.startActivity(intent2);
                     } else {
                         // 判断resultStatus 为非“9000”则代表可能支付失败
                         // “8000”代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
@@ -217,7 +222,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     IWXAPI msgApi;
     WxEntity data;
 
+    static int requestCode = 1008;
+
     private void reqWx(WxResult result) {
+
+        AppContext.set("WXFlag", "0");  //跳转到订单页
+        AppContext.set("OrderFlag", "0"); //提示语句标记
+
         data = result.getData();
         LogUtils.d("prepayId======" + data.getPrepayId());
         AppContext.set("wx_appId", data.getAppId());
@@ -276,9 +287,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 LogUtils.e("timeStamp--", data.getTimeStamp());
 //                LogUtils.e("sign--2", SecurityUtils.md5(sing));
                 LogUtils.e("sign--", data.getSign());
+
                 msgApi.sendReq(req);
 
-                finish();
+                //跳转到预约页
+//                Intent intent = new Intent(OrderPaymentActivity.this, AppointmentActivity.class);
+//                startActivity(intent);
+
             }
         }
 
@@ -360,11 +375,8 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("钱包支付成功");
-                    DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "支付成功，等待师傅上门！", "知道了", listener);
-
-
+                    DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", listener);
                 }
-
             }
         });
     }
@@ -536,4 +548,21 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     }
 
 
+    public void onEventMainThread(OrderPayEvent event) {
+        String msg = event.getMsg();
+        LogUtils.e("msg---", "" + msg);
+        if (TextUtils.isEmpty(msg)) {
+        } else {
+            if (msg.equals("支付成功")) {
+                DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
+                        intent2.putExtra("tag", 1);
+                        OrderPaymentActivity.this.startActivity(intent2);
+                    }
+                });
+            }
+        }
+    }
 }

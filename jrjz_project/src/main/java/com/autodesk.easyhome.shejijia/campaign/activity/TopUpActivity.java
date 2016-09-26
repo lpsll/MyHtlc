@@ -326,7 +326,9 @@ public class TopUpActivity extends BaseTitleActivity {
     WxEntity data;
 
     private void reqWx(WxResult result) {
-        AppContext.set("WXFlag","1");
+
+        AppContext.set("WXFlag","1"); //跳转到个人中心标记
+
         data = result.getData();
         AppContext.set("wx_appId", data.getAppId());
         msgApi = WXAPIFactory.createWXAPI(this, data.getAppId());

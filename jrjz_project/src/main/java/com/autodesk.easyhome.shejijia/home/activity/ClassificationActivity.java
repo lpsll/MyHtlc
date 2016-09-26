@@ -1,21 +1,20 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
-import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.base.SimplePage;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.UIHelper;
 import com.autodesk.easyhome.shejijia.common.widget.PinnedHeaderListView;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
@@ -24,9 +23,6 @@ import com.autodesk.easyhome.shejijia.home.adapter.MainSectionedAdapter;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationEntity;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationResult;
 import com.autodesk.easyhome.shejijia.home.entity.ClassificationServicesEntity;
-import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
-import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -262,6 +258,7 @@ public class ClassificationActivity extends BaseTitleActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
                 if(data.get(section).getName().equals("家政服务")){
                     Bundle bundle = new Bundle();
+                    bundle.putString("title",data.get(section).getServices().get(position).getName());
                     bundle.putString("mId",data.get(section).getServices().get(position).getId());
                     UIHelper.showBundleFragment(ClassificationActivity.this, SimplePage.HOMESERVICE,bundle);
                 }

@@ -110,6 +110,7 @@ public class DialogUtils {
         tv.setTextColor(ContextCompat.getColor(context,R.color.color_00));
         if (!TextUtils.isEmpty(st)) {
             tv.setText(st);
+            tv.setTextSize(TDevice.dip2px(context,8));
         }
         if (!TextUtils.isEmpty(mes)) {
             text.setText(mes);

@@ -5,9 +5,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -46,12 +48,28 @@ public class SimpleActivity extends BaseTitleActivity {
             throw new IllegalArgumentException("can not find page by value:"
                     + pageValue);
         }
-        setTitleText(page.getTitle());
+
         try {
+            LogUtils.e("setTitleText---0","");
+
             Fragment fragment = (Fragment) page.getClz().newInstance();
 
             Bundle args = data.getBundleExtra(BUNDLE_KEY_ARGS);
+            LogUtils.e("setTitleText---1",""+args);
+
+            LogUtils.e("setTitleText---2",""+args.getString("title"));
+
+
             if (args != null) {
+                LogUtils.e("setTitleText---3","");
+
+
+                if(TextUtils.isEmpty(args.getString("title"))){
+                    setTitleText(page.getTitle());
+                }else {
+                    setTitleText(args.getString("title"));
+                }
+
                 fragment.setArguments(args);
             }
 
