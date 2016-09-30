@@ -316,7 +316,7 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     private void reqAppointment() {
         AppointmentDTO dto = new AppointmentDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken",""));
         dto.setRandom(random);
@@ -329,8 +329,8 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setServiceItemId(mId);
         dto.setServiceTime(mTm);
         dto.setDescr(mEtDescribe.getText().toString());
-        dto.setHomeVisitFee(mTvMoney.getText().toString());
-//        dto.setHomeVisitFee(0.01+"");
+//        dto.setHomeVisitFee(mTvMoney.getText().toString());
+        dto.setHomeVisitFee(0.01+"");
 
 
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {

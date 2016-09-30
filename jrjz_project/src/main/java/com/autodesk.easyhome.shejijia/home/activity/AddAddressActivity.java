@@ -166,7 +166,7 @@ public class AddAddressActivity extends BaseTitleActivity {
 
     private void reqAdd() {
         AddAddressDTO dto = new AddAddressDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setUid(AppContext.get("uid", ""));

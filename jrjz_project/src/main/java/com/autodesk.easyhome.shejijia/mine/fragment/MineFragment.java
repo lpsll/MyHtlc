@@ -122,7 +122,7 @@ public class MineFragment extends BaseFragment {
      */
     private void getUserDetail() {
 
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         BaseDTO baseDTO = new BaseDTO();

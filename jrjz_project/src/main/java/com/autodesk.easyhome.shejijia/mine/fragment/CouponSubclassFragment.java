@@ -62,7 +62,7 @@ public class CouponSubclassFragment extends BaseListFragment<MineCouponEntity> {
     @Override
     protected void sendRequestData() {
         MineCouponDTO dto = new MineCouponDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken",""));
         dto.setRandom(random);

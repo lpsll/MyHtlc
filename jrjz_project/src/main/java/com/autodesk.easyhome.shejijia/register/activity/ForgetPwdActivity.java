@@ -91,7 +91,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
      */
     private void getSmsVerifyCode() {
         BaseDTO dto = new BaseDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setRandom(random);
         dto.setTimestamp(time);
@@ -174,7 +174,7 @@ public class ForgetPwdActivity extends BaseTitleActivity {
         String phone = etForgetpwdPhone.getText().toString().trim();
         String code = etForgetpwdCode.getText().toString().trim();
         String pwd = etForgetpwdPwd.getText().toString().trim();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         ForgetPwdDTO forgetPwdDTO = new ForgetPwdDTO();

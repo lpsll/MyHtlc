@@ -90,7 +90,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
         flag = AppContext.get("inFlag",false);
         if(login){
             OrderDTO dto = new OrderDTO();
-            final String time = TimeUtils.getSignTime();
+            final long time = TimeUtils.getSignTime();
             String random = TimeUtils.genNonceStr();
             dto.setAccessToken(AppContext.get("accessToken",""));
             dto.setRandom(random);

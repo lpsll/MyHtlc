@@ -287,7 +287,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
         private void reqSetUp(int def) {
             ModifyAddressDTO dto = new ModifyAddressDTO();
-            String time = TimeUtils.getSignTime();
+            long time = TimeUtils.getSignTime();
             String random = TimeUtils.genNonceStr();
             dto.setAccessToken(AppContext.get("accessToken", ""));
             dto.setUid(AppContext.get("uid", ""));
@@ -316,7 +316,7 @@ public class SelectAddressActivity extends BaseTitleActivity {
 
         private void reqDelete(final int option) {
             DeleteAddressDTO dto = new DeleteAddressDTO();
-            String time = TimeUtils.getSignTime();
+            long time = TimeUtils.getSignTime();
             String random = TimeUtils.genNonceStr();
             dto.setUid(AppContext.get("uid", ""));
             dto.setRandom(random);

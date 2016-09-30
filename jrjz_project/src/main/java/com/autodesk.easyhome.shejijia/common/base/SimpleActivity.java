@@ -50,26 +50,18 @@ public class SimpleActivity extends BaseTitleActivity {
         }
 
         try {
-            LogUtils.e("setTitleText---0","");
 
             Fragment fragment = (Fragment) page.getClz().newInstance();
 
             Bundle args = data.getBundleExtra(BUNDLE_KEY_ARGS);
-            LogUtils.e("setTitleText---1",""+args);
-
-            LogUtils.e("setTitleText---2",""+args.getString("title"));
-
 
             if (args != null) {
                 LogUtils.e("setTitleText---3","");
-
-
                 if(TextUtils.isEmpty(args.getString("title"))){
                     setTitleText(page.getTitle());
                 }else {
                     setTitleText(args.getString("title"));
                 }
-
                 fragment.setArguments(args);
             }
 

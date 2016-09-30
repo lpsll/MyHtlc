@@ -230,7 +230,7 @@ public class TopUpActivity extends BaseTitleActivity {
     private void zfbTopUp() {
 
         zfbTopUpDTO dto = new zfbTopUpDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         dto.setTimestamp(time);
@@ -261,7 +261,7 @@ public class TopUpActivity extends BaseTitleActivity {
     private void wxTopUp() {
 
         zfbTopUpDTO dto = new zfbTopUpDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         dto.setTimestamp(time);
@@ -292,7 +292,7 @@ public class TopUpActivity extends BaseTitleActivity {
 
     private void reqWxPayment() {
         WxDTO dto = new WxDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);
@@ -507,7 +507,7 @@ public class TopUpActivity extends BaseTitleActivity {
      */
     private void reqZfbPayment() {
         ZfbDTO dto = new ZfbDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);

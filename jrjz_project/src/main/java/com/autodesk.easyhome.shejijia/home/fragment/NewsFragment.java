@@ -65,7 +65,7 @@ public class NewsFragment extends BaseListFragment<NewsEntity> {
         LogUtils.e("login---",""+login);
         if(login){
             OrderDTO dto = new OrderDTO();
-            final String time = TimeUtils.getSignTime();
+            final long time = TimeUtils.getSignTime();
             final String random = TimeUtils.genNonceStr();
             dto.setAccessToken(AppContext.get("accessToken",""));
             dto.setRandom(random);

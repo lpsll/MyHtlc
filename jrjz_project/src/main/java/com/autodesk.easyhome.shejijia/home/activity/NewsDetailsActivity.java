@@ -55,7 +55,7 @@ public class NewsDetailsActivity extends BaseTitleActivity {
 
     private void reqRead() {
         LookNewsDTO dto = new LookNewsDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setRandom(random);

@@ -212,7 +212,7 @@ public class HomeFragment extends BaseFragment {
 
     private void reqWhether() {
         BaseDTO dto = new BaseDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         final String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setUid(AppContext.get("uid", ""));

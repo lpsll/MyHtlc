@@ -126,7 +126,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
         String pwd = etLoginPwd.getText().toString().trim();
 
         LoginDTO loginDTO = new LoginDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         loginDTO.setUid(phone);
         loginDTO.setPassword(pwd);
