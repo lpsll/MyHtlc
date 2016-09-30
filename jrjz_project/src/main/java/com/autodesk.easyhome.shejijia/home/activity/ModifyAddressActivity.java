@@ -202,7 +202,7 @@ public class ModifyAddressActivity extends BaseTitleActivity {
 
     private void reqModify() {
         ModifyAddressDTO dto = new ModifyAddressDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setUid(AppContext.get("uid", ""));

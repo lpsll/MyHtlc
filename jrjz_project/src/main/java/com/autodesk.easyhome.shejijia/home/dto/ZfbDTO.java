@@ -12,46 +12,6 @@ public class ZfbDTO extends BaseDTO {
     private String couponids;
     private String points;
 
-    @Override
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    @Override
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    @Override
-    public String getUid() {
-        return uid;
-    }
-
-    @Override
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    @Override
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    @Override
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    @Override
-    public String getRandom() {
-        return random;
-    }
-
-    @Override
-    public void setRandom(String random) {
-        this.random = random;
-    }
-
     public String getDealType() {
         return dealType;
     }
@@ -76,15 +36,6 @@ public class ZfbDTO extends BaseDTO {
         this.tradetype = tradetype;
     }
 
-    @Override
-    public String getSign() {
-        return sign;
-    }
-
-    @Override
-    public void setSign(String sign) {
-        this.sign = sign;
-    }
 
     public String getCouponids() {
         return couponids;

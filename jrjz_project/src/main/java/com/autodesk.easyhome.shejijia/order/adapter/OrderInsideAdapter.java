@@ -98,7 +98,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             CancelOrderDTO dto = new CancelOrderDTO();
-                            String time = TimeUtils.getSignTime();
+                            long time = TimeUtils.getSignTime();
                             String random = TimeUtils.genNonceStr();
                             dto.setAccessToken(AppContext.get("accessToken",""));
                             dto.setRandom(random);

@@ -117,7 +117,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
      */
     private void exit() {
 
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         BaseDTO baseDTO = new BaseDTO();

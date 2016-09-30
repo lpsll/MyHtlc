@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.register.dto;
 
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 
 /**
@@ -18,48 +19,11 @@ import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
  * <p/>
  * sign:签名【生成规则 uid+password(MD5)+timestamp+random 后md5加密串】
  */
-public class ForgetPwdDTO {
+public class ForgetPwdDTO extends BaseDTO{
 
-    public String uid;
-    public String timestamp;
-    public String random;
-    public String sign;
+
     private String smsverifycode;
     private String password;
-
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getRandom() {
-        return random;
-    }
-
-    public void setRandom(String random) {
-        this.random = random;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = SecurityUtils.MD5(sign);
-    }
-
 
     public String getSmsverifycode() {
         return smsverifycode;

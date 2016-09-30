@@ -112,7 +112,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
         }
 
         LoginForCodeDTO loginForCodeDTO = new LoginForCodeDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         loginForCodeDTO.setUid(phone);
@@ -154,7 +154,7 @@ public class LoginForCodeActivity extends BaseTitleActivity {
      */
     private void getSmsVerifyCode() {
         BaseDTO dto = new BaseDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setRandom(random);
         dto.setTimestamp(time);

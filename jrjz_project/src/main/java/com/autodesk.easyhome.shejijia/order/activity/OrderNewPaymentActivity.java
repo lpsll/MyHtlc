@@ -123,7 +123,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     }
 
     private void getUserDetail() {
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         BaseDTO baseDTO = new BaseDTO();
@@ -261,15 +261,15 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 OrderUiGoto.gotoServiceCoupon(this, b);
                 break;
 
-//            case R.id.base_titlebar_back:
-//                baseGoBack();
-//                break;
+            case R.id.base_titlebar_back:
+                baseGoBack();
+                break;
         }
     }
 
     private void reqPayment() {
         NewPaymentDTO dto = new NewPaymentDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);
@@ -309,7 +309,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
     private void reqWxPayment() {
         WxDTO dto = new WxDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);
@@ -408,7 +408,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
 
     private void reqZfbPayment() {
         ZfbDTO dto = new ZfbDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);

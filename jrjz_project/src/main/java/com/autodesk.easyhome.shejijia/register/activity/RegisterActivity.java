@@ -25,6 +25,9 @@ import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.dto.RegisterDTO;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -173,7 +176,8 @@ public class RegisterActivity extends BaseTitleActivity {
     private void register() {
 
         RegisterDTO registerDTO = new RegisterDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
+        LogUtils.e("date---",""+time);
         String random = TimeUtils.genNonceStr();
         registerDTO.setUid(etRegisterPhone.getText().toString());
         registerDTO.setPassword(etRegisterPassword.getText().toString());
@@ -202,7 +206,8 @@ public class RegisterActivity extends BaseTitleActivity {
      */
     private void getSmsVerifyCode() {
         BaseDTO dto = new BaseDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
+        LogUtils.e("date---",""+time);
         String random = TimeUtils.genNonceStr();
         dto.setRandom(random);
         dto.setTimestamp(time);

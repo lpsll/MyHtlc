@@ -49,8 +49,10 @@ public class BaseApiClient {
 			String params="";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
-				if(TextUtils.isEmpty(map.get(s).toString())){
+				LogUtils.e("s-------",""+s+map.get(s));
+				if(TextUtils.isEmpty(map.get(s).toString())||(s.equals("timestamp")&&map.get(s).toString().equals("0"))){
 					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+					continue;
 				}
 				if (params.equals(""))
 				{
@@ -85,9 +87,10 @@ public class BaseApiClient {
 			String params="";
 			for (Iterator<String> it = key.iterator(); it.hasNext();) {
 				String s =  it.next();
-				LogUtils.e("s-------"+s);
-				if(TextUtils.isEmpty(map.get(s).toString())){
+				LogUtils.e("s-------",""+s+map.get(s));
+				if(TextUtils.isEmpty(map.get(s).toString())||(s.equals("timestamp")&&map.get(s).toString().equals("0"))){
 					LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+					continue;
 				}
 				if (params.equals(""))
 				{
@@ -159,10 +162,10 @@ public class BaseApiClient {
 		Set<String> key = map.keySet();
 		for (Iterator<String> it = key.iterator(); it.hasNext();) {
 			String s =  it.next();
-//			if(TextUtils.isEmpty(map.get(s).toString())){
-//				LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
-//				continue;
-//			}
+			if(TextUtils.isEmpty(map.get(s).toString())||(s.equals("timestamp")&&map.get(s).toString().equals("0"))){
+				LogUtils.e("Found Empty Params--> "+s + "=" + map.get(s));
+				continue;
+			}
 			builder.add(s, map.get(s).toString());
 			LogUtils.e("builder---",s + " = " + map.get(s).toString());
 		}

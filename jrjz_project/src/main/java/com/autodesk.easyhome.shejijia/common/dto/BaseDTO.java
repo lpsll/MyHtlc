@@ -11,10 +11,20 @@ import java.io.Serializable;
 
 public class BaseDTO implements Serializable {
     public String uid;
-    public String timestamp;
+    public long timestamp;
     public String random;
     public String sign;
     public String accessToken;
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+
+
 
     public String getAccessToken() {
         return accessToken;
@@ -32,13 +42,7 @@ public class BaseDTO implements Serializable {
         this.uid = uid;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
 
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
 
     public String getRandom() {
         return random;

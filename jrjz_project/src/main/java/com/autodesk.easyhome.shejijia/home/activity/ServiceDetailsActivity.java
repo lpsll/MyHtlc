@@ -175,6 +175,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
             case R.id.tv_housekeeping_detail_shop_name:
 
                 Bundle bundle = new Bundle();
+                bundle.putString("title","服务详情");
                 bundle.putString("url","http://101.200.167.130:8080/jrjz-api/c/service/detail?id="+id);
                 HomeUiGoto.gotoBrowser(this,bundle);
 
@@ -184,7 +185,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
 
     private void reqAppointment() {
         AppointmentDTO dto = new AppointmentDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken",""));
         dto.setRandom(random);

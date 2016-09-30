@@ -65,7 +65,7 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
             menoy = b.getString("total");
         }
         ServiceCouponDTO dto = new ServiceCouponDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setAccessToken(AppContext.get("accessToken",""));
         dto.setRandom(random);
@@ -108,7 +108,6 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
 
     @Override
     public void initData() {
-        LogUtils.e("ServiceCouponFragment--initData---","ServiceCouponFragment--initData");
     }
 
     public boolean autoRefreshIn(){
@@ -135,37 +134,62 @@ public class ServiceCouponFragment  extends BaseListFragment<ServiceCouponEntity
             tList.add(bList.get(position));
             LogUtils.e("mList---",""+mList+"--size"+mList.size());
             LogUtils.e("tList---",""+tList+"--size"+tList.size());
-            double t1 = Double.parseDouble(menoy);
-            double t2 = Double.parseDouble(entity.getFace_amount());
-            if(t1>t2||t1==t2){
-                if(null==mAmount){
-                    mAmount = tList.get(0);
-                    mMoney = Double.parseDouble(mAmount);
-                }else {
-                    mMoney = Double.parseDouble(mAmount);
-                    for(int i=1;i<tList.size();i++){
-                        mMoney+=Double.parseDouble(tList.get(i));
+//            double t1 = Double.parseDouble(menoy);
+//            double t2 = Double.parseDouble(entity.getFace_amount());
+//            if(t1>t2||t1==t2){
+//                if(null==mAmount){
+//                    mAmount = tList.get(0);
+//                    mMoney = Double.parseDouble(mAmount);
+//                }else {
+//                    mMoney = Double.parseDouble(mAmount);
+//                    for(int i=1;i<tList.size();i++){
+//                        mMoney+=Double.parseDouble(tList.get(i));
+//
+//                    }
+//                }
+//
+//                LogUtils.e("mMoney---",""+mMoney);
+//                AppContext.set("couponMenoy",String.valueOf(mMoney));
+//                if(null==mId){
+//                    mId=mList.get(0);
+//                }else {
+//                    mId=mList.get(0);
+//                    for(int i=1;i<mList.size();i++){
+//                        mId+=","+mList.get(i);
+//                    }
+//                }
+//
+//                LogUtils.e("mId---",""+mId);
+//                AppContext.set("couponMenoy_id",mId);
+//
+//            }else {
+//                DialogUtils.showPrompt(getActivity(), "提示","不可使用", "知道了");
+//            }
 
-                    }
-                }
-
-                LogUtils.e("mMoney---",""+mMoney);
-                AppContext.set("couponMenoy",String.valueOf(mMoney));
-                if(null==mId){
-                    mId=mList.get(0);
-                }else {
-                    mId=mList.get(0);
-                    for(int i=1;i<mList.size();i++){
-                        mId+=","+mList.get(i);
-                    }
-                }
-
-                LogUtils.e("mId---",""+mId);
-                AppContext.set("couponMenoy_id",mId);
-
+            if(null==mAmount){
+                mAmount = tList.get(0);
+                mMoney = Double.parseDouble(mAmount);
             }else {
-                DialogUtils.showPrompt(getActivity(), "提示","不可使用", "知道了");
+                mMoney = Double.parseDouble(mAmount);
+                for(int i=1;i<tList.size();i++){
+                    mMoney+=Double.parseDouble(tList.get(i));
+
+                }
             }
+
+            LogUtils.e("mMoney---",""+mMoney);
+            AppContext.set("couponMenoy",String.valueOf(mMoney));
+            if(null==mId){
+                mId=mList.get(0);
+            }else {
+                mId=mList.get(0);
+                for(int i=1;i<mList.size();i++){
+                    mId+=","+mList.get(i);
+                }
+            }
+
+            LogUtils.e("mId---",""+mId);
+            AppContext.set("couponMenoy_id",mId);
         }else {
             img.setVisibility(View.GONE);
         }

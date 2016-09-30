@@ -118,7 +118,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void getUserDetail() {
 
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         BaseDTO baseDTO = new BaseDTO();
@@ -322,20 +322,31 @@ public class OrderPaymentActivity extends BaseTitleActivity {
             case R.id.tj_btn:
                 if (mPlaceCbQb.isChecked()) {
                     type = "SerivceBook";
-//                    mPrice ="300";
-                    if (balance < Double.parseDouble(mPrice)) {
+                    balance = 0.0;
+                    LogUtils.e("balance---",""+balance);
+                    LogUtils.e("mHomeFee---",""+Double.parseDouble(mHomeFee.getText().toString()));
+                    double d = 0.00;
+                    if (balance<d) {
                         DialogUtils.showPrompt(this, "提示", "您的余额不足，钱包无法支付！", "知道了");
                     } else {
                         reqQbPayment();//钱包支付
                     }
 
                 } else if (mPlaceCbWx.isChecked()) {
-                    type = "SerivceBook";
-                    reqWxPayment();//微信预支付
+                    if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
+                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                    }else {
+                        type = "SerivceBook";
+                        reqWxPayment();//微信预支付
+                    }
+
                 } else if (mPlaceCbZfb.isChecked()) {
+                    if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
+                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                    }else {
                     type = "SerivceBook";
                     reqZfbPayment();//支付宝预支付
-
+                    }
                 }
                 break;
             case R.id.base_titlebar_back:
@@ -357,7 +368,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void reqQbPayment() {
         NewPaymentDTO dto = new NewPaymentDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);
@@ -366,6 +377,12 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         dto.setSign(AppContext.get("uid", "") + time + random);
         dto.setDealId(mOrderId);
         dto.setDealType(type);
+        if (integral) {
+            dto.setPoints(mPoint);
+        }
+        if (coupon) {
+            dto.setCouponids(mCouponId);
+        }
         CommonApiClient.newPayment(this, dto, new CallBack<IntegralResult>() {
             @Override
             public void onSuccess(IntegralResult result) {
@@ -392,14 +409,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void reqWxPayment() {
         WxDTO dto = new WxDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);
         dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setUid(AppContext.get("uid", ""));
         dto.setSign(AppContext.get("uid", "") + time + random);
-
         dto.setDealId(mOrderId);
         dto.setDealType(type);
         dto.setTradetype("APP");
@@ -424,7 +440,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     private void reqZfbPayment() {
         ZfbDTO dto = new ZfbDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setTimestamp(time);
         dto.setRandom(random);

@@ -104,7 +104,7 @@ public class ChangePhoneActivity extends BaseTitleActivity {
 
 
         ChangePhoneDTO changePhoneDTO = new ChangePhoneDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         changePhoneDTO.setAccessToken(AppContext.get("accessToken", ""));
@@ -141,7 +141,7 @@ public class ChangePhoneActivity extends BaseTitleActivity {
      */
     private void getSmsVerifyCode() {
         BaseDTO dto = new BaseDTO();
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
         dto.setRandom(random);
         dto.setTimestamp(time);

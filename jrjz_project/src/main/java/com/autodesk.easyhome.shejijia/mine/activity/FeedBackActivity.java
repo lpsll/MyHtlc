@@ -68,7 +68,7 @@ public class FeedBackActivity extends BaseTitleActivity {
 
         String accessToken = AppContext.get("accessToken", "");
         String uid = AppContext.get("uid", "");
-        String time = TimeUtils.getSignTime();
+        long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
 
         feedBackDTO.setUid(uid);

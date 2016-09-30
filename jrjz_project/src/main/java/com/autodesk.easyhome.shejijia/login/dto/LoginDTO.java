@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.login.dto;
 
+import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
 
@@ -13,49 +14,10 @@ import com.autodesk.easyhome.shejijia.common.utils.SecurityUtils;
  * sign：签名【生成规则 uid+password+timestamp+random 后md5加密串】
  * usertype:用户类型 1-普通用户 , 默认为1
  */
-public class LoginDTO  {
+public class LoginDTO  extends BaseDTO{
 
     public String password;
-    public String timestamp;
-    public String random;
-    public String sign;
     public int usertype;
-
-    public String uid;
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    public String getRandom() {
-        return random;
-    }
-
-    public void setRandom(String random) {
-        this.random = random;
-    }
-
-    public String getSign() {
-        return sign;
-    }
-
-    public void setSign(String sign) {
-        this.sign = SecurityUtils.MD5(sign);
-    }
-
-
 
     public String getPassword() {
         return password;
