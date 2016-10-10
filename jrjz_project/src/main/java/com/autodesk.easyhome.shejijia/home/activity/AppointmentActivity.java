@@ -329,8 +329,8 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setServiceItemId(mId);
         dto.setServiceTime(mTm);
         dto.setDescr(mEtDescribe.getText().toString());
-//        dto.setHomeVisitFee(mTvMoney.getText().toString());
-        dto.setHomeVisitFee(0.01+"");
+        dto.setHomeVisitFee(mTvMoney.getText().toString());
+//        dto.setHomeVisitFee(0.01+"");
 
 
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {

@@ -322,11 +322,9 @@ public class OrderPaymentActivity extends BaseTitleActivity {
             case R.id.tj_btn:
                 if (mPlaceCbQb.isChecked()) {
                     type = "SerivceBook";
-                    balance = 0.0;
                     LogUtils.e("balance---",""+balance);
                     LogUtils.e("mHomeFee---",""+Double.parseDouble(mHomeFee.getText().toString()));
-                    double d = 0.00;
-                    if (balance<d) {
+                    if (balance<Double.parseDouble(mHomeFee.getText().toString())) {
                         DialogUtils.showPrompt(this, "提示", "您的余额不足，钱包无法支付！", "知道了");
                     } else {
                         reqQbPayment();//钱包支付
