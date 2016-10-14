@@ -56,13 +56,17 @@ public class SimpleActivity extends BaseTitleActivity {
             Bundle args = data.getBundleExtra(BUNDLE_KEY_ARGS);
 
             if (args != null) {
-                LogUtils.e("setTitleText---3","");
+                LogUtils.e("setTitleText---",""+args.getString("title"));
                 if(TextUtils.isEmpty(args.getString("title"))){
                     setTitleText(page.getTitle());
                 }else {
                     setTitleText(args.getString("title"));
                 }
                 fragment.setArguments(args);
+            }
+            else {
+                LogUtils.e("args---",""+args);
+                setTitleText(page.getTitle());
             }
 
             FragmentTransaction trans = getSupportFragmentManager()

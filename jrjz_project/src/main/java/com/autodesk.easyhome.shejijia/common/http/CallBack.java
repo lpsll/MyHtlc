@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+
 public abstract class CallBack<T> implements Handler.Callback {
 	private Handler mHandler;
 	public static final int SUCCESS = 0x10;
@@ -37,7 +39,9 @@ public abstract class CallBack<T> implements Handler.Callback {
 
 	@Override
 	public boolean handleMessage(Message msg) {
+		LogUtils.e("msg.what--",""+msg.what);
 		switch (msg.what) {
+
 		case SUCCESS:
 			onSuccess((T) msg.obj);
 			break;

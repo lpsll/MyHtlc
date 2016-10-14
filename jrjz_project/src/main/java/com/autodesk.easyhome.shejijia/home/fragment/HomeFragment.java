@@ -194,7 +194,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
 
-        login = AppContext.get("IS_LOGIN",false);
+//        login = AppContext.get("IS_LOGIN",false);
     }
 
 
@@ -204,7 +204,7 @@ public class HomeFragment extends BaseFragment {
         reqCarousel();//轮播图
         reqFullService();//全部服务类别类别
         reqService();//制定服务类
-        if(login){
+        if(AppContext.get("IS_LOGIN",false)){
             reqWhether();//是否有未读消息
         }
 

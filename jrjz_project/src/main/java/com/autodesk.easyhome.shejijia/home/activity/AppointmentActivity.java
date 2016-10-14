@@ -179,7 +179,7 @@ public class AppointmentActivity extends BaseTitleActivity {
             public void onSuccess(DfaultResult result) {
                 if(AppConfig.NOTHING.equals(result.getCode())){
                     LogUtils.e("无默认地址");
-
+                    mTvMoney.setText("");
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取默认地址成功");

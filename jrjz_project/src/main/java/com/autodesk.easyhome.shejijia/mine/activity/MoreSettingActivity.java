@@ -133,16 +133,17 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("退出成功");
                     ToastUtils.showShort(MoreSettingActivity.this, "退出成功");
+                    AppContext.set("uid", "");
+                    AppContext.set("accessToken", "");
+                    AppContext.set("IS_LOGIN", false);
+                    setResult(1001);
+                    finish();
                 }
             }
         });
 
 
-        AppContext.set("uid", "");
-        AppContext.set("accessToken", "");
-        AppContext.set("IS_LOGIN", false);
-        setResult(1001);
-        finish();
+
 
     }
 

@@ -152,7 +152,7 @@ public abstract class BaseActivity  extends FragmentActivity implements
         String message = event.getMsg();
         if (event.getTag().equals(this)) {
             if(!AppConfig.SUCCESS.equals(status)) {
-                LogUtils.e("event.getTag()---","event.getTag()");
+                LogUtils.e("status---",""+status);
                 LogUtils.e("message---",""+message);
                 ToastUtils.showShort(this,message);
             }
