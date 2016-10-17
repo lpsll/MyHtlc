@@ -77,11 +77,18 @@
             android:layout_height="@dimen/ds_40"
             android:background="@color/linear_gray" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/color_ff"
+            android:orientation="horizontal"
             android:padding="@dimen/ds_30">
+            <LinearLayout
+                android:id="@+id/lin_housekeeping_detail_shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="@dimen/ds_50"
@@ -103,19 +110,26 @@
                 android:textColor="@color/tv_black"
                 android:textSize="@dimen/fs_40" />
 
+            </LinearLayout>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="@dimen/ds_60"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/ds_60"
+                android:background="@color/tv_grey" />
 
             <LinearLayout
                 android:id="@+id/ll_housekeeping_detail_contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_weight="1"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/ds_50"
                     android:layout_height="@dimen/ds_50"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
                     android:layout_marginRight="@dimen/ds_30"
                     android:src="@drawable/dianhuaxdpi_03" />
 
@@ -123,8 +137,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
                     android:layout_marginRight="@dimen/ds_30"
                     android:text="联系商家"
                     android:textColor="@color/tv_black"
@@ -132,15 +145,8 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="1dp"
-                android:layout_height="@dimen/ds_60"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="@dimen/ds_60"
-                android:layout_toLeftOf="@id/ll_housekeeping_detail_contact"
-                android:background="@color/tv_grey" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"

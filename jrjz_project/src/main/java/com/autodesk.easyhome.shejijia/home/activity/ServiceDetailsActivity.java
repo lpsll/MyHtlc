@@ -133,7 +133,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         addTv04.setText(data.getCity()+data.getDistrict()+data.getArea()+data.getAddress());
     }
 
-    @OnClick({R.id.tv_housekeeping_detail_shop_name,R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok, R.id.ll_housekeeping_detail_contact})
+    @OnClick({R.id.lin_housekeeping_detail_shop_name,R.id.lin_address, R.id.rl_housekeeping_detail_sevice_time, R.id.rl_housekeeping_detail_special_request, R.id.tv_housekeeping_detail_ok, R.id.ll_housekeeping_detail_contact})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
@@ -172,7 +172,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
                 startActivity(intent);
                 break;
 
-            case R.id.tv_housekeeping_detail_shop_name:
+            case R.id.lin_housekeeping_detail_shop_name:
 
                 Bundle bundle = new Bundle();
                 bundle.putString("title","服务详情");

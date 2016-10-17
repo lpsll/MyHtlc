@@ -158,6 +158,7 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
         reset();
         mErrorLayout.setErrorType(EmptyLayout.HIDE_LAYOUT);
         LogUtils.e("list----",""+list);
+        LogUtils.e("mCurrentPage----",""+mCurrentPage);
         if (list == null || list.size() == 0) {
             if (mCurrentPage == 0) {
                 mErrorLayout.setErrorType(EmptyLayout.NODATA);

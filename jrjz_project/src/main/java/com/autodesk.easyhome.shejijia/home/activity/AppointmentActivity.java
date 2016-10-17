@@ -179,7 +179,7 @@ public class AppointmentActivity extends BaseTitleActivity {
             public void onSuccess(DfaultResult result) {
                 if(AppConfig.NOTHING.equals(result.getCode())){
                     LogUtils.e("无默认地址");
-
+                    mTvMoney.setText("");
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("获取默认地址成功");
@@ -329,8 +329,8 @@ public class AppointmentActivity extends BaseTitleActivity {
         dto.setServiceItemId(mId);
         dto.setServiceTime(mTm);
         dto.setDescr(mEtDescribe.getText().toString());
-//        dto.setHomeVisitFee(mTvMoney.getText().toString());
-        dto.setHomeVisitFee(0.01+"");
+        dto.setHomeVisitFee(mTvMoney.getText().toString());
+//        dto.setHomeVisitFee(0.01+"");
 
 
         CommonApiClient.appointment(this, dto, new CallBack<AddAddressResult>() {

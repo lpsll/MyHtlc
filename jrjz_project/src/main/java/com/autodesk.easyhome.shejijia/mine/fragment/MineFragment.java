@@ -86,6 +86,13 @@ public class MineFragment extends BaseFragment {
     private TextView text;
     private String type;
 
+
+    @Override
+    protected int getLayoutResId() {
+        return R.layout.fragment_mine;
+    }
+
+
     @Override
     public void initView(View view) {
         if (AppContext.get("IS_LOGIN", false)) {
@@ -166,10 +173,7 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    @Override
-    protected int getLayoutResId() {
-        return R.layout.fragment_mine;
-    }
+
 
 
     public static final int TOPUP_REQUEST = 0x1108;
@@ -238,7 +242,6 @@ public class MineFragment extends BaseFragment {
                         }
                     }).setNegativeButton("取消", null).show();
 
-                    HomeUiGoto.gotoLoginForPwd(getActivity());
                 }
 
                 break;
@@ -354,13 +357,7 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
+
 
     @Override
     public void onDestroyView() {
