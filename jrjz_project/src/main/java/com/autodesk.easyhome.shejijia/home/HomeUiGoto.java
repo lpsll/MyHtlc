@@ -19,7 +19,6 @@ import com.autodesk.easyhome.shejijia.home.activity.ProjectDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.SelectAddressActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceDetailsActivity;
 import com.autodesk.easyhome.shejijia.home.activity.ServiceTimeActivity;
-import com.autodesk.easyhome.shejijia.home.fragment.NewsFragment;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForCodeActivity;
 import com.autodesk.easyhome.shejijia.login.activity.LoginForPwdActivity;
 import com.autodesk.easyhome.shejijia.register.activity.ForgetPwdActivity;
@@ -83,11 +82,15 @@ public class HomeUiGoto {
     public static final int SD_REQUEST = 010000;
     public static void gotoSelect(Activity act){
         Intent intent = new Intent(act, SelectAddressActivity.class);
+        Bundle bundle = new Bundle();
+        intent.putExtras(bundle);
         act.startActivityForResult(intent,SELECT_REQUEST);
     }
 
     public static void gotoSdSelect(Activity act){
         Intent intent = new Intent(act, SelectAddressActivity.class);
+        Bundle bundle = new Bundle();
+        intent.putExtras(bundle);
         act.startActivityForResult(intent,SD_REQUEST);
     }
 

@@ -1,9 +1,11 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -65,6 +67,7 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+
 /**
  * 预约页
  */
@@ -97,7 +100,7 @@ public class AppointmentActivity extends BaseTitleActivity {
     TextView mTime;
 
     PopupWindow popWindow;
-    TextView mCamera,mPhoto,mExit;
+    TextView mCamera, mPhoto, mExit;
     /* 请求识别码 */
     private static final int CODE_CAMERA_REQUEST = 0xa1;
     private static final int CODE_PHOTO_REQUEST = 0xa2;
@@ -105,8 +108,8 @@ public class AppointmentActivity extends BaseTitleActivity {
     private static final int REQUEST_CAMERA_CODE = 10;
     private static final int REQUEST_PREVIEW_CODE = 20;
     private GridAdapter gridAdapter;
-    private String mName,mId;
-    private String mSelName,mSelPhone,mSelAddress,mPrice,mTm,mAre;
+    private String mName, mId;
+    private String mSelName, mSelPhone, mSelAddress, mPrice, mTm, mAre;
 
     private ArrayList<String> mPic = new ArrayList<>();
     DfaultEntity data;
@@ -122,46 +125,59 @@ public class AppointmentActivity extends BaseTitleActivity {
         if (Build.VERSION.SDK_INT >= 23) {
             int readSDPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
             if (readSDPermission != PackageManager.PERMISSION_GRANTED) {
-                LogUtils.e("readSDPermission",""+readSDPermission);
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                LogUtils.e("readSDPermission", "" + readSDPermission);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         123);
             }
         }
-            setTitleText("预约");
+        setTitleText("预约");
 
 
-            mName = getIntent().getBundleExtra("bundle").getString("mName");
-            mId = getIntent().getBundleExtra("bundle").getString("mId");
-            mTvProject.setText(mName);
+        mName = getIntent().getBundleExtra("bundle").getString("mName");
+        mId = getIntent().getBundleExtra("bundle").getString("mId");
+        mTvProject.setText(mName);
 
-            int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
-            cols = cols < 3 ? 3 : cols;
-            mGv.setNumColumns(cols);
+        int cols = getResources().getDisplayMetrics().widthPixels / getResources().getDisplayMetrics().densityDpi;
+        cols = cols < 3 ? 3 : cols;
+        mGv.setNumColumns(cols);
 
-            mGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    String imgs = (String) parent.getItemAtPosition(position);
-                    LogUtils.e("imgs----", "" + imgs);
-                    if ("000000".equals(imgs)) {
-                        showPicPop();
-                    } else {
-                        return;
-                    }
-
-
+        mGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String imgs = (String) parent.getItemAtPosition(position);
+                LogUtils.e("imgs----", "" + imgs);
+                if ("000000".equals(imgs)) {
+                    showPicPop();
+                } else {
+                    return;
                 }
-            });
 
-            LogUtils.e("mPic.size()----",""+mPic.size());
 
+            }
+        });
+
+        LogUtils.e("mPic.size()----", "" + mPic.size());
+
+        //注册广播
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(SelectAddressActivity.ACTION);
+        registerReceiver(myReceiver, filter);
 
     }
 
+    BroadcastReceiver myReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            LogUtils.d("eeeeeeeeeeeee");
+            reqDfault();//获取默认地址
+        }
+    };
+
     @Override
     public void initData() {
-        login = AppContext.get("IS_LOGIN",false);
-        if(login) {
+        login = AppContext.get("IS_LOGIN", false);
+        if (login) {
             reqDfault();//获取默认地址
         }
 
@@ -173,12 +189,16 @@ public class AppointmentActivity extends BaseTitleActivity {
 
     private void reqDfault() {
         BaseDTO dto = new BaseDTO();
-        dto.setUid(AppContext.get("uid",""));
+        dto.setUid(AppContext.get("uid", ""));
         CommonApiClient.dfault(this, dto, new CallBack<DfaultResult>() {
             @Override
             public void onSuccess(DfaultResult result) {
-                if(AppConfig.NOTHING.equals(result.getCode())){
+                if (AppConfig.NOTHING.equals(result.getCode())) {
                     LogUtils.e("无默认地址");
+                    mAddTv01.setText("请选择地址");
+                    mAddTv02.setText("");
+                    mAddTv03.setText("");
+                    mAddTv04.setText("");
                     mTvMoney.setText("");
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
@@ -195,20 +215,20 @@ public class AppointmentActivity extends BaseTitleActivity {
         mAre = data.getArea();
         mAddTv01.setText(data.getName());
         mAddTv02.setText(data.getMobile());
-        mAddTv04.setText(data.getCity()+data.getDistrict()+data.getArea()+data.getAddress());
+        mAddTv04.setText(data.getCity() + data.getDistrict() + data.getArea() + data.getAddress());
         reqService();//服务费
     }
 
     private void reqService() {
         ServieceFreeDTO dto = new ServieceFreeDTO();
         dto.setId(Integer.parseInt(mId));
-        if(mAre.equals("三环以内")){
+        if (mAre.equals("三环以内")) {
             dto.setArea("InThirdRing");
         }
-        if(mAre.equals("三环到五环")){
+        if (mAre.equals("三环到五环")) {
             dto.setArea("ThirdToFiveRing");
         }
-        if(mAre.equals("五环以外")){
+        if (mAre.equals("五环以外")) {
             dto.setArea("OutFiveRing");
         }
         CommonApiClient.serviceCharge(this, dto, new CallBack<AddAddressResult>() {
@@ -225,14 +245,14 @@ public class AppointmentActivity extends BaseTitleActivity {
     }
 
 
-    @OnClick({R.id.lin_address, R.id.lin_time, R.id.img_ljd, R.id.tv_project,R.id.apt_btn})
+    @OnClick({R.id.lin_address, R.id.lin_time, R.id.img_ljd, R.id.tv_project, R.id.apt_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.lin_address:
 //                UIHelper.showFragment(this, SimplePage.SELECT_ADDRESS);//常用地址
-                if(login){
+                if (login) {
                     HomeUiGoto.gotoSelect(this);
-                }else {
+                } else {
                     DialogUtils.confirm(this, "您尚未登录，是否去登录？", listener);
 
                 }
@@ -243,18 +263,18 @@ public class AppointmentActivity extends BaseTitleActivity {
                 break;
             case R.id.img_ljd:
                 Bundle bundle = new Bundle();
-                bundle.putString("url","http://101.200.167.130:8080/jrjz-api/c/service/detail?id="+mId);
-                HomeUiGoto.gotoBrowser(this,bundle);
+                bundle.putString("url", "http://101.200.167.130:8080/jrjz-api/c/service/detail?id=" + mId);
+                bundle.putString("title", mName);
+                HomeUiGoto.gotoBrowser(this, bundle);
                 break;
             case R.id.tv_project:
                 HomeUiGoto.gotoProjectDetails(this);
                 break;
             case R.id.apt_btn:
-                if(mAddTv02.getText().toString().equals("")){
-                    DialogUtils.showPrompt(this, "提示","请选择地址", "知道了");
-                }
-                else if(mTime.getText().toString().equals("")||mTime.getText().toString().equals("请选择服务时间")){
-                    DialogUtils.showPrompt(this, "提示","请选择时间", "知道了");
+                if (mAddTv02.getText().toString().equals("")) {
+                    DialogUtils.showPrompt(this, "提示", "请选择地址", "知道了");
+                } else if (mTime.getText().toString().equals("") || mTime.getText().toString().equals("请选择服务时间")) {
+                    DialogUtils.showPrompt(this, "提示", "请选择时间", "知道了");
                 }
 //                else if(mEtDescribe.getText().toString().equals("")){
 //                    DialogUtils.showPrompt(this, "提示","请填写问题", "知道了");
@@ -305,10 +325,10 @@ public class AppointmentActivity extends BaseTitleActivity {
 
 
     private void reqPic() {
-        if(mPic.size()>0){
-            for(int i =0;i<mPic.size();i++){
-                UploadFileTask uploadFileTask=new UploadFileTask(this, AppConfig.BASE_URL+"/service/service/book");
-                LogUtils.e("list.get(i)---",""+mPic.get(i));
+        if (mPic.size() > 0) {
+            for (int i = 0; i < mPic.size(); i++) {
+                UploadFileTask uploadFileTask = new UploadFileTask(this, AppConfig.BASE_URL + "/service/service/book");
+                LogUtils.e("list.get(i)---", "" + mPic.get(i));
                 uploadFileTask.execute(mPic.get(i));
             }
         }
@@ -318,11 +338,11 @@ public class AppointmentActivity extends BaseTitleActivity {
         AppointmentDTO dto = new AppointmentDTO();
         long time = TimeUtils.getSignTime();
         String random = TimeUtils.genNonceStr();
-        dto.setAccessToken(AppContext.get("accessToken",""));
+        dto.setAccessToken(AppContext.get("accessToken", ""));
         dto.setRandom(random);
-        dto.setUid(AppContext.get("uid",""));
+        dto.setUid(AppContext.get("uid", ""));
         dto.setTimestamp(time);
-        dto.setSign(AppContext.get("uid","")+time+random);
+        dto.setSign(AppContext.get("uid", "") + time + random);
         dto.setCustName(mAddTv01.getText().toString());
         dto.setPhone(mAddTv02.getText().toString());
         dto.setAddress(mAddTv04.getText().toString());
@@ -339,15 +359,15 @@ public class AppointmentActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("预约成功");
                     Bundle bundle = new Bundle();
-                    bundle.putString("mName",mName);
-                    bundle.putString("mPrice",mPrice);
+                    bundle.putString("mName", mName);
+                    bundle.putString("mPrice", mPrice);
 //                    bundle.putString("mPrice",0.01+"");
-                    bundle.putString("orderId",result.getData());
-                    bundle.putString("serviceId",mId);
-                    bundle.putString("mAddTv01",mAddTv01.getText().toString());
-                    bundle.putString("mAddTv02",mAddTv02.getText().toString());
-                    bundle.putString("mAddTv04",mAddTv04.getText().toString());
-                    HomeUiGoto.gotoOrder(AppointmentActivity.this,bundle);
+                    bundle.putString("orderId", result.getData());
+                    bundle.putString("serviceId", mId);
+                    bundle.putString("mAddTv01", mAddTv01.getText().toString());
+                    bundle.putString("mAddTv02", mAddTv02.getText().toString());
+                    bundle.putString("mAddTv04", mAddTv04.getText().toString());
+                    HomeUiGoto.gotoOrder(AppointmentActivity.this, bundle);
                 }
 
             }
@@ -355,9 +375,9 @@ public class AppointmentActivity extends BaseTitleActivity {
     }
 
     private void showPicPop() {
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final View view = inflater.from(this).inflate(R.layout.popup_pic, null);
-        popWindow = new PopupWindow(view, WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.WRAP_CONTENT,true);
+        popWindow = new PopupWindow(view, WindowManager.LayoutParams.FILL_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
 
         // 需要设置一下此参数，点击外边可消失
         popWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -377,12 +397,13 @@ public class AppointmentActivity extends BaseTitleActivity {
         mExit.setOnClickListener(this);
 
         View parent = getWindow().getDecorView();//高度为手机实际的像素高度
-        LogUtils.e("parent---",""+parent);
+        LogUtils.e("parent---", "" + parent);
         popWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         //添加pop窗口关闭事件
         popWindow.setOnDismissListener(new poponDismissListener());
     }
-    public class poponDismissListener implements PopupWindow.OnDismissListener{
+
+    public class poponDismissListener implements PopupWindow.OnDismissListener {
 
         @Override
         public void onDismiss() {
@@ -391,12 +412,13 @@ public class AppointmentActivity extends BaseTitleActivity {
         }
 
     }
+
     /**
      * 设置添加屏幕的背景透明度
+     *
      * @param bgAlpha
      */
-    public void backgroundAlpha(float bgAlpha)
-    {
+    public void backgroundAlpha(float bgAlpha) {
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         lp.alpha = bgAlpha; //0.0-1.0
         getWindow().setAttributes(lp);
@@ -413,7 +435,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 LogUtils.e("CODE_CAMERA_REQUEST----", "CODE_CAMERA_REQUEST");
                 popWindow.dismiss();
                 backgroundAlpha(1f);
-                if (data == null||"".equals(data)) {
+                if (data == null || "".equals(data)) {
                     LogUtils.e("data----CODE_CAMERA_REQUEST", "" + data);
                     return;
                 } else {
@@ -439,13 +461,12 @@ public class AppointmentActivity extends BaseTitleActivity {
                     FileOutputStream b = null;
                     try {
                         b = new FileOutputStream(fileName);
-                        LogUtils.e("b---",""+b);
+                        LogUtils.e("b---", "" + b);
                         bm.compress(Bitmap.CompressFormat.JPEG, 100, b);// 把数据写入文件
-                        LogUtils.e("bm.compress---",""+bm);
+                        LogUtils.e("bm.compress---", "" + bm);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
-                    }
-                    finally {
+                    } finally {
                         try {
                             b.flush();
                             b.close();
@@ -456,19 +477,18 @@ public class AppointmentActivity extends BaseTitleActivity {
                     LogUtils.e("imagePaths----if---", "" + imagePaths);
 
 
-                    if (imagePaths.size()==1){
+                    if (imagePaths.size() == 1) {
                         imagePaths.clear();
                         imagePaths.add(fileName);
                         imagePaths.add("000000");
                         LogUtils.e("imagePaths----1", "" + imagePaths);
-                    }
-                    else if(imagePaths.size()>1){
-                        imagePaths.set(imagePaths.size()-1, fileName);
+                    } else if (imagePaths.size() > 1) {
+                        imagePaths.set(imagePaths.size() - 1, fileName);
                         imagePaths.add("000000");
-                        LogUtils.e("imagePaths----set----", "   " + (imagePaths.size()-1) + "---"+imagePaths);
+                        LogUtils.e("imagePaths----set----", "   " + (imagePaths.size() - 1) + "---" + imagePaths);
                     }
 
-                    gridAdapter  = new GridAdapter(imagePaths);
+                    gridAdapter = new GridAdapter(imagePaths);
                     mGv.setAdapter(gridAdapter);
                 }
                 break;
@@ -477,14 +497,14 @@ public class AppointmentActivity extends BaseTitleActivity {
             case REQUEST_CAMERA_CODE:
                 backgroundAlpha(1f);
                 popWindow.dismiss();
-                if(data == null){
+                if (data == null) {
                     return;
-                }else{
+                } else {
                     ArrayList<String> list = data.getStringArrayListExtra(PhotoPickerActivity.EXTRA_RESULT);
                     LogUtils.e("list: ", "list = " + list + "--size = " + list.size());
-                    if(null==list){
+                    if (null == list) {
                         return;
-                    }else {
+                    } else {
                         loadAdpater(list);
                     }
                 }
@@ -492,27 +512,35 @@ public class AppointmentActivity extends BaseTitleActivity {
                 break;
 
             case HomeUiGoto.SELECT_REQUEST:
-                LogUtils.e("SELECT_REQUEST----","SELECT_REQUEST");
+                LogUtils.e("SELECT_REQUEST----", "SELECT_REQUEST");
                 //选择地址
-                if(resultCode==00001){
+                if (resultCode == 00001) {
 
-                    if(TextUtils.isEmpty(AppContext.get("mSelName",""))){
+                    Bundle bundle = data.getExtras();
+                    String yArea = bundle.getString("yArea");
+
+                    if (TextUtils.isEmpty(AppContext.get("mSelName", ""))) {
                         return;
-                    }else
-                    {
-                        mSelName = AppContext.get("mSelName","");
-                        mSelPhone = AppContext.get("mSelPhone","");
-                        mSelAddress = AppContext.get("mSelAddress","");
+                    } else {
+                        mSelName = AppContext.get("mSelName", "");
+                        mSelPhone = AppContext.get("mSelPhone", "");
+                        mSelAddress = AppContext.get("mSelAddress", "");
                         mAddTv01.setText(mSelName);
                         mAddTv02.setText(mSelPhone);
                         mAddTv04.setText(mSelAddress);
 
+                        //重新请求上门费
+                        reqService2(yArea);
+
                     }
                 }
                 //选择时间
-                else if(resultCode==12){
-                    mTm = AppContext.get("serviceTime","");
+                else if (resultCode == 12) {
+                    mTm = AppContext.get("serviceTime", "");
                     mTime.setText(mTm);
+                } else if (requestCode == 90001) {  //当删除地址时，刷新数据
+                    LogUtils.d("dddddddddddddddddddddd");
+                    initData();
                 }
 
                 break;
@@ -520,6 +548,12 @@ public class AppointmentActivity extends BaseTitleActivity {
             case 1008:
 
 
+                break;
+
+            case HomeUiGoto.LG_REQUEST:   //未登录状态，预约页面选择地址，在弹出的对话框中进行登录，登录完成后回到预约页，再点选择地址，还提示去登录
+                if (resultCode == 1001) {
+                    initData();
+                }
 
                 break;
 
@@ -531,45 +565,75 @@ public class AppointmentActivity extends BaseTitleActivity {
     }
 
 
-    private void loadAdpater(ArrayList<String> paths){
-        if (imagePaths!=null&& imagePaths.size()>0){
+    private void reqService2(String s) {
+
+
+        ServieceFreeDTO dto = new ServieceFreeDTO();
+        dto.setId(Integer.parseInt(mId));
+        if (s.equals("三环以内")) {
+            dto.setArea("InThirdRing");
+        }
+        if (s.equals("三环到五环")) {
+            dto.setArea("ThirdToFiveRing");
+        }
+        if (s.equals("五环以外")) {
+            dto.setArea("OutFiveRing");
+        }
+
+        CommonApiClient.serviceCharge(this, dto, new CallBack<AddAddressResult>() {
+            @Override
+            public void onSuccess(AddAddressResult result) {
+                if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    LogUtils.e("获取服务费成功");
+                    mPrice = result.getData();
+                    mTvMoney.setText(mPrice);
+                }
+
+            }
+        });
+    }
+
+    private void loadAdpater(ArrayList<String> paths) {
+        if (imagePaths != null && imagePaths.size() > 0) {
             imagePaths.clear();
         }
-        if (paths.contains("000000")){
+        if (paths.contains("000000")) {
             paths.remove("000000");
         }
         paths.add("000000");
         LogUtils.e("paths----", "" + paths);
         imagePaths.addAll(paths);
-        gridAdapter  = new GridAdapter(imagePaths);
+        gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
 
-        try{
+        try {
             JSONArray obj = new JSONArray(imagePaths);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     boolean flag = false;
+
     private class GridAdapter extends BaseAdapter {
         private ArrayList<String> listUrls;
         private LayoutInflater inflater;
 
         public GridAdapter(ArrayList<String> listUrls) {
             this.listUrls = listUrls;
-            if(listUrls.size() == 9){
-                LogUtils.e("listUrls---remove----1---",""+listUrls);
-                listUrls.remove(listUrls.size()-1);
-                flag =true;
-                LogUtils.e("listUrls---remove----2---",""+listUrls);
+            if (listUrls.size() == 9) {
+                LogUtils.e("listUrls---remove----1---", "" + listUrls);
+                listUrls.remove(listUrls.size() - 1);
+                flag = true;
+                LogUtils.e("listUrls---remove----2---", "" + listUrls);
             }
             inflater = LayoutInflater.from(AppointmentActivity.this);
         }
 
-        public int getCount(){
-            return  listUrls.size();
+        public int getCount() {
+            return listUrls.size();
         }
+
         @Override
         public String getItem(int position) {
             return listUrls.get(position);
@@ -585,33 +649,33 @@ public class AppointmentActivity extends BaseTitleActivity {
             ViewHolder holder = null;
             if (convertView == null) {
                 holder = new ViewHolder();
-                convertView = inflater.inflate(R.layout.item_comment_img, parent,false);
+                convertView = inflater.inflate(R.layout.item_comment_img, parent, false);
                 holder.image = (ImageView) convertView.findViewById(R.id.imageView);
                 convertView.setTag(holder);
             } else {
-                holder = (ViewHolder)convertView.getTag();
+                holder = (ViewHolder) convertView.getTag();
             }
-            final String path=listUrls.get(position);
-            LogUtils.e("listUrls---",""+listUrls);
-            LogUtils.e("listUrls.size()---",""+listUrls.size());
+            final String path = listUrls.get(position);
+            LogUtils.e("listUrls---", "" + listUrls);
+            LogUtils.e("listUrls.size()---", "" + listUrls.size());
 
-            if(listUrls.size()>1){
+            if (listUrls.size() > 1) {
                 mPic.clear();
-                for(int i =0;i<listUrls.size()-1;i++){
+                for (int i = 0; i < listUrls.size() - 1; i++) {
                     mPic.add(listUrls.get(i));
                 }
-                if(listUrls.size()==8&&flag==true){
-                    mPic.add(listUrls.get(listUrls.size()-1));
-                    LogUtils.e("mPic---flag---", "" + listUrls.size()+"-------"+mPic);
+                if (listUrls.size() == 8 && flag == true) {
+                    mPic.add(listUrls.get(listUrls.size() - 1));
+                    LogUtils.e("mPic---flag---", "" + listUrls.size() + "-------" + mPic);
                 }
-                LogUtils.e("listUrls.get(i)----", "" + listUrls.size()+"-------"+mPic);
-                LogUtils.e("flag---",""+flag);
+                LogUtils.e("listUrls.get(i)----", "" + listUrls.size() + "-------" + mPic);
+                LogUtils.e("flag---", "" + flag);
 
             }
 
-            if (path.equals("000000")){
+            if (path.equals("000000")) {
                 holder.image.setImageResource(R.drawable.tianjiatupianxdpi_03);
-            }else {
+            } else {
                 Glide.with(AppointmentActivity.this)
                         .load(path)
                         .placeholder(R.mipmap.default_error)
@@ -622,14 +686,11 @@ public class AppointmentActivity extends BaseTitleActivity {
             }
             return convertView;
         }
+
         class ViewHolder {
             ImageView image;
         }
     }
-
-
-
-
 
 
 }

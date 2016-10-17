@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
-import com.autodesk.easyhome.shejijia.campaign.fragment.CampaignFragment;
 import com.autodesk.easyhome.shejijia.common.base.BaseTitleActivity;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
@@ -33,8 +31,6 @@ import com.autodesk.easyhome.shejijia.home.dto.ModifyAddressDTO;
 import com.autodesk.easyhome.shejijia.home.entity.AddAddressResult;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressEntity;
 import com.autodesk.easyhome.shejijia.home.entity.SelectAddressResult;
-import com.autodesk.easyhome.shejijia.mine.MineUiGoto;
-import com.autodesk.easyhome.shejijia.mine.fragment.MineFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +42,7 @@ import butterknife.OnClick;
  * 常用地址页
  */
 public class SelectAddressActivity extends BaseTitleActivity {
+    public static final String ACTION = "com.delete.address.broadcast";
     @Bind(R.id.list)
     ListView mList;
     @Bind(R.id.select_lin)
@@ -96,7 +93,15 @@ public class SelectAddressActivity extends BaseTitleActivity {
                 AppContext.set("mSelName",data.get(position).getName());
                 AppContext.set("mSelPhone",data.get(position).getMobile());
                 AppContext.set("mSelAddress",data.get(position).getAddress());
-                setResult(00001);
+                String area = data.get(position).getArea();
+
+
+                Intent intent = SelectAddressActivity.this.getIntent();
+                Bundle bundle = intent.getExtras();
+                bundle.putString("yArea", area);//添加要返回给页面1的数据
+                intent.putExtras(bundle);
+
+                setResult(00001,intent);
                 finish();
             }
         });
@@ -334,6 +339,9 @@ public class SelectAddressActivity extends BaseTitleActivity {
                         list.remove(option);
                         LogUtils.e("list----2---",""+list);
                         adapter.notifyDataSetChanged();
+
+                        //发送广播刷新预约页数据
+                        sendBroadcast(new Intent(ACTION));
 
                     }
 
