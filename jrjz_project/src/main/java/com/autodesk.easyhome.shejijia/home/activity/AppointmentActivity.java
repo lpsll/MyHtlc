@@ -692,5 +692,13 @@ public class AppointmentActivity extends BaseTitleActivity {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //解注册
+        if (myReceiver != null) {
+            unregisterReceiver(myReceiver);
+            myReceiver = null;
+        }
+    }
 }
