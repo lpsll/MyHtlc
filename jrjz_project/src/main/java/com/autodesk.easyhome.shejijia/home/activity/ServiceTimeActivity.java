@@ -1,6 +1,5 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +18,6 @@ import com.autodesk.easyhome.shejijia.home.entity.TimeResult;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -222,7 +220,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 tv05.setVisibility(View.VISIBLE);
                 break;
             case R.id.st_tv01:
-                time = "08:00—10:00";
+                time = "08:00 — 10:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_blue_border));
                 mStTv01.setTextColor(getResources().getColor(R.color.navi));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_gray));
@@ -240,7 +238,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 finish();
                 break;
             case R.id.st_tv02:
-                time = "10:00—12:00";
+                time = "10:00 — 12:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv01.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_blue_border));
@@ -258,7 +256,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 finish();
                 break;
             case R.id.st_tv03:
-                time = "12:00—14:00";
+                time = "12:00 — 14:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv01.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_gray));
@@ -276,7 +274,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 finish();
                 break;
             case R.id.st_tv04:
-                time = "14:00—16:00";
+                time = "14:00 — 16:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv01.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_gray));
@@ -294,7 +292,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 finish();
                 break;
             case R.id.st_tv05:
-                time = "16:00—18:00";
+                time = "16:00 — 18:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv01.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_gray));
@@ -312,7 +310,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 finish();
                 break;
             case R.id.st_tv06:
-                time = "18:00—20:00";
+                time = "18:00 — 20:00";
                 mStTv01.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv01.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv02.setBackground(getResources().getDrawable(R.drawable.btn_gray));
