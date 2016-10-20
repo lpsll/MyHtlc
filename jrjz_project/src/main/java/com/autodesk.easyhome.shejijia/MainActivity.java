@@ -377,7 +377,9 @@ public class MainActivity extends BaseHomeTitleActivity {
         }
         //从消息列表返回后刷新
         if (requestCode == UIHelper.WHETHER_REQUEST) {
-            reqWhether();//是否有未读消息
+            if(AppContext.get("IS_LOGIN",false)){
+                reqWhether();//是否有未读消息
+            }
         }
     }
 

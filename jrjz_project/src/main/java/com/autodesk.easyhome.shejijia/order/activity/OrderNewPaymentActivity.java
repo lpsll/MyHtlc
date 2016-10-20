@@ -321,6 +321,12 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
         dto.setDealType(type);
         dto.setTradetype("APP");
         dto.setCode("");
+        if (integral) {
+            dto.setPoints(mPoint);
+        }
+        if (coupon) {
+            dto.setCouponids(mCouponId);
+        }
 
         CommonApiClient.wx(this, dto, new CallBack<WxResult>() {
             @Override
@@ -419,6 +425,12 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
         dto.setDealId(mOrderId);
         dto.setDealType(type);
         dto.setTradetype("APP");
+        if (integral) {
+            dto.setPoints(mPoint);
+        }
+        if (coupon) {
+            dto.setCouponids(mCouponId);
+        }
 
         CommonApiClient.zfb(this, dto, new CallBack<IntegralResult>() {
             @Override
@@ -558,6 +570,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 } else {
                     integralTv.setText("使用积分" + money);
                 }
+                AppContext.set("Integral","");
 
 
             }

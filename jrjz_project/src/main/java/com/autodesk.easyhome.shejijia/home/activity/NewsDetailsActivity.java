@@ -69,7 +69,7 @@ public class NewsDetailsActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("查看消息成功");
                     EventBus.getDefault().post(
-                            new NewsEvent(result.getData()));
+                            new NewsEvent("10"));
                 }
 
             }

@@ -538,8 +538,9 @@ public class AppointmentActivity extends BaseTitleActivity {
                 else if (resultCode == 12) {
                     mTm = AppContext.get("serviceTime", "");
                     mTime.setText(mTm);
-                } else if (requestCode == 90001) {  //当删除地址时，刷新数据
-                    LogUtils.d("dddddddddddddddddddddd");
+                }
+                else if (requestCode == 90001) {  //当删除地址时，刷新数据
+                    LogUtils.e("dddddddddddddddddddddd");
                     initData();
                 }
 

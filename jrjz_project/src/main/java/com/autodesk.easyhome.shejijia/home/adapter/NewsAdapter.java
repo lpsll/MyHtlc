@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.home.entity.NewsEntity;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
@@ -26,6 +27,7 @@ public class NewsAdapter extends BaseSimpleRecyclerAdapter<NewsEntity> {
 
     @Override
     public void bindData(BaseRecyclerViewHolder holder, NewsEntity newsEntity, int position) {
+        LogUtils.e("adapter-----刷新消息成功");
         ImageView tv = holder.getView(R.id.tv04);
         holder.setText(R.id.tv01,newsEntity.getSmtitle());
         holder.setText(R.id.tv02,newsEntity.getSmcontent());

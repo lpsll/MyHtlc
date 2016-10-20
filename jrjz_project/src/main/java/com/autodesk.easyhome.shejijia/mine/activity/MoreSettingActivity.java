@@ -18,6 +18,7 @@ import com.autodesk.easyhome.shejijia.common.utils.GetFileSizeUtil;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.entity.NewsEvent;
 import com.nostra13.universalimageloader.cache.disc.DiskCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -25,6 +26,7 @@ import java.io.File;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 
 public class MoreSettingActivity extends BaseTitleActivity {
@@ -103,7 +105,8 @@ public class MoreSettingActivity extends BaseTitleActivity {
                 DialogUtils.confirm(MoreSettingActivity.this, "确定要退出吗？", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        exit();
+                        out();
+//                        exit();
                     }
                 });
 
@@ -131,6 +134,7 @@ public class MoreSettingActivity extends BaseTitleActivity {
             @Override
             public void onSuccess(BaseEntity result) {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
+                    out();
                     LogUtils.e("退出成功");
                     ToastUtils.showShort(MoreSettingActivity.this, "退出成功");
                     AppContext.set("uid", "");
@@ -145,6 +149,19 @@ public class MoreSettingActivity extends BaseTitleActivity {
 
 
 
+    }
+
+    private void out() {
+        LogUtils.e("退出成功");
+        EventBus.getDefault().post(
+                new NewsEvent("1"));
+        ToastUtils.showShort(MoreSettingActivity.this, "退出成功");
+        AppContext.set("uid", "");
+        AppContext.set("accessToken", "");
+        AppContext.set("IS_LOGIN", false);
+        AppContext.set("whether", "1");
+        setResult(1001);
+        finish();
     }
 
     /**

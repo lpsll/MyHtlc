@@ -200,7 +200,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        LogUtils.e("login----",""+login);
+        LogUtils.e("initData--login----",""+AppContext.get("IS_LOGIN",false));
         reqCarousel();//轮播图
         reqFullService();//全部服务类别类别
         reqService();//制定服务类

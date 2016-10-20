@@ -390,6 +390,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 }
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("钱包支付成功");
+
                     DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", listener);
                 }
             }
@@ -418,6 +419,12 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         dto.setDealType(type);
         dto.setTradetype("APP");
         dto.setCode("");
+        if (integral) {
+            dto.setPoints(mPoint);
+        }
+        if (coupon) {
+            dto.setCouponids(mCouponId);
+        }
 
         CommonApiClient.wx(this, dto, new CallBack<WxResult>() {
             @Override
@@ -449,6 +456,12 @@ public class OrderPaymentActivity extends BaseTitleActivity {
         dto.setDealId(mOrderId);
         dto.setDealType(type);
         dto.setTradetype("APP");
+        if (integral) {
+            dto.setPoints(mPoint);
+        }
+        if (coupon) {
+            dto.setCouponids(mCouponId);
+        }
 
         CommonApiClient.zfb(this, dto, new CallBack<IntegralResult>() {
             @Override
@@ -480,13 +493,17 @@ public class OrderPaymentActivity extends BaseTitleActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        LogUtils.e("requestCode---",""+requestCode);
         if (requestCode == OrderUiGoto.INTEGAL_REQUEST) {
+            LogUtils.e("Integral---",""+AppContext.get("Integral", ""));
 
             if (TextUtils.isEmpty(AppContext.get("Integral", ""))) {
+                LogUtils.e("if---","isEmpty");
                 return;
             } else {
+                LogUtils.e("else---","else");
                 integral = true;
+                LogUtils.e("inte---",""+inte);
                 if (inte == 0) {
                     inte = 1;
                     money = AppContext.get("Integral", "");
@@ -517,11 +534,13 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                         mHomeFee.setText("0");
                     }
                 }
+                LogUtils.e("money---",""+money);
                 if (money.equals("0.0") || money.equals("0") || money.equals("0.00")) {
                     integralTv.setText(0 + "元");
                 } else {
                     integralTv.setText(money + "元");
                 }
+                AppContext.set("Integral","");
             }
         }
 
