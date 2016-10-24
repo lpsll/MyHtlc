@@ -39,8 +39,8 @@ public class LoginForPwdActivity extends BaseTitleActivity {
     TextView tvOk;
     @Bind(R.id.tv_login_register)
     TextView tvLoginRegister;
-    @Bind(R.id.tv_login_to_code_login)
-    TextView tvLoginToCodeLogin;
+//    @Bind(R.id.tv_login_to_code_login)
+//    TextView tvLoginToCodeLogin;
 
     @Override
     protected int getContentResId() {
@@ -56,7 +56,7 @@ public class LoginForPwdActivity extends BaseTitleActivity {
     @Override
     public void initData() {}
 
-    @OnClick({R.id.et_login_forgetpwd, R.id.tv_ok, R.id.tv_login_register, R.id.tv_login_to_code_login})
+    @OnClick({R.id.et_login_forgetpwd, R.id.tv_ok, R.id.tv_login_register})
     public void onClick(View view) {
         super.onClick(view);
         switch (view.getId()) {
@@ -100,11 +100,11 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                 finish();
                 break;
 
-            case R.id.tv_login_to_code_login:
-                //跳转到验证码登录页面
-                HomeUiGoto.gotoLoginForCode(LoginForPwdActivity.this);
-                finish();
-                break;
+//            case R.id.tv_login_to_code_login:
+//                //跳转到验证码登录页面
+//                HomeUiGoto.gotoLoginForCode(LoginForPwdActivity.this);
+//                finish();
+//                break;
             case R.id.base_titlebar_back:
                 finish();
                 break;

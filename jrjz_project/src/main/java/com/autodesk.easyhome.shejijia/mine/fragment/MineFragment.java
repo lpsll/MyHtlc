@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,12 +22,14 @@ import android.widget.TextView;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
+import com.autodesk.easyhome.shejijia.MainActivity;
 import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.campaign.activity.TopUpActivity;
 import com.autodesk.easyhome.shejijia.common.base.BaseFragment;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
@@ -178,7 +181,7 @@ public class MineFragment extends BaseFragment {
 
     public static final int TOPUP_REQUEST = 0x1108;
 
-    @OnClick({R.id.rl_my_score, R.id.ll_about_juran, R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_feedback})
+    @OnClick({R.id.rl_my_score, R.id.ll_about_juran, R.id.rl_mine_changephone, R.id.ll_mine_chongzhi, R.id.ll_mine_more_setting, R.id.ll_mine_share, R.id.ll_mine_myorder, R.id.ll_mine_address, R.id.ll_mine_coupon, R.id.ll_mine_more_phone, R.id.ll_mine_feedback})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_mine_changephone:
@@ -280,6 +283,10 @@ public class MineFragment extends BaseFragment {
                 getContext().startActivity(intent);
 
                 break;
+            case R.id.ll_mine_more_phone:
+                DialogUtils.confirmPhone(getActivity(), "4008461996", "取消","呼叫",listener);
+
+                break;
             case R.id.ll_mine_share:
                 showPopShare();
                 break;
@@ -291,18 +298,11 @@ public class MineFragment extends BaseFragment {
                 type = "2";
                 showShare();
                 break;
-            case R.id.share_weibo:
-                type = "3";
-                showShare();
-                break;
             case R.id.share_qq:
                 type = "4";
                 showShare();
                 break;
-            case R.id.share_qzone:
-                type = "5";
-                showShare();
-                break;
+
             case R.id.pop_share_text:
                 backgroundAlpha(1f);
                 popWindow.dismiss();
@@ -314,6 +314,23 @@ public class MineFragment extends BaseFragment {
                 break;
         }
     }
+
+    private void showH5Share() {
+        Bundle bundle = new Bundle();
+        bundle.putString("url", AppConfig.DOWNLOAD_H5);
+        HomeUiGoto.gotoBrowser(getActivity(), bundle);
+    }
+
+    View.OnClickListener listener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent intent1 = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+                    + "4008461996"));
+            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent1);
+        }
+
+    };
 
     private void showPopShare() {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -334,20 +351,15 @@ public class MineFragment extends BaseFragment {
                 .findViewById(R.id.share_weixin);
         friend = (LinearLayout) view
                 .findViewById(R.id.share_friend);
-        weibo = (LinearLayout) view
-                .findViewById(R.id.share_weibo);
         qq = (LinearLayout) view
                 .findViewById(R.id.share_qq);
-        qqZon = (LinearLayout) view
-                .findViewById(R.id.share_qzone);
+
 
         text = (TextView) view
                 .findViewById(R.id.pop_share_text);
         weixin.setOnClickListener(this);
         friend.setOnClickListener(this);
-        weibo.setOnClickListener(this);
         qq.setOnClickListener(this);
-        qqZon.setOnClickListener(this);
         text.setOnClickListener(this);
 
         View parent = getActivity().getWindow().getDecorView();//高度为手机实际的像素高度
@@ -390,99 +402,54 @@ public class MineFragment extends BaseFragment {
 
 
     private void showShare() {
-
+        LogUtils.e("type---", "" + type);
         if (type.equals("1")) {
-            LogUtils.e("type---", "" + type);
             WechatMoments.ShareParams sp = new WechatMoments.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("家里有事，就找居然家政！");
             // url仅在微信（包括好友和朋友圈）中使用11111
-            sp.setUrl(AppConfig.DOWNLOAD);
-
+            sp.setUrl(AppConfig.DOWNLOAD_H5);
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
             sp.setImageData(bitmap);
-
             LogUtils.e("sp---", "" + sp);
             Platform wm = ShareSDK.getPlatform(WechatMoments.NAME);
             wm.setPlatformActionListener(paListener);
             LogUtils.e("wm---", "" + wm);
-
             wm.share(sp);
-        } else if (type.equals("2")) {
-            LogUtils.e("type---", "" + type);
+        }
+        else if (type.equals("2")) {
             Wechat.ShareParams sp = new Wechat.ShareParams();
             sp.setShareType(Platform.SHARE_WEBPAGE);
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             sp.setText("家里有事，就找居然家政！");
             // url仅在微信（包括好友和朋友圈）中使用
-            sp.setUrl(AppConfig.DOWNLOAD);
-
+            sp.setUrl(AppConfig.DOWNLOAD_H5);
             Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
             sp.setImageData(bitmap);
-
 //            sp.setImageUrl("http://f1.sharesdk.cn/imgs/2014/02/26/owWpLZo_638x960.jp");
-
             Platform wechat = ShareSDK.getPlatform(Wechat.NAME);
             wechat.setPlatformActionListener(paListener);
             wechat.share(sp);
-        } else if (type.equals("3")) {
-            LogUtils.e("type---", "" + type);
-            SinaWeibo.ShareParams sp = new SinaWeibo.ShareParams();
-            sp.setTitle("居然家政");
-            // text是分享文本，所有平台都需要这个字段
-            sp.setText("家里有事，就找居然家政！");
-
-            sp.setImageUrl("http://101.200.167.130.8080/jrjz-api/static/img/share.png");
-
-            Platform sn = ShareSDK.getPlatform(SinaWeibo.NAME);
-            sn.setPlatformActionListener(paListener);
-            sn.share(sp);
-        } else if (type.equals("4")) {
-            LogUtils.e("type---", "" + type);
-
+        }
+        else if (type.equals("4")) {
             QQ.ShareParams sp = new QQ.ShareParams();
             sp.setTitle("居然家政");
             // text是分享文本，所有平台都需要这个字段
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
-            sp.setTitleUrl(AppConfig.DOWNLOAD);
+            sp.setTitleUrl(AppConfig.DOWNLOAD_H5);
             sp.setText("家里有事，就找居然家政！");
-
             sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
-
-
             LogUtils.e("sp---", "" + sp);
             Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);
             LogUtils.e("qq---", "" + qq);
             qq.share(sp);
-        } else if (type.equals("5")) {
-            LogUtils.e("type---", "" + type);
-            QZone.ShareParams sp = new QZone.ShareParams();
-            sp.setTitle("居然家政");
-            // text是分享文本，所有平台都需要这个字段
-            sp.setText("家里有事，就找居然家政！");
-            // titleUrl是标题的网络链接，QQ和QQ空间等使用
-            sp.setTitleUrl(AppConfig.DOWNLOAD);
-            // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-            sp.setComment("家里有事，就找居然家政！");
-            // site是分享此内容的网站名称，仅在QQ空间使用
-            sp.setSite(getString(R.string.app_name));
-            // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-            sp.setSiteUrl(AppConfig.DOWNLOAD);
-
-
-            sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
-
-            Platform qzone = ShareSDK.getPlatform(QZone.NAME);
-            qzone.setPlatformActionListener(paListener);
-            qzone.share(sp);
         }
 
     }
-
 
     PlatformActionListener paListener = new PlatformActionListener() {
         @Override

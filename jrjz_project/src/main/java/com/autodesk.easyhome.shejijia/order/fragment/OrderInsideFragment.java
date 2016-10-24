@@ -108,14 +108,13 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             LogUtils.e("未完成订单成功");
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-//                            if(null==result.getData().getData()){
-//                                mErrorLayout.setErrorType(EmptyLayout.NODATA);
-//                            }else {
-//                                requestDataSuccess(result);
-//                                setDataResult(result.getData().getData());
-//                            }
                             requestDataSuccess(result);
                             setDataResult(result.getData().getData());
+                            if(result.getData().getTotal().equals("0")){
+                                AppContext.set("TypeOne",false);
+                            }else {
+                                AppContext.set("TypeOne",true);
+                            }
                         }
 
                     }
@@ -144,16 +143,11 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
                             mErrorLayout.setErrorMessage("暂无订单记录",mErrorLayout.FLAG_NODATA);
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
-                            if(null==result.getData().getData()){
-                                AppContext.set("getData","1");
+                            if(result.getData().getTotal().equals("0")){
+                                AppContext.set("TypeTwo",false);
                             }
                             else {
-                                AppContext.set("getData","2");
-                                if(flag){
-                                    EventBus.getDefault().post(
-                                            new OrderEvent(AppContext.get("getData","")));
-
-                                }
+                                AppContext.set("TypeTwo",true);
                             }
                             requestDataSuccess(result);
                             setDataResult(result.getData().getData());
@@ -172,6 +166,11 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                             requestDataSuccess(result);
                             setDataResult(result.getData().getData());
+                            if(result.getData().getTotal().equals("0")){
+                                AppContext.set("TypeThree",false);
+                            }else {
+                                AppContext.set("TypeThree",true);
+                            }
                         }
 
                     }
@@ -187,6 +186,11 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                             requestDataSuccess(result);
                             setDataResult(result.getData().getData());
+                            if(result.getData().getTotal().equals("0")){
+                                AppContext.set("TypeFour",false);
+                            }else {
+                                AppContext.set("TypeFour",true);
+                            }
                         }
 
                     }
@@ -202,6 +206,16 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             mErrorLayout.setErrorImag(R.drawable.siaieless1,mErrorLayout.FLAG_NODATA);
                             requestDataSuccess(result);
                             setDataResult(result.getData().getData());
+                            if(result.getData().getTotal().equals("0")){
+                                AppContext.set("TypeFive",false);
+                            }else {
+                                AppContext.set("TypeFive",true);
+                            }
+                            if(flag){
+                                EventBus.getDefault().post(
+                                        new OrderEvent("1"));
+                            }
+
                         }
 
                     }

@@ -41,7 +41,7 @@
         android:layout_marginLeft="@dimen/ds_60"
         android:layout_marginRight="@dimen/ds_60"
         android:background="@drawable/ok_selector_shap_unpressed"
-        android:text="@string/preservation"
+        android:text="@string/sy_intergrla"
         android:textSize="@dimen/ds_50"
         android:textColor="@color/color_ff"
         />

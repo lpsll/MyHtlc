@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.campaign.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
@@ -141,8 +142,30 @@ public class TopUpActivity extends BaseTitleActivity {
                 cbTopupZFB.setChecked(true);
                 break;
             case R.id.tv_top_up_ok: //确定按钮 确定支付方式
+                if ("WriteForUser".equals(typeForTopUp)) {
+                    moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
+                    moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
+                    etTopUpChongzhi.setText(moneyForUserInput);
 
-                topUpEnsure();
+                    if (TextUtils.isEmpty(moneyForUserInput)) {
+                        ToastUtils.showShort(TopUpActivity.this, "请输入充值金额！");
+                        return;
+                    }
+                    if (Double.parseDouble(moneyForUserInput) <= 0) {
+                        ToastUtils.showShort(TopUpActivity.this, "充值金额必须大于0！");
+                        return;
+                    }
+                    DialogUtils.confirm(TopUpActivity.this, "是否确认？", mListener);
+
+                }
+
+                if ("fixed".equals(typeForTopUp)) {
+                    moneyForUserInput = tvTopUpChongzhi.getText().toString();
+                    DialogUtils.confirm(TopUpActivity.this, "是否确认？", mListener);
+
+                }
+
+
 
                 break;
             case R.id.base_titlebar_back:
@@ -159,57 +182,31 @@ public class TopUpActivity extends BaseTitleActivity {
         }
     }
 
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            topUpEnsure();
+        }
+
+
+    };
+
 
     /**
      * 确认充值
      */
     public void topUpEnsure() {
-        if ("WriteForUser".equals(typeForTopUp)) {
-            moneyForUserInput = etTopUpChongzhi.getText().toString().trim();
-            moneyForUserInput = StringUtils.addTwoZero(moneyForUserInput);
-            etTopUpChongzhi.setText(moneyForUserInput);
-
-            if (TextUtils.isEmpty(moneyForUserInput)) {
-                ToastUtils.showShort(TopUpActivity.this, "请输入充值金额！");
-                return;
-            }
-            if (Double.parseDouble(moneyForUserInput) <= 0) {
-                ToastUtils.showShort(TopUpActivity.this, "充值金额必须大于0！");
-                return;
-            }
-
-            if (cbTopupWX.isChecked()) {
-//                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
-                wxTopUp();
-
-            } else if (cbTopupZFB.isChecked()) {
-//                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
-
-                //调用支付宝充值的接口
-                zfbTopUp();
-
-            } else {
-                ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
-            }
+        if (cbTopupWX.isChecked()) {
+            //调用微信充值的接口
+            wxTopUp();
         }
+        else if (cbTopupZFB.isChecked()) {
+            //调用支付宝充值的接口
+            zfbTopUp();
 
-        if ("fixed".equals(typeForTopUp)) {
-            moneyForUserInput = tvTopUpChongzhi.getText().toString();
+        } else {
+            ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
 
-            if (cbTopupWX.isChecked()) {
-//                ToastUtils.showShort(TopUpActivity.this, "支付方式：微信支付,金额：" + moneyForUserInput);
-
-                wxTopUp();
-
-            } else if (cbTopupZFB.isChecked()) {
-//                ToastUtils.showShort(TopUpActivity.this, "支付方式：支付宝支付,金额：" + moneyForUserInput);
-
-                //调用支付宝充值的接口
-                zfbTopUp();
-
-            } else {
-                ToastUtils.showShort(TopUpActivity.this, "未选择支付方式！");
-            }
         }
 
 

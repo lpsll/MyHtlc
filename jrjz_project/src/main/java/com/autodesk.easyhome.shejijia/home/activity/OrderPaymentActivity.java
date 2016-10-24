@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.home.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -320,32 +321,8 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 mPlaceCbZfb.setChecked(true);
                 break;
             case R.id.tj_btn:
-                if (mPlaceCbQb.isChecked()) {
-                    type = "SerivceBook";
-                    LogUtils.e("balance---",""+balance);
-                    LogUtils.e("mHomeFee---",""+Double.parseDouble(mHomeFee.getText().toString()));
-                    if (balance<Double.parseDouble(mHomeFee.getText().toString())) {
-                        DialogUtils.showPrompt(this, "提示", "您的余额不足，钱包无法支付！", "知道了");
-                    } else {
-                        reqQbPayment();//钱包支付
-                    }
+                DialogUtils.confirm(OrderPaymentActivity.this, "是否确认付款？", mListener);
 
-                } else if (mPlaceCbWx.isChecked()) {
-                    if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
-                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
-                    }else {
-                        type = "SerivceBook";
-                        reqWxPayment();//微信预支付
-                    }
-
-                } else if (mPlaceCbZfb.isChecked()) {
-                    if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
-                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
-                    }else {
-                    type = "SerivceBook";
-                    reqZfbPayment();//支付宝预支付
-                    }
-                }
                 break;
             case R.id.base_titlebar_back:
                 baseGoBack();
@@ -363,6 +340,40 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 break;
         }
     }
+
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (mPlaceCbQb.isChecked()) {
+                type = "SerivceBook";
+                LogUtils.e("balance---",""+balance);
+                LogUtils.e("mHomeFee---",""+Double.parseDouble(mHomeFee.getText().toString()));
+                if (balance<Double.parseDouble(mHomeFee.getText().toString())) {
+                    DialogUtils.showPrompt(OrderPaymentActivity.this, "提示", "您的余额不足，钱包无法支付！", "知道了");
+                } else {
+                    reqQbPayment();//钱包支付
+                }
+
+            } else if (mPlaceCbWx.isChecked()) {
+                if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
+                    DialogUtils.showPrompt(OrderPaymentActivity.this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                }else {
+                    type = "SerivceBook";
+                    reqWxPayment();//微信预支付
+                }
+
+            } else if (mPlaceCbZfb.isChecked()) {
+                if (mHomeFee.getText().toString().equals("0") || mHomeFee.getText().toString().equals("0.00")) {
+                    DialogUtils.showPrompt(OrderPaymentActivity.this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                }else {
+                    type = "SerivceBook";
+                    reqZfbPayment();//支付宝预支付
+                }
+            }
+        }
+
+
+    };
 
     private void reqQbPayment() {
         NewPaymentDTO dto = new NewPaymentDTO();

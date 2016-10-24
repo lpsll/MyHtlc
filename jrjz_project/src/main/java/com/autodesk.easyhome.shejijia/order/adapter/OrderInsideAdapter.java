@@ -3,6 +3,8 @@ package com.autodesk.easyhome.shejijia.order.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,9 +37,9 @@ import java.util.List;
 public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
     private final Context context;
     private final int type;
-    TextView tv05,tv06,tv07;
+    TextView tv05,tv05_phone,tv06,tv07,order_btn_phone;
     Button btn;
-    LinearLayout lin05,lin06,lin07;
+    LinearLayout lin05,lin05_phone,lin06,lin07;
     List<OrderEntity> list = new ArrayList<>();
     private String status;
 
@@ -69,10 +71,25 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
 
         tv05 = holder.getView(R.id.order_tv05);
         lin05 = holder.getView(R.id.order_lin05);
+        tv05_phone = holder.getView(R.id.order_tv05_ipone);
+        lin05_phone = holder.getView(R.id.order_lin05_ipone);
         tv06 = holder.getView(R.id.order_tv06);
         lin06 = holder.getView(R.id.order_lin06);
         tv07 = holder.getView(R.id.order_tv07);
         btn = holder.getView(R.id.order_btn);
+        order_btn_phone = holder.getView(R.id.order_btn_phone);
+        order_btn_phone.setText(orderEntity.getAddress());
+        order_btn_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //拨打电话
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
+                        + list.get(position).getAddress()));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
+        });
+
         btn.setOnClickListener(new View.OnClickListener() {
             TextView tv = tv07;
             Button bt = btn;
@@ -128,6 +145,8 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         });
         if(status.equals("1")){
             //未完成订单
+            order_btn_phone.setVisibility(View.GONE);
+            lin05_phone.setVisibility(View.GONE);
             lin05.setVisibility(View.GONE);
             lin06.setVisibility(View.GONE);
             btn.setVisibility(View.VISIBLE);
@@ -136,6 +155,8 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         }
         else if(status.equals("3")){
             //待支付订单
+            order_btn_phone.setVisibility(View.VISIBLE);
+            lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.VISIBLE);
             btn.setVisibility(View.VISIBLE);
@@ -143,24 +164,31 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("待支付");
             btn.setText("去支付");
+            tv05_phone.setText(orderEntity.getEmpName());
         }
         else if(status.equals("4")){
             //待评价订单
+            order_btn_phone.setVisibility(View.VISIBLE);
+            lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.GONE);
             btn.setVisibility(View.VISIBLE);
             tv05.setText(orderEntity.getEmpName());
             tv07.setText("已支付");
             btn.setText("去评价");
+            tv05_phone.setText(orderEntity.getEmpName());
         }
         else if(status.equals("5")){
             //已完成订单
+            order_btn_phone.setVisibility(View.VISIBLE);
+            lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.VISIBLE);
             tv05.setText(orderEntity.getEmpName());
             tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("已完成");
             btn.setVisibility(View.GONE);
+            tv05_phone.setText(orderEntity.getEmpName());
         }
 
     }

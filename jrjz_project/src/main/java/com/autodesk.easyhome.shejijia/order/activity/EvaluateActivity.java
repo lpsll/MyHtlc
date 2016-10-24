@@ -166,11 +166,6 @@ public class EvaluateActivity extends BaseTitleActivity {
 
     @Override
     public void initData() {
-        tv1 = "ture";
-        tv2 = "ture";
-        tv3 = "ture";
-        tv4 = "ture";
-        tv5 = "ture";
         imagePaths.add("000000");
         gridAdapter = new GridAdapter(imagePaths);
         mGv.setAdapter(gridAdapter);
@@ -265,8 +260,29 @@ public class EvaluateActivity extends BaseTitleActivity {
                 mImg10.setBackground(getResources().getDrawable(R.drawable.shi_03));
                 break;
             case R.id.evaluate_btn:
+                if(TextUtils.isEmpty(tv1)){
+                    DialogUtils.showPrompt(this, "提示", "请选择是否准时！", "知道了");
+                    return;
+                }
+                if(TextUtils.isEmpty(tv2)){
+                    DialogUtils.showPrompt(this, "提示", "请选择服务态度是否良好！", "知道了");
+                    return;
+                }
+                if(TextUtils.isEmpty(tv3)){
+                    DialogUtils.showPrompt(this, "提示", "请选择是否解决问题！", "知道了");
+                    return;
+                }
+                if(TextUtils.isEmpty(tv4)){
+                    DialogUtils.showPrompt(this, "提示", "请选择是否说明事项！", "知道了");
+                    return;
+                }
+                if(TextUtils.isEmpty(tv5)){
+                    DialogUtils.showPrompt(this, "提示", "请选择是否私自乱收费！", "知道了");
+                    return;
+                }
                 if (TextUtils.isEmpty(mEt.getText().toString())) {
                     DialogUtils.showPrompt(this, "提示", "请提交意见！", "知道了");
+                    return;
                 }
                 else {
                     reqPic();//上传图片

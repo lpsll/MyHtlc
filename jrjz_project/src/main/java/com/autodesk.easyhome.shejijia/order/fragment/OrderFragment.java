@@ -196,27 +196,49 @@ public class OrderFragment extends BaseFragment {
     }
 
 
+    boolean one ;
+    boolean two ;
+    boolean three ;
     public void onEventMainThread(OrderEvent event) {
         String msg = event.getMsg();
         LogUtils.e("msg---", "" + msg);
-        if (TextUtils.isEmpty(msg)) {
-
-        } else {
+        if (!TextUtils.isEmpty(msg)) {
             if (msg.equals("1")) {
-                LogUtils.e("1----", "1");
-//                titles = getResources().getStringArray(R.array.order_tab_false);
-//                bindAdapter(titles);
-
-            }
-            else if(msg.equals("支付成功")){
-                DialogUtils.showPrompt(getActivity(), "提示","支付成功！", "知道了");
-            }
-            else {
                 AppContext.set("inFlag",false);
-                LogUtils.e("fei--1----", "fei--1");
-                titles = getResources().getStringArray(R.array.order_tab_true);
+                one = AppContext.get("TypeOne",false);
+                two = AppContext.get("TypeTwo",false);
+                three = AppContext.get("TypeThree",false);
+                LogUtils.e("one---",""+one);
+                LogUtils.e("two---",""+two);
+                LogUtils.e("three---",""+three);
+                if(one==false&&two==false&&three==false){
+                    titles = getResources().getStringArray(R.array.order_tab_false);
+                }
+                else if(one==true&&two==false&&three==false){
+                    titles = getResources().getStringArray(R.array.order_tab_1);
+                }
+                else if(one==false&&two==true&&three==false){
+                    titles = getResources().getStringArray(R.array.order_tab_2);
+                }
+                else if(one==false&&two==false&&three==true){
+                    titles = getResources().getStringArray(R.array.order_tab_3);
+                }
+                else if(one==true&&two==true&&three==false){
+                    titles = getResources().getStringArray(R.array.order_tab_4);
+                }
+                else if(one==true&&two==false&&three==true){
+                    titles = getResources().getStringArray(R.array.order_tab_5);
+                }
+                else if(one==false&&two==true&&three==true){
+                    titles = getResources().getStringArray(R.array.order_tab_6);
+                }
+                else if(one==true&&two==true&&three==true){
+                    titles = getResources().getStringArray(R.array.order_tab_7);
+                }
+                LogUtils.e("titles---",""+titles);
                 bindAdapter(titles);
             }
+
         }
     }
 }

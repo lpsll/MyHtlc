@@ -16,6 +16,7 @@
     <string name="order_time">预约时间:</string>
     <string name="order_address">预约地址:</string>
     <string name="order_people">服务人员:</string>
+    <string name="order_phone">服务电话:</string>
     <string name="order_money">金           额:</string>
     <string name="home_bottom">查看全部服务</string>
     <string name="home_more">更多</string>
@@ -78,6 +79,7 @@
     <string name="accessories_cost">配件费</string>
     <string name="select_address">请选择地址</string>
     <string name="preservation">保存</string>
+    <string name="sy_intergrla">使用积分</string>
     <string name="time1">08:00—10:00</string>
     <string name="time2">10:00—12:00</string>
     <string name="time3">12:00—14:00</string>
@@ -90,6 +92,7 @@
     <string name="xl">新浪微博</string>
     <string name="qqk">QQ空间</string>
     <string name="qq">QQ</string>
+    <string name="confirm_the_payment">确认付款</string>
 
 
     <string name="share">居然之家</string>

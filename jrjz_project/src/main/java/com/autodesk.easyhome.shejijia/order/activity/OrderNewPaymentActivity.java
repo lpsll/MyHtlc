@@ -1,5 +1,6 @@
 package com.autodesk.easyhome.shejijia.order.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -207,47 +208,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 mPlaceCbZfb.setChecked(true);
                 break;
             case R.id.tj_btn:
-                if (mPlaceCbQb.isChecked()) {
-                    mTjBtn.setEnabled(false);
-                    if (AppContext.get("statu", false)) {
-                        type = "SerivceBook";
-                    } else {
-                        type = "HomeService";
-                    }
-
-                    if (balance < Double.parseDouble(mTvMoney.getText().toString())) {
-                        DialogUtils.showPrompt(this, "提示", "您的余额不足，钱包无法支付！", "知道了");
-                    } else {
-                        reqPayment();//钱包支付
-                    }
-
-                } else if (mPlaceCbWx.isChecked()) {
-                    if (mTvMoney.getText().toString().equals("0") || mTvMoney.getText().toString().equals("0.00")) {
-                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
-                    } else {
-                        mTjBtn.setEnabled(false);
-                        if (AppContext.get("statu", false)) {
-                            type = "SerivceBook";
-                        } else {
-                            type = "HomeService";
-                        }
-                        reqWxPayment();//微信预支付
-                    }
-
-                } else if (mPlaceCbZfb.isChecked()) {
-                    if (mTvMoney.getText().toString().equals("0") || mTvMoney.getText().toString().equals("0.00")) {
-                        DialogUtils.showPrompt(this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
-                    } else {
-
-                        mTjBtn.setEnabled(false);
-                        if (AppContext.get("statu", false)) {
-                            type = "SerivceBook";
-                        } else {
-                            type = "HomeService";
-                        }
-                        reqZfbPayment();//支付宝预支付
-                    }
-                }
+                DialogUtils.confirm(OrderNewPaymentActivity.this, "是否确认付款？", mListener);
                 break;
             case R.id.rl_jf:
                 Bundle bundle = new Bundle();
@@ -266,6 +227,53 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 break;
         }
     }
+
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (mPlaceCbQb.isChecked()) {
+                if (AppContext.get("statu", false)) {
+                    type = "SerivceBook";
+                } else {
+                    type = "HomeService";
+                }
+
+                if (balance < Double.parseDouble(mTvMoney.getText().toString())) {
+                    DialogUtils.showPrompt(OrderNewPaymentActivity.this, "提示", "您的余额不足，钱包无法支付！", "知道了");
+                } else {
+                    reqPayment();//钱包支付
+                }
+
+            }
+            else if (mPlaceCbWx.isChecked()) {
+                if (mTvMoney.getText().toString().equals("0") || mTvMoney.getText().toString().equals("0.00")) {
+                    DialogUtils.showPrompt(OrderNewPaymentActivity.this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                } else {
+                    if (AppContext.get("statu", false)) {
+                        type = "SerivceBook";
+                    } else {
+                        type = "HomeService";
+                    }
+                    reqWxPayment();//微信预支付
+                }
+
+            }
+            else if (mPlaceCbZfb.isChecked()) {
+                if (mTvMoney.getText().toString().equals("0") || mTvMoney.getText().toString().equals("0.00")) {
+                    DialogUtils.showPrompt(OrderNewPaymentActivity.this, "提示", "您的付款金额为0，只能使用钱包支付！", "知道了");
+                } else {
+                    if (AppContext.get("statu", false)) {
+                        type = "SerivceBook";
+                    } else {
+                        type = "HomeService";
+                    }
+                    reqZfbPayment();//支付宝预支付
+                }
+            }
+        }
+
+
+    };
 
     private void reqPayment() {
         NewPaymentDTO dto = new NewPaymentDTO();
@@ -376,25 +384,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 req.timeStamp = mData.getTimeStamp();
 
                 //---------------------------
-//                String str = "appid=" + mData.getAppId()
-//                        + "&noncestr=" + mData.getNonceStr()
-//                        + "&package=" + "Sign=WXPay"
-//                        + "&partnerid=" + mData.getPartnerId()
-//                        + "&prepayid=" + mData.getPrepayId()
-//                        + "&timestamp=" + mData.getTimeStamp();
-//                String sing = str.trim().toString() + "&key=84083993juranjiazhengweixinpayaa";
-//                LogUtils.e("sing---------", sing);
-//                //------------------
-//                req.sign = SecurityUtils.md5(sing);
 
-//                String str = "appid="+AppConfig.Wx_App_Id
-//                        +"&noncestr="+nonceStr
-//                        +"&package="+"Sign=WXPay"
-//                        +"&partnerid="+data.getPartnerId()
-//                        +"&prepayid="+data.getPrepayId()
-//                        +"&timestamp="+time;
-//                String sing = str.trim().toString()+"&key="+mWxKey;
-//                LogUtils.e("sing---------",sing);
                 req.sign = mData.getSign();
                 LogUtils.e("appId--", mData.getAppId());
                 LogUtils.e("partnerId--", mData.getPartnerId());
@@ -406,7 +396,6 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 msgApi.sendReq(req);
                 mTjBtn.setEnabled(true);
 
-//                finish();
             }
         }
 
@@ -442,7 +431,6 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("支付宝支付成功");
                     infomation = result.getData();
-                    LogUtils.e("infomation---", "" + infomation);
                     reqAlipayPay();//支付宝支付
 
                 }

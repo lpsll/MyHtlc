@@ -88,14 +88,14 @@
         android:paddingLeft="@dimen/ds_70"
         android:paddingRight="@dimen/ds_70">
 
-        <TextView
-            android:id="@+id/tv_login_to_code_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="使用验证码登录"
-            android:textColor="@color/btn_gray_dark"
-            android:textSize="@dimen/fs_45" />
+        <!--<TextView-->
+            <!--android:id="@+id/tv_login_to_code_login"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:text="使用验证码登录"-->
+            <!--android:textColor="@color/btn_gray_dark"-->
+            <!--android:textSize="@dimen/fs_45" />-->
 
         <TextView
             android:id="@+id/et_login_forgetpwd"

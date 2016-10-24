@@ -144,7 +144,7 @@
                 android:id="@+id/order_lin05"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/ds_10"
+                android:layout_marginTop="@dimen/ds_20"
                 android:orientation="horizontal">
 
                 <TextView
@@ -156,6 +156,30 @@
 
                 <TextView
                     android:id="@+id/order_tv05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/ds_30"
+                    android:text=""
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/order_lin05_ipone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/order_phone"
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+
+                <TextView
+                    android:id="@+id/order_tv05_ipone"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="@dimen/ds_30"
@@ -194,13 +218,13 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/ds_50"
             android:layout_marginRight="@dimen/ds_50"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="@dimen/ds_40">
 
             <TextView
                 android:id="@+id/order_tv07"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:text="111"
                 android:textColor="@color/color_c0"
@@ -209,13 +233,23 @@
             <Button
                 android:gravity="center"
                 android:id="@+id/order_btn"
-                android:layout_width="@dimen/ds_220"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ds_90"
+                android:background="@drawable/btn_blue"
+                android:layout_marginTop="@dimen/ds_300"
+                android:text="继续继续"
+                android:textColor="@color/color_bottom"
+                android:textSize="@dimen/fs_40" />
+
+            <Button
+                android:gravity="center"
+                android:id="@+id/order_btn_phone"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/ds_90"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginBottom="@dimen/ds_50"
                 android:background="@drawable/btn_blue"
-                android:text="继续继续"
+                android:text="电话"
                 android:textColor="@color/color_bottom"
                 android:textSize="@dimen/fs_40" />
         </RelativeLayout>
