@@ -3,6 +3,7 @@ package com.autodesk.easyhome.shejijia.order.fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.View;
 
 import com.autodesk.easyhome.shejijia.AppConfig;
 import com.autodesk.easyhome.shejijia.AppContext;
@@ -37,13 +38,6 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
     boolean login;
     OrderFragment.OnOKClickListener onOKClickListener;
     boolean flag;
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        LogUtils.e("onStart---inside---","onStart");
-    }
 
     public void setInterface(OrderFragment.OnOKClickListener onOKClickListener) {
         this.onOKClickListener = onOKClickListener;
@@ -217,6 +211,10 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             }
 
                         }
+                        if(null!=result.getMsg()&&result.getMsg().equals("无效token")){
+                            AppContext.set("IS_LOGIN", false);
+                            DialogUtils.confirm(getActivity(), "请重新登录", mListener);
+                        }
 
                     }
                 });
@@ -231,6 +229,16 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
 
 
     }
+
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            HomeUiGoto.gotoLoginForPwd(getActivity());
+            dialog.cancel();
+        }
+
+
+    };
 
 
     @Override

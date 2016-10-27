@@ -138,6 +138,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
         switch (view.getId()) {
             case R.id.lin_address:
                 if(login){
+                    AppContext.set("select_flag","0");
                     HomeUiGoto.gotoSdSelect(this);
                 }else {
                     DialogUtils.confirm(this, "您尚未登录，是否去登录？", listener);

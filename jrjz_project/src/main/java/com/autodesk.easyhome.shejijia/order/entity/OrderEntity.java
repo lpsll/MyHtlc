@@ -15,6 +15,35 @@ public class OrderEntity extends BaseEntity {
     private String empName;
     private String serviceFee;
     private String orderNo;
+    private String phone;
+    private String custName;
+    private String emphone;
+    public String getEmphone() {
+        return emphone;
+    }
+
+    public void setEmphone(String emphone) {
+        this.emphone = emphone;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getCustName() {
+        return custName;
+    }
+
+    public void setCustName(String custName) {
+        this.custName = custName;
+    }
+
+
     public String getOrderNo() {
         return orderNo;
     }

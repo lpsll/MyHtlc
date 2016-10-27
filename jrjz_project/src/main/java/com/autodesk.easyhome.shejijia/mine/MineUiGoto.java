@@ -23,10 +23,16 @@ public class MineUiGoto {
         act.startActivityForResult(intent, SETTING_REQUEST);
     }
 
-    public static final int CHANGEPHONE_REQUEST = 0x1100;
+//    public static final int CHANGEPHONE_REQUEST = 0x1100;
+//    public static void gotoChangePhone(Activity act) {
+//        Intent intent = new Intent(act, ChangePhoneActivity.class);
+//        act.startActivityForResult(intent, CHANGEPHONE_REQUEST);
+//
+//    }
+
     public static void gotoChangePhone(Activity act) {
         Intent intent = new Intent(act, ChangePhoneActivity.class);
-        act.startActivityForResult(intent, CHANGEPHONE_REQUEST);
+        act.startActivity(intent);
 
     }
 }

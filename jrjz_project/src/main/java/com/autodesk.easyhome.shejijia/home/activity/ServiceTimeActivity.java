@@ -233,7 +233,7 @@ public class ServiceTimeActivity extends BaseTitleActivity {
                 mStTv05.setTextColor(getResources().getColor(R.color.color_cc));
                 mStTv06.setBackground(getResources().getDrawable(R.drawable.btn_gray));
                 mStTv06.setTextColor(getResources().getColor(R.color.color_cc));
-                AppContext.set("serviceTime",mTd+time);
+                AppContext.set("serviceTime",mTd+" "+time);
                 setResult(12);
                 finish();
                 break;

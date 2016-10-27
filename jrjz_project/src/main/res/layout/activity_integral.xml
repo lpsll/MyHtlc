@@ -11,7 +11,7 @@
         android:layout_marginLeft="@dimen/ds_40"
         android:layout_marginRight="@dimen/ds_40"
         android:textColor="@color/color_00"
-        android:text="    积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币，积分支付后不可退还。"
+        android:text="    积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币。"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView

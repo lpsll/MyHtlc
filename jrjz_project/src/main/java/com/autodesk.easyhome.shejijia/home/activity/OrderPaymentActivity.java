@@ -36,12 +36,16 @@ import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
 import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.NewPaymentDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import java.math.BigDecimal;
+
 import butterknife.Bind;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * 订单支付页
@@ -411,11 +415,19 @@ public class OrderPaymentActivity extends BaseTitleActivity {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
-            intent2.putExtra("tag", 1);
-            OrderPaymentActivity.this.startActivity(intent2);
+            initJump();
+
         }
     };
+
+    //跳到订单页，同时刷新
+    private void initJump() {
+//        EventBus.getDefault().post(
+//                new OrderEvent("0"));
+        Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
+        intent2.putExtra("tag", 1);
+        OrderPaymentActivity.this.startActivity(intent2);
+    }
 
     private void reqWxPayment() {
         WxDTO dto = new WxDTO();
@@ -484,7 +496,6 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 if (AppConfig.SUCCESS.equals(result.getCode())) {
                     LogUtils.e("支付宝支付成功");
                     infomation = result.getData();
-                    LogUtils.e("infomation---", "" + infomation);
                     reqAlipayPay();//支付宝支付
 
                 }
@@ -526,7 +537,9 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     LogUtils.e("if---t2---", "" + t2);
                     mPoint = String.valueOf(t2 * t3);
                     if (t1 > t2) {
-                        mHomeFee.setText(String.valueOf(t1 - t2));
+                        BigDecimal b = new BigDecimal(t1 - t2);
+                        double d = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                        mHomeFee.setText(String.valueOf(d));
                     } else {
                         mHomeFee.setText("0");
                     }
@@ -540,7 +553,9 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                     LogUtils.e("t2---", "" + t2);
                     mPoint = String.valueOf(t2 * t3);
                     if (t1 > t2) {
-                        mHomeFee.setText(String.valueOf(t1 - t2));
+                        BigDecimal b = new BigDecimal(t1 - t2);
+                        double d = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                        mHomeFee.setText(String.valueOf(d));
                     } else {
                         mHomeFee.setText("0");
                     }
@@ -601,9 +616,7 @@ public class OrderPaymentActivity extends BaseTitleActivity {
                 DialogUtils.showPromptListen(OrderPaymentActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent2 = new Intent(OrderPaymentActivity.this, MainActivity.class);
-                        intent2.putExtra("tag", 1);
-                        OrderPaymentActivity.this.startActivity(intent2);
+                        initJump();
                     }
                 });
             }

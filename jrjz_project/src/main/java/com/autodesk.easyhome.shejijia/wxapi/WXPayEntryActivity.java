@@ -13,6 +13,7 @@ import com.autodesk.easyhome.shejijia.R;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.home.entity.OrderNewEvent;
 import com.autodesk.easyhome.shejijia.home.entity.OrderPayEvent;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.tencent.mm.sdk.constants.ConstantsAPI;
 import com.tencent.mm.sdk.modelbase.BaseReq;
 import com.tencent.mm.sdk.modelbase.BaseResp;
@@ -65,8 +66,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
                 if (AppContext.get("WXFlag", "").equals("1")) {
                     AppContext.set("WXFlag", "0");
-
-                    LogUtils.i("跳转到个人中心");
+                    LogUtils.e("跳转到个人中心");
                     //跳转到个人中心
 //                        ToastUtils.showShort(TopUpActivity.this,"充值成功");
                     Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
@@ -74,13 +74,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                     WXPayEntryActivity.this.startActivity(intent2);
 
                 } else {
-
-                    LogUtils.i("跳转到订单页");
-
-
-
-//                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", null);
-//
+                    LogUtils.e("跳转到订单页");
                     String flag =AppContext.get("OrderFlag", "");
                     if(flag.equals("0")){
                         //预约订单支付
@@ -91,21 +85,7 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
                         //订单支付
                         EventBus.getDefault().post(
                                 new OrderNewEvent("支付成功"));
-
                     }
-
-
-
-
-//                    DialogUtils.showPromptListen(WXPayEntryActivity.this, "提示", "预约完成，我们将尽快安排人员为您服务！", "知道了", new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
-//                            intent2.putExtra("tag", 1);
-//                            WXPayEntryActivity.this.startActivity(intent2);
-//                        }
-//                    });
-
 
                 }
 
@@ -121,13 +101,5 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         }
     }
 
-    View.OnClickListener listener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent2 = new Intent(WXPayEntryActivity.this, MainActivity.class);
-            intent2.putExtra("tag", 3);
-            WXPayEntryActivity.this.startActivity(intent2);
-        }
-    };
 
 }

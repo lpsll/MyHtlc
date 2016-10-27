@@ -251,6 +251,7 @@ public class AppointmentActivity extends BaseTitleActivity {
             case R.id.lin_address:
 //                UIHelper.showFragment(this, SimplePage.SELECT_ADDRESS);//常用地址
                 if (login) {
+                    AppContext.set("select_flag","0");
                     HomeUiGoto.gotoSelect(this);
                 } else {
                     DialogUtils.confirm(this, "您尚未登录，是否去登录？", listener);

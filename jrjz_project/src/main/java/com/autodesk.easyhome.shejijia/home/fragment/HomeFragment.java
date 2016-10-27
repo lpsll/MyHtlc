@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.home.fragment;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,6 +20,7 @@ import com.autodesk.easyhome.shejijia.common.bean.ViewFlowBean;
 import com.autodesk.easyhome.shejijia.common.dto.BaseDTO;
 import com.autodesk.easyhome.shejijia.common.http.CallBack;
 import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
+import com.autodesk.easyhome.shejijia.common.utils.DialogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ImageLoaderUtils;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
@@ -236,10 +238,24 @@ public class HomeFragment extends BaseFragment {
 
 
                 }
+                if(null!=result.getMsg()&&result.getMsg().equals("无效token")){
+                    AppContext.set("IS_LOGIN", false);
+                    DialogUtils.confirm(getActivity(), "请重新登录", mListener);
+                }
 
             }
         });
     }
+
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            HomeUiGoto.gotoLoginForPwd(getActivity());
+            dialog.cancel();
+        }
+
+
+    };
 
     private void reqService() {
         BaseDTO dto = new BaseDTO();
@@ -380,10 +396,10 @@ public class HomeFragment extends BaseFragment {
                 HomeUiGoto.gotoCf(getActivity(),bundle4);
                 break;
             case R.id.lin05:
-//                Bundle bundle5 = new Bundle();
-//                bundle5.putInt("flag",5);
-//                HomeUiGoto.gotoCf(getActivity(),bundle5);
-                HomeUiGoto.gotoCommunity(getActivity());
+                Bundle bundle5 = new Bundle();
+                bundle5.putInt("flag",5);
+                HomeUiGoto.gotoCf(getActivity(),bundle5);
+//                HomeUiGoto.gotoCommunity(getActivity());
                 break;
             case R.id.lin06:
                 mId = classes.get(0).getId();

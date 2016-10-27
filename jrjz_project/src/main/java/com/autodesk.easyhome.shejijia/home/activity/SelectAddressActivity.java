@@ -90,19 +90,22 @@ public class SelectAddressActivity extends BaseTitleActivity {
         mList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AppContext.set("mSelName",data.get(position).getName());
-                AppContext.set("mSelPhone",data.get(position).getMobile());
-                AppContext.set("mSelAddress",data.get(position).getAddress());
-                String area = data.get(position).getArea();
+                if(AppContext.get("select_flag","").equals("0")){
+                    AppContext.set("mSelName",data.get(position).getName());
+                    AppContext.set("mSelPhone",data.get(position).getMobile());
+                    AppContext.set("mSelAddress",data.get(position).getCity()+data.get(position).getArea()+data.get(position).getAddress());
+                    String area = data.get(position).getArea();
 
 
-                Intent intent = SelectAddressActivity.this.getIntent();
-                Bundle bundle = intent.getExtras();
-                bundle.putString("yArea", area);//添加要返回给页面1的数据
-                intent.putExtras(bundle);
+                    Intent intent = SelectAddressActivity.this.getIntent();
+                    Bundle bundle = intent.getExtras();
+                    bundle.putString("yArea", area);//添加要返回给页面1的数据
+                    intent.putExtras(bundle);
 
-                setResult(00001,intent);
-                finish();
+                    setResult(00001,intent);
+                    finish();
+                }
+
             }
         });
     }

@@ -60,6 +60,7 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        mOrderTab.setVisibility(View.GONE);
         AppContext.set("inFlag",true);
 //        LogUtils.e("onOKClickListener---initView---",""+onOKClickListener);
         OrderInsideFragment insideFragmentA = OrderInsideFragment.newInstance(TAB_A);
@@ -160,7 +161,6 @@ public class OrderFragment extends BaseFragment {
 
 
 
-        LogUtils.e("getData---",""+AppContext.get("getData",""));
         titles= getResources().getStringArray(R.array.order_tab_false);
         bindAdapter(titles);
 
@@ -200,6 +200,7 @@ public class OrderFragment extends BaseFragment {
     boolean two ;
     boolean three ;
     public void onEventMainThread(OrderEvent event) {
+        mOrderTab.setVisibility(View.VISIBLE);
         String msg = event.getMsg();
         LogUtils.e("msg---", "" + msg);
         if (!TextUtils.isEmpty(msg)) {
@@ -237,6 +238,9 @@ public class OrderFragment extends BaseFragment {
                 }
                 LogUtils.e("titles---",""+titles);
                 bindAdapter(titles);
+            }
+            else if(msg.equals("0")){
+                initView(null);
             }
 
         }

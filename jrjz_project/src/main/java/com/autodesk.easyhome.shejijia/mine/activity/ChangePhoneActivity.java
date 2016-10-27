@@ -18,6 +18,7 @@ import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.common.utils.PhoneUtils;
 import com.autodesk.easyhome.shejijia.common.utils.TimeUtils;
 import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
+import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.mine.dto.ChangePhoneDTO;
 import com.autodesk.easyhome.shejijia.mine.view.TimeCountUtil;
 import com.autodesk.easyhome.shejijia.register.entity.SmsVerifyEntity;
@@ -127,9 +128,11 @@ public class ChangePhoneActivity extends BaseTitleActivity {
                     AppContext.set("uid", phone);
                     AppContext.set("IS_LOGIN", true);
 
-                    setResult(1001);
+//                    setResult(1001);
 
                     finish();
+
+                    HomeUiGoto.gotoLoginForPwd(ChangePhoneActivity.this);
                 }
             }
         });

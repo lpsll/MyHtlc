@@ -334,12 +334,12 @@ public class MainActivity extends BaseHomeTitleActivity {
             }
         }
 
-        if (requestCode == MineUiGoto.CHANGEPHONE_REQUEST) {
-            LogUtils.e("CHANGEPHONE_REQUEST----","CHANGEPHONE_REQUEST");
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("ta3");
-//            meFragment.initView(null);
-        }
+//        if (requestCode == MineUiGoto.CHANGEPHONE_REQUEST) {
+//            LogUtils.e("CHANGEPHONE_REQUEST----","CHANGEPHONE_REQUEST");
+//            FragmentManager fragmentManager = getSupportFragmentManager();
+//            MineFragment meFragment = (MineFragment) fragmentManager.findFragmentByTag("ta3");
+////            meFragment.initView(null);
+//        }
 
         if (requestCode == HomeUiGoto.LF_REQUEST) {
             FragmentManager fragmentManager = getSupportFragmentManager();

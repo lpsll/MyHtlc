@@ -44,6 +44,7 @@ import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.home.activity.AppointmentActivity;
 import com.autodesk.easyhome.shejijia.order.dto.EvaluateDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.bumptech.glide.Glide;
 import com.lidong.photopicker.PhotoPickerActivity;
 import com.lidong.photopicker.SelectModel;
@@ -62,6 +63,7 @@ import java.util.Locale;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * 评价页
@@ -201,6 +203,8 @@ public class EvaluateActivity extends BaseTitleActivity {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            EventBus.getDefault().post(
+                    new OrderEvent("0"));
             finish();
         }
     };

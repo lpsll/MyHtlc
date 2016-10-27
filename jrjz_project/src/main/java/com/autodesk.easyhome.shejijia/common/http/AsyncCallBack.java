@@ -47,11 +47,11 @@ public class AsyncCallBack<T> implements Callback {
 							AppConfig.ERROR_NONET_MSG, tag));
 		}else {
 			String msg = e.getMessage();
-			if (!"Canceled".equals(msg)) {
-				EventBus.getDefault().post(
-						new ErrorEvent(AppConfig.ERROR_REQ,
-								AppConfig.ERROR_REQ_MSG, tag));
-			}
+//			if (!"Canceled".equals(msg)) {
+//				EventBus.getDefault().post(
+//						new ErrorEvent(AppConfig.ERROR_REQ,
+//								AppConfig.ERROR_REQ_MSG, tag));
+//			}
 		}
 	}
 

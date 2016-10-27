@@ -19,10 +19,13 @@ import com.autodesk.easyhome.shejijia.common.utils.ToastUtils;
 import com.autodesk.easyhome.shejijia.home.HomeUiGoto;
 import com.autodesk.easyhome.shejijia.login.dto.LoginDTO;
 import com.autodesk.easyhome.shejijia.login.entity.LoginEntity;
+import com.autodesk.easyhome.shejijia.mine.entity.MineEvent;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 
 import butterknife.Bind;
 import butterknife.OnClick;
 import cn.jpush.android.api.JPushInterface;
+import de.greenrobot.event.EventBus;
 
 /**
  * 密码登录页面
@@ -144,12 +147,13 @@ public class LoginForPwdActivity extends BaseTitleActivity {
                     LogUtils.e("登录成功");
                     ToastUtils.showShort(LoginForPwdActivity.this, "登录成功");
                     LogUtils.e("用户令牌======" + result.getData().getAccessToken());
-
+                    AppContext.set("msg_tk","0");
                     //保存用户信息
                     AppContext.set("uid", phone);
                     AppContext.set("accessToken", result.getData().getAccessToken());
                     AppContext.set("IS_LOGIN", true);
-
+                    EventBus.getDefault().post(
+                            new MineEvent("1"));
 
                     //注册成功后设置极光推送的别名和tag
                     JPushInterface.setAlias(LoginForPwdActivity.this, etLoginPhone.getText().toString(), null);

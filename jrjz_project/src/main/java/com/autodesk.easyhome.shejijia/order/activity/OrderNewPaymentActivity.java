@@ -39,12 +39,16 @@ import com.autodesk.easyhome.shejijia.order.dto.OrderDetailDTO;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderDetailResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderDetailsEntity;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import java.math.BigDecimal;
+
 import butterknife.Bind;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * 订单之订单支付
@@ -182,7 +186,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
             mTvOne.setVisibility(View.VISIBLE);
             mTvTwo.setVisibility(View.VISIBLE);
             mTvThree.setVisibility(View.VISIBLE);
-            mTvOne.setText("服务费： " + data.getHomeVisitFee());
+            mTvOne.setText("服务费： " + data.getServiceFee());
             mTvTwo.setText("材料费： " + data.getMaterialFee());
             mTvThree.setText("增项费： " + data.getOtherFee());
         }
@@ -309,11 +313,18 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent intent2 = new Intent(OrderNewPaymentActivity.this, MainActivity.class);
-            intent2.putExtra("tag", 1);
-            OrderNewPaymentActivity.this.startActivity(intent2);
+            initJump();
+
         }
     };
+
+    private void initJump() {
+//        EventBus.getDefault().post(
+//                new OrderEvent("0"));
+        Intent intent2 = new Intent(OrderNewPaymentActivity.this, MainActivity.class);
+        intent2.putExtra("tag", 1);
+        OrderNewPaymentActivity.this.startActivity(intent2);
+    }
 
     private void reqWxPayment() {
         WxDTO dto = new WxDTO();
@@ -533,7 +544,9 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     LogUtils.e("if---t2---", "" + t2);
                     mPoint = String.valueOf(t2 * t3);
                     if (t1 > t2) {
-                        mTvMoney.setText(String.valueOf(t1 - t2));
+                        BigDecimal b = new BigDecimal(t1 - t2);
+                        double d = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                        mTvMoney.setText(String.valueOf(d));
                     } else {
                         mTvMoney.setText("0");
                     }
@@ -547,7 +560,9 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                     LogUtils.e("t2---", "" + t2);
                     mPoint = String.valueOf(t2 * t3);
                     if (t1 > t2) {
-                        mTvMoney.setText(String.valueOf(t1 - t2));
+                        BigDecimal b = new BigDecimal(t1 - t2);
+                        double d = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                        mTvMoney.setText(String.valueOf(d));
                     } else {
                         mTvMoney.setText("0");
                     }
@@ -608,9 +623,7 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 DialogUtils.showPromptListen(OrderNewPaymentActivity.this, "提示", "恭喜您，支付成功，请您为我们的服务去评价吧！", "知道了", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent2 = new Intent(OrderNewPaymentActivity.this, MainActivity.class);
-                        intent2.putExtra("tag", 1);
-                        OrderNewPaymentActivity.this.startActivity(intent2);
+                        initJump();
                     }
                 });
             }

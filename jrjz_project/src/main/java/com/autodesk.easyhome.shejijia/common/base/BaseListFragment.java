@@ -163,20 +163,16 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
             if (mCurrentPage == 0) {
                 mErrorLayout.setErrorType(EmptyLayout.NODATA);
             } else {
-                LogUtils.e("noMoreData----","noMoreData");
                 mPtrRecyclerView.noMoreData();
             }
         }
         else if (list != null && list.size() > 0) {
             mCurrentPage += 1;
             if (action == ACTION_PULL_REFRESH) {
-                LogUtils.e("ACTION_PULL_REFRESH----","ACTION_PULL_REFRESH");
                 mAdapter.removeAll();
                 mAdapter.append(list);
                 mPtrRecyclerView.pullRefreshComplete();
             } else if (action == ACTION_LOAD_MORE) {
-                LogUtils.e("ACTION_LOAD_MORE----","ACTION_LOAD_MORE");
-                LogUtils.e("size----",""+list.size());
                 mAdapter.append(list);
                 mPtrRecyclerView.loadMoreComplete();
                 if (list.size() < PAGE_SIZE) {
@@ -285,8 +281,6 @@ public abstract class BaseListFragment<T> extends BaseFragment implements BaseRe
         @Override
         protected Void doInBackground(Void... params) {
             if (mContext == null) return null;
-            LogUtils.e("seri---",""+seri);
-            LogUtils.e("key---",""+key);
             CacheManager.saveObject(seri, key);
             return null;
         }

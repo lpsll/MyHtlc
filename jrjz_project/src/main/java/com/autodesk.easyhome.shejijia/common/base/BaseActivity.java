@@ -152,9 +152,17 @@ public abstract class BaseActivity  extends FragmentActivity implements
         String message = event.getMsg();
         if (event.getTag().equals(this)) {
             if(!AppConfig.SUCCESS.equals(status)) {
-                LogUtils.e("status---",""+status);
-                LogUtils.e("message---",""+message);
-                ToastUtils.showShort(this,message);
+                if(message.equals("无效token")){
+                    message = "请重新登录";
+                    LogUtils.e("status---",""+status);
+                    LogUtils.e("message---",""+message);
+                    ToastUtils.showShort(this,message);
+                }else {
+                    LogUtils.e("status---",""+status);
+                    LogUtils.e("message---",""+message);
+                    ToastUtils.showShort(this,message);
+                }
+
             }
 
         }

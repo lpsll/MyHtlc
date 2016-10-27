@@ -16,6 +16,8 @@
     <string name="order_time">预约时间:</string>
     <string name="order_address">预约地址:</string>
     <string name="order_people">服务人员:</string>
+    <string name="order_kh_name">客户姓名:</string>
+    <string name="order_kh_phone">客户电话:</string>
     <string name="order_phone">服务电话:</string>
     <string name="order_money">金           额:</string>
     <string name="home_bottom">查看全部服务</string>

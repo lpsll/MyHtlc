@@ -25,11 +25,14 @@ import com.autodesk.easyhome.shejijia.order.OrderUiGoto;
 import com.autodesk.easyhome.shejijia.order.dto.CancelOrderDTO;
 import com.autodesk.easyhome.shejijia.order.entity.OrderCancelResult;
 import com.autodesk.easyhome.shejijia.order.entity.OrderEntity;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 import com.qluxstory.ptrrecyclerview.BaseRecyclerViewHolder;
 import com.qluxstory.ptrrecyclerview.BaseSimpleRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by John_Libo on 2016/8/15.
@@ -37,7 +40,7 @@ import java.util.List;
 public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
     private final Context context;
     private final int type;
-    TextView tv05,tv05_phone,tv06,tv07,order_btn_phone;
+    TextView tv05,tv05_phone,tv06,tv07;
     Button btn;
     LinearLayout lin05,lin05_phone,lin06,lin07;
     List<OrderEntity> list = new ArrayList<>();
@@ -55,12 +58,10 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
 
     @Override
     public void bindData(BaseRecyclerViewHolder holder, OrderEntity orderEntity, final int position) {
-        LogUtils.e("bindData---type---",""+type);
         list.add(position,orderEntity);
         status = orderEntity.getStatus();
 
         String serviceTime= orderEntity.getServiceTime();
-        LogUtils.e("serviceTime---",""+serviceTime);
         List<String> dateAndTime = StringUtils.getDateAndTime(serviceTime);
 
         holder.setText(R.id.order_tv01,orderEntity.getServiceName());
@@ -77,14 +78,12 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         lin06 = holder.getView(R.id.order_lin06);
         tv07 = holder.getView(R.id.order_tv07);
         btn = holder.getView(R.id.order_btn);
-        order_btn_phone = holder.getView(R.id.order_btn_phone);
-        order_btn_phone.setText(orderEntity.getAddress());
-        order_btn_phone.setOnClickListener(new View.OnClickListener() {
+        tv05_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //拨打电话
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"
-                        + list.get(position).getAddress()));
+                        + list.get(position).getEmphone()));
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
@@ -111,7 +110,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                     OrderUiGoto.gotoOrderNew(context,bundle);
                 }
                 if(mBtn.getText().toString().equals("取消订单")){
-                    DialogUtils.confirm(context, "如果取消订单，优惠券和积分不予退回！", new DialogInterface.OnClickListener() {
+                    DialogUtils.confirm(context, "是否取消订单？", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             CancelOrderDTO dto = new CancelOrderDTO();
@@ -131,6 +130,8 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                                         tv.setText("已取消");
                                         bt.setText("已取消");
                                         DialogUtils.showPrompt(context, "提示","订单已取消！", "知道了");
+                                        EventBus.getDefault().post(
+                                                new OrderEvent("1"));
                                     }
 
                                 }
@@ -143,9 +144,8 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
                 }
             }
         });
-        if(status.equals("1")){
+        if(status.equals("1")||status.equals("7")||status.equals("8")){
             //未完成订单
-            order_btn_phone.setVisibility(View.GONE);
             lin05_phone.setVisibility(View.GONE);
             lin05.setVisibility(View.GONE);
             lin06.setVisibility(View.GONE);
@@ -155,7 +155,6 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         }
         else if(status.equals("3")){
             //待支付订单
-            order_btn_phone.setVisibility(View.VISIBLE);
             lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.VISIBLE);
@@ -164,11 +163,10 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("待支付");
             btn.setText("去支付");
-            tv05_phone.setText(orderEntity.getEmpName());
+            tv05_phone.setText(orderEntity.getEmphone());
         }
         else if(status.equals("4")){
             //待评价订单
-            order_btn_phone.setVisibility(View.VISIBLE);
             lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.GONE);
@@ -176,11 +174,10 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             tv05.setText(orderEntity.getEmpName());
             tv07.setText("已支付");
             btn.setText("去评价");
-            tv05_phone.setText(orderEntity.getEmpName());
+            tv05_phone.setText(orderEntity.getEmphone());
         }
         else if(status.equals("5")){
             //已完成订单
-            order_btn_phone.setVisibility(View.VISIBLE);
             lin05_phone.setVisibility(View.VISIBLE);
             lin05.setVisibility(View.VISIBLE);
             lin06.setVisibility(View.VISIBLE);
@@ -188,7 +185,7 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
             tv06.setText(orderEntity.getServiceFee()+"元");
             tv07.setText("已完成");
             btn.setVisibility(View.GONE);
-            tv05_phone.setText(orderEntity.getEmpName());
+            tv05_phone.setText(orderEntity.getEmphone());
         }
 
     }

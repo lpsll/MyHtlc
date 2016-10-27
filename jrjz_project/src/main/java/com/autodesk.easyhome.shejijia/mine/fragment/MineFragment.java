@@ -10,6 +10,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,9 @@ import com.autodesk.easyhome.shejijia.mine.activity.FeedBackActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.H5Activity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineCouponActivity;
 import com.autodesk.easyhome.shejijia.mine.activity.MineOrderActivity;
+import com.autodesk.easyhome.shejijia.mine.entity.MineEvent;
 import com.autodesk.easyhome.shejijia.mine.entity.UserDetailResult;
+import com.autodesk.easyhome.shejijia.order.entity.OrderEvent;
 
 import java.util.HashMap;
 
@@ -159,11 +162,29 @@ public class MineFragment extends BaseFragment {
                     AppContext.set("balance", String.valueOf(balance));
 
                 }
+                if(null!=result.getMsg()&&result.getMsg().equals("无效token")){
+                    AppContext.set("IS_LOGIN", false);
+                    AppContext.set("msg_tk","1");
+                    tvMinePhone.setText("请登录");
+                    tvMinePoint.setVisibility(View.GONE);
+                    tvMineBalance.setVisibility(View.GONE);
+                    DialogUtils.confirm(getActivity(), "请重新登录", mListener);
+                }
             }
         });
 
 
     }
+
+    DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            HomeUiGoto.gotoLoginForPwd(getActivity());
+            dialog.cancel();
+        }
+
+
+    };
 
     @Override
     public void initData() {
@@ -187,11 +208,16 @@ public class MineFragment extends BaseFragment {
             case R.id.rl_mine_changephone:
                 //跳转到切换手机号页面
                 if (AppContext.get("IS_LOGIN", false)) {
-                    MineUiGoto.gotoChangePhone(getActivity());
+                    if(AppContext.get("msg_tk", "").equals("1")){
+                        HomeUiGoto.gotoLoginForPwd(getActivity());
+                    }else {
+                        MineUiGoto.gotoChangePhone(getActivity());
+                    }
+
 //                    getContext().startActivity(new Intent(getContext(), ChangePhoneActivity.class));
                 } else {
                     HomeUiGoto.gotoLoginForPwd(getActivity());
-                }
+        }
                 break;
             case R.id.ll_mine_chongzhi:
                 //跳转到充值页
@@ -223,6 +249,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_mine_address:
                 if (AppContext.get("IS_LOGIN", false)) {
+                    AppContext.set("select_flag","1");
                     getContext().startActivity(new Intent(getContext(), SelectAddressActivity.class));
                 } else {
                     new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("您尚未登录，是否去登录？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -309,7 +336,7 @@ public class MineFragment extends BaseFragment {
                 break;
 
             case R.id.rl_my_score:
-                new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币，积分支付后不可退还。").setPositiveButton("知道了", null).show();
+                new AlertDialog.Builder(getContext()).setTitle("温馨提示").setMessage("积分使用说明：居然之家会员积分可在居然家政APP进行消费使用，200积分折算1元人民币。").setPositiveButton("知道了", null).show();
 
                 break;
         }
@@ -471,5 +498,16 @@ public class MineFragment extends BaseFragment {
             //用户取消操作会调用这里
         }
     };
+
+    public void onEventMainThread(MineEvent event) {
+        String msg = event.getMsg();
+        LogUtils.e("msg---", "" + msg);
+        if (!TextUtils.isEmpty(msg)) {
+            if (msg.equals("1")) {
+                initView(null);
+            }
+
+        }
+    }
 
 }

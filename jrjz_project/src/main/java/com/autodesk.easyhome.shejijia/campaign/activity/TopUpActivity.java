@@ -378,7 +378,6 @@ public class TopUpActivity extends BaseTitleActivity {
                 LogUtils.e("sign--", data.getSign());
                 msgApi.sendReq(req);
 
-                finish();
             }
         }
 

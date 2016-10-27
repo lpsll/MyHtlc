@@ -26,9 +26,9 @@ public class AppConfig {
 
     public static final String SUCCESS = "1";
     public static final String NOTHING = "0";
-    //旧id
+    //测试环境
 //    public static final String BASE_URL = "http://101.200.167.130:8080/jrjz-api/api";
-    //新id
+    //正式环境
     public static final String BASE_URL = "http://223.72.146.122:8080/jrjz-api/api";
     public static final String BASE_IMG_URL = "http://223.72.146.122:8080/jrjz-api";
     //    public static final String ABOUT_JURAN = "http://mp.weixin.qq.com/s?__biz=MzIxNDM4OTY3Mw==&mid=100000015&idx=1&sn=8f967c4b219ab2dc69400489b5d1b6b0&scene=18#wechat_redirect";

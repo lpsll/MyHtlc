@@ -14,6 +14,8 @@ import com.autodesk.easyhome.shejijia.common.http.CommonApiClient;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
 import com.autodesk.easyhome.shejijia.order.entity.IntegralResult;
 
+import java.math.BigDecimal;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -29,6 +31,7 @@ public class IntegralActivity extends BaseTitleActivity {
     Button mBtnPre;
     private String total,menoy;
     double tal,men,yuan;
+    double d;
 
     @Override
     protected int getContentResId() {
@@ -77,7 +80,10 @@ public class IntegralActivity extends BaseTitleActivity {
                     yuan = Double.parseDouble(result.getData());
                     LogUtils.e("yuan---",""+yuan);
                     if((yuan/men)<tal){
-                        mTvTotal.setText("当前用户有"+result.getData()+"积分可转换为"+yuan/men+"元");
+                        BigDecimal b = new BigDecimal(yuan/men);
+                        d = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+
+                        mTvTotal.setText("当前用户有"+result.getData()+"积分可转换为"+d+"元");
 //                        AppContext.set("Integral",String.valueOf(yuan/men));
 //                        AppContext.set("rule",menoy);
                     }else {
@@ -99,7 +105,7 @@ public class IntegralActivity extends BaseTitleActivity {
         switch (view.getId()) {
             case R.id.btn_pre:
                 if((yuan/men)<tal){
-                        AppContext.set("Integral",String.valueOf(yuan/men));
+                        AppContext.set("Integral",String.valueOf(d));
                         AppContext.set("rule",menoy);
                 }else {
                         AppContext.set("Integral",total);
