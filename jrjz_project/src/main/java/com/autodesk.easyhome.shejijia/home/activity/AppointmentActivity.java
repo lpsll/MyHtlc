@@ -264,7 +264,7 @@ public class AppointmentActivity extends BaseTitleActivity {
                 break;
             case R.id.img_ljd:
                 Bundle bundle = new Bundle();
-                bundle.putString("url", "http://101.200.167.130:8080/jrjz-api/c/service/detail?id=" + mId);
+                bundle.putString("url", AppConfig.LOAS_URL+"/c/service/detail?id=" + mId);
                 bundle.putString("title", mName);
                 HomeUiGoto.gotoBrowser(this, bundle);
                 break;

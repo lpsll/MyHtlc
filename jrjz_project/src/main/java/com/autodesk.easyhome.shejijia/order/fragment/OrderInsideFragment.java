@@ -183,7 +183,7 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             if(result.getData().getTotal().equals("0")){
                                 AppContext.set("TypeFour",false);
                             }else {
-                                AppContext.set("TypeFour",true);
+                                AppContext.set("TypeFour",false);
                             }
                         }
 
@@ -203,12 +203,16 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
                             if(result.getData().getTotal().equals("0")){
                                 AppContext.set("TypeFive",false);
                             }else {
-                                AppContext.set("TypeFive",true);
+                                AppContext.set("TypeFive",false);
                             }
                             if(flag){
                                 EventBus.getDefault().post(
                                         new OrderEvent("1"));
                             }
+//                            if(AppContext.get("evaluate_flag",false)){
+//                                EventBus.getDefault().post(
+//                                        new OrderEvent("0"));
+//                            }
 
                         }
                         if(null!=result.getMsg()&&result.getMsg().equals("无效token")){
@@ -233,8 +237,9 @@ public class OrderInsideFragment extends BaseListFragment<OrderEntity> {
     DialogInterface.OnClickListener mListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            HomeUiGoto.gotoLoginForPwd(getActivity());
             dialog.cancel();
+            HomeUiGoto.gotoLoginForPwd(getActivity());
+
         }
 
 

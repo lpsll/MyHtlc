@@ -241,7 +241,8 @@ public class OrderNewPaymentActivity extends BaseTitleActivity {
                 } else {
                     type = "HomeService";
                 }
-
+                LogUtils.e("balance---",""+balance);
+                LogUtils.e("mTvMoney.getText().toString()---",""+mTvMoney.getText().toString());
                 if (balance < Double.parseDouble(mTvMoney.getText().toString())) {
                     DialogUtils.showPrompt(OrderNewPaymentActivity.this, "提示", "您的余额不足，钱包无法支付！", "知道了");
                 } else {

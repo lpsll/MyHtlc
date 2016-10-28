@@ -177,7 +177,7 @@ public class ServiceDetailsActivity extends BaseTitleActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("title","服务详情");
-                bundle.putString("url","http://101.200.167.130:8080/jrjz-api/c/service/detail?id="+id);
+                bundle.putString("url",AppConfig.LOAS_URL+"/c/service/detail?id="+id);
                 HomeUiGoto.gotoBrowser(this,bundle);
 
                 break;

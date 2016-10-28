@@ -58,6 +58,7 @@ public class TextViewUtils {
                 view.setCompoundDrawables(d, null, null, null);
                 break;
             case DRAWABLE_RIGHT:
+//                view.setCompoundDrawablePadding(5);
                 view.setCompoundDrawables(null, null, d, null);
                 break;
             case DRAWABLE_TOP:

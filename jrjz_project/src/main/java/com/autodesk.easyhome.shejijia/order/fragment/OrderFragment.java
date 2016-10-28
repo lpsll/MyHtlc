@@ -160,15 +160,13 @@ public class OrderFragment extends BaseFragment {
 //        fragmentList.add(OrderInsideFragment.newInstance(TAB_E));
 
 
-
-        titles= getResources().getStringArray(R.array.order_tab_false);
-        bindAdapter(titles);
+        bindAdapter();
 
 
     }
 
-    private void bindAdapter(String[] titles) {
-
+    private void bindAdapter() {
+        titles= getResources().getStringArray(R.array.order_tab_false);
         mAdapter = new OrderTabListAdapter(getChildFragmentManager(), this, titles, fragmentList);
 
         mOrderContent.setAdapter(mAdapter);
@@ -206,38 +204,7 @@ public class OrderFragment extends BaseFragment {
         if (!TextUtils.isEmpty(msg)) {
             if (msg.equals("1")) {
                 AppContext.set("inFlag",false);
-                one = AppContext.get("TypeOne",false);
-                two = AppContext.get("TypeTwo",false);
-                three = AppContext.get("TypeThree",false);
-                LogUtils.e("one---",""+one);
-                LogUtils.e("two---",""+two);
-                LogUtils.e("three---",""+three);
-                if(one==false&&two==false&&three==false){
-                    titles = getResources().getStringArray(R.array.order_tab_false);
-                }
-                else if(one==true&&two==false&&three==false){
-                    titles = getResources().getStringArray(R.array.order_tab_1);
-                }
-                else if(one==false&&two==true&&three==false){
-                    titles = getResources().getStringArray(R.array.order_tab_2);
-                }
-                else if(one==false&&two==false&&three==true){
-                    titles = getResources().getStringArray(R.array.order_tab_3);
-                }
-                else if(one==true&&two==true&&three==false){
-                    titles = getResources().getStringArray(R.array.order_tab_4);
-                }
-                else if(one==true&&two==false&&three==true){
-                    titles = getResources().getStringArray(R.array.order_tab_5);
-                }
-                else if(one==false&&two==true&&three==true){
-                    titles = getResources().getStringArray(R.array.order_tab_6);
-                }
-                else if(one==true&&two==true&&three==true){
-                    titles = getResources().getStringArray(R.array.order_tab_7);
-                }
-                LogUtils.e("titles---",""+titles);
-                bindAdapter(titles);
+                bindAdapter();
             }
             else if(msg.equals("0")){
                 initView(null);

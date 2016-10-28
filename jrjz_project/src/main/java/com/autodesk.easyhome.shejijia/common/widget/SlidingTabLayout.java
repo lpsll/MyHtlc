@@ -35,11 +35,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.autodesk.easyhome.shejijia.AppContext;
 import com.autodesk.easyhome.shejijia.R;
+import com.autodesk.easyhome.shejijia.common.base.BaseApplication;
 import com.autodesk.easyhome.shejijia.common.utils.LogUtils;
+import com.autodesk.easyhome.shejijia.common.utils.TextViewUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -75,12 +82,14 @@ public class SlidingTabLayout extends HorizontalScrollView {
     private static final int TITLE_OFFSET_DIPS = 24;
     private static final int TAB_VIEW_PADDING_DIPS = 8;
     private static final int TAB_VIEW_TEXT_SIZE_DIP = 13;
+    private static final int TAB_VIEW_TEXT_SIZE_DIP_NEW = 10;
 
     private int mTitleOffset;
 
     private int mTabViewLayoutId;
     private int mTabViewTextViewId;
     private boolean mDistributeEvenly;
+    private int flag =0;
 
     private ViewPager mViewPager;
     private SparseArray<String> mContentDescriptions = new SparseArray<String>();
@@ -179,7 +188,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, TAB_VIEW_TEXT_SIZE_DIP);
         //textView.setTypeface(Typeface.DEFAULT_BOLD);
         textView.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                ViewGroup.LayoutParams.WRAP_CONTENT, 150));
 
         TypedValue outValue = new TypedValue();
         getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
@@ -188,39 +197,67 @@ public class SlidingTabLayout extends HorizontalScrollView {
 //        textView.setAllCaps(true);
         textView.setTextColor(getResources().getColorStateList(R.color.common_tab_text_color));
         int padding = (int) (TAB_VIEW_PADDING_DIPS * getResources().getDisplayMetrics().density);
-        textView.setPadding(padding, padding, padding, padding);
+//        textView.setPadding(padding, padding, padding, padding);
 
         return textView;
+    }
+
+    TextView tv;
+    ImageView img;
+    protected LinearLayout createDefaultTabLinearView(Context context) {
+        View view = View.inflate(context, R.layout.view_tablayout, null);
+        tv = (TextView) view.findViewById(R.id.view_tablayout_tv);
+        img = (ImageView) view.findViewById(R.id.view_tablayout_img);
+        TypedValue outValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground,
+                outValue, true);
+
+        return (LinearLayout) view;
     }
 
     private void populateTabStrip() {
         final PagerAdapter adapter = mViewPager.getAdapter();
         final OnClickListener tabClickListener = new TabClickListener();
 
-        LogUtils.e("populateTabStrip()----","populateTabStrip");
+
+        List<Boolean> list = new ArrayList<>();
+        list.add(AppContext.get("TypeOne",false));
+        list.add(AppContext.get("TypeTwo",false));
+        list.add(AppContext.get("TypeThree",false));
+        list.add(AppContext.get("TypeFour",false));
+        list.add(AppContext.get("TypeFive",false));
         for (int i = 0; i < adapter.getCount(); i++) {
             View tabView = null;
             TextView tabTitleView = null;
-
+            LogUtils.e("mTabViewLayoutId----",""+mTabViewLayoutId);
             if (mTabViewLayoutId != 0) {
+                LogUtils.e("1----",""+mTabViewLayoutId);
                 // If there is a custom tab view layout id set, try and inflate it
                 tabView = LayoutInflater.from(getContext()).inflate(mTabViewLayoutId, mTabStrip,
                         false);
                 tabTitleView = (TextView) tabView.findViewById(mTabViewTextViewId);
             }
-
+            LogUtils.e("tabView----",""+tabView);
             if (tabView == null) {
-                tabView = createDefaultTabView(getContext());
+//                tabView = createDefaultTabView(getContext());
+                tabView = createDefaultTabLinearView(getContext());
+                LogUtils.e("2----",""+tabView);
             }
-
+            LogUtils.e("tabTitleView----",""+tabTitleView);
             if (tabTitleView == null && TextView.class.isInstance(tabView)) {
                 tabTitleView = (TextView) tabView;
+                LogUtils.e("3----",""+tabTitleView);
             }
 
             if (mDistributeEvenly) {
-                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+//                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
+//                lp.width = 0;
+//                lp.weight = 1;
+
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams( ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 lp.width = 0;
                 lp.weight = 1;
+                tabView.setLayoutParams(lp);
             }
 
             String string = (String) adapter.getPageTitle(i);
@@ -229,16 +266,36 @@ public class SlidingTabLayout extends HorizontalScrollView {
 //            String text_m = string.substring(2, 3);
 //            tabTitleView.setText(Html.fromHtml(text_b + "<font color=red>" + text_m + "</font>" ));
 
-            if(string.contains(".")){
-                SpannableStringBuilder style = new SpannableStringBuilder(string);
-                style.setSpan(new ForegroundColorSpan(Color.RED), 3, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
-                style.setSpan(new AbsoluteSizeSpan(50), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//设置指定位置文字的大小
-                LogUtils.e("style----",""+style);
-                tabTitleView.setText(style);
-            }else {
-                LogUtils.e("string----",""+string);
-                tabTitleView.setText(string);
+//            if(string.contains(".")){
+//                LogUtils.e("string----",""+string);
+//                SpannableStringBuilder style = new SpannableStringBuilder(string);
+//                style.setSpan(new ForegroundColorSpan(Color.RED), 3, 4, Spannable.SPAN_EXCLUSIVE_INCLUSIVE); //设置指定位置文字的颜色
+//                style.setSpan(new AbsoluteSizeSpan(150), 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);//设置指定位置文字的大小
+//                LogUtils.e("style----",""+style);
+//                tabTitleView.setText(style);
+//                tv.setText(string);
+                // 初始化标记大小
+//                TextViewUtils.setTextViewIcon(BaseApplication.context(), tabTitleView, R.drawable.red_yuan,
+//                        R.dimen.common_titlebar_icon_width,
+//                        R.dimen.common_titlebar_left_icon_height, TextViewUtils.DRAWABLE_RIGHT);
+//            }else {
+//                LogUtils.e("string----",""+string);
+//                TextViewUtils.setTextViewIcon(BaseApplication.context(), tabTitleView, R.drawable.red_yuan,
+//                        R.dimen.common_titlebar_icon_width,
+//                        R.dimen.common_titlebar_left_icon_height, TextViewUtils.DRAWABLE_RIGHT);
+//                tv.setText(string);
+//            }
+
+            LogUtils.e("string----",""+string);
+            LogUtils.e("list.get(i----)",""+list.get(i));
+            if(list.get(i)){
+                    tv.setText(string);
+                    img.setVisibility(VISIBLE);
+            } else {
+                tv.setText(string);
+                img.setVisibility(GONE);
             }
+
 
 
             tabView.setOnClickListener(tabClickListener);

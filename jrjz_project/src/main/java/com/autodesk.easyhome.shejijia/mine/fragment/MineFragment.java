@@ -468,7 +468,7 @@ public class MineFragment extends BaseFragment {
             // titleUrl是标题的网络链接，QQ和QQ空间等使用
             sp.setTitleUrl(AppConfig.DOWNLOAD_H5);
             sp.setText("家里有事，就找居然家政！");
-            sp.setImageUrl("http://101.200.167.130:8080/jrjz-api/static/img/share.png");
+            sp.setImageUrl(AppConfig.LOAS_URL+"/static/img/share.png");
             LogUtils.e("sp---", "" + sp);
             Platform qq = ShareSDK.getPlatform(QQ.NAME);
             qq.setPlatformActionListener(paListener);

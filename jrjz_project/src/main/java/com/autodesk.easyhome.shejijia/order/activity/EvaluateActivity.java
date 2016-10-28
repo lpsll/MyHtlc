@@ -1,6 +1,7 @@
 package com.autodesk.easyhome.shejijia.order.activity;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -203,13 +204,13 @@ public class EvaluateActivity extends BaseTitleActivity {
     View.OnClickListener listener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            EventBus.getDefault().post(
-                    new OrderEvent("0"));
+//            AppContext.set("evaluate_flag",true);
             finish();
         }
     };
 
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @OnClick({R.id.lin01, R.id.lin02, R.id.lin03, R.id.lin04, R.id.lin05, R.id.lin06, R.id.lin07, R.id.lin08, R.id.lin09, R.id.lin10, R.id.evaluate_btn})
     public void onClick(View view) {
         switch (view.getId()) {

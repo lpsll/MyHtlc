@@ -140,7 +140,58 @@
                     android:textSize="@dimen/fs_45" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/order_lin_kh_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds_20"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/order_kh_name"
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+
+                <TextView
+                    android:id="@+id/order_tv_kh_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/ds_30"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.4"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/order_lin_kh_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ds_20"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/order_kh_phone"
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+
+                <TextView
+                    android:id="@+id/order_tv_kh_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/ds_30"
+                    android:ellipsize="end"
+                    android:lineSpacingMultiplier="1.4"
+                    android:maxLines="2"
+                    android:text=""
+                    android:textColor="@color/color_33"
+                    android:textSize="@dimen/fs_45" />
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/order_lin05"
                 android:layout_width="match_parent"

@@ -43,6 +43,7 @@ public class AppConfig {
 
 
     public static final String Wx_App_Id = "wxfd04ee1c78a46319";
+    public static final String LOAS_URL = "http://jrjz.juran.com.cn/jrjz-api";
 
 //    /**
 //     * 用户信息全局常量

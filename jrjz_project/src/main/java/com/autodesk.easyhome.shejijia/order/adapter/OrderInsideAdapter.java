@@ -70,6 +70,9 @@ public class OrderInsideAdapter extends BaseSimpleRecyclerAdapter<OrderEntity> {
         holder.setText(R.id.order_tv04,orderEntity.getAddress());
         holder.setText(R.id.order_tv03_time,dateAndTime.get(1));
 
+        holder.setText(R.id.order_tv_kh_name,orderEntity.getCustName());
+        holder.setText(R.id.order_tv_kh_phone,orderEntity.getPhone());
+
         tv05 = holder.getView(R.id.order_tv05);
         lin05 = holder.getView(R.id.order_lin05);
         tv05_phone = holder.getView(R.id.order_tv05_ipone);
